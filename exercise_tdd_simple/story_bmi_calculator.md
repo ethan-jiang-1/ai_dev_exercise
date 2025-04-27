@@ -1,7 +1,7 @@
 # User Story: Simple BMI Calculator
 
-(核心开发理念参考: [AI辅助测试驱动开发](teaching_framework/test_driven_development_with_ai.md))
-(练习框架规划参考: [TDD练习框架规划](teaching_framework/planning_tdd_exercise_template.md))
+(核心开发理念参考: [测试驱动开发核心理念](teaching_framework/test_driven_development_with_ai.md))
+(练习框架规划参考: [TDD练习框架设计规划](teaching_framework/planning_tdd_exercise_template.md))
 
 ## 1. User Story (用户故事)
 
@@ -9,81 +9,122 @@
 
 > **重要约束**：在整个故事实践过程中，请确保所有在Cursor中的交互对话均使用中文，这是出于演示目的的要求。
 
-本文档描述了"简单BMI计算器"这个故事实例的背景、业务场景和相关资料，用于支持AI+TDD练习框架。本故事聚焦于一个非常基础的健康计算功能：根据身高和体重计算身体质量指数 (BMI) 及其分类。
+## 基础结构说明
 
-## 故事背景
+本故事遵循标准的TDD练习框架结构：
 
-假设我们正在为一个简单的健康管理应用开发一个核心工具模块。第一个需要实现的功能是BMI计算器。用户需要能够输入他们的身高（米）和体重（公斤），程序需要计算出BMI值，并能根据标准提供BMI分类（例如，体重过轻、正常、超重等）。
+### 命名规范
 
-## 业务目标
+1. **特性名称 (feature_name)**：
+   - 格式：`小写字母_用下划线分隔`
+   - 示例：`bmi_calculate`, `bmi_categorize`
+   - 要求：描述性、简洁、表明功能
 
-1.  提供一个准确计算BMI值的函数。
-2.  提供一个根据BMI值返回对应分类的函数。
-3.  确保函数能够处理有效的数值输入，并对无效输入（如零身高、负数体重）进行适当处理。
-4.  代码需要通过测试驱动开发完成，保证质量和可维护性。
+2. **目录命名**：
+   - 练习系列目录：`ExTDD_XX_FeatureName`
+     - XX：两位数字编号（01、02等）
+     - FeatureName：驼峰式命名
+     - 示例：`ExTDD_01_BMICalculation`
 
-## 团队角色
+3. **文件命名**：
+   - 思考文件：`_s{step}_{type}_{feature_name}.md`
+   - 代码文件：`{feature_name}.py`
+   - 测试文件：`test_{feature_name}.py`
+   - 文档文件：`doc_{feature_name}.md`
 
--   **产品经理 (假设)**: 负责定义 BMI 计算器和分类的基本需求。
--   **你 (后端开发者)**: 负责实现这些功能，遵循 TDD 流程。
+### 目录结构规范
 
-## 技术栈 (建议)
-
--   **语言**: Python 3.9+
--   **测试框架**: `unittest` (Python内置)
--   **文档**: Markdown
-
-## 故事目录结构 (已创建)
+每个练习系列（如ExTDD_01_BMICalculation）都必须包含：
 
 ```
-exercise_tdd_simple/
-├── teaching_framework/
-│   ├── test_driven_development_with_ai.md
-│   └── planning_tdd_exercise_template.md
-|
-├── story_example_bmi_calculator/            (本故事)
-│   ├── story_bmi_calculator.md             (本文件 - 故事描述)
-│   ├── constraints/
-│   │   └── exercise_constraints_bmi_01.md    (BMI练习约束)
-│   ├── inputs/
-│   │   ├── user_story_bmi_01_calculate.md  (计算BMI值用户故事)
-│   │   └── user_story_bmi_02_categorize.md (BMI分类用户故事)
-│   └── outputs/
-│       ├── ExTDD_01_BMICalculation/        (计算BMI值系列输出)
-│       │   ├── s1_implementation_analysis.md
-│       │   ├── s2_action_plan.md
-│       │   ├── bmi_calculator.py
-│       │   ├── test_bmi_calculator.py
-│       │   └── s5_api_documentation.md
-│       └── ExTDD_02_BMICategorization/     (BMI分类系列输出)
-│           └── ... (类似结构)
-└── ...
+ExTDD_XX_FeatureName/
+├── constraints/                    # 约束条件
+│   └── task_constraints.md        # 任务特定约束
+├── inputs/                        # 输入文件
+│   └── user_story.md             # 用户故事
+├── outputs/                       # 输出文件
+│   ├── _s1_think_options_{feature_name}.md
+│   ├── _s2_think_design_{feature_name}.md
+│   ├── _s3_think_validation_{feature_name}.md
+│   ├── {feature_name}.py
+│   ├── test_{feature_name}.py
+│   └── doc_{feature_name}.md
+└── README.md                      # 练习说明
 ```
 
-## 如何使用本故事进行练习
+## BMI计算器特定实现
 
-1.  **准备**: 熟悉本故事背景和业务目标。
-2.  **学习核心理念**: 阅读 `teaching_framework/test_driven_development_with_ai.md`，理解AI辅助TDD的原则。
-3.  **查阅约束**: 阅读 `constraints/exercise_constraints_bmi_01.md` 文件，了解本故事练习的基本要求和简化假设。
-4.  **选择用户故事**: 从 `inputs/` 目录选择一个用户故事开始 (建议从 `user_story_bmi_01_calculate.md` 开始)。
-5.  **确定练习系列类型**: 查阅 `teaching_framework/planning_tdd_exercise_template.md` 中定义的练习系列模板 (这两个用户故事都适用于 `ExTDD_01: 实现简单计算/验证功能系列`)。
-6.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录 (例如 `outputs/ExTDD_01_BMICalculation/`)。
-7.  **执行TDD流程**: 遵循 `planning_tdd_exercise_template.md` 中定义的5个步骤，使用AI助手辅助完成从分析到文档的整个TDD循环。
-8.  **反思**: 评估每个步骤的产出质量，思考AI在TDD流程中的作用和挑战。
+### 1. ExTDD_01_BMICalculation: 实现BMI值的计算
 
-## 练习系列说明
+feature_name: bmi_calculate
 
-本故事包含两个核心的微功能开发系列：
+```
+ExTDD_01_BMICalculation/
+├── constraints/
+│   └── task_constraints.md        # BMI计算的特定约束
+├── inputs/
+│   └── user_story.md             # BMI计算的用户故事
+└── outputs/
+    ├── _s1_think_options_bmi_calculate.md
+    ├── _s2_think_design_bmi_calculate.md
+    ├── _s3_think_validation_bmi_calculate.md
+    ├── bmi_calculate.py
+    ├── test_bmi_calculate.py
+    └── doc_bmi_calculate.md
+```
 
-1.  **ExTDD_01_BMICalculation**: 实现BMI值的计算。
-    *   **输入**: `inputs/user_story_bmi_01_calculate.md`
-    *   **目标**: 开发一个函数，接收体重(kg)和身高(m)作为输入，返回计算出的BMI值。需要处理无效输入（如零身高）。
-    *   **对应模板**: `ExTDD_01: 实现简单计算/验证功能系列`
+#### 特定需求
+- 接收用户的身高(米)和体重(千克)输入
+- 计算BMI值（体重除以身高的平方）
+- 处理无效输入（如零或负数）
+- 控制计算精度（保留两位小数）
 
-2.  **ExTDD_02_BMICategorization**: 实现BMI值的分类。
-    *   **输入**: `inputs/user_story_bmi_02_categorize.md`
-    *   **目标**: 开发一个函数，接收BMI值作为输入，根据标准阈值返回对应的分类字符串（例如，"Underweight", "Normal", "Overweight", "Obese"）。
-    *   **对应模板**: `ExTDD_01: 实现简单计算/验证功能系列`
+#### 技术要点
+- 输入验证逻辑
+- 精确的浮点数计算
+- 异常处理策略
+- 单位换算考虑
 
----
-祝您学习愉快！ 
+#### 验收标准
+- 正确计算正常输入的BMI值
+- 适当处理无效输入
+- 保持计算精度
+- 提供清晰的错误信息
+
+### 2. ExTDD_02_BMICategorization: 实现BMI值的分类
+
+feature_name: bmi_categorize
+
+```
+ExTDD_02_BMICategorization/
+├── constraints/
+│   └── task_constraints.md        # BMI分类的特定约束
+├── inputs/
+│   └── user_story.md             # BMI分类的用户故事
+└── outputs/
+    ├── _s1_think_options_bmi_categorize.md
+    ├── _s2_think_design_bmi_categorize.md
+    ├── _s3_think_validation_bmi_categorize.md
+    ├── bmi_categorize.py
+    ├── test_bmi_categorize.py
+    └── doc_bmi_categorize.md
+```
+
+#### 特定需求
+- 接收BMI值作为输入
+- 根据标准阈值返回分类
+- 支持不同的分类标准（可选）
+- 提供分类的详细说明
+
+#### 技术要点
+- 分类阈值的设定
+- 分类逻辑的实现
+- 结果的本地化（中英文）
+- 分类标准的可扩展性
+
+#### 验收标准
+- 准确的分类判断
+- 清晰的分类描述
+- 合理的边界处理
+- 可扩展的设计
+

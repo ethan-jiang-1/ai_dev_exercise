@@ -241,113 +241,116 @@ exercise_tdd_simple/
    - 每个步骤都保持了思考在先、实现在后的核心原则
    - 文件命名约定更加规范化，便于在多个故事实例中统一使用
 
-## 示例练习系列：ExTDD_01 CSV数据验证器
+## 示例练习系列：ExTDD_01 简单计算/验证功能
 
-这是一个完整的练习系列示例，展示如何将核心理念文档中的CSV处理示例转化为具体的TDD练习。
+这是一个基础的练习系列模板，用于指导如何实现简单的计算或验证功能。
 
 ### 系列定义
 
 - **系列ID**: ExTDD_01
-- **名称**: CSV数据验证器
-- **目标**: 实现一个可配置的CSV数据验证功能，确保数据符合预定义的规则
-- **复杂度**: 中等
-- **技术要求**: Python, pandas, pytest
+- **名称**: 简单计算/验证功能系列
+- **目标**: 掌握基础的数值计算和输入验证的TDD实践
+- **复杂度**: 低
+- **技术要求**: Python, unittest
+- **适用场景**: 单一函数的数值计算、数据验证、简单转换等
 
-### 步骤示例
+### 步骤指导
 
-1. **步骤1文件**: `_s1_think_options_csv_validator.md`
+1. **步骤1 - 实现思考** (`_s1_think_options_{feature_name}.md`):
    ```markdown
-   # CSV数据验证器 - 实现思考
+   # 功能名称 - 实现思考
    
    ## 1. 核心需求分析
-   - 验证CSV文件的数据质量
-   - 支持可配置的验证规则
-   - 生成验证报告
+   - 明确输入参数及其限制
+   - 定义预期输出及其格式
+   - 识别异常情况
    
    ## 2. 技术挑战
-   - 大文件处理效率
-   - 内存管理
-   - 规则引擎设计
+   - 输入验证要点
+   - 计算/处理精度要求
+   - 错误处理策略
    
    ## 3. 可选方案
-   - 使用pandas进行批处理
-   - 使用Python内置csv模块流式处理
-   - 规则引擎：声明式vs命令式
+   - 函数式方案
+   - 类封装方案
+   - 异常处理方案
    ```
 
-2. **步骤2文件**: `_s2_think_design_csv_validator.md`
+2. **步骤2 - 设计方案** (`_s2_think_design_{feature_name}.md`):
    ```markdown
-   # CSV验证器 - 设计方案
+   # 功能名称 - 设计方案
    
-   ## 接口设计
-   ```python
-   class CSVValidator:
-       def __init__(self, rules_config: Dict[str, Any]):
-           """初始化验证器
-           Args:
-               rules_config: 验证规则配置
-           """
-           pass
-   
-       def validate(self, csv_path: str) -> ValidationReport:
-           """验证CSV文件
-           Args:
-               csv_path: CSV文件路径
-           Returns:
-               ValidationReport: 验证报告
-           """
-           pass
-   ```
+   ## 函数/类接口设计
+   - 参数定义及类型
+   - 返回值类型
+   - 异常定义
    
    ## 实现步骤
-   1. 规则配置解析
-   2. CSV读取与验证
-   3. 报告生成
+   1. 输入验证
+   2. 核心处理
+   3. 结果格式化
    ```
 
-3. **步骤3文件**: `test_csv_validator.py`
+3. **步骤3 - 测试设计** (`test_{feature_name}.py`):
    ```python
-   def test_validator_init():
-       """测试验证器初始化"""
-       rules = {"column1": {"type": "int", "range": [0, 100]}}
-       validator = CSVValidator(rules)
-       assert validator.rules == rules
-   
-   def test_basic_validation():
-       """测试基本数据验证"""
-       # 这个测试应该失败(Red)，因为还没有实现
-       pass
+   """测试用例应覆盖：
+   1. 正常输入场景
+   2. 边界值场景
+   3. 异常输入场景
+   """
    ```
 
-4. **步骤4文件**: `csv_validator.py`
+4. **步骤4 - 功能实现** (`{feature_name}.py`):
    ```python
-   class CSVValidator:
-       def __init__(self, rules_config):
-           self.rules = rules_config
-           
-       def validate(self, csv_path):
-           # 实现验证逻辑，使测试通过(Green)
-           pass
+   """实现要点：
+   1. 严格遵循测试用例
+   2. 实现必要的验证
+   3. 保持代码简洁
+   """
    ```
 
-5. **步骤5文件**: `doc_csv_validator.md`
+5. **步骤5 - API文档** (`doc_{feature_name}.md`):
    ```markdown
-   # CSV验证器API文档
+   # API文档模板
    
-   ## 类: CSVValidator
-   CSV数据验证工具，支持可配置的验证规则。
+   ## 功能说明
+   - 目的
+   - 使用场景
    
-   ### 方法
-   #### __init__(rules_config: Dict[str, Any])
-   初始化验证器...
+   ## 接口定义
+   - 参数说明
+   - 返回值说明
+   - 异常说明
    
-   #### validate(csv_path: str) -> ValidationReport
-   执行验证...
+   ## 使用示例
+   - 基本用法
+   - 异常处理
    ```
 
 ### 评估要点
 
-- 思考过程是否清晰可见
-- 测试是否覆盖关键场景
-- 代码是否遵循TDD的"Red-Green-Refactor"循环
-- 文档是否完整且易于理解
+1. **需求理解**
+   - 是否准确识别了核心功能需求
+   - 是否考虑了必要的边界条件
+
+2. **测试设计**
+   - 是否覆盖了主要场景
+   - 是否包含边界测试
+   - 是否测试了异常情况
+
+3. **实现质量**
+   - 代码是否简洁清晰
+   - 是否恰当处理了异常
+   - 是否符合Python编码规范
+
+4. **文档完整性**
+   - 是否清晰说明了使用方法
+   - 是否完整记录了参数和返回值
+   - 是否提供了适当的示例
+
+### 注意事项
+
+- 保持功能单一，专注于一个计算或验证任务
+- 优先考虑代码的可读性和可维护性
+- 确保异常处理的合理性和友好性
+- 注意数值计算的精度要求
