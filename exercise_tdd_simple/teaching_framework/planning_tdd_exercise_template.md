@@ -1,11 +1,11 @@
 # 规划文档：AI+TDD 练习框架：支持多故事实例
 
-本文档概述了用于创建一系列 AI 辅助测试驱动开发 (TDD) 练习的**框架设计**。该框架基于 `thinking_driven_development_with_ai_v2.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，每个故事包含若干个遵循 TDD 流程的**微功能开发系列 (Exercise Series)**。重点是使用 AI 辅助完成 TDD 的各个思考和构建环节。
+本文档概述了用于创建一系列 AI 辅助测试驱动开发 (TDD) 练习的**框架设计**。该框架基于 `test_driven_development_with_ai.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，每个故事包含若干个遵循 TDD 流程的**微功能开发系列 (Exercise Series)**。重点是使用 AI 辅助完成 TDD 的各个思考和构建环节。
 
 ## 目标 (Goal)
 
 设计一个可扩展的 TDD 练习框架，其中：
-1.  定义一套**通用的、可复用的 TDD 练习系列模板 (Exercise Series Templates)**，这些系列演示 `thinking_driven_development_with_ai_v2.md` 中描述的 AI 辅助 TDD 流程。
+1.  定义一套**通用的、可复用的 TDD 练习系列模板 (Exercise Series Templates)**，这些系列演示 `test_driven_development_with_ai.md` 中描述的 AI 辅助 TDD 流程。
 2.  允许用户为**不同的故事实例 (Story Instances)**（例如不同的项目或场景）提供独立的输入数据（用户故事）和存储独立的输出结果（思考文档、测试代码、实现代码、API文档）。
 3.  阐明框架的核心思考与构建循环 (`think_*` -> `build_*`) 如何在不同练习系列和故事中体现。
 4.  练习将主要聚焦于后端 Python 开发场景，并严格遵循 TDD 的 "红-绿-重构" 循环思想。
@@ -15,7 +15,7 @@
 本框架的核心设计理念是：**一套通用的 TDD 练习系列流程模板，应用于多个不同的故事场景，每个故事包含多个具体的微功能开发系列**。
 
 这意味着：
-1.  **TDD 练习系列 (Exercise Series)** 是通用的流程模板，定义了从需求分析到文档完善的 TDD 完整闭环，包含 5 个核心步骤 (`_1` 到 `_5`)，对应 `thinking_driven_development_with_ai_v2.md` 中的思考与构建阶段。这些模板定义在本文件中。
+1.  **TDD 练习系列 (Exercise Series)** 是通用的流程模板，定义了从需求分析到文档完善的 TDD 完整闭环，包含 5 个核心步骤 (`_1` 到 `_5`)，对应 `test_driven_development_with_ai.md` 中的思考与构建阶段。这些模板定义在本文件中。
 2.  **故事实例 (Story Instance)** 是具体的，提供特定领域或场景的上下文、用户故事和可选的约束文件。每个故事拥有独立的目录。
 3.  **微功能实现 (Micro-feature Implementation)** 是在特定故事背景下，对一个 TDD 练习系列模板的具体应用，通常围绕一个用户故事展开。
 4.  学习者可以：
@@ -33,7 +33,7 @@
 
 本框架采用"抽象到具体"的三层设计：
 
-1.  **核心理念层** (`thinking_driven_development_with_ai_v2.md`)：
+1.  **核心理念层** (`test_driven_development_with_ai.md`)：
     *   定义思考驱动开发的基本原则。
     *   确立测试驱动思维的重要性。
     *   规范与AI协作的方法论（思考过程优先）。
@@ -49,7 +49,7 @@
     *   每个故事实例包含多个微功能开发，每个微功能遵循一个 ExTDD 系列模板。
 
 每个故事实例下的微功能开发都是对框架的具体实现：
-1.  遵循 `thinking_driven_development_with_ai_v2.md` 的核心理念。
+1.  遵循 `test_driven_development_with_ai.md` 的核心理念。
 2.  采用本文档定义的 TDD 练习系列模板（ExTDD 系列）。
 3.  在特定领域场景下，针对一个具体的用户故事，完成 TDD 的 5 个步骤。
 4.  提供领域特定的输入文件（用户故事 `inputs/user_story_*.md`）和可选的约束文件 (`constraints/exercise_constraints_*.md`)。
@@ -80,24 +80,24 @@
 ```
 exercise_tdd_simple/
 ├── teaching_framework/                     (框架文档目录)
-│   ├── thinking_driven_development_with_ai_v2.md  (思考驱动开发核心理念 V2)
+│   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
 │   └── planning_tdd_exercise_template.md       (本文件 - TDD 练习框架设计规划)
 |
-├── story_example_simple_calculator/         (故事实例 1：简单计算器)
-│   ├── story_simple_calculator.md          (故事描述文件)
-│   ├── constraints/                        (计算器故事的约束文件，可选)
-│   │   └── exercise_constraints_calc_01.md
-│   ├── inputs/                             (计算器故事的输入文件)
-│   │   ├── user_story_calc_01_add.md       (示例：加法功能用户故事)
-│   │   └── user_story_calc_02_subtract.md  (示例：减法功能用户故事)
-│   └── outputs/                            (计算器故事的练习输出)
-│       ├── ExTDD_01_Addition/              (示例：计算器加法功能系列输出)
+├── story_example_bmi_calculator/            (故事实例 1：BMI 计算器)
+│   ├── story_bmi_calculator.md             (故事描述文件)
+│   ├── constraints/                        (BMI 计算器故事的约束文件，可选)
+│   │   └── exercise_constraints_bmi_01.md
+│   ├── inputs/                             (BMI 计算器故事的输入文件)
+│   │   ├── user_story_bmi_01_calculate.md  (示例：计算BMI值用户故事)
+│   │   └── user_story_bmi_02_categorize.md (示例：BMI分类用户故事)
+│   └── outputs/                            (BMI 计算器故事的练习输出)
+│       ├── ExTDD_01_BMICalculation/        (示例：计算BMI值系列输出)
 │       │   ├── s1_implementation_analysis.md (步骤1: 实现分析)
 │       │   ├── s2_action_plan.md             (步骤2: 行动计划)
-│       │   ├── calculator_add.py             (步骤2,4,5: 代码实现)
-│       │   ├── test_calculator_add.py        (步骤3: 单元测试)
+│       │   ├── bmi_calculator.py             (步骤2,4,5: BMI计算代码)
+│       │   ├── test_bmi_calculator.py        (步骤3: BMI计算单元测试)
 │       │   └── s5_api_documentation.md       (步骤5: API文档，可选)
-│       └── ExTDD_02_Subtraction/           (示例：计算器减法功能系列输出)
+│       └── ExTDD_02_BMICategorization/     (示例：BMI分类系列输出)
 │           └── ...
 |
 ├── story_example_financial_rules/         (故事实例 2：金融规则引擎)
@@ -116,14 +116,14 @@ exercise_tdd_simple/
 
 ```
 *说明*:
-- `outputs/` 下的子目录名格式为 `ExTDD_XX_FeatureName`，其中 `XX` 是练习系列编号，`FeatureName` 是根据用户故事命名的简短功能名（例如 `Addition`, `AmountCheck`）。
+- `outputs/` 下的子目录名格式为 `ExTDD_XX_FeatureName`，其中 `XX` 是练习系列编号，`FeatureName` 是根据用户故事命名的简短功能名（例如 `BMICalculation`, `AmountCheck`）。
 - 每个 `ExTDD_XX_FeatureName` 目录下包含该功能 TDD 流程的 5 个步骤产物。步骤 2、4、5 的代码实现和文档可能在同一个 `.py` 文件中迭代。
 
 ## 框架文件说明
 
 本框架包含两个核心文件：
 
-1.  **思考驱动开发核心理念 V2** (`thinking_driven_development_with_ai_v2.md`)
+1.  **思考驱动开发核心理念 V2** (`test_driven_development_with_ai.md`)
     *   定义了与 AI 协作进行 TDD 的基本原则和方法论。
     *   强调了思考留痕和结构化思考的重要性。
     *   提供了 AI 协作的最佳实践和 6 个思考/构建阶段。
@@ -179,16 +179,16 @@ exercise_tdd_simple/
 
 ## 如何使用框架进行练习 (用户视角)
 
-1.  **选择一个故事实例**: 进入一个故事目录，例如 `cd story_example_simple_calculator/`。
-2.  **选择一个用户故事**: 在 `inputs/` 目录下选择一个用户故事，例如 `inputs/user_story_calc_01_add.md`。
-3.  **确定对应的练习系列类型**: 查阅本文档中的练习系列模板，确定该用户故事适合哪种类型，例如 `ExTDD_01: 实现简单计算功能`。
-4.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录，例如 `outputs/ExTDD_01_Addition/`。
+1.  **选择一个故事实例**: 进入一个故事目录，例如 `cd story_example_bmi_calculator/`。
+2.  **选择一个用户故事**: 在 `inputs/` 目录下选择一个用户故事，例如 `inputs/user_story_bmi_01_calculate.md`。
+3.  **确定对应的练习系列类型**: 查阅本文档中的练习系列模板，确定该用户故事适合哪种类型，例如 `ExTDD_01: 实现简单计算/验证功能系列`。
+4.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录，例如 `outputs/ExTDD_01_BMICalculation/`。
 5.  **按步骤执行 TDD 流程**:
-    *   **步骤 1**: 使用 AI 助手，基于 `inputs/user_story_calc_01_add.md` 生成 `outputs/ExTDD_01_Addition/s1_implementation_analysis.md`。
-    *   **步骤 2**: 使用 AI 助手，基于 `s1_...md` 生成 `s2_action_plan.md` 和包含函数框架的 `calculator_add.py`。
-    *   **步骤 3**: 使用 AI 助手，基于 `s2_...md` 和 `calculator_add.py` 生成 `test_calculator_add.py`。运行测试，确认失败 (Red)。
-    *   **步骤 4**: 使用 AI 助手，修改 `calculator_add.py` 中的代码，使其刚好通过 `test_calculator_add.py` 中的所有测试 (Green)。
-    *   **步骤 5**: 使用 AI 助手，为 `calculator_add.py` 添加文档字符串，进行必要的重构 (保持测试通过)，并可选择生成 `s5_api_documentation.md` (Refactor)。
+    *   **步骤 1**: 使用 AI 助手，基于 `inputs/user_story_bmi_01_calculate.md` 生成 `outputs/ExTDD_01_BMICalculation/s1_implementation_analysis.md`。
+    *   **步骤 2**: 使用 AI 助手，基于 `s1_...md` 生成 `s2_action_plan.md` 和包含函数框架的 `bmi_calculator.py`。
+    *   **步骤 3**: 使用 AI 助手，基于 `s2_...md` 和 `bmi_calculator.py` 生成 `test_bmi_calculator.py`。运行测试，确认失败 (Red)。
+    *   **步骤 4**: 使用 AI 助手，修改 `bmi_calculator.py` 中的代码，使其刚好通过 `test_bmi_calculator.py` 中的所有测试 (Green)。
+    *   **步骤 5**: 使用 AI 助手，为 `bmi_calculator.py` 添加文档字符串，进行必要的重构 (保持测试通过)，并可选择生成 `s5_api_documentation.md` (Refactor)。
 6.  **反思与评估**: 参考每个步骤的评估要点，反思 TDD 流程和 AI 辅助的效果。
 7.  **重复**: 为故事中的其他用户故事选择合适的练习系列模板，重复步骤 3-6。
 
@@ -202,7 +202,7 @@ exercise_tdd_simple/
 
 ## AI 能力边界注意
 
-在执行练习和评估结果时，请始终牢记 `thinking_driven_development_with_ai_v2.md` 中提到的 **AI 能力边界**。
+在执行练习和评估结果时，请始终牢记 `test_driven_development_with_ai.md` 中提到的 **AI 能力边界**。
 *   AI 生成的测试用例可能不够全面，需要人工补充边界情况。
 *   AI 生成的实现代码可能不是最优的，需要人工审查和重构。
 *   AI 对复杂业务逻辑的理解可能有限，需要清晰的指导和分解。
@@ -211,7 +211,7 @@ exercise_tdd_simple/
 ## 后续步骤
 
 1.  审查这份最终的规划文档。
-2.  **选择或创建一个初始故事实例** (例如 `story_example_simple_calculator/`)。
+2.  **选择或创建一个初始故事实例** (例如 `story_example_bmi_calculator/`)。
 3.  为该初始故事实例，在对应的 `inputs/` 目录中创建至少一到两个具体的 `user_story_*.md` 文件，与本文档中定义的练习系列类型相匹配。
 
 ---
