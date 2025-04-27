@@ -1,4 +1,4 @@
-# User Story: E-commerce Recommendation Engine
+# User Story: E-commerce Recommendation Engine - part 2
 
 (参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
 

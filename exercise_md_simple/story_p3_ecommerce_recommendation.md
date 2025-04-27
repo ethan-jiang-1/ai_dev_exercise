@@ -1,4 +1,4 @@
-# User Story: E-commerce Recommendation Engine
+# User Story: E-commerce Recommendation Engine - part 3
 
 (参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
 
@@ -319,20 +319,20 @@ exercise_md_simple/
 > **目标**: 作为Scrum Master，指导AI创建清晰的文档，确保团队成员能够理解和正确使用代码。
 
 > **思维流程**:
-> 1. **分析阶段**：
->    - 审视代码实现和测试用例
->    - 识别关键功能点和使用场景
->    - 确定文档重点
+> - **分析阶段**:
+>   - 审视代码实现和测试用例
+>   - 识别关键功能点和使用场景
+>   - 确定文档重点
 >
-> 2. **设计阶段**：
->    - 规划文档结构
->    - 设计示例代码
->    - 考虑不同受众需求
+> - **设计阶段**:
+>   - 规划文档结构
+>   - 设计示例代码
+>   - 考虑不同受众需求
 >
-> 3. **验证思考**：
->    - 评估文档完整性
->    - 检查示例的有效性
->    - 考虑可维护性
+> - **验证思考**:
+>   - 评估文档完整性
+>   - 检查示例的有效性
+>   - 考虑可维护性
 
 > **与AI协作方式**:
 > - 要求AI解释文档结构的选择
@@ -346,20 +346,20 @@ exercise_md_simple/
 > - 提供多个文档模板选项供你选择
 > - 记录文档设计决策的理由
 
-**输入**:
-> * exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_03/cart_recommendation.py
-> * 上一步完成的代码实现
+> **输入**:
+> - `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_03/cart_recommendation.py`
+> - 上一步完成的代码实现
 
-**AI 助手角色**: 
-> * 为所有函数编写标准化的docstring
-> * 添加必要的代码注释
-> * 创建使用示例和最佳实践指南
-> * 编写模块级文档
-> * 说明性能考虑和优化建议
->
-**复杂度分析**: 中。需要理解代码实现，并能够清晰地解释其功能、用法和限制，同时考虑不同角色的文档需求。
->
-**输出位置与方式**:
-* **输出目录**: exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_03/
-* **最终产物**: 更新后的 cart_recommendation.py - 包含完整文档的代码文件
+> **AI 助手角色**: 
+> - 为所有函数编写标准化的docstring
+> - 添加必要的代码注释
+> - 创建使用示例和最佳实践指南
+> - 编写模块级文档
+> - 说明性能考虑和优化建议
+
+> **复杂度分析**: 中。需要理解代码实现，并能够清晰地解释其功能、用法和限制，同时考虑不同角色的文档需求。
+
+> **输出位置与方式**:
+> - **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_03/`
+> - **最终产物**: 更新后的 `cart_recommendation.py` - 包含完整文档的代码文件
 
