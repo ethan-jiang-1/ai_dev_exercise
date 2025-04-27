@@ -1,0 +1,890 @@
+openapi: 3.0.0
+info:
+  title: NovaBrain 模型管理 API
+  description: |
+    NovaBrain AI 平台模型管理 API，用于创建、查询、更新和部署机器学习模型。
+    适用于医疗研究和临床辅助诊断场景。
+  version: 1.0.0
+  contact:
+    name: NovaBrain 技术支持
+    email: support@novabrain.ai
+servers:
+  - url: https://api.novabrain.ai/v1
+    description: 生产环境
+  - url: https://api-staging.novabrain.ai/v1
+    description: 预发布环境
+  - url: https://api-dev.novabrain.ai/v1
+    description: 开发环境
+tags:
+  - name: models
+    description: 模型管理
+  - name: deployments
+    description: 模型部署
+  - name: datasets
+    description: 数据集操作
+  - name: inference
+    description: 推理服务
+
+paths:
+  /models:
+    get:
+      summary: 获取模型列表
+      description: 获取用户有权访问的所有模型
+      tags:
+        - models
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: type
+          in: query
+          description: 模型类型过滤
+          schema:
+            type: string
+            enum: [CLASSIFICATION, REGRESSION, SEGMENTATION, NLP, MULTIMODAL]
+        - name: status
+          in: query
+          description: 模型状态过滤
+          schema:
+            type: string
+            enum: [DRAFT, TRAINING, READY, DEPLOYED, FAILED]
+      responses:
+        '200':
+          description: 模型列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ModelListItem'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+    post:
+      summary: 创建新模型
+      description: 创建一个新的机器学习模型
+      tags:
+        - models
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelCreateRequest'
+            example:
+              name: "肺结节检测模型"
+              description: "用于CT影像中肺结节的自动检测"
+              type: "CLASSIFICATION"
+              framework: "PYTORCH"
+              baseModelId: "medical-vit-base"
+              tags: ["肺部", "CT", "结节检测"]
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Model'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /models/{modelId}:
+    get:
+      summary: 获取模型详情
+      description: 获取指定模型的详细信息
+      tags:
+        - models
+      parameters:
+        - $ref: '#/components/parameters/ModelIdParam'
+      responses:
+        '200':
+          description: 模型详情
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Model'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    patch:
+      summary: 更新模型信息
+      description: 更新指定模型的基本信息
+      tags:
+        - models
+      parameters:
+        - $ref: '#/components/parameters/ModelIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelUpdateRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Model'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      summary: 删除模型
+      description: 删除指定的模型（如已部署，需先卸载）
+      tags:
+        - models
+      parameters:
+        - $ref: '#/components/parameters/ModelIdParam'
+      responses:
+        '204':
+          description: 删除成功
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /models/{modelId}/train:
+    post:
+      summary: 训练模型
+      description: 使用指定数据集训练模型
+      tags:
+        - models
+      parameters:
+        - $ref: '#/components/parameters/ModelIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelTrainRequest'
+            example:
+              datasetId: "ds-12345678"
+              hyperparameters:
+                learningRate: 0.001
+                batchSize: 32
+                epochs: 10
+              validationSplit: 0.2
+      responses:
+        '202':
+          description: 训练任务已接受
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ModelTrainingTask'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /deployments:
+    get:
+      summary: 获取部署列表
+      description: 获取所有模型部署
+      tags:
+        - deployments
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: environment
+          in: query
+          description: 部署环境过滤
+          schema:
+            type: string
+            enum: [DEV, STAGING, PRODUCTION]
+        - name: status
+          in: query
+          description: 部署状态过滤
+          schema:
+            type: string
+            enum: [PENDING, DEPLOYING, RUNNING, FAILED, STOPPED]
+      responses:
+        '200':
+          description: 部署列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DeploymentListItem'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+    post:
+      summary: 部署模型
+      description: 将训练好的模型部署到指定环境
+      tags:
+        - deployments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentCreateRequest'
+            example:
+              modelId: "model-12345678"
+              versionId: "v-87654321"
+              environment: "DEV"
+              deploymentName: "肺结节检测服务"
+              resources:
+                cpuLimit: 2
+                memoryLimit: "4Gi"
+                gpuLimit: 1
+      responses:
+        '202':
+          description: 部署任务已接受
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Deployment'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /deployments/{deploymentId}:
+    get:
+      summary: 获取部署详情
+      description: 获取指定部署的详细信息
+      tags:
+        - deployments
+      parameters:
+        - $ref: '#/components/parameters/DeploymentIdParam'
+      responses:
+        '200':
+          description: 部署详情
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Deployment'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /inference/{deploymentId}:
+    post:
+      summary: 执行模型推理
+      description: 使用部署的模型进行推理
+      tags:
+        - inference
+      parameters:
+        - $ref: '#/components/parameters/DeploymentIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InferenceRequest'
+      responses:
+        '200':
+          description: 推理结果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/InferenceResult'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+components:
+  schemas:
+    ModelListItem:
+      type: object
+      required:
+        - id
+        - name
+        - type
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          example: "model-12345678"
+        name:
+          type: string
+          example: "肺结节检测模型"
+        description:
+          type: string
+          example: "用于CT影像中肺结节的自动检测"
+        type:
+          type: string
+          enum: [CLASSIFICATION, REGRESSION, SEGMENTATION, NLP, MULTIMODAL]
+          example: "CLASSIFICATION"
+        status:
+          type: string
+          enum: [DRAFT, TRAINING, READY, DEPLOYED, FAILED]
+          example: "READY"
+        framework:
+          type: string
+          enum: [TENSORFLOW, PYTORCH, SKLEARN, CUSTOM]
+          example: "PYTORCH"
+        latestVersionId:
+          type: string
+          example: "v-87654321"
+        deploymentCount:
+          type: integer
+          example: 2
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["肺部", "CT", "结节检测"]
+        createdAt:
+          type: string
+          format: date-time
+          example: "2023-09-15T08:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2023-09-20T14:15:30Z"
+    
+    Model:
+      allOf:
+        - $ref: '#/components/schemas/ModelListItem'
+        - type: object
+          properties:
+            baseModelId:
+              type: string
+              example: "medical-vit-base"
+            metadata:
+              type: object
+              additionalProperties: true
+              example:
+                accuracy: 0.92
+                f1Score: 0.89
+                trainedWith: "CT影像数据集"
+            versions:
+              type: array
+              items:
+                $ref: '#/components/schemas/ModelVersion'
+            deployments:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeploymentListItem'
+            createdBy:
+              type: string
+              example: "user-87654321"
+    
+    ModelVersion:
+      type: object
+      required:
+        - id
+        - modelId
+        - version
+        - status
+        - createdAt
+      properties:
+        id:
+          type: string
+          example: "v-87654321"
+        modelId:
+          type: string
+          example: "model-12345678"
+        version:
+          type: string
+          example: "1.0.0"
+        status:
+          type: string
+          enum: [TRAINING, READY, FAILED]
+          example: "READY"
+        metrics:
+          type: object
+          additionalProperties: true
+          example:
+            accuracy: 0.92
+            precision: 0.88
+            recall: 0.91
+            f1Score: 0.89
+        storageUri:
+          type: string
+          example: "s3://novabrain-models/model-12345678/v-87654321/"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2023-09-20T14:15:30Z"
+        createdBy:
+          type: string
+          example: "user-87654321"
+    
+    ModelCreateRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          example: "肺结节检测模型"
+        description:
+          type: string
+          example: "用于CT影像中肺结节的自动检测"
+        type:
+          type: string
+          enum: [CLASSIFICATION, REGRESSION, SEGMENTATION, NLP, MULTIMODAL]
+          example: "CLASSIFICATION"
+        framework:
+          type: string
+          enum: [TENSORFLOW, PYTORCH, SKLEARN, CUSTOM]
+          example: "PYTORCH"
+        baseModelId:
+          type: string
+          example: "medical-vit-base"
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["肺部", "CT", "结节检测"]
+    
+    ModelUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "改进版肺结节检测模型"
+        description:
+          type: string
+          example: "用于CT影像中肺结节的自动检测（改进版）"
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["肺部", "CT", "结节检测", "改进版"]
+    
+    ModelTrainRequest:
+      type: object
+      required:
+        - datasetId
+      properties:
+        datasetId:
+          type: string
+          example: "ds-12345678"
+        hyperparameters:
+          type: object
+          additionalProperties: true
+          example:
+            learningRate: 0.001
+            batchSize: 32
+            epochs: 10
+        validationSplit:
+          type: number
+          minimum: 0
+          maximum: 1
+          example: 0.2
+    
+    ModelTrainingTask:
+      type: object
+      required:
+        - id
+        - modelId
+        - status
+        - createdAt
+      properties:
+        id:
+          type: string
+          example: "task-12345678"
+        modelId:
+          type: string
+          example: "model-12345678"
+        status:
+          type: string
+          enum: [PENDING, RUNNING, COMPLETED, FAILED]
+          example: "RUNNING"
+        progress:
+          type: number
+          minimum: 0
+          maximum: 100
+          example: 45
+        estimatedTimeRemaining:
+          type: integer
+          example: 1800
+        createdAt:
+          type: string
+          format: date-time
+          example: "2023-09-20T14:15:30Z"
+        startedAt:
+          type: string
+          format: date-time
+          example: "2023-09-20T14:16:00Z"
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+    
+    DeploymentListItem:
+      type: object
+      required:
+        - id
+        - modelId
+        - modelVersionId
+        - environment
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          example: "deploy-12345678"
+        modelId:
+          type: string
+          example: "model-12345678"
+        modelName:
+          type: string
+          example: "肺结节检测模型"
+        modelVersionId:
+          type: string
+          example: "v-87654321"
+        version:
+          type: string
+          example: "1.0.0"
+        deploymentName:
+          type: string
+          example: "肺结节检测服务"
+        environment:
+          type: string
+          enum: [DEV, STAGING, PRODUCTION]
+          example: "DEV"
+        status:
+          type: string
+          enum: [PENDING, DEPLOYING, RUNNING, FAILED, STOPPED]
+          example: "RUNNING"
+        endpoint:
+          type: string
+          example: "https://api-dev.novabrain.ai/inference/deploy-12345678"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2023-09-21T09:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2023-09-21T09:05:30Z"
+    
+    Deployment:
+      allOf:
+        - $ref: '#/components/schemas/DeploymentListItem'
+        - type: object
+          properties:
+            resources:
+              type: object
+              properties:
+                cpuLimit:
+                  type: number
+                  example: 2
+                memoryLimit:
+                  type: string
+                  example: "4Gi"
+                gpuLimit:
+                  type: integer
+                  example: 1
+            metrics:
+              type: object
+              additionalProperties: true
+              example:
+                requestsPerMinute: 42
+                averageLatency: 150
+                p95Latency: 250
+                successRate: 0.998
+            createdBy:
+              type: string
+              example: "user-87654321"
+    
+    DeploymentCreateRequest:
+      type: object
+      required:
+        - modelId
+        - versionId
+        - environment
+      properties:
+        modelId:
+          type: string
+          example: "model-12345678"
+        versionId:
+          type: string
+          example: "v-87654321"
+        environment:
+          type: string
+          enum: [DEV, STAGING, PRODUCTION]
+          example: "DEV"
+        deploymentName:
+          type: string
+          example: "肺结节检测服务"
+        resources:
+          type: object
+          properties:
+            cpuLimit:
+              type: number
+              example: 2
+            memoryLimit:
+              type: string
+              example: "4Gi"
+            gpuLimit:
+              type: integer
+              example: 1
+    
+    InferenceRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          oneOf:
+            - type: object
+              additionalProperties: true
+            - type: array
+              items:
+                type: object
+                additionalProperties: true
+          example:
+            imageUrl: "https://storage.novabrain.ai/samples/ct-scan-123.dcm"
+            patientAge: 65
+            patientSex: "M"
+    
+    InferenceResult:
+      type: object
+      required:
+        - predictions
+        - processingTime
+      properties:
+        predictions:
+          oneOf:
+            - type: object
+              additionalProperties: true
+            - type: array
+              items:
+                type: object
+                additionalProperties: true
+          example:
+            - label: "肺结节"
+              probability: 0.92
+              location: { x: 256, y: 128, width: 32, height: 32 }
+            - label: "肺结节"
+              probability: 0.78
+              location: { x: 312, y: 240, width: 24, height: 24 }
+        processingTime:
+          type: number
+          example: 235.8
+        modelId:
+          type: string
+          example: "model-12345678"
+        modelVersion:
+          type: string
+          example: "1.0.0"
+    
+    PaginationMeta:
+      type: object
+      required:
+        - page
+        - limit
+        - totalItems
+        - totalPages
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          example: 1
+        limit:
+          type: integer
+          minimum: 1
+          example: 20
+        totalItems:
+          type: integer
+          minimum: 0
+          example: 42
+        totalPages:
+          type: integer
+          minimum: 0
+          example: 3
+    
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          example: "INVALID_REQUEST"
+        message:
+          type: string
+          example: "请求参数无效"
+        details:
+          type: object
+          additionalProperties: true
+  
+  parameters:
+    ModelIdParam:
+      name: modelId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 模型 ID
+      example: "model-12345678"
+    
+    DeploymentIdParam:
+      name: deploymentId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 部署 ID
+      example: "deploy-12345678"
+    
+    PageParam:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: 分页页码
+    
+    LimitParam:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+      description: 每页记录数
+  
+  responses:
+    BadRequestError:
+      description: 请求参数错误
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/Error'
+            example:
+              error:
+                code: "INVALID_REQUEST"
+                message: "请求参数无效"
+                details:
+                  name: "字段不能为空"
+    
+    UnauthorizedError:
+      description: 未授权访问
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/Error'
+            example:
+              error:
+                code: "UNAUTHORIZED"
+                message: "未授权访问"
+    
+    ForbiddenError:
+      description: 权限不足
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/Error'
+            example:
+              error:
+                code: "FORBIDDEN"
+                message: "权限不足"
+    
+    NotFoundError:
+      description: 资源不存在
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: '#/components/schemas/Error'
+            example:
+              error:
+                code: "NOT_FOUND"
+                message: "请求的资源不存在"
+  
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: [] 

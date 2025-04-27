@@ -1,0 +1,218 @@
+{
+  "products": {
+    "P12345": {
+      "id": "P12345",
+      "name": "Ultra Thin Laptop Pro X",
+      "description": "High-performance laptop with 16GB RAM, 512GB SSD, and dedicated graphics card.",
+      "price": 1299.99,
+      "categories": ["electronics", "computers", "laptops"],
+      "attributes": {
+        "brand": "TechMaster",
+        "processor": "Intel Core i7",
+        "screen_size": "15.6 inches",
+        "weight": "1.8 kg",
+        "color": "Space Gray"
+      },
+      "inventory": {
+        "in_stock": 34,
+        "available_for_shipping": true,
+        "shipping_time": "2-3 business days"
+      },
+      "ratings": {
+        "average": 4.7,
+        "count": 129
+      },
+      "images": [
+        "https://example.com/images/P12345_main.jpg",
+        "https://example.com/images/P12345_angle1.jpg",
+        "https://example.com/images/P12345_angle2.jpg"
+      ]
+    },
+    "P12346": {
+      "id": "P12346",
+      "name": "Professional Wireless Mouse",
+      "description": "Ergonomic wireless mouse with precision tracking and long battery life.",
+      "price": 49.99,
+      "categories": ["electronics", "computers", "accessories"],
+      "attributes": {
+        "brand": "TechMaster",
+        "connection": "Bluetooth",
+        "color": "Black",
+        "battery_life": "6 months"
+      },
+      "inventory": {
+        "in_stock": 156,
+        "available_for_shipping": true,
+        "shipping_time": "1-2 business days"
+      },
+      "ratings": {
+        "average": 4.5,
+        "count": 87
+      },
+      "images": [
+        "https://example.com/images/P12346_main.jpg"
+      ]
+    },
+    "P12347": {
+      "id": "P12347",
+      "name": "Noise-Cancelling Headphones",
+      "description": "Premium wireless headphones with active noise cancellation and 30-hour battery life.",
+      "price": 249.99,
+      "categories": ["electronics", "audio", "headphones"],
+      "attributes": {
+        "brand": "SoundWave",
+        "connection": "Bluetooth 5.0",
+        "color": "Black",
+        "battery_life": "30 hours"
+      },
+      "inventory": {
+        "in_stock": 42,
+        "available_for_shipping": true,
+        "shipping_time": "1-2 business days"
+      },
+      "ratings": {
+        "average": 4.8,
+        "count": 212
+      },
+      "images": [
+        "https://example.com/images/P12347_main.jpg",
+        "https://example.com/images/P12347_detail.jpg"
+      ]
+    },
+    "P12348": {
+      "id": "P12348",
+      "name": "Portable External SSD 1TB",
+      "description": "Ultra-fast portable SSD with USB-C connection and durable aluminum case.",
+      "price": 159.99,
+      "categories": ["electronics", "computers", "storage"],
+      "attributes": {
+        "brand": "DataMax",
+        "capacity": "1TB",
+        "interface": "USB-C",
+        "speed": "1050 MB/s",
+        "color": "Silver"
+      },
+      "inventory": {
+        "in_stock": 78,
+        "available_for_shipping": true,
+        "shipping_time": "1-2 business days"
+      },
+      "ratings": {
+        "average": 4.6,
+        "count": 95
+      },
+      "images": [
+        "https://example.com/images/P12348_main.jpg"
+      ]
+    },
+    "P12349": {
+      "id": "P12349",
+      "name": "Ultrawide Curved Monitor 34\"",
+      "description": "Professional-grade ultrawide curved monitor with USB-C connectivity and built-in speakers.",
+      "price": 699.99,
+      "categories": ["electronics", "computers", "monitors"],
+      "attributes": {
+        "brand": "ViewTech",
+        "size": "34 inches",
+        "resolution": "3440x1440",
+        "refresh_rate": "144Hz",
+        "panel_type": "IPS"
+      },
+      "inventory": {
+        "in_stock": 12,
+        "available_for_shipping": true,
+        "shipping_time": "3-5 business days"
+      },
+      "ratings": {
+        "average": 4.9,
+        "count": 67
+      },
+      "images": [
+        "https://example.com/images/P12349_main.jpg",
+        "https://example.com/images/P12349_side.jpg"
+      ]
+    },
+    "P12350": {
+      "id": "P12350",
+      "name": "Mechanical Gaming Keyboard",
+      "description": "RGB mechanical keyboard with Cherry MX switches and programmable keys.",
+      "price": 129.99,
+      "categories": ["electronics", "computers", "accessories", "gaming"],
+      "attributes": {
+        "brand": "GamePro",
+        "switch_type": "Cherry MX Blue",
+        "layout": "US QWERTY",
+        "backlight": "RGB",
+        "color": "Black"
+      },
+      "inventory": {
+        "in_stock": 45,
+        "available_for_shipping": true,
+        "shipping_time": "1-3 business days"
+      },
+      "ratings": {
+        "average": 4.7,
+        "count": 138
+      },
+      "images": [
+        "https://example.com/images/P12350_main.jpg"
+      ]
+    }
+  },
+  "categories": {
+    "electronics": {
+      "id": "electronics",
+      "name": "Electronics",
+      "parent": null,
+      "description": "Electronic devices and gadgets"
+    },
+    "computers": {
+      "id": "computers",
+      "name": "Computers & Laptops",
+      "parent": "electronics",
+      "description": "Computers, laptops and related equipment"
+    },
+    "laptops": {
+      "id": "laptops",
+      "name": "Laptops",
+      "parent": "computers",
+      "description": "Portable computers for work and play"
+    },
+    "accessories": {
+      "id": "accessories",
+      "name": "Computer Accessories",
+      "parent": "computers",
+      "description": "Keyboards, mice, and other computer peripherals"
+    },
+    "audio": {
+      "id": "audio",
+      "name": "Audio Equipment",
+      "parent": "electronics",
+      "description": "Headphones, speakers, and audio devices"
+    },
+    "headphones": {
+      "id": "headphones",
+      "name": "Headphones",
+      "parent": "audio",
+      "description": "Over-ear, on-ear, and in-ear headphones"
+    },
+    "storage": {
+      "id": "storage",
+      "name": "Storage Devices",
+      "parent": "computers",
+      "description": "Hard drives, SSDs, and other storage solutions"
+    },
+    "monitors": {
+      "id": "monitors",
+      "name": "Monitors & Displays",
+      "parent": "computers",
+      "description": "Computer monitors and display screens"
+    },
+    "gaming": {
+      "id": "gaming",
+      "name": "Gaming Equipment",
+      "parent": "electronics",
+      "description": "Gaming peripherals and accessories"
+    }
+  }
+} 
