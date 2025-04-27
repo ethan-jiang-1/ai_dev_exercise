@@ -125,7 +125,7 @@ exercise_tdd_simple/
 
 本框架包含两个核心文件：
 
-1.  **思考驱动开发核心理念 V2** (`test_driven_development_with_ai.md`)
+1.  **测试驱动开发核心理念** (`test_driven_development_with_ai.md`)
     *   定义了与 AI 协作进行 TDD 的基本原则和方法论。
     *   强调了思考留痕和结构化思考的重要性。
     *   提供了 AI 协作的最佳实践和 6 个思考/构建阶段。
@@ -146,21 +146,21 @@ exercise_tdd_simple/
     *   **系列目标 (Series Goal)**: 该**类型**的练习系列旨在让用户掌握的 TDD 应用场景或特定功能模式。
     *   **系列复杂度 (Series Complexity)**: 低、中、高，表示该**类型**系列通常涉及的功能复杂度。
     *   **针对该系列的 5 个步骤定义**: (注意：这些步骤共同构成了 TDD 的核心循环)
-        *   **步骤 1: 从用户故事到实现思考 (`_s1_user_story_analysis.md`)**
+        *   **步骤 1: 从用户故事到实现思考 (`_s1_think_options_{user_story}.md`)**
             *   **目标**: 分析用户故事，识别核心需求、技术挑战和初步实现思路。
             *   **输入模式**: `inputs/user_story_*.md`
             *   **AI 助手角色**: 分析师，帮助理解需求、识别边界、提出初步方案。
             *   **输出**: 包含分析结果的 Markdown 文件。
             *   **评估**: 是否准确识别需求和挑战？方案是否初步可行？
-        *   **步骤 2: 从实现思考到行动计划 (`_s2_action_plan.md`, `{func_name}.py` 初始框架)**
+        *   **步骤 2: 从实现思考到行动计划 (`_s2_think_design_{user_story}.md`, `{func_name}.py` 初始框架)**
             *   **目标**: 将思路分解为任务，设计函数接口，创建代码框架。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s1_user_story_analysis.md`
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s1_think_options_{user_story}.md`
             *   **AI 助手角色**: 设计师/规划师，帮助分解任务、设计接口、生成代码骨架。
             *   **输出**: 行动计划 Markdown 文件和包含函数签名的初始 Python 文件。
             *   **评估**: 任务分解是否合理？接口设计是否清晰？
         *   **步骤 3: 单元测试设计与审查 (`test_*_feature.py`)**
             *   **目标**: 设计并编写覆盖核心场景的单元测试。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_action_plan.md`, 初始 `{func_name}.py`
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_think_design_{user_story}.md`, 初始 `{func_name}.py`
             *   **AI 助手角色**: 测试工程师，帮助识别测试场景、编写 `unittest` 代码。
             *   **输出**: 包含单元测试的 Python 文件 (此时运行应失败 - Red)。
             *   **评估**: 测试用例是否覆盖主要路径和边界？代码是否符合 `unittest` 规范？
@@ -186,9 +186,9 @@ exercise_tdd_simple/
 3.  **确定对应的练习系列类型**: 查阅本文档中的练习系列模板，确定该用户故事适合哪种类型，例如 `ExTDD_01`。
 4.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录，例如 `outputs/ExTDD_01_Feature1/`。
 5.  **按步骤执行 TDD 流程**:
-    *   **步骤 1**: 分析需求并设计解决方案，将思考过程记录在 `_s1_user_story_analysis.md` 中。
-    *   **步骤 2**: 创建行动计划，记录在 `_s2_action_plan.md` 中。
-    *   **步骤 3**: 编写测试设计 `_s3_test_design.md` 和测试代码 `test_{func_name}.py`。运行测试，确认失败 (Red)。
+    *   **步骤 1**: 分析需求并设计解决方案，将思考过程记录在 `_s1_think_options_{user_story}.md` 中。
+    *   **步骤 2**: 创建行动计划，记录在 `_s2_think_design_{user_story}.md` 中。
+    *   **步骤 3**: 编写测试设计 `_s3_think_validation_{user_story}.md` 和测试代码 `test_{func_name}.py`。运行测试，确认失败 (Red)。
     *   **步骤 4**: 实现功能代码 `{func_name}.py`，使其通过测试 (Green)。
     *   **步骤 5**: 优化代码结构，完善文档 `doc_{func_name}.md` (Refactor)。
 6.  **反思与评估**: 参考每个步骤的评估要点，反思 TDD 流程和 AI 辅助的效果。
@@ -215,3 +215,139 @@ exercise_tdd_simple/
 1.  审查这份最终的规划文档。
 2.  **选择或创建一个初始故事实例** (例如 `story_example_1/`)。
 3.  为该初始故事实例，在对应的 `inputs/` 目录中创建至少一到两个具体的 `user_story_*.md` 文件，与本文档中定义的练习系列类型相匹配。
+
+## 核心理念与练习框架的步骤映射
+
+本框架的5个TDD步骤是对`test_driven_development_with_ai.md`中6个思考构建步骤的实践性转化。以下是它们的对应关系：
+
+1. **核心理念文档中的6个步骤**:
+   - `user_story.md` → 问题定义
+   - `_s1_think_options_{user_story}.md` → 解决方案思考
+   - `_s2_think_design_{user_story}.md` → 设计方案思考
+   - `_s3_think_validation_{user_story}.md` → 验证策略构建
+   - `build_solution.{ext}` + `build_solution_tests.{ext}` → 解决方案构建
+   - `doc_build_solution.md` → 文档构建
+
+2. **练习框架中的5个TDD步骤**:
+   - 步骤1 (`_s1_think_options_{user_story}.md`) ← 对应理念步骤1-2
+   - 步骤2 (`_s2_think_design_{user_story}.md`) ← 对应理念步骤3
+   - 步骤3 (`test_{func_name}.py`) ← 对应理念步骤4
+   - 步骤4 (`{func_name}.py`) ← 对应理念步骤5
+   - 步骤5 (`doc_{func_name}.md`) ← 对应理念步骤6
+
+3. **关键区别说明**:
+   - 练习框架将理念文档中的前两个步骤（问题定义和解决方案思考）合并为一个实践步骤
+   - 练习框架更强调TDD的"Red-Green-Refactor"循环，将其明确体现在步骤3-5中
+   - 每个步骤都保持了思考在先、实现在后的核心原则
+   - 文件命名约定更加规范化，便于在多个故事实例中统一使用
+
+## 示例练习系列：ExTDD_01 CSV数据验证器
+
+这是一个完整的练习系列示例，展示如何将核心理念文档中的CSV处理示例转化为具体的TDD练习。
+
+### 系列定义
+
+- **系列ID**: ExTDD_01
+- **名称**: CSV数据验证器
+- **目标**: 实现一个可配置的CSV数据验证功能，确保数据符合预定义的规则
+- **复杂度**: 中等
+- **技术要求**: Python, pandas, pytest
+
+### 步骤示例
+
+1. **步骤1文件**: `_s1_think_options_csv_validator.md`
+   ```markdown
+   # CSV数据验证器 - 实现思考
+   
+   ## 1. 核心需求分析
+   - 验证CSV文件的数据质量
+   - 支持可配置的验证规则
+   - 生成验证报告
+   
+   ## 2. 技术挑战
+   - 大文件处理效率
+   - 内存管理
+   - 规则引擎设计
+   
+   ## 3. 可选方案
+   - 使用pandas进行批处理
+   - 使用Python内置csv模块流式处理
+   - 规则引擎：声明式vs命令式
+   ```
+
+2. **步骤2文件**: `_s2_think_design_csv_validator.md`
+   ```markdown
+   # CSV验证器 - 设计方案
+   
+   ## 接口设计
+   ```python
+   class CSVValidator:
+       def __init__(self, rules_config: Dict[str, Any]):
+           """初始化验证器
+           Args:
+               rules_config: 验证规则配置
+           """
+           pass
+   
+       def validate(self, csv_path: str) -> ValidationReport:
+           """验证CSV文件
+           Args:
+               csv_path: CSV文件路径
+           Returns:
+               ValidationReport: 验证报告
+           """
+           pass
+   ```
+   
+   ## 实现步骤
+   1. 规则配置解析
+   2. CSV读取与验证
+   3. 报告生成
+   ```
+
+3. **步骤3文件**: `test_csv_validator.py`
+   ```python
+   def test_validator_init():
+       """测试验证器初始化"""
+       rules = {"column1": {"type": "int", "range": [0, 100]}}
+       validator = CSVValidator(rules)
+       assert validator.rules == rules
+   
+   def test_basic_validation():
+       """测试基本数据验证"""
+       # 这个测试应该失败(Red)，因为还没有实现
+       pass
+   ```
+
+4. **步骤4文件**: `csv_validator.py`
+   ```python
+   class CSVValidator:
+       def __init__(self, rules_config):
+           self.rules = rules_config
+           
+       def validate(self, csv_path):
+           # 实现验证逻辑，使测试通过(Green)
+           pass
+   ```
+
+5. **步骤5文件**: `doc_csv_validator.md`
+   ```markdown
+   # CSV验证器API文档
+   
+   ## 类: CSVValidator
+   CSV数据验证工具，支持可配置的验证规则。
+   
+   ### 方法
+   #### __init__(rules_config: Dict[str, Any])
+   初始化验证器...
+   
+   #### validate(csv_path: str) -> ValidationReport
+   执行验证...
+   ```
+
+### 评估要点
+
+- 思考过程是否清晰可见
+- 测试是否覆盖关键场景
+- 代码是否遵循TDD的"Red-Green-Refactor"循环
+- 文档是否完整且易于理解
