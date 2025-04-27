@@ -80,7 +80,7 @@
 exercise_md_simple/
 ├── teaching_framework/                     (框架文档目录)
 │   ├── thinking_driven_development_with_ai.md  (思考驱动开发核心理念)
-│   └── planning_exercise_template.md       (本文件 - 练习框架设计规划)
+│   └── planning_mds_exercise_template.md       (本文件 - 练习框架设计规划)
 |
 ├── story_example_ecommerce_recommendation/ (故事实例 1：电商推荐)
 │   ├── story_ecommerce_recommendation.md   (故事描述文件)
@@ -114,7 +114,7 @@ exercise_md_simple/
    - 规范了思维留痕的重要性
    - 提供了AI协作的最佳实践
 
-2. **练习框架设计规划** (本文件 `planning_exercise_template.md`)
+2. **练习框架设计规划** (本文件 `planning_mds_exercise_template.md`)
    - 定义了一套完整的练习类型体系
    - 提供了练习的实施指南和评估标准
    - 规范了练习的输入输出格式

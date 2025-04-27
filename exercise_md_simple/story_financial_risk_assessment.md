@@ -50,7 +50,7 @@
 
 ```
 exercise_md_simple/
-├─ teaching_framework/planning_exercise_template.md               (框架设计规划与练习类型定义)
+├─ teaching_framework/planning_mds_exercise_template.md               (框架设计规划与练习类型定义)
 │
 ├─ story_financial_risk_assessment/            (本故事)
 │   ├─ story_financial_risk_assessment.md      (本文件 - 故事描述)
@@ -230,7 +230,7 @@ exercise_md_simple/
 ## 如何使用本故事进行练习
 
 1. **准备**：熟悉本故事背景、业务目标和技术栈。
-2. **选择练习**：查阅下方"详细练习说明"或 `teaching_framework/planning_exercise_template.md` 中定义的练习类型，选择你想尝试的练习。
+2. **选择练习**：查阅下方"详细练习说明"或 `teaching_framework/planning_mds_exercise_template.md` 中定义的练习类型，选择你想尝试的练习。
 3. **定位输入**：根据练习类型的要求，在本故事的 `inputs/` 目录下找到对应的输入文件。
 4. **执行练习**：使用AI助手，根据练习要求处理输入文件。
 5. **保存结果**：将生成的输出保存到 `outputs/` 目录下对应的子目录中。

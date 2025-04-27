@@ -40,7 +40,7 @@
 
 ```
 exercise_md_simple/
-├── teaching_framework/planning_exercise_template.md         (框架设计规划与练习类型定义)
+├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
 |
 ├── story_medical_imaging_api/            (本故事)
 │   ├── story_medical_imaging_api.md      (本文件 - 故事描述)
