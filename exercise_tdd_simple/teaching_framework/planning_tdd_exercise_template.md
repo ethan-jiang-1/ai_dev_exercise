@@ -54,7 +54,10 @@
 2.  采用本文档定义的 TDD 练习系列模板（ExTDD 系列）。
 3.  在特定领域场景下，针对一个具体的用户故事，完成 TDD 的 5 个步骤。
 4.  提供领域特定的输入文件（用户故事 `inputs/user_story_*.md`）和可选的约束文件 (`constraints/exercise_constraints_*.md`)。
-5.  生成结构化的思考文档和代码产物 (`outputs/ExTDD_XX_FeatureName/s1_...md`, `s2_...md`, `s3_test_...py`, `s4_...py`, `s5_...md`)。
+5.  生成结构化的思考文档和代码产物:
+    - `{func_name}.py` - 功能实现代码
+    - `test_{func_name}.py` - 对应的测试代码
+    - `doc_{func_name}.md` - 相关文档（包括实现分析、设计方案和API文档）
 
 例如，ExTDD_01 "实现基础金额检查" 这个练习系列模板，在不同故事中可能应用为：
 -   电商故事：实现订单金额有效性检查。
@@ -82,34 +85,32 @@
 exercise_tdd_simple/
 ├── teaching_framework/                     (框架文档目录)
 │   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
-│   └── planning_tdd_exercise_template.md       (本文件 - TDD 练习框架设计规划)
+│   └── planning_tdd_exercise_template.md   (本文件 - TDD 练习框架设计规划)
 |
-├── story_example_bmi_calculator/            (故事实例 1：BMI 计算器)
-│   ├── story_bmi_calculator.md             (故事描述文件)
-│   ├── constraints/                        (BMI 计算器故事的约束文件，可选)
-│   │   └── exercise_constraints_bmi_01.md
-│   ├── inputs/                             (BMI 计算器故事的输入文件)
-│   │   ├── user_story_bmi_01_calculate.md  (示例：计算BMI值用户故事)
-│   │   └── user_story_bmi_02_categorize.md (示例：BMI分类用户故事)
-│   └── outputs/                            (BMI 计算器故事的练习输出)
-│       ├── ExTDD_01_BMICalculation/        (示例：计算BMI值系列输出)
-│       │   ├── s1_implementation_analysis.md (步骤1: 实现分析)
-│       │   ├── s2_action_plan.md             (步骤2: 行动计划)
-│       │   ├── bmi_calculator.py             (步骤2,4,5: BMI计算代码)
-│       │   ├── test_bmi_calculator.py        (步骤3: BMI计算单元测试)
-│       │   └── s5_api_documentation.md       (步骤5: API文档，可选)
-│       └── ExTDD_02_BMICategorization/     (示例：BMI分类系列输出)
+├── story_example_1/                        (故事实例 1)
+│   ├── story.md                           (故事描述文件)
+│   ├── constraints/                        (故事的约束文件，可选)
+│   │   └── exercise_constraints_01.md
+│   ├── inputs/                             (故事的输入文件)
+│   │   ├── user_story_01.md               (示例：功能1用户故事)
+│   │   └── user_story_02.md               (示例：功能2用户故事)
+│   └── outputs/                            (故事的练习输出)
+│       ├── ExTDD_01_Feature1/             (示例：功能1系列输出)
+│       │   ├── {func_name}.py             (功能实现代码)
+│       │   ├── test_{func_name}.py        (测试代码)
+│       │   └── doc_{func_name}.md         (文档)
+│       └── ExTDD_02_Feature2/             (示例：功能2系列输出)
 │           └── ...
 |
-├── story_example_financial_rules/         (故事实例 2：金融规则引擎)
-│   ├── story_financial_rules.md            (故事描述文件)
-│   ├── constraints/                        (金融故事的约束文件，可选)
+├── story_example_2/                       (故事实例 2)
+│   ├── story.md                           (故事描述文件)
+│   ├── constraints/                        (故事的约束文件，可选)
 │   │   └── ...
-│   ├── inputs/                             (金融故事的输入文件)
-│   │   ├── user_story_fin_01_amount_check.md (示例：金额检查用户故事)
+│   ├── inputs/                             (故事的输入文件)
+│   │   ├── user_story_01.md               (示例：功能1用户故事)
 │   │   └── ...
-│   └── outputs/                            (金融故事的练习输出)
-│       ├── ExTDD_01_AmountCheck/           (示例：金融故事练习 1 系列输出)
+│   └── outputs/                            (故事的练习输出)
+│       ├── ExTDD_01_Feature1/             (示例：功能1系列输出)
 │       │   └── ...
 │       └── ...
 |
@@ -117,7 +118,7 @@ exercise_tdd_simple/
 
 ```
 *说明*:
-- `outputs/` 下的子目录名格式为 `ExTDD_XX_FeatureName`，其中 `XX` 是练习系列编号，`FeatureName` 是根据用户故事命名的简短功能名（例如 `BMICalculation`, `AmountCheck`）。
+- `outputs/` 下的子目录名格式为 `ExTDD_XX_FeatureName`，其中 `XX` 是练习系列编号，`FeatureName` 是根据用户故事命名的简短功能名。
 - 每个 `ExTDD_XX_FeatureName` 目录下包含该功能 TDD 流程的 5 个步骤产物。步骤 2、4、5 的代码实现和文档可能在同一个 `.py` 文件中迭代。
 
 ## 框架文件说明
@@ -145,33 +146,33 @@ exercise_tdd_simple/
     *   **系列目标 (Series Goal)**: 该**类型**的练习系列旨在让用户掌握的 TDD 应用场景或特定功能模式。
     *   **系列复杂度 (Series Complexity)**: 低、中、高，表示该**类型**系列通常涉及的功能复杂度。
     *   **针对该系列的 5 个步骤定义**: (注意：这些步骤共同构成了 TDD 的核心循环)
-        *   **步骤 1: 从用户故事到实现思考 (`s1_implementation_analysis.md`)**
+        *   **步骤 1: 从用户故事到实现思考 (`_s1_user_story_analysis.md`)**
             *   **目标**: 分析用户故事，识别核心需求、技术挑战和初步实现思路。
             *   **输入模式**: `inputs/user_story_*.md`
             *   **AI 助手角色**: 分析师，帮助理解需求、识别边界、提出初步方案。
             *   **输出**: 包含分析结果的 Markdown 文件。
             *   **评估**: 是否准确识别需求和挑战？方案是否初步可行？
-        *   **步骤 2: 从实现思考到行动计划 (`s2_action_plan.md`, `*_feature.py` 初始框架)**
+        *   **步骤 2: 从实现思考到行动计划 (`_s2_action_plan.md`, `{func_name}.py` 初始框架)**
             *   **目标**: 将思路分解为任务，设计函数接口，创建代码框架。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/s1_implementation_analysis.md`
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s1_user_story_analysis.md`
             *   **AI 助手角色**: 设计师/规划师，帮助分解任务、设计接口、生成代码骨架。
             *   **输出**: 行动计划 Markdown 文件和包含函数签名的初始 Python 文件。
             *   **评估**: 任务分解是否合理？接口设计是否清晰？
         *   **步骤 3: 单元测试设计与审查 (`test_*_feature.py`)**
             *   **目标**: 设计并编写覆盖核心场景的单元测试。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/s2_action_plan.md`, 初始 `*_feature.py`
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_action_plan.md`, 初始 `{func_name}.py`
             *   **AI 助手角色**: 测试工程师，帮助识别测试场景、编写 `unittest` 代码。
             *   **输出**: 包含单元测试的 Python 文件 (此时运行应失败 - Red)。
             *   **评估**: 测试用例是否覆盖主要路径和边界？代码是否符合 `unittest` 规范？
-        *   **步骤 4: 测试驱动开发实现 (`*_feature.py` 完整实现)**
+        *   **步骤 4: 测试驱动开发实现 (`{func_name}.py` 完整实现)**
             *   **目标**: 编写刚好能通过所有测试的功能代码。**这是 TDD 的 "Green" 阶段，目标是让之前失败的测试通过**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/test_*_feature.py`, 初始 `*_feature.py`
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/test_*_feature.py`, 初始 `{func_name}.py`
             *   **AI 助手角色**: 开发者，根据测试用例编写功能代码，使其通过测试 (Green)。
             *   **输出**: 包含通过测试的功能代码的 Python 文件。
             *   **评估**: 是否所有测试都通过？代码是否简洁且仅满足测试需求？（**避免过度设计是 Green 阶段的关键**）
-        *   **步骤 5: 函数文档完善与重构 (`*_feature.py` 带文档, `s5_api_documentation.md` 可选)**
+        *   **步骤 5: 函数文档完善与重构 (`{func_name}.py` 带文档, `doc_{func_name}.md`)**
             *   **目标**: 添加文档字符串，进行必要的代码重构，生成 API 文档。**这是 TDD 的 "Refactor" 阶段，在测试保护下改进代码结构和可读性**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/*_feature.py` (已通过测试)
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/{func_name}.py` (已通过测试)
             *   **AI 助手角色**: 文档工程师/重构师，帮助添加文档、优化代码、生成 API 说明 (Refactor)。
             *   **输出**: 带文档的最终 Python 代码和可选的 API 文档 Markdown 文件。
             *   **评估**: 文档是否清晰准确？代码是否可读性强？重构是否保持测试通过？（**确保重构后所有测试仍然通过**）
@@ -180,16 +181,16 @@ exercise_tdd_simple/
 
 ## 如何使用框架进行练习 (用户视角)
 
-1.  **选择一个故事实例**: 进入一个故事目录，例如 `cd story_example_bmi_calculator/`。
-2.  **选择一个用户故事**: 在 `inputs/` 目录下选择一个用户故事，例如 `inputs/user_story_bmi_01_calculate.md`。
-3.  **确定对应的练习系列类型**: 查阅本文档中的练习系列模板，确定该用户故事适合哪种类型，例如 `ExTDD_01: 实现简单计算/验证功能系列`。
-4.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录，例如 `outputs/ExTDD_01_BMICalculation/`。
+1.  **选择一个故事实例**: 进入一个故事目录，例如 `story_example_1/`。
+2.  **选择一个用户故事**: 在 `inputs/` 目录下选择一个用户故事，例如 `inputs/user_story_01.md`。
+3.  **确定对应的练习系列类型**: 查阅本文档中的练习系列模板，确定该用户故事适合哪种类型，例如 `ExTDD_01`。
+4.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录，例如 `outputs/ExTDD_01_Feature1/`。
 5.  **按步骤执行 TDD 流程**:
-    *   **步骤 1**: 使用 AI 助手，基于 `inputs/user_story_bmi_01_calculate.md` 生成 `outputs/ExTDD_01_BMICalculation/s1_implementation_analysis.md`。
-    *   **步骤 2**: 使用 AI 助手，基于 `s1_...md` 生成 `s2_action_plan.md` 和包含函数框架的 `bmi_calculator.py`。
-    *   **步骤 3**: 使用 AI 助手，基于 `s2_...md` 和 `bmi_calculator.py` 生成 `test_bmi_calculator.py`。运行测试，确认失败 (Red)。
-    *   **步骤 4**: 使用 AI 助手，修改 `bmi_calculator.py` 中的代码，使其刚好通过 `test_bmi_calculator.py` 中的所有测试 (Green)。
-    *   **步骤 5**: 使用 AI 助手，为 `bmi_calculator.py` 添加文档字符串，进行必要的重构 (保持测试通过)，并可选择生成 `s5_api_documentation.md` (Refactor)。
+    *   **步骤 1**: 分析需求并设计解决方案，将思考过程记录在 `_s1_user_story_analysis.md` 中。
+    *   **步骤 2**: 创建行动计划，记录在 `_s2_action_plan.md` 中。
+    *   **步骤 3**: 编写测试设计 `_s3_test_design.md` 和测试代码 `test_{func_name}.py`。运行测试，确认失败 (Red)。
+    *   **步骤 4**: 实现功能代码 `{func_name}.py`，使其通过测试 (Green)。
+    *   **步骤 5**: 优化代码结构，完善文档 `doc_{func_name}.md` (Refactor)。
 6.  **反思与评估**: 参考每个步骤的评估要点，反思 TDD 流程和 AI 辅助的效果。
 7.  **重复**: 为故事中的其他用户故事选择合适的练习系列模板，重复步骤 3-6。
 
@@ -212,164 +213,5 @@ exercise_tdd_simple/
 ## 后续步骤
 
 1.  审查这份最终的规划文档。
-2.  **选择或创建一个初始故事实例** (例如 `story_example_bmi_calculator/`)。
+2.  **选择或创建一个初始故事实例** (例如 `story_example_1/`)。
 3.  为该初始故事实例，在对应的 `inputs/` 目录中创建至少一到两个具体的 `user_story_*.md` 文件，与本文档中定义的练习系列类型相匹配。
-
----
-
-# TDD 练习系列索引与详细定义
-
-以下是所有 TDD 练习系列模板的索引和详细定义。这些模板应用于所有故事实例，提供了一套统一的 TDD 流程和评估标准。
-
-## TDD 练习系列索引
-
-*   **ExTDD_01:** [实现简单计算/验证功能系列](#extdd_01-实现简单计算验证功能系列)
-*   **ExTDD_02:** [实现基本数据处理与转换功能系列](#extdd_02-实现基本数据处理与转换功能系列)
-*   **ExTDD_03:** [实现涉及状态或上下文的功能系列](#extdd_03-实现涉及状态或上下文的功能系列)
-*   **(更多系列待定义...)**
-
-## TDD 练习系列详细定义
-
-### ExTDD_01: 实现简单计算/验证功能系列
-
-**系列目标**: 掌握使用 AI 辅助 TDD 流程开发一个输入明确、输出单一、无副作用的计算或验证函数。这是最基础的 TDD 练习。
-
-**系列复杂度**: 低。
-
-**步骤定义**:
-
-1.  **步骤 1: 从用户故事到实现思考 (`s1_implementation_analysis.md`)**
-    *   **目标**: 分析用户故事，明确输入、输出和核心计算/验证逻辑。
-    *   **输入模式**: `inputs/user_story_*.md` (描述简单计算或验证需求)。
-    *   **AI 角色**: 需求分析师。重点关注输入类型/范围、预期输出、核心逻辑。
-    *   **输出**: Markdown 文件，包含：需求描述、输入/输出定义、核心逻辑简述、潜在边界情况（如无效输入）。
-    *   **评估**: 是否准确捕捉计算/验证规则？是否考虑基本边界？
-
-2.  **步骤 2: 从实现思考到行动计划 (`s2_action_plan.md`, `*_feature.py` 初始框架)**
-    *   **目标**: 设计函数签名，创建包含该签名的 Python 文件。
-    *   **输入**: `outputs/ExTDD_XX_FeatureName/s1_implementation_analysis.md`
-    *   **AI 角色**: API 设计师。设计清晰的函数名、参数和返回值类型。
-    *   **输出**:
-        *   `s2_action_plan.md`: 确认函数签名。
-        *   `*_feature.py`: 包含 `def function_name(params...): pass` 的 Python 文件。
-    *   **评估**: 函数签名是否清晰表达意图？
-
-3.  **步骤 3: 单元测试设计与审查 (`test_*_feature.py`)**
-    *   **目标**: 编写覆盖正常情况、边界情况和预期错误（如果适用）的单元测试。
-    *   **输入**: `s2_action_plan.md`, 初始 `*_feature.py`
-    *   **AI 角色**: 测试工程师。使用 `unittest` 或 `pytest`，编写多个断言来验证不同输入下的输出。
-    *   **输出**: `test_*.py` 文件，包含至少 3-5 个测试用例。运行应失败 (Red)。
-    *   **评估**: 测试用例是否覆盖典型输入和已知边界？断言是否明确？
-
-4.  **步骤 4: 测试驱动开发实现 (`*_feature.py` 完整实现)**
-    *   **目标**: 编写最简单的代码使所有测试通过。
-    *   **输入**: `test_*.py`, 初始 `*_feature.py`
-    *   **AI 角色**: 开发者。专注于让测试变绿，避免过度设计。
-    *   **输出**: 修改后的 `*_feature.py`，运行 `test_*.py` 应全部通过 (Green)。
-    *   **评估**: 是否所有测试通过？代码是否简洁且刚好满足测试？
-
-5.  **步骤 5: 函数文档完善与重构 (`*_feature.py` 带文档, `s5_api_documentation.md` 可选)**
-    *   **目标**: 添加标准文档字符串，审视并进行必要的代码重构（如提高可读性），可选生成 API 文档。
-    *   **输入**: 已通过测试的 `*_feature.py`
-    *   **AI 角色**: 文档/重构师。添加 docstring，审视代码是否有改进空间（如命名、简化逻辑），确保重构后测试仍通过。
-    *   **输出**:
-        *   带文档和可能重构的 `*_feature.py` (测试仍通过)。
-        *   (可选) `s5_api_documentation.md`。
-    *   **评估**: 文档是否符合规范？代码是否清晰？重构是否安全（测试验证）？
-
-### ExTDD_02: 实现基本数据处理与转换功能系列
-
-**系列目标**: 掌握使用 AI 辅助 TDD 流程开发处理结构化数据（如字典、列表）并进行转换或提取信息的功能。
-
-**系列复杂度**: 中低。
-
-**步骤定义**:
-
-1.  **步骤 1: 从用户故事到实现思考 (`s1_implementation_analysis.md`)**
-    *   **目标**: 分析用户故事，明确输入数据结构、输出数据结构和转换/提取逻辑。
-    *   **输入模式**: `inputs/user_story_*.md` (描述数据处理需求，可能附带输入/输出数据示例)。
-    *   **AI 角色**: 数据分析师。重点理解输入/输出模式、处理规则、关键字段、错误处理（如缺少键、格式错误）。
-    *   **输出**: Markdown 文件，包含：需求描述、输入/输出数据结构描述、处理逻辑、错误处理策略。
-    *   **评估**: 是否清晰定义了数据结构和转换规则？是否考虑了常见的无效数据情况？
-
-2.  **步骤 2: 从实现思考到行动计划 (`s2_action_plan.md`, `*_feature.py` 初始框架)**
-    *   **目标**: 设计函数签名（可能接受和返回复杂数据类型），创建代码框架。
-    *   **输入**: `outputs/ExTDD_XX_FeatureName/s1_implementation_analysis.md`
-    *   **AI 角色**: API 设计师。注意参数和返回值的类型提示。
-    *   **输出**:
-        *   `s2_action_plan.md`: 确认函数签名和预期的数据结构。
-        *   `*_feature.py`: 包含 `def function_name(data: dict) -> dict: pass` 等的 Python 文件。
-    *   **评估**: 函数签名是否准确反映数据处理任务？
-
-3.  **步骤 3: 单元测试设计与审查 (`test_*_feature.py`)**
-    *   **目标**: 编写测试用例，覆盖不同的输入数据组合、边界情况（空列表/字典）和预期的错误处理。
-    *   **输入**: `s2_action_plan.md`, 初始 `*_feature.py`
-    *   **AI 角色**: 测试工程师。需要构造不同的测试数据（字典、列表等）。
-    *   **输出**: `test_*.py` 文件，包含针对不同数据场景的测试用例。运行应失败 (Red)。
-    *   **评估**: 测试数据是否多样化？是否测试了关键的转换逻辑和错误处理？
-
-4.  **步骤 4: 测试驱动开发实现 (`*_feature.py` 完整实现)**
-    *   **目标**: 编写代码实现数据处理逻辑，使所有测试通过。
-    *   **输入**: `test_*.py`, 初始 `*_feature.py`
-    *   **AI 角色**: 开发者。可能需要使用循环、条件判断、字典/列表操作等。
-    *   **输出**: 修改后的 `*_feature.py`，运行 `test_*.py` 应全部通过 (Green)。
-    *   **评估**: 是否正确实现了数据转换逻辑？是否处理了测试中定义的错误情况？
-
-5.  **步骤 5: 函数文档完善与重构 (`*_feature.py` 带文档, `s5_api_documentation.md` 可选)**
-    *   **目标**: 添加文档字符串（说明数据结构），审视代码（如循环效率、可读性），可选生成 API 文档。
-    *   **输入**: 已通过测试的 `*_feature.py`
-    *   **AI 角色**: 文档/重构师。确保文档清晰说明输入/输出数据格式。检查是否有更 Pythonic 的实现方式。
-    *   **输出**:
-        *   带文档和可能重构的 `*_feature.py` (测试仍通过)。
-        *   (可选) `s5_api_documentation.md`。
-    *   **评估**: 文档是否清晰解释数据处理逻辑？代码是否易于理解和维护？
-
-### ExTDD_03: 实现涉及状态或上下文的功能系列
-
-**系列目标**: 掌握使用 AI 辅助 TDD 流程开发需要管理内部状态或依赖外部上下文（通过参数传入）的功能（通常是类的方法）。
-
-**系列复杂度**: 中。
-
-**步骤定义**:
-
-1.  **步骤 1: 从用户故事到实现思考 (`s1_implementation_analysis.md`)**
-    *   **目标**: 分析用户故事，识别需要维护的状态或依赖的上下文，定义核心操作及其对状态/上下文的影响。
-    *   **输入模式**: `inputs/user_story_*.md` (描述需要多次交互或依赖先前状态的操作)。
-    *   **AI 角色**: 系统设计师。识别出需要封装的状态变量，定义类和关键方法的职责。
-    *   **输出**: Markdown 文件，包含：需求描述、识别出的状态/上下文、核心操作（方法）列表、每个操作如何影响状态。
-    *   **评估**: 是否准确识别了需要管理的状态？方法的职责是否清晰？
-
-2.  **步骤 2: 从实现思考到行动计划 (`s2_action_plan.md`, `*_feature.py` 初始框架)**
-    *   **目标**: 设计类结构和方法签名，创建包含类定义的 Python 文件。
-    *   **输入**: `outputs/ExTDD_XX_FeatureName/s1_implementation_analysis.md`
-    *   **AI 角色**: OO 设计师。设计类名、`__init__` 方法（初始化状态）、其他方法签名。
-    *   **输出**:
-        *   `s2_action_plan.md`: 确认类和方法设计。
-        *   `*_feature.py`: 包含 `class ClassName: def __init__(self, ...): pass def method_name(self, ...): pass` 的 Python 文件。
-    *   **评估**: 类和方法设计是否符合面向对象原则？
-
-3.  **步骤 3: 单元测试设计与审查 (`test_*_feature.py`)**
-    *   **目标**: 编写测试用例，验证对象初始化、方法调用对状态的正确影响以及不同方法调用的交互。
-    *   **输入**: `s2_action_plan.md`, 初始 `*_feature.py`
-    *   **AI 角色**: 测试工程师。需要在测试方法中创建类实例，调用方法，并断言对象状态的变化或方法的返回值。
-    *   **输出**: `test_*.py` 文件，包含验证对象生命周期和方法交互的测试用例。运行应失败 (Red)。
-    *   **评估**: 测试是否覆盖了状态初始化和关键方法的交互？是否验证了状态的正确更新？
-
-4.  **步骤 4: 测试驱动开发实现 (`*_feature.py` 完整实现)**
-    *   **目标**: 编写代码实现类的方法，管理内部状态，使所有测试通过。
-    *   **输入**: `test_*.py`, 初始 `*_feature.py`
-    *   **AI 角色**: 开发者。实现 `__init__` 和其他方法，确保状态按预期更新。
-    *   **输出**: 修改后的 `*_feature.py`，运行 `test_*.py` 应全部通过 (Green)。
-    *   **评估**: 是否正确实现了状态管理和方法逻辑？
-
-5.  **步骤 5: 函数文档完善与重构 (`*_feature.py` 带文档, `s5_api_documentation.md` 可选)**
-    *   **目标**: 添加类和方法的文档字符串，审视代码（封装性、职责单一性），可选生成 API 文档。
-    *   **输入**: 已通过测试的 `*_feature.py`
-    *   **AI 角色**: 文档/重构师。确保文档清晰说明类的目的、状态和方法。检查是否有改进封装或简化逻辑的机会。
-    *   **输出**:
-        *   带文档和可能重构的 `*_feature.py` (测试仍通过)。
-        *   (可选) `s5_api_documentation.md`。
-    *   **评估**: 文档是否清晰解释类的行为？代码是否遵循良好的 OO 设计原则？
-
-
-</rewritten_file>

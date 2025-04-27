@@ -88,12 +88,12 @@ Markdown是记录思维过程并构建AI知识库的理想媒介：
 
 为每个开发阶段创建明确的Markdown文件，**它们既是人类的思考记录，也是指导AI的核心文档 (这个是示范的例子, 参考思想就好, 不用完全遵循下面的命名, 文件数量等)**：
 
-1. `s0_user_story.md` - 问题定义和边界 (**喂给AI的第一份需求**)
-2. `s1_implementation_analysis.md` - 核心挑战和可能方案 (**指导AI进行方案评估**)
-3. `s2_action_plan.md` - 任务拆分和接口设计 (**给AI生成的具体指令**)
-4. `s3_test_design.md` - 测试策略和成功标准 (**AI生成代码需通过的验收标准**)
-5. `s4_code.py` + `s4_tests.py` - AI辅助生成与人工审查/重构的代码实现 (约束来来自 s2 和 s3)
-6. `s5_documentation.md` - 使用说明和维护指南 (**AI辅助生成, 输入来自s3,s4，人工审核**)
+1. `user_story.md` - 问题定义和边界 (**喂给AI的第一份需求**)
+2. `_s1_user_story_analysis_{user_story}.md` - 核心挑战和可能方案 (**指导AI进行方案评估**)
+3. `_s2_action_plan_{user_story}.md` - 任务拆分和接口设计 (**给AI生成的具体指令**)
+4. `_s3_test_design_{user_story}.md` - 测试策略和成功标准 (**AI生成代码需通过的验收标准**)
+5. `{func_name}.py` + `test_{func_name}.py` - AI辅助生成与人工审查/重构的代码实现 (约束来来自 _s2_xxx 和 _s3_xxx)
+6. `doc_{func_name}.md` - 使用说明和维护指南 (**AI辅助生成, 输入来自s3,s4，人工审核**)
 
 ## 与AI协作：主导而非跟随，教练而非依赖
 
