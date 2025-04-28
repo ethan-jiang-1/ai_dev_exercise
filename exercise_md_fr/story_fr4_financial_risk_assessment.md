@@ -49,7 +49,7 @@
 ## 故事目录结构
 
 ```
-exercise_md_simple/
+exercise_md_fr/
 ├─ teaching_framework/planning_mds_exercise_template.md               (框架设计规划与练习类型定义)
 │
 ├─ story_financial_risk_assessment/            (本故事)
@@ -138,9 +138,9 @@ exercise_md_simple/
 > **理论/结构**: 信息提取与建模。步骤：分析需求文档 -> 识别核心实体 -> 确定实体属性和类型 -> 定义实体间关系 -> 生成Mermaid ERD代码 -> 添加解释。
 >
 > **输入**:
-> * `exercise_md_simple/story_financial_risk_assessment/inputs/regulatory_requirements.md`
-> * `exercise_md_simple/story_financial_risk_assessment/inputs/transaction_data_schema.json`
-> * `exercise_md_simple/story_financial_risk_assessment/inputs/stakeholder_interviews.txt`
+> * `exercise_md_fr/story_financial_risk_assessment/inputs/regulatory_requirements.md`
+> * `exercise_md_fr/story_financial_risk_assessment/inputs/transaction_data_schema.json`
+> * `exercise_md_fr/story_financial_risk_assessment/inputs/stakeholder_interviews.txt`
 > * (可选) 本文件中的业务背景和目标 (`## 故事背景`, `## 业务目标`)
 >
 > **AI助手角色**:
@@ -155,7 +155,7 @@ exercise_md_simple/
 > **复杂度分析**: 中到高。需要整合来自多个不同格式文档的信息，理解金融领域的特定概念（如AML, KYC），并将其准确地映射到数据模型。需要较强的抽象和结构化能力。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/story_financial_risk_assessment/outputs/ExMS_10_RequirementsModel/`
+> * **输出目录**: `exercise_md_fr/story_financial_risk_assessment/outputs/ExMS_10_RequirementsModel/`
 > * **最终产物**: `risk_assessment_data_model_v1.md` - 包含Mermaid ER图代码及其解释说明的Markdown文件
 
 ### ExMS_11: 从需求生成系统架构图 (Mermaid)
@@ -166,7 +166,7 @@ exercise_md_simple/
 >
 > **输入**:
 > * 本文件中的项目概述、技术要求、技术栈和约束 (`## 故事背景`, `## 业务目标`, `## 技术栈`, `## 技术要求`)
-> * (可选) `exercise_md_simple/story_financial_risk_assessment/inputs/legacy_system_integration.md`
+> * (可选) `exercise_md_fr/story_financial_risk_assessment/inputs/legacy_system_integration.md`
 >
 > **AI助手角色**:
 > * 分析项目需求，特别是性能（低延迟、高吞吐）、安全、合规和集成要求
@@ -180,7 +180,7 @@ exercise_md_simple/
 > **复杂度分析**: 高。需要综合理解业务需求、技术约束和常见的架构模式（如事件驱动、微服务）。需要做出合理的设计权衡，并将复杂的系统关系简化为清晰的图表。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/story_financial_risk_assessment/outputs/ExMS_11_SystemArchitecture/`
+> * **输出目录**: `exercise_md_fr/story_financial_risk_assessment/outputs/ExMS_11_SystemArchitecture/`
 > * **最终产物**: `system_architecture_v1.md` - 包含Mermaid架构图代码及其解释说明的Markdown文件
 
 ### ExMS_12: 从模型规格生成评估标准文档
@@ -190,9 +190,9 @@ exercise_md_simple/
 > **理论/结构**: 模型评估与文档生成。步骤：理解模型目标和业务场景 -> 识别关键评估维度 -> 定义具体评估指标 -> 设定验收阈值 -> 考虑偏见和公平性 -> 规划评估流程 -> 结构化文档。
 >
 > **输入**:
-> * `exercise_md_simple/story_financial_risk_assessment/inputs/risk_model_specs.py`
+> * `exercise_md_fr/story_financial_risk_assessment/inputs/risk_model_specs.py`
 > * 本文件中的业务背景、成功标准和开发挑战 (`## 故事背景`, `## 成功标准`, `## 开发挑战`)
-> * (可选) `exercise_md_simple/story_financial_risk_assessment/inputs/regulatory_requirements.md` (关于模型解释性和公平性的要求)
+> * (可选) `exercise_md_fr/story_financial_risk_assessment/inputs/regulatory_requirements.md` (关于模型解释性和公平性的要求)
 >
 > **AI助手角色**:
 > * 分析模型规格和相关需求，理解每个模型（欺诈检测、信用评分等）的目标
@@ -210,7 +210,7 @@ exercise_md_simple/
 > **复杂度分析**: 中到高。需要理解机器学习模型评估的各种指标及其在金融风控场景下的具体含义。需要特别关注公平性、可解释性等非技术性但至关重要的方面。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/story_financial_risk_assessment/outputs/ExMS_12_AIModelEvaluation/`
+> * **输出目录**: `exercise_md_fr/story_financial_risk_assessment/outputs/ExMS_12_AIModelEvaluation/`
 > * **最终产物**: `model_evaluation_criteria_v1.md` - 包含详细模型评估标准的Markdown文档
 
 ### ExMS_13: 从合规清单生成安全审计计划
@@ -220,9 +220,9 @@ exercise_md_simple/
 > **理论/结构**: 合规理解与审计规划。步骤：分析合规要求 -> 映射到系统组件/流程 -> 设计审计测试用例 -> 规划审计范围和方法 -> 确定审计频率和负责人 -> 组织为审计计划文档。
 >
 > **输入**:
-> * `exercise_md_simple/story_financial_risk_assessment/inputs/security_compliance_checklist.md`
+> * `exercise_md_fr/story_financial_risk_assessment/inputs/security_compliance_checklist.md`
 > * 本文件中的技术要求（特别是 `安全框架` 部分）和技术栈信息 (`## 技术要求`, `## 技术栈`)
-> * (可选) `exercise_md_simple/story_financial_risk_assessment/inputs/regulatory_requirements.md`
+> * (可选) `exercise_md_fr/story_financial_risk_assessment/inputs/regulatory_requirements.md`
 > * (可选) ExMS_11生成的系统架构图 (`outputs/ExMS_11_SystemArchitecture/system_architecture_v1.md`)
 >
 > **AI助手角色**:
@@ -238,5 +238,5 @@ exercise_md_simple/
 > **复杂度分析**: 高。需要深入理解金融行业的安全合规标准（非常具体和严格），并能将其与现代云原生技术栈（K8s, Kafka等）的实践相结合。需要将策略性要求转化为可操作的审计步骤。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/story_financial_risk_assessment/outputs/ExMS_13_SecurityAudit/`
-> * **最终产物**: `security_audit_plan_v1.md` - 包含详细安全审计计划的Markdown文档 
+> * **输出目录**: `exercise_md_fr/story_financial_risk_assessment/outputs/ExMS_13_SecurityAudit/`
+> * **最终产物**: `security_audit_plan_v1.md` - 包含详细安全审计计划的Markdown文档

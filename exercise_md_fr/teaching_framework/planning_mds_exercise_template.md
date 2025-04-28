@@ -77,7 +77,7 @@
 ## 提议的目录结构 (支持多故事)
 
 ```
-exercise_md_simple/
+exercise_md_fr/
 ├── teaching_framework/                     (框架文档目录)
 │   ├── thinking_driven_development_with_ai.md  (思考驱动开发核心理念)
 │   └── planning_mds_exercise_template.md       (本文件 - 练习框架设计规划)

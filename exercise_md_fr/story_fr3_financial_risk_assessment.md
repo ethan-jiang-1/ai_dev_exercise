@@ -49,7 +49,7 @@
 ## 故事目录结构
 
 ```
-exercise_md_simple/
+exercise_md_fr/
 ├─ teaching_framework/planning_mds_exercise_template.md               (框架设计规划与练习类型定义)
 │
 ├─ story_financial_risk_assessment/            (本故事)
@@ -183,4 +183,4 @@ exercise_md_simple/
 > **复杂度**: 低。
 > **输出位置与方式**: 
 >   * `outputs/ExFS_03_LimitCrossCheck/account_limit_check.py` (带文档)
->   * (可选) `outputs/ExFS_03_LimitCrossCheck/s5_api_documentation.md` 
+>   * (可选) `outputs/ExFS_03_LimitCrossCheck/s5_api_documentation.md`
