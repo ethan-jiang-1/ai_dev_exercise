@@ -1,6 +1,7 @@
 # User Story: Financial Risk Assessment System - part 2
 
 (参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
+> **实现目录说明**：本练习的实际实现位于 `./exercise_md_fr/` 目录下。
 
 ## 1. User Story (用户故事)
 
@@ -140,47 +141,48 @@ exercise_md_fr/
 
 > **目标**: 分析客户字段验证的用户故事，提出实现思路。
 > **理论/结构**: 需求分析 -> 方案设计。
-> **输入**: `inputs/user_story_fs_02_field_validation.md`
+> **输入**: `dt_financial_risk_assessment/inputs/user_story_fs_02_field_validation.md`
 > **AI助手角色**: 分析需求，识别挑战(格式验证、列表检查)，提出函数实现方案，建议数据结构。
 > **复杂度**: 中低。
-> **输出位置与方式**: `outputs/ExFS_02_FieldValidation/s1_implementation_analysis.md`
+> **输出位置与方式**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/s1_implementation_analysis.md`
 
 #### ExFS_02_2: 从实现思考到行动计划
 
 > **目标**: 将实现思路转化为任务列表和代码框架。
 > **理论/结构**: 方案具体化 -> 任务分解 -> 代码框架设计。
-> **输入**: `outputs/ExFS_02_FieldValidation/s1_implementation_analysis.md`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/s1_implementation_analysis.md`
 > **AI助手角色**: 分解任务，设计函数签名，创建包含函数定义的初始Python文件。
 > **复杂度**: 低。
 > **输出位置与方式**: 
->   * `outputs/ExFS_02_FieldValidation/s2_action_plan.md`
->   * `outputs/ExFS_02_FieldValidation/field_validation.py` (初始框架)
+>   * `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/s2_action_plan.md`
+>   * `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/field_validation.py` (初始框架)
 
 #### ExFS_02_3: 单元测试设计与审查
 
 > **目标**: 为客户字段验证功能设计单元测试。
 > **理论/结构**: 测试设计。
-> **输入**: `outputs/ExFS_02_FieldValidation/s2_action_plan.md`, `outputs/ExFS_02_FieldValidation/field_validation.py`, `constraints/exercise_constraints_fs_02.md` (含数据结构示例)
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/s2_action_plan.md`, `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/field_validation.py`, `dt_financial_risk_assessment/constraints/exercise_constraints_fs_02.md` (含数据结构示例)
 > **AI助手角色**: 设计测试用例（有效/无效国家、有效/无效日期、缺少字段），编写 `unittest` 代码。
 > **复杂度**: 中。
-> **输出位置与方式**: `outputs/ExFS_02_FieldValidation/test_field_validation.py`
+> **输出位置与方式**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/test_field_validation.py`
 
 #### ExFS_02_4: 测试驱动开发实现
 
 > **目标**: 基于测试用例实现客户字段验证功能。
 > **理论/结构**: TDD实践。
-> **输入**: `outputs/ExFS_02_FieldValidation/test_field_validation.py`, `outputs/ExFS_02_FieldValidation/field_validation.py`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/test_field_validation.py`, `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/field_validation.py`
 > **AI助手角色**: 编写通过所有测试的函数代码，实现国家检查和日期格式验证。
 > **复杂度**: 中。
-> **输出位置与方式**: `outputs/ExFS_02_FieldValidation/field_validation.py` (完整实现)
+> **输出位置与方式**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/field_validation.py` (完整实现)
 
 #### ExFS_02_5: 函数文档完善
 
 > **目标**: 完善代码文档和使用说明。
 > **理论/结构**: 文档编写。
-> **输入**: `outputs/ExFS_02_FieldValidation/field_validation.py`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/field_validation.py`
 > **AI助手角色**: 完善函数文档字符串，提供使用示例。
 > **复杂度**: 低。
 > **输出位置与方式**: 
->   * `outputs/ExFS_02_FieldValidation/field_validation.py` (带文档)
+>   * `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/field_validation.py` (带文档)
+>   * (可选) `dt_financial_risk_assessment/outputs/ExFS_02_FieldValidation/s5_api_documentation.md`
 >   * (可选) `outputs/ExFS_02_FieldValidation/s5_api_documentation.md`

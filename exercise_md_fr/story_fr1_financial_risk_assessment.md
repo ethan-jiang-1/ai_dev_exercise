@@ -1,6 +1,7 @@
 # User Story: Financial Risk Assessment System - part 1
 
 (参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
+> **实现目录说明**：本练习的实际实现位于 `./exercise_md_fr/` 目录下。
 
 ## 1. User Story (用户故事)
 
@@ -140,47 +141,47 @@ exercise_md_fr/
 
 > **目标**: 分析金额阈值检查的用户故事，提出最简单的实现思路。
 > **理论/结构**: 需求分析 -> 方案设计。
-> **输入**: `inputs/user_story_fs_01_amount_check.md`
+> **输入**: `dt_financial_risk_assessment/inputs/user_story_fs_01_amount_check.md`
 > **AI助手角色**: 分析需求，识别挑战(无效输入)，提出基于简单比较的函数实现方案。
 > **复杂度**: 低。
-> **输出位置与方式**: `outputs/ExFS_01_AmountCheck/s1_implementation_analysis.md`
+> **输出位置与方式**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/s1_implementation_analysis.md`
 
 #### ExFS_01_2: 从实现思考到行动计划
 
 > **目标**: 将实现思路转化为任务列表和代码框架。
 > **理论/结构**: 方案具体化 -> 任务分解 -> 代码框架设计。
-> **输入**: `outputs/ExFS_01_AmountCheck/s1_implementation_analysis.md`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/s1_implementation_analysis.md`
 > **AI助手角色**: 分解任务，设计函数签名，创建包含函数定义的初始Python文件。
 > **复杂度**: 低。
 > **输出位置与方式**: 
->   * `outputs/ExFS_01_AmountCheck/s2_action_plan.md`
->   * `outputs/ExFS_01_AmountCheck/amount_check.py` (初始框架)
+>   * `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/s2_action_plan.md`
+>   * `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/amount_check.py` (初始框架)
 
 #### ExFS_01_3: 单元测试设计与审查
 
 > **目标**: 为金额阈值检查功能设计单元测试。
 > **理论/结构**: 测试设计。
-> **输入**: `outputs/ExFS_01_AmountCheck/s2_action_plan.md`, `outputs/ExFS_01_AmountCheck/amount_check.py`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/s2_action_plan.md`, `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/amount_check.py`
 > **AI助手角色**: 设计测试用例（大于、小于、等于、无效输入），编写 `unittest` 代码。
 > **复杂度**: 低。
-> **输出位置与方式**: `outputs/ExFS_01_AmountCheck/test_amount_check.py`
+> **输出位置与方式**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/test_amount_check.py`
 
 #### ExFS_01_4: 测试驱动开发实现
 
 > **目标**: 基于测试用例实现金额阈值检查功能。
 > **理论/结构**: TDD实践。
-> **输入**: `outputs/ExFS_01_AmountCheck/test_amount_check.py`, `outputs/ExFS_01_AmountCheck/amount_check.py`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/test_amount_check.py`, `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/amount_check.py`
 > **AI助手角色**: 编写通过所有测试的函数代码，处理无效输入。
 > **复杂度**: 低。
-> **输出位置与方式**: `outputs/ExFS_01_AmountCheck/amount_check.py` (完整实现)
+> **输出位置与方式**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/amount_check.py` (完整实现)
 
 #### ExFS_01_5: 函数文档完善
 
 > **目标**: 完善代码文档和使用说明。
 > **理论/结构**: 文档编写。
-> **输入**: `outputs/ExFS_01_AmountCheck/amount_check.py`
+> **输入**: `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/amount_check.py`
 > **AI助手角色**: 完善函数文档字符串，提供使用示例。
 > **复杂度**: 低。
 > **输出位置与方式**: 
->   * `outputs/ExFS_01_AmountCheck/amount_check.py` (带文档)
->   * (可选) `outputs/ExFS_01_AmountCheck/s5_api_documentation.md`
+>   * `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/amount_check.py` (带文档)
+>   * (可选) `dt_financial_risk_assessment/outputs/ExFS_01_AmountCheck/s5_api_documentation.md`
