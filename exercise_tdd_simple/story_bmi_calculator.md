@@ -1,7 +1,7 @@
 # User Story: Simple BMI Calculator
 
-(核心开发理念参考: [测试驱动开发核心理念](teaching_framework/test_driven_development_with_ai.md))
-(练习框架规划参考: [TDD练习框架设计规划](teaching_framework/planning_tdd_exercise_template.md))
+(核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
+(练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise_template.md))
 
 ## 1. User Story (用户故事)
 
