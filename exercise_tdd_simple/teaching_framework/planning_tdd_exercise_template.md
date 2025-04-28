@@ -87,8 +87,7 @@ exercise_tdd_simple/
 │   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
 │   └── planning_tdd_exercise_template.md   (本文件 - TDD 练习框架设计规划)
 |
-├── story_example_1/                        (故事实例 1)
-│   ├── story.md                           (故事描述文件)
+├── tdd_example_1/                        (故事实例 1)
 │   ├── constraints/                        (故事的约束文件，可选)
 │   │   └── exercise_constraints_01.md
 │   ├── inputs/                             (故事的输入文件)
@@ -102,8 +101,7 @@ exercise_tdd_simple/
 │       └── ExTDD_02_Feature2/             (示例：功能2系列输出)
 │           └── ...
 |
-├── story_example_2/                       (故事实例 2)
-│   ├── story.md                           (故事描述文件)
+├── tdd_example_2/                       (故事实例 2)
 │   ├── constraints/                        (故事的约束文件，可选)
 │   │   └── ...
 │   ├── inputs/                             (故事的输入文件)

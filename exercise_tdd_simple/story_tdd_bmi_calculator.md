@@ -1,6 +1,8 @@
 # User Story: Simple BMI Calculator
 
 > **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_simple/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_simple/teaching_framework/test_driven_development_with_ai.md`。
+>
+> **实现目录说明**：本练习的实际实现位于 `./tdd_bmi_calculator/` 目录下。
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise_template.md))
@@ -39,7 +41,7 @@
 每个练习系列（如ExTDD_01_BMICalculation）都**必须, 一定**包含：
 
 ```
-ExTDD_XX_FeatureName/
+tdd_bmi_calculator/ExTDD_XX_FeatureName/
 ├── constraints/                    # 约束条件
 │   └── task_constraints.md        # 任务特定约束
 ├── inputs/                        # 输入文件
@@ -61,7 +63,7 @@ ExTDD_XX_FeatureName/
 feature_name: bmi_calculate
 
 ```
-ExTDD_01_BMICalculation/
+tdd_bmi_calculator/ExTDD_01_BMICalculation/
 ├── constraints/
 │   └── task_constraints.md        # BMI计算的特定约束
 ├── inputs/
@@ -98,7 +100,7 @@ ExTDD_01_BMICalculation/
 feature_name: bmi_categorize
 
 ```
-ExTDD_02_BMICategorization/
+tdd_bmi_calculator/ExTDD_02_BMICategorization/
 ├── constraints/
 │   └── task_constraints.md        # BMI分类的特定约束
 ├── inputs/
