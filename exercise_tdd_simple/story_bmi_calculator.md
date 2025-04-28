@@ -1,5 +1,7 @@
 # User Story: Simple BMI Calculator
 
+> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_simple/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_simple/teaching_framework/test_driven_development_with_ai.md`。
+
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise_template.md))
 

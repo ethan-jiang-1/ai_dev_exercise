@@ -1,19 +1,23 @@
-# Runbook: LoginService 响应时间过长
+# 登录服务故障处理手册
 
-**告警**: `LoginService response time > 2s`
+## 告警：登录服务失败率高
 
-**初步处理步骤**:
+### 检查步骤
 
-1.  **检查日志**: 登录到相关节点 (`prod-app-03`)，查看 `LoginService` 的最新日志，寻找错误信息或异常堆栈跟踪。
-   ```bash
-   ssh prod-app-03 'tail -n 100 /var/log/novabrain/loginservice.log'
-   ```
-2.  **检查资源**: 查看节点 `prod-app-03` 的 CPU 和内存使用情况，判断是否资源耗尽。
-   ```bash
-   ssh prod-app-03 'top -bn1 | head -n 5 && free -h'
-   ```
-3.  **考虑重启**: 如果日志无明显错误且资源充足，但问题持续，可考虑安全重启 `LoginService` 实例。**注意：联系相关负责人确认是否可以重启。**
-   ```bash
-   # 重启命令示例 (具体命令需根据部署方式确定)
-   ssh prod-app-03 'sudo systemctl restart loginservice'
-   ``` 
+1. 登录到登录服务器，执行 `systemctl status login-service` 检查服务状态
+2. 查看日志文件 `/var/log/login-service/error.log` 寻找最近的错误信息
+3. 检查数据库连接状态 `login-service-cli connection-test`
+4. 检查认证系统状态 `curl -v https://auth-system.internal/health`
+
+### 可能的解决方案
+
+1. 如果服务未运行，尝试重启: `systemctl restart login-service`
+2. 如果日志显示数据库连接问题，检查数据库状态和连接配置
+3. 如果认证系统不可用，通知认证团队并考虑临时启用本地认证模式: `login-service-cli enable-local-auth`
+
+### 升级流程
+
+如果以上步骤无法解决问题，请按以下流程升级:
+1. 通知运维组长
+2. 创建P1级事件票据
+3. 启动事件响应会议 

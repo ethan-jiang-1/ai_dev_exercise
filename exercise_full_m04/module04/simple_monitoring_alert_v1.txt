@@ -1,1 +1,1 @@
-ALERT: Service 'LoginService' response time > 2s on node prod-app-03. 
+[严重] 登录服务连续失败率超过30%，持续时间已达5分钟 

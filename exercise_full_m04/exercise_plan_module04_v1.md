@@ -1,6 +1,6 @@
 # NovaBrain 3.0 模拟练习计划 部署与运维阶段
 
-> **根目录说明**: 本练习计划中所有相对路径均以本文件所在目录 `exercise_technova_ai/` 为根目录。例如，当看到 `./setting/` 时，实际指向的是 `exercise_technova_ai/setting/` 目录。
+> **根目录说明**: 本练习计划中所有相对路径均以本文件所在目录 `exercise_full_m04/` 为根目录。例如，当看到 `./setting/` 时，实际指向的是 `exercise_full_m04/setting/` 目录。
 
 ## 模块目标与背景
 
