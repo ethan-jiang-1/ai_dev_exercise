@@ -1,6 +1,7 @@
 # User Story: Medical Imaging Analysis API - part 3
 
 (参考核心开发理念：[思考驱动开发与AI协作](./teaching_framework/thinking_driven_development_with_ai.md))
+> **实现目录说明**：本练习的实际实现位于 `./exercise_md_mia/` 目录下。
 
 ## 1. User Story (用户故事)
 
