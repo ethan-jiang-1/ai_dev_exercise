@@ -1,6 +1,6 @@
 # User Story: Medical Imaging Analysis API - part 2
 
-(参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
+(参考核心开发理念：[思考驱动开发与AI协作](./teaching_framework/thinking_driven_development_with_ai.md))
 
 ## 1. User Story (用户故事)
 
@@ -34,7 +34,7 @@
 
 ## 技术与约束
 
-> **请查看**: [简化约束指南](./constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
+> **请查看**: [简化约束指南](./story_medical_imaging_api/constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
 
 ## 方法论
 
@@ -325,4 +325,4 @@
 > * **输出目录**: `outputs/ExMS_04_FileLoader/`
 > * **最终产物**: 
 >   * `file_loader.py` - 带完整文档的最终代码
->   * `s5_api_documentation.md` - 详细的API使用指南文档 
+>   * `s5_api_documentation.md` - 详细的API使用指南文档

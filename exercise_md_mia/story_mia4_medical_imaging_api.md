@@ -1,6 +1,6 @@
 # User Story: Medical Imaging Analysis API - part 4
 
-(参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
+(参考核心开发理念：[思考驱动开发与AI协作](./teaching_framework/thinking_driven_development_with_ai.md))
 
 ## 1. User Story (用户故事)
 
@@ -34,7 +34,7 @@
 
 ## 技术与约束
 
-> **请查看**: [简化约束指南](./constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
+> **请查看**: [简化约束指南](./story_medical_imaging_api/constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
 
 ## 方法论
 
@@ -123,4 +123,4 @@
 > * **最终产物**: 
 >   * `api_documentation/` - 完整的API文档
 >   * `example_applications/` - 包含多个示例应用的目录
->   * `tutorials/` - 详细的教程文档和代码 
+>   * `tutorials/` - 详细的教程文档和代码
