@@ -45,9 +45,9 @@
    - 提供练习类型目录（ExMS_01到ExMS_15）
 
 3. **故事实例层**：
-   - `story_ecommerce_recommendation.md`：将练习类型应用于电商推荐场景
-   - `story_medical_imaging_api.md`：将练习类型应用于医疗影像场景
-   - `story_financial_risk_assessment.md`：将练习类型应用于金融风控场景
+   - `dt_ecommerce_recommendation.md`：将练习类型应用于电商推荐场景
+   - `dt_medical_imaging_api.md`：将练习类型应用于医疗影像场景
+   - `dt_financial_risk_assessment.md`：将练习类型应用于金融风控场景
 
 每个故事实例都是对框架的具体实现：
 1. 遵循 `thinking_driven_development_with_ai.md` 的核心理念
@@ -83,7 +83,7 @@ exercise_md_simple/
 │   └── planning_mds_exercise_template.md       (本文件 - 练习框架设计规划)
 |
 ├── story_example_ecommerce_recommendation/ (故事实例 1：电商推荐)
-│   ├── story_ecommerce_recommendation.md   (故事描述文件)
+│   ├── dt_ecommerce_recommendation.md   (故事描述文件)
 │   ├── inputs/                           (电商故事的输入文件)
 │   │   ├── meeting_notes_raw.txt         (示例：电商项目会议记录)
 │   │   └── ...

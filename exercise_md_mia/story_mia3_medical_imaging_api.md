@@ -34,7 +34,7 @@
 
 ## 技术与约束
 
-> **请查看**: [简化约束指南](./story_medical_imaging_api/constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
+> **请查看**: [简化约束指南](./dt_medical_imaging_api/constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
 
 ## 方法论
 

@@ -47,7 +47,7 @@
 exercise_md_er/
 ├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
 |
-├── story_ecommerce_recommendation/       (本故事)
+├── dt_ecommerce_recommendation/       (本故事)
 │   ├── inputs/                           (故事的输入文件)
 │   │   ├── meeting_notes_recommender.txt (产品会议记录)
 │   │   ├── recommender_service_desc.txt  (推荐服务描述)
@@ -88,7 +88,7 @@ exercise_md_er/
 > **理论/结构**: 信息提取与结构化。步骤：阅读会议记录 -> 识别需求点 -> 转换为用户故事格式 -> 添加验收标准。
 >
 > **输入**:
-> * `exercise_md_simple/story_ecommerce_recommendation/inputs/meeting_notes_recommender.txt`
+> * `exercise_md_simple/dt_ecommerce_recommendation/inputs/meeting_notes_recommender.txt`
 > * 包含产品团队和开发团队讨论推荐系统升级的会议记录，混合了业务讨论、技术考量和其他无关内容
 >
 > **AI 助手角色**:
@@ -101,7 +101,7 @@ exercise_md_er/
 > **复杂度分析**: 低。需要信息提取和重新组织的基础能力，但在电商推荐这一特定领域中应用可能需要理解一些特定术语。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_01_ReqToUserStory/`
+> * **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_01_ReqToUserStory/`
 > * **最终产物**: `user_stories_v1.md` - 包含所有提取出的用户故事及其验收标准的 Markdown 文件
 
 ---

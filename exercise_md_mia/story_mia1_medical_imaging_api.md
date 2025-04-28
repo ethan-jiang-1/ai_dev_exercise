@@ -34,7 +34,7 @@
 
 ## 技术与约束
 
-> **请查看**: [简化约束指南](./story_medical_imaging_api/constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
+> **请查看**: [简化约束指南](./dt_medical_imaging_api/constraints/exercise_constraints_simplified.md) 获取基本技术建议和灵活的指导方针。
 
 ## 方法论
 
@@ -58,8 +58,8 @@
 exercise_md_simple/
 ├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
 |
-├── story_medical_imaging_api/            (本故事)
-│   ├── story_medical_imaging_api.md      (本文件 - 故事描述)
+├── dt_medical_imaging_api/            (本故事)
+│   ├── dt_medical_imaging_api.md      (本文件 - 故事描述)
 │   ├── inputs/                           (故事的输入文件)
 │   │   ├── meeting_notes_medical.txt     (产品会议记录)
 │   │   ├── imaging_service_desc.txt      (影像服务描述)

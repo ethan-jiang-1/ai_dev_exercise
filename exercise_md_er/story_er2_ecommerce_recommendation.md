@@ -47,7 +47,7 @@
 exercise_md_er/
 ├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
 |
-├── story_ecommerce_recommendation/       (本故事)
+├── dt_ecommerce_recommendation/       (本故事)
 │   ├── inputs/                           (故事的输入文件)
 │   │   ├── meeting_notes_recommender.txt (产品会议记录)
 │   │   ├── recommender_service_desc.txt  (推荐服务描述)
@@ -88,7 +88,7 @@ exercise_md_er/
 > **理论/结构**: 信息提取与可视化。步骤：阅读服务描述 -> 识别组件和关系 -> 选择合适的图表类型 -> 创建 Mermaid 代码 -> 添加解释说明。
 >
 > **输入**:
-> * `exercise_md_simple/story_ecommerce_recommendation/inputs/recommender_service_desc.txt`
+> * `exercise_md_simple/dt_ecommerce_recommendation/inputs/recommender_service_desc.txt`
 > * 包含推荐系统服务的文本描述，包括组件、数据流和交互方式
 >
 > **AI 助手角色**:
@@ -101,7 +101,7 @@ exercise_md_er/
 > **复杂度分析**: 中。需要理解系统架构概念，并将文本信息转换为结构化的可视表示，同时需要正确应用 Mermaid 语法。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_02_ServiceToMermaid/`
+> * **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_02_ServiceToMermaid/`
 > * **最终产物**: `recommender_service_flow_v1.md` - 包含推荐系统架构的 Mermaid 图表及解释说明的 Markdown 文件
 
 ---

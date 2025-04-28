@@ -47,7 +47,7 @@
 exercise_md_er/
 ├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
 |
-├── story_ecommerce_recommendation/       (本故事)
+├── dt_ecommerce_recommendation/       (本故事)
 │   ├── inputs/                           (故事的输入文件)
 │   │   ├── meeting_notes_recommender.txt (产品会议记录)
 │   │   ├── recommender_service_desc.txt  (推荐服务描述)
@@ -140,7 +140,7 @@ exercise_md_er/
 > - 记录策略选择的理由
 
 > **输入**:
-> - `exercise_md_simple/story_ecommerce_recommendation/inputs/coupon_requirements.md`
+> - `exercise_md_simple/dt_ecommerce_recommendation/inputs/coupon_requirements.md`
 > - 包含优惠券推荐系统的详细需求说明和业务规则
 
 > **AI 助手角色**:
@@ -154,7 +154,7 @@ exercise_md_er/
 > **复杂度分析**: 中到高。需要深入理解优惠券推荐的业务逻辑，分析技术挑战，并平衡多种因素提出可行的解决方案。
 
 > **输出位置与方式**:
-> - **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/`
+> - **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/`
 > - **最终产物**: `coupon_implementation_analysis.md` - 包含需求分析、技术挑战、可能的解决方案和推荐实现方案的Markdown文档
 
 ### ExMS_04_2: 从实现思考到优惠券推荐行动计划
@@ -190,7 +190,7 @@ exercise_md_er/
 > - 记录计划调整的理由
 
 > **输入**:
-> - `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/coupon_implementation_analysis.md`
+> - `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/coupon_implementation_analysis.md`
 > - 上一步生成的实现分析文档，包含对优惠券推荐功能的技术需求和实现思路
 
 > **AI 助手角色**:
@@ -205,7 +205,7 @@ exercise_md_er/
 > **复杂度分析**: 中到高。需要将抽象概念转化为结构化任务清单，同时考虑时间规划、任务依赖、实施风险和资源分配。
 
 > **输出位置与方式**:
-> - **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/`
+> - **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/`
 > - **最终产物**: `coupon_action_plan.md` - 包含任务分解、接口设计、优先级规划、风险分析和实施建议的Markdown文档
 
 ### ExMS_04_3: 优惠券推荐功能的单元测试设计
@@ -241,7 +241,7 @@ exercise_md_er/
 > - 记录测试设计的理由
 
 > **输入**:
-> - `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/coupon_action_plan.md`
+> - `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/coupon_action_plan.md`
 > - 上一步生成的行动计划，包含优惠券推荐功能的接口设计和实现计划
 
 > **AI 助手角色**:
@@ -256,7 +256,7 @@ exercise_md_er/
 > **复杂度分析**: 中到高。需要深入理解优惠券推荐系统的业务逻辑和技术实现，设计全面的测试策略和用例，确保功能的正确性和性能。
 
 > **输出位置与方式**:
-> - **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/`
+> - **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/`
 > - **最终产物**: 
 >   - `test_coupon_recommendation.py` - 包含完整单元测试的Python测试文件
 >   - `coupon_test_strategy.md` - 描述测试策略、测试场景和测试数据的文档
@@ -294,7 +294,7 @@ exercise_md_er/
 > - 记录代码演进的理由
 
 > **输入**:
-> - `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/test_coupon_recommendation.py`
+> - `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/test_coupon_recommendation.py`
 > - 上一步设计的测试用例，包含对优惠券推荐功能的期望行为
 
 > **AI 助手角色**:
@@ -310,7 +310,7 @@ exercise_md_er/
 > **复杂度分析**: 高。需要实现满足测试要求的复杂推荐功能，同时平衡代码质量、性能和可维护性，处理多种业务场景和边界条件。
 
 > **输出位置与方式**:
-> - **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/`
+> - **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/`
 > - **最终产物**: 
 >   - `coupon_recommendation.py` - 完整实现的优惠券推荐功能Python代码
 >   - `implementation_notes.md` - 记录实现过程中的关键决策和设计思路
@@ -348,7 +348,7 @@ exercise_md_er/
 > - 记录文档设计的理由
 
 > **输入**:
-> - `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/coupon_recommendation.py`
+> - `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/coupon_recommendation.py`
 > - 上一步完成的优惠券推荐功能实现代码
 
 > **AI 助手角色**:
@@ -364,7 +364,7 @@ exercise_md_er/
 > **复杂度分析**: 中到高。需要深入理解代码实现和业务逻辑，创建清晰全面的文档，同时考虑不同角色的需求和使用场景。
 
 > **输出位置与方式**:
-> - **输出目录**: `exercise_md_simple/story_ecommerce_recommendation/outputs/ExMS_04/`
+> - **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_04/`
 > - **最终产物**: 
 >   - 更新后的 `coupon_recommendation.py` - 包含完整docstring和注释的代码文件
 >   - `coupon_recommendation_docs.md` - 包含使用指南、最佳实践和示例的Markdown文档

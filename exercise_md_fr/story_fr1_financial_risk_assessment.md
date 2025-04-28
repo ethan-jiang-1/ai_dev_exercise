@@ -52,7 +52,7 @@
 exercise_md_fr/
 ├─ teaching_framework/planning_mds_exercise_template.md               (框架设计规划与练习类型定义)
 │
-├─ story_financial_risk_assessment/            (本故事)
+├─ dt_financial_risk_assessment/            (本故事)
 │   ├─ constraints/                            (练习约束文件目录)
 │   │   ├─ exercise_constraints_fs_01.md         (ExFS_01 系列约束)
 │   │   ├─ exercise_constraints_fs_02.md         (ExFS_02 系列约束)
