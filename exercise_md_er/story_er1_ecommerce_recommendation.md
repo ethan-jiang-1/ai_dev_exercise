@@ -44,7 +44,7 @@
 ## 故事目录结构
 
 ```
-exercise_md_simple/
+exercise_md_er/
 ├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
 |
 ├── story_ecommerce_recommendation/       (本故事)
