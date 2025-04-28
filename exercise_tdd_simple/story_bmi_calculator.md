@@ -36,7 +36,7 @@
 
 ### 目录结构规范
 
-每个练习系列（如ExTDD_01_BMICalculation）都必须包含：
+每个练习系列（如ExTDD_01_BMICalculation）都**必须, 一定**包含：
 
 ```
 ExTDD_XX_FeatureName/
