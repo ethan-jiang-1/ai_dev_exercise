@@ -147,7 +147,7 @@ exercise_md_er/
 > - 记录你的决策理由和考虑因素
 
 **输入**:
-> * `exercise_md_simple/dt_ecommerce_recommendation/inputs/user_story_cart_recommendation.md`
+> * `exercise_md_er/dt_ecommerce_recommendation/inputs/user_story_cart_recommendation.md`
 > * 包含"购物篮分析推荐"的用户故事，描述了用户需要在添加商品到购物车后看到"经常一起购买"的推荐商品
 >
 > **AI 助手角色**:
@@ -161,7 +161,7 @@ exercise_md_er/
 > **复杂度分析**: 中。需要理解推荐系统领域知识，分析技术挑战，并提出合理的解决方案，同时平衡技术可行性和业务需求。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/`
+> * **输出目录**: `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/`
 > * **最终产物**: `s1_implementation_analysis.md` - 包含需求分析、技术挑战、可能的解决方案和推荐实现方案的Markdown文档
 
 ---
@@ -187,7 +187,7 @@ exercise_md_er/
 >    - 设计验证方法
 
 **输入**:
-> * `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/s1_implementation_analysis.md`
+> * `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/s1_implementation_analysis.md`
 > * 上一步生成的实现分析文档，包含对购物篮推荐功能的技术需求和实现思路
 >
 > **AI 助手角色**:
@@ -200,7 +200,7 @@ exercise_md_er/
 > **复杂度分析**: 中。需要技术规划能力，将抽象概念转化为结构化任务清单，同时考虑任务间依赖关系和实施风险。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/`
+> * **输出目录**: `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/`
 > * **最终产物**: 
 >   * `s2_action_plan.md` - 包含任务分解、接口思考, 优先级、和实施建议的Markdown文档
 
@@ -239,7 +239,7 @@ exercise_md_er/
 > - 记录测试设计决策的理由
 
 **输入**:
-> * `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/s2_action_plan.md`
+> * `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/s2_action_plan.md`
 > * 上一步生成的行动计划
 >
 > **AI 助手角色**:
@@ -254,7 +254,7 @@ exercise_md_er/
 > **复杂度分析**: 中。需要理解测试原则和推荐系统的业务逻辑，设计有效的测试用例，并实现可靠的测试代码。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/`
+> * **输出目录**: `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/`
 > * **最终产物**: 
 >   * `test_cart_recommendation.py` - 包含完整单元测试的Python测试文件 
 >   * `cart_recommendation.py` - 第一版推荐功能Python初始粗糙代码
@@ -294,7 +294,7 @@ exercise_md_er/
 > - 记录代码演进的理由
 
 **输入**:
-> * `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/test_cart_recommendation.py`
+> * `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/test_cart_recommendation.py`
 > * 上一步生成的测试用例
 >
 > **AI 助手角色**:
@@ -309,7 +309,7 @@ exercise_md_er/
 > **复杂度分析**: 中到高。需要实现符合测试要求的功能，同时考虑代码质量、性能和可维护性。
 >
 > **输出位置与方式**:
-> * **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/`
+> * **输出目录**: `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/`
 > * **最终产物**: `cart_recommendation.py` - 完整实现的推荐功能Python代码
 
 ---
@@ -347,7 +347,7 @@ exercise_md_er/
 > - 记录文档设计决策的理由
 
 > **输入**:
-> - `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/cart_recommendation.py`
+> - `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/cart_recommendation.py`
 > - 上一步完成的代码实现
 
 > **AI 助手角色**: 
@@ -360,6 +360,6 @@ exercise_md_er/
 > **复杂度分析**: 中。需要理解代码实现，并能够清晰地解释其功能、用法和限制，同时考虑不同角色的文档需求。
 
 > **输出位置与方式**:
-> - **输出目录**: `exercise_md_simple/dt_ecommerce_recommendation/outputs/ExMS_03/`
+> - **输出目录**: `exercise_md_er/dt_ecommerce_recommendation/outputs/ExMS_03/`
 > - **最终产物**: 更新后的 `cart_recommendation.py` - 包含完整文档的代码文件
 
