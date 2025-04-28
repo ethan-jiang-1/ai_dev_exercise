@@ -1,6 +1,6 @@
 # NovaBrain 3.0 模拟练习计划 测试与质量保障阶段
 
-> **根目录说明**: 本练习计划中所有相对路径均以本文件所在目录 `exercise_technova_ai/` 为根目录。例如，当看到 `./setting/` 时，实际指向的是 `exercise_technova_ai/setting/` 目录。
+> **根目录说明**: 本练习计划中所有相对路径均以本文件所在目录 `exercise_full_m03/` 为根目录。例如，当看到 `./setting/` 时，实际指向的是 `exercise_full_m03/setting/` 目录。
 
 ## 模块目标与背景
 
@@ -71,7 +71,7 @@
 *   **目标**: 练习使用 AI 阅读一个简单的功能规约，并基于此识别出最基本的测试用例思路（例如，至少一个正向和一个负向场景）。
 *   **理论/结构**: 测试设计基础 - 等价类划分与边界值思考的简化版。步骤：提供功能规约 -> AI 理解核心功能与约束 -> AI 提出正向/负向测试点子。
 *   **输入**:
-    *   `./module02/feature_spec_simple_math_func.md` (复用 M02 创建的简单函数规约)。
+    *   `./module03/feature_spec_simple_math_func.md` (复用 M02 创建的简单函数规约)。
 *   **AI 助手角色**:
     *   读取指定的功能规约 (`calculate_rectangle_area` 函数)。
     *   识别核心功能（计算面积）和关键约束（处理非正数输入）。
@@ -87,7 +87,7 @@
 *   **目标**: 练习使用 AI 基于一个简单的功能描述和一个极简的测试类型列表，建议可能相关的 *其他* 测试类型。
 *   **理论/结构**: 测试策略思考的雏形 - 理解不同测试类型的适用范围。步骤：提供功能描述和已知测试类型 -> AI 理解功能特点 -> AI 基于特点建议其他相关测试类型。
 *   **输入**:
-    *   `./module02/feature_spec_simple_math_func.md` (简单函数规约)。
+    *   `./module03/feature_spec_simple_math_func.md` (简单函数规约)。
     *   `./module03/minimal_test_types.md`
 *   **AI 助手角色**:
     *   读取功能规约和极简测试类型列表。
@@ -126,7 +126,7 @@
     *   `./setting/setting_technology_trends.md`
     *   `./setting/setting_industry_adoption.md`
     *   `./module03/test_case_draft_low_code_interface_v0.1.md` (低代码界面测试用例草稿)
-    *   `./module02/api_changelog_lowcode_v0.1_to_v0.2.md` (API 变更日志, 注意来自Module02)
+    *   `./module03/api_changelog_lowcode_v0.1_to_v0.2.md` (API 变更日志)
 *   **AI 助手 (Cursor) 的角色**:
     *   **用例生成**: 根据 API Changelog 或 PRD 需求，生成新的测试用例（正向、负向、边界），**需考虑新技术特性和行业特定工作流/数据（如 HIPAA 合规检查点）**。
     *   **用例评审**: 检查现有或新生成的测试用例是否覆盖了关键逻辑、边界条件、错误处理场景，**特别是涉及新技术和行业需求的场景**。
@@ -148,7 +148,7 @@
     *   `./module03/test_plan_lowcode_engine_v0.2.md` (测试计划)
     *   `./module03/test_cases_lowcode_api_v0.2.md` (测试用例)
     *   `./module03/qa_team_capabilities_assessment_202311.md` (QA团队能力评估)
-    *   `./module02/api_design_review_lowcode_engine_v0.1.md` (API 设计, 注意来自Module02)
+    *   `./module03/api_design_review_lowcode_engine_v0.1.md` (API 设计)
 *   **AI 助手 (Cursor) 的角色**:
     *   **测试可自动化程度评估**: 分析现有测试用例，评估哪些适合自动化，哪些需手动，**需考虑行业特定要求（如合规检查）是否适合自动化**。
     *   **自动化测试框架选型建议**: 基于技术栈和团队能力，推荐框架和工具，**需考虑对新技术（如 AI 模型测试）和行业特定场景的支持**。
@@ -214,7 +214,7 @@
     *   `./module04/deployment_strategy_novabrain_v3.md` (部署策略, 注意来自Module04)
     *   `./module03/test_data_current_status_202311.md` (现有测试数据状况)
     *   `./module03/deployment_checklist_v1.md` (部署检查清单)
-    *   `./module02/sprint_retrospective_notes_2023_11_15.md` (Sprint 回顾中的环境问题, 注意来自Module02)
+    *   `./module03/sprint_retrospective_notes_2023_11_15.md` (Sprint 回顾中的环境问题)
 *   **AI 助手 (Cursor) 的角色**:
     *   **环境配置管理建议**: 针对环境不稳定，提出改进建议，如 IaC、容器化，**参考技术趋势中的最佳实践**。
     *   **测试数据生成与管理策略**: 设计数据生成、维护、版本控制策略，**需强调符合行业隐私规定（HIPAA, GDPR）**。
@@ -233,8 +233,8 @@
     *   `./setting/case_study_people_and_teams.md` (人物画像: QA负责人周工, DevOps专家赵工)
     *   `./setting/setting_technology_trends.md`
     *   `./module03/qa_team_capabilities_assessment_202311.md` (QA团队能力评估)
-    *   `./module02/tdd_example_code.py` (TDD示例代码, 注意来自Module02)
-    *   `./module02/tdd_example_code_java.java` (TDD示例代码Java版本, 注意来自Module02)
+    *   `./module03/tdd_example_code.py` (TDD示例代码)
+    *   `./module03/tdd_example_code_java.java` (TDD示例代码Java版本)
 *   **AI 助手 (Cursor) 的角色**:
     *   **TDD实践练习设计**: 设计一系列实操练习，帮助团队成员理解和体验TDD流程与CI的结合方式。
     *   **工具选型与配置建议**: 为TDD流程自动化和可视化推荐工具和配置方案，**考虑团队现有技术栈和能力水平**。
@@ -258,7 +258,7 @@
     *   `./module03/current_release_process_202311.md` (当前发布流程文档)
     *   `./module03/deployment_checklist_v1.md` (部署检查清单)
     *   `./module03/release_notes.md` (v3.0 发布说明)
-    *   `./module02/sprint_retrospective_notes_2023_11_15.md` (Sprint回顾中的部署问题, 注意来自Module02)
+    *   `./module03/sprint_retrospective_notes_2023_11_15.md` (Sprint回顾中的部署问题)
 *   **AI 助手 (Cursor) 的角色**:
     *   **当前部署流程分析**: 分析团队现有部署实践中的痛点和风险，**特别关注医疗系统特有的挑战**，如合规审核、变更验证等。
     *   **CI/CD流程设计**: 设计适合医疗AI系统的CI/CD流程图和阶段定义，**包含必要的合规检查点、审批流程和验证步骤**。
@@ -302,7 +302,7 @@
     *   `./setting/setting_industry_adoption.md` (中国区域医疗现状)
     *   `./module03/regional_health_platform_requirements_v1.md` (区域医疗平台需求)
     *   `./module03/health_information_exchange_standards_v1.1.md` (医疗信息交换标准)
-    *   `./module02/api_design_review_lowcode_engine_v0.1.md` (API设计，注意来自Module02)
+    *   `./module03/api_design_review_lowcode_engine_v0.1.md` (API设计)
 *   **AI 助手 (Cursor) 的角色**:
     *   **互联互通需求分析**: 分析中国区域医疗场景下的互联互通需求，**明确分级诊疗、双向转诊、远程会诊等特色业务场景**。
     *   **测试环境设计**: 设计模拟多家医院和区域平台的测试环境，**包括常见的HIS、EMR、PACS等系统**。
