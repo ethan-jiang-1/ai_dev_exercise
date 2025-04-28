@@ -1,0 +1,252 @@
+{
+  "valid_examples": [
+    {
+      "username": "valid_user123",
+      "password": "SecureP@ss123",
+      "email": "test@example.com",
+      "phone": "+8613800138000",
+      "profile": {
+        "name": "张三",
+        "age": 30,
+        "address": {
+          "province": "广东省",
+          "city": "深圳市",
+          "district": "南山区",
+          "detail": "科技园南区T3栋5楼"
+        }
+      },
+      "settings": {
+        "notification_preferences": {
+          "email_notifications": true,
+          "sms_notifications": true,
+          "push_notifications": false
+        },
+        "privacy": {
+          "profile_visibility": "friends",
+          "show_online_status": false
+        }
+      },
+      "backup_email": "backup@example.org"
+    },
+    {
+      "username": "john_doe",
+      "password": "P@ssw0rd!2023",
+      "email": "john.doe@company.com",
+      "phone": "+14155552671",
+      "profile": {
+        "name": "John Doe",
+        "age": 42,
+        "address": {
+          "province": "California",
+          "city": "San Francisco",
+          "district": "Mission District",
+          "detail": "123 Tech Avenue, Apt 45"
+        }
+      },
+      "settings": {
+        "notification_preferences": {
+          "email_notifications": true,
+          "sms_notifications": false,
+          "push_notifications": true
+        },
+        "privacy": {
+          "profile_visibility": "public",
+          "show_online_status": true
+        }
+      }
+    },
+    {
+      "username": "minimal_user",
+      "password": "MinPass123!",
+      "email": "minimal@test.org",
+      "profile": {
+        "name": "最小配置",
+        "age": 18,
+        "address": {
+          "province": "北京市",
+          "city": "北京市",
+          "district": "海淀区",
+          "detail": "中关村大街1号"
+        }
+      },
+      "settings": {
+        "notification_preferences": {
+          "email_notifications": false,
+          "sms_notifications": false,
+          "push_notifications": false
+        },
+        "privacy": {
+          "profile_visibility": "private",
+          "show_online_status": false
+        }
+      }
+    }
+  ],
+  "invalid_examples": [
+    {
+      "test_name": "无效用户名",
+      "data": {
+        "username": "ab",
+        "password": "SecureP@ss123",
+        "email": "test@example.com",
+        "phone": "+8613800138000",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        }
+      },
+      "expected_errors": ["username"]
+    },
+    {
+      "test_name": "无效密码格式",
+      "data": {
+        "username": "valid_user123",
+        "password": "simplepassword",
+        "email": "test@example.com",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        }
+      },
+      "expected_errors": ["password"]
+    },
+    {
+      "test_name": "无效邮箱格式",
+      "data": {
+        "username": "valid_user123",
+        "password": "SecureP@ss123",
+        "email": "invalid-email",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        }
+      },
+      "expected_errors": ["email"]
+    },
+    {
+      "test_name": "无效电话号码",
+      "data": {
+        "username": "valid_user123",
+        "password": "SecureP@ss123",
+        "email": "test@example.com",
+        "phone": "123456",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        }
+      },
+      "expected_errors": ["phone"]
+    },
+    {
+      "test_name": "无效年龄范围",
+      "data": {
+        "username": "valid_user123",
+        "password": "SecureP@ss123",
+        "email": "test@example.com",
+        "profile": {
+          "name": "张三",
+          "age": 15,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        }
+      },
+      "expected_errors": ["profile.age"]
+    },
+    {
+      "test_name": "地址缺少必要字段",
+      "data": {
+        "username": "valid_user123",
+        "password": "SecureP@ss123",
+        "email": "test@example.com",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市"
+          }
+        }
+      },
+      "expected_errors": ["profile.address.district", "profile.address.detail"]
+    },
+    {
+      "test_name": "备用邮箱与主邮箱相同",
+      "data": {
+        "username": "valid_user123",
+        "password": "SecureP@ss123",
+        "email": "test@example.com",
+        "backup_email": "test@example.com",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        }
+      },
+      "expected_errors": ["backup_email"]
+    },
+    {
+      "test_name": "短信通知启用但缺少手机号",
+      "data": {
+        "username": "valid_user123",
+        "password": "SecureP@ss123",
+        "email": "test@example.com",
+        "profile": {
+          "name": "张三",
+          "age": 30,
+          "address": {
+            "province": "广东省",
+            "city": "深圳市",
+            "district": "南山区",
+            "detail": "科技园南区T3栋5楼"
+          }
+        },
+        "settings": {
+          "notification_preferences": {
+            "email_notifications": false,
+            "sms_notifications": true,
+            "push_notifications": false
+          }
+        }
+      },
+      "expected_errors": ["phone"]
+    }
+  ],
+  "performance_test": {
+    "batch_size": 1000,
+    "field_count": 120,
+    "expected_max_validation_time_ms": 3000
+  }
+} 

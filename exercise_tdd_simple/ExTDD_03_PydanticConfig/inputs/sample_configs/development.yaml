@@ -1,0 +1,91 @@
+# 开发环境配置文件示例
+
+# 应用基础配置
+app:
+  name: "cloud-platform-service"
+  version: "1.0.0-dev"
+  environment: "development"
+  debug: true
+  log_level: "debug"
+  maintenance_mode: false
+
+# 数据库配置
+database:
+  driver: "postgresql"
+  host: "localhost"
+  port: 5432
+  username: "devuser"
+  password: "devpassword"
+  database: "dev_db"
+  pool:
+    min_connections: 1
+    max_connections: 5
+    connection_timeout: 10
+  backup:
+    enabled: false
+
+# API配置
+api:
+  host: "localhost"
+  port: 8080
+  cors:
+    allowed_origins: ["*"]
+    allowed_methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
+  rate_limit:
+    enabled: false
+  auth:
+    jwt_secret: "dev-secret-key-not-for-production"
+    token_expire_minutes: 1440  # 24小时
+    refresh_token_expire_days: 30
+  documentation:
+    enabled: true
+    path: "/api/docs"
+    description: "Cloud Platform API (Development)"
+
+# 缓存配置
+cache:
+  provider: "memory"
+  ttl: 300
+  prefix: "dev:"
+
+# 外部服务配置
+services:
+  email:
+    provider: "file"  # 开发环境将邮件保存到文件而不是发送
+    output_dir: "./tmp/emails"
+  storage:
+    provider: "local"
+    base_path: "./tmp/storage"
+    public_url: "http://localhost:8080/storage"
+  search:
+    provider: "memory"
+    index_prefix: "dev-"
+
+# 监控和日志
+monitoring:
+  provider: "prometheus"
+  endpoint: "/metrics"
+  interval: 30
+  labels:
+    environment: "development"
+logging:
+  driver: "console"
+  level: "debug"
+  output: "stdout"
+  distributed_tracing: true
+
+# 特性开关
+features:
+  new_dashboard: true
+  ai_recommendations: true
+  beta_api: true
+  advanced_analytics: true
+  
+# 开发专用配置
+development:
+  mock_external_services: true
+  auto_reload: true
+  fixtures_path: "./fixtures"
+  profiling:
+    enabled: true
+    endpoint: "/debug/pprof" 

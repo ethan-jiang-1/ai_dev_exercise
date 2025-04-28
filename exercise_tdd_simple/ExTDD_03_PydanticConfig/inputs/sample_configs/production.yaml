@@ -1,0 +1,108 @@
+# 生产环境配置文件示例
+
+# 应用基础配置
+app:
+  name: "cloud-platform-service"
+  version: "1.0.0"
+  environment: "production"
+  debug: false
+  log_level: "info"
+  maintenance_mode: false
+
+# 数据库配置
+database:
+  driver: "postgresql"
+  host: "db.example.com"
+  port: 5432
+  username: "dbuser"
+  password: "${VAULT:secrets/db/password}"
+  database: "production_db"
+  pool:
+    min_connections: 5
+    max_connections: 20
+    connection_timeout: 30
+  backup:
+    enabled: true
+    schedule: "0 2 * * *"  # 每天凌晨2点
+    retention_days: 30
+
+# API配置
+api:
+  host: "0.0.0.0"
+  port: 8080
+  cors:
+    allowed_origins: ["https://example.com", "https://api.example.com"]
+    allowed_methods: ["GET", "POST", "PUT", "DELETE"]
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+  auth:
+    jwt_secret: "${SECRET:jwt_signing_key}"
+    token_expire_minutes: 60
+    refresh_token_expire_days: 30
+  documentation:
+    enabled: true
+    path: "/api/docs"
+    description: "Cloud Platform API"
+
+# 缓存配置
+cache:
+  provider: "redis"
+  host: "redis.example.com"
+  port: 6379
+  database: 0
+  password: "${SECRET:redis_password}"
+  ttl: 3600
+  prefix: "cloudplat:"
+
+# 外部服务配置
+services:
+  email:
+    provider: "smtp"
+    host: "smtp.example.com"
+    port: 587
+    username: "noreply@example.com"
+    password: "${SECRET:email_password}"
+    tls: true
+    sender: "Cloud Platform <noreply@example.com>"
+    templates_dir: "/app/templates/email"
+  storage:
+    provider: "s3"
+    region: "us-west-2"
+    bucket: "app-storage-prod"
+    access_key: "${ENV:AWS_ACCESS_KEY}"
+    secret_key: "${ENV:AWS_SECRET_KEY}"
+    cdn_domain: "cdn.example.com"
+  search:
+    provider: "elasticsearch"
+    hosts: ["es1.example.com:9200", "es2.example.com:9200"]
+    index_prefix: "cloudplat-"
+    username: "elastic"
+    password: "${SECRET:es_password}"
+
+# 监控和日志
+monitoring:
+  provider: "prometheus"
+  endpoint: "/metrics"
+  interval: 15
+  labels:
+    environment: "production"
+    region: "us-west"
+  alerting:
+    enabled: true
+    endpoints:
+      - "https://alerts.example.com/webhook"
+      - "ops-team@example.com"
+logging:
+  driver: "json"
+  level: "info"
+  output: "stdout"
+  retention_days: 90
+  distributed_tracing: true
+
+# 特性开关
+features:
+  new_dashboard: true
+  ai_recommendations: false
+  beta_api: false
+  advanced_analytics: true 
