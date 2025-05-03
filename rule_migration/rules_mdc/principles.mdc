@@ -1,0 +1,357 @@
+---
+description: 确保代码遵循KISS、单一职责、渐进式开发等核心原则，提升代码质量和可维护性
+globs: *.py
+alwaysApply: false
+---
+# Python 开发核心原则
+
+## 核心原则宣言
+
+⚡️ 核心问题：如何编写高质量、易维护且能适应变化的代码
+
+💥 不遵循的后果：
+- 代码复杂难懂，增加维护成本
+- 功能耦合严重，难以修改和扩展
+- 代码难以测试，质量无法保证
+- 团队协作障碍，维护成本高昂
+
+💎 遵循的收益：
+- 简化代码理解和维护
+- 提高系统可扩展性
+- 减少错误和缺陷
+- 加速团队协作和知识传承
+- 提升AI工具辅助效率
+- 提高代码可测试性，确保质量
+
+⚖️ 需要权衡：
+- 简洁性 vs 灵活性
+- 快速开发 vs 长期可维护性
+- 重用已有代码 vs 重新设计
+- 函数式 vs 面向对象编程
+
+## 关键实践
+
+### 遵循KISS原则
+为什么需要：复杂的解决方案增加理解成本和出错概率
+
+❌ 常见错误：
+```python
+# 过度复杂的实现
+def process_data(data, mode=1, options=None, callback=None):
+    result = []
+    if mode == 1:
+        # 复杂的模式1处理逻辑
+        processed = [complex_transform(d, options) for d in data]
+        if callback:
+            callback(processed)
+        result = [finalize(p) for p in processed]
+    elif mode == 2:
+        # 另一套复杂逻辑
+        # ...更多代码
+    return result
+```
+
+✅ 正确做法：
+```python
+# 简单明了的实现
+def process_data(data):
+    """简单处理数据的函数"""
+    return [item.strip().lower() for item in data]
+
+def transform_data(data, options):
+    """专门处理转换逻辑的函数"""
+    return [transform(d, options) for d in data]
+```
+
+### 应用单一职责原则
+为什么需要：职责清晰的代码更易于理解、测试和维护
+
+❌ 常见错误：
+```python
+# 一个函数做太多事情
+def process_and_save(input_file, output_file):
+    with open(input_file, 'r') as f:
+        data = f.readlines()
+    
+    # 数据处理
+    processed = []
+    for line in data:
+        # 复杂的业务逻辑
+        processed.append(line.strip().lower())
+    
+    # 数据验证
+    valid_data = []
+    for item in processed:
+        if len(item) > 0:
+            valid_data.append(item)
+    
+    # 保存结果
+    with open(output_file, 'w') as f:
+        for item in valid_data:
+            f.write(f"{item}\n")
+    
+    return len(valid_data)
+```
+
+✅ 正确做法：
+```python
+def read_data(file_path):
+    """只负责读取数据"""
+    with open(file_path, 'r') as f:
+        return f.readlines()
+
+def process_data(data):
+    """只负责处理数据"""
+    return [line.strip().lower() for line in data]
+
+def validate_data(data):
+    """只负责验证数据"""
+    return [item for item in data if len(item) > 0]
+
+def save_data(data, file_path):
+    """只负责保存数据"""
+    with open(file_path, 'w') as f:
+        for item in data:
+            f.write(f"{item}\n")
+    return len(data)
+```
+
+### 优先使用函数式编程
+为什么需要：函数式编程促进代码可测试性、可复用性和可维护性
+
+❌ 常见错误：
+```python
+# 使用全局变量和状态
+global_config = {}
+processed_data = []
+
+def load_config(file_path):
+    global global_config
+    with open(file_path) as f:
+        global_config = json.load(f)
+
+def process(data):
+    global processed_data
+    for item in data:
+        if global_config.get('filter_empty') and not item:
+            continue
+        processed_data.append(item.strip().lower())
+    return len(processed_data)
+```
+
+✅ 正确做法：
+```python
+def load_config(file_path):
+    """加载配置，返回配置对象而非修改全局状态"""
+    with open(file_path) as f:
+        return json.load(f)
+
+def process(data, config):
+    """纯函数：相同输入始终产生相同输出，无副作用"""
+    if not config or not data:
+        return []
+        
+    result = []
+    for item in data:
+        if config.get('filter_empty') and not item:
+            continue
+        result.append(item.strip().lower())
+    return result
+```
+
+### 确保接口可测试性
+为什么需要：不可测试的代码难以保证质量和稳定性
+
+❌ 常见错误：
+```python
+# 难以测试的代码
+def process_user_data():
+    # 从生产数据库直接读取
+    conn = get_production_db_connection()
+    users = conn.execute("SELECT * FROM users")
+    
+    # 复杂处理逻辑混合IO操作
+    for user in users:
+        update_user_profile(user)
+        send_email(user.email)
+        log_to_file(f"Processed user {user.id}")
+    
+    # 无明确返回值
+    print("Processing completed")
+```
+
+✅ 正确做法：
+```python
+def get_users(db_connection):
+    """从数据库获取用户，支持依赖注入便于测试"""
+    return db_connection.execute("SELECT * FROM users")
+
+def process_user(user, email_service=None):
+    """处理单个用户，返回处理结果而非直接产生副作用"""
+    result = update_user_profile(user)
+    
+    if email_service and result.success:
+        email_service.send(user.email, "Profile Updated")
+        
+    return result
+
+def process_users(users, email_service=None, logger=None):
+    """批量处理用户，接受依赖注入，返回明确的结果"""
+    results = []
+    for user in users:
+        result = process_user(user, email_service)
+        results.append(result)
+        if logger:
+            logger.log(f"Processed user {user.id}: {result.success}")
+    
+    return {
+        "total": len(results),
+        "succeeded": sum(1 for r in results if r.success),
+        "failed": sum(1 for r in results if not r.success)
+    }
+```
+
+### 实施渐进式开发
+为什么需要：渐进式开发减少风险，让代码始终处于可工作状态
+
+❌ 常见错误：
+```python
+# 一次性实现所有功能
+def big_bang_implementation():
+    # 数百行复杂逻辑
+    pass
+```
+
+✅ 正确做法：
+```python
+# 第一个迭代：核心框架
+def version_1_core_functionality():
+    # 基本功能，20-30行代码
+    pass
+
+# 第二个迭代：添加特性A
+def version_2_with_feature_a():
+    # 核心功能 + 特性A
+    pass
+
+# 第三个迭代：添加特性B
+def version_3_with_feature_b():
+    # 核心功能 + 特性A + 特性B
+    pass
+```
+
+### 注重代码质量
+为什么需要：高质量代码减少错误和维护成本
+
+❌ 常见错误：
+```python
+# 无类型注解，文档不足
+def process(data):
+    result = []
+    for i in data:
+        if i > 0:
+            result.append(i * 2)
+    return result
+```
+
+✅ 正确做法：
+```python
+from typing import List, Union
+
+def process(data: List[Union[int, float]]) -> List[Union[int, float]]:
+    """处理数值列表，返回所有正数的两倍值
+    
+    Args:
+        data: 输入的数值列表
+        
+    Returns:
+        包含所有正数两倍值的列表
+    """
+    return [i * 2 for i in data if i > 0]
+```
+
+## 决策指导
+
+🌲 决策树：
+1. 编写新功能时
+   - 功能是否属于现有模块的自然扩展？
+     - 是 -> 扩展现有模块
+     - 否 -> 新建独立模块
+   
+2. 重构现有代码时
+   - 代码是否超过100行？
+     - 是 -> 考虑拆分为多个函数/类
+     - 否 -> 考虑优化现有结构
+   
+3. 设计错误处理时
+   - 是系统级错误还是业务级错误？
+     - 系统级 -> 使用异常处理
+     - 业务级 -> 使用返回值表示状态
+
+4. 选择编程范式时
+   - 是否需要保持状态？
+     - 否 -> 使用函数式编程
+     - 是 -> 评估状态复杂度：
+       - 状态简单 -> 考虑闭包或函数参数
+       - 状态复杂 -> 考虑使用类，但保持最小化
+
+5. 设计新接口时
+   - 是否可以编写单元测试？
+     - 否 -> 重新设计接口
+     - 是 -> 继续并编写测试
+
+📊 方案对比：
+| 实践 | 适用场景 | 优势 | 劣势 | 注意事项 |
+|-----|---------|-----|-----|---------|
+| KISS原则 | 大多数场景 | 易于理解和维护 | 可能缺乏灵活性 | 简单≠简陋 |
+| 单一职责 | 复杂业务逻辑 | 模块化好，易测试 | 可能导致文件增多 | 适度切分 |
+| 渐进式开发 | 不确定需求 | 降低风险 | 可能需要重构 | 保持测试覆盖 |
+| 函数式编程 | 数据转换，无状态操作 | 易测试，可复用 | 不适合复杂状态管理 | 避免副作用 |
+| 面向对象 | 需要封装状态 | 抽象和多态 | 可能过度设计 | 类要小而专注 |
+
+## Checklist
+
+### 代码结构
+- [ ] 每个函数/方法是否只做一件事
+      判断标准：函数能用一句话清晰描述其功能
+      快速修复：将多功能函数拆分为多个单一功能函数
+      
+- [ ] 是否避免了过深的嵌套结构
+      判断标准：嵌套不超过3层
+      快速修复：提取子函数或使用提前返回技术
+
+- [ ] 是否优先使用函数而非类
+      判断标准：没有不必要的类定义
+      快速修复：将无状态类方法转换为普通函数
+
+- [ ] 是否避免使用全局变量
+      判断标准：功能依赖通过参数传递而非全局状态
+      快速修复：将全局变量转为函数参数或返回值
+
+### 代码质量
+- [ ] 是否包含必要的类型注解
+      判断标准：所有函数参数和返回值都有类型注解
+      快速修复：添加mypy支持的类型注解
+
+- [ ] 是否提供了文档字符串
+      判断标准：所有公共API都有文档字符串
+      快速修复：添加符合PEP 257的文档字符串
+
+### 可测试性
+- [ ] 接口是否可测试
+      判断标准：可以为函数编写单元测试
+      快速修复：使用依赖注入和参数化设计
+
+- [ ] 是否应用了依赖注入
+      判断标准：外部依赖通过参数传入而非直接实例化
+      快速修复：重构函数接收依赖作为参数
+
+### 错误处理
+- [ ] 是否合理处理了异常
+      判断标准：使用了具体的异常类型，而非捕获所有异常
+      快速修复：替换`except Exception`为具体异常类型
+
+- [ ] 是否提供了明确的错误信息
+      判断标准：错误信息包含上下文信息
+      快速修复：丰富异常信息或使用结构化的错误返回
+

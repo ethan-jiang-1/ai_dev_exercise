@@ -1,0 +1,658 @@
+---
+description: Python代码错误处理指南
+globs: 
+alwaysApply: false
+---
+# 错误处理指南
+
+## 核心原则宣言
+
+⚡️ 核心问题：不良的错误处理策略导致系统脆弱、难以调试，并可能造成严重的生产问题。
+
+💥 不遵循的后果：
+- 未处理的异常导致系统崩溃和服务中断
+- 模糊的错误信息使调试困难且延长问题解决时间
+- 错误传播不受控制，难以定位源头和责任边界
+- 用户体验差，无法获得有意义的反馈和恢复路径
+- 安全隐患增加，可能暴露敏感信息或系统细节
+
+💎 遵循的收益：
+- 提高系统健壮性和可靠性，减少意外宕机
+- 精确的错误信息便于调试和监控，加速问题解决
+- 有层次的错误处理让系统优雅降级，保持核心功能
+- 用户收到友好且有意义的错误反馈，提升体验
+- 错误模式可被分析，帮助识别系统改进点
+
+⚖️ 需要权衡：
+- 权衡点1：错误处理的粒度 VS 代码简洁性
+- 权衡点2：错误信息详尽 VS 安全性考虑
+- 权衡点3：异常恢复 VS 及时失败
+- 权衡点4：集中处理 VS 分散处理
+- 权衡点5：错误传播距离 VS 处理职责
+
+## 关键实践
+
+### 实践一：异常层次结构
+
+为什么需要这样做：
+设计良好的异常层次结构使错误类型清晰、处理精确，并能在适当级别捕获和处理异常。
+
+❌ 常见错误：
+```python
+# 使用泛泛的内置异常
+def process_config(config_path):
+    try:
+        with open(config_path) as f:
+            config = json.load(f)
+        # 处理配置...
+    except Exception as e:  # 过于宽泛的捕获
+        print(f"Error: {e}")  # 不清晰的错误消息
+        return None  # 丢失错误上下文
+```
+
+✅ 正确做法：
+```python
+# 自定义异常层次
+class ConfigError(Exception):
+    """配置相关错误的基类"""
+    pass
+
+class ConfigFileNotFoundError(ConfigError):
+    """配置文件不存在"""
+    pass
+
+class ConfigParseError(ConfigError):
+    """配置解析错误"""
+    pass
+
+class ConfigValidationError(ConfigError):
+    """配置验证失败"""
+    def __init__(self, message, errors=None):
+        super().__init__(message)
+        self.errors = errors or []  # 存储详细的验证错误列表
+
+def process_config(config_path):
+    try:
+        try:
+            with open(config_path) as f:
+                try:
+                    config = json.load(f)
+                except json.JSONDecodeError as e:
+                    raise ConfigParseError(f"Invalid JSON format in {config_path}: {e}") from e
+                
+                # 验证配置
+                errors = validate_config(config)
+                if errors:
+                    raise ConfigValidationError("Config validation failed", errors)
+        except FileNotFoundError as e:
+            raise ConfigFileNotFoundError(f"Config file not found: {config_path}") from e
+        
+        # 处理配置...
+        return config
+    except ConfigFileNotFoundError as e:
+        logger.error(f"Missing configuration file: {e}")
+        return create_default_config()  # 创建默认配置
+    except ConfigParseError as e:
+        logger.error(f"Cannot parse configuration: {e}")
+        return create_default_config()  # 创建默认配置
+    except ConfigValidationError as e:
+        logger.error(f"Invalid configuration: {e}")
+        for error in e.errors:
+            logger.warning(f"  - {error}")
+        return create_default_config()  # 创建默认配置
+    except ConfigError as e:
+        # 处理其他配置错误
+        logger.error(f"Configuration error: {e}")
+        return create_default_config()  # 创建默认配置
+```
+
+🔄 重构路径：
+1. 设计异常类层次结构，反映业务领域概念
+2. 将泛化异常处理分解为具体类型处理
+3. 使用异常链（from语句）保留原始上下文
+4. 添加有意义的错误消息和相关元数据
+5. 分层处理不同类型的异常，实施差异化恢复策略
+
+### 实践二：合理的错误恢复策略
+
+为什么需要这样做：
+优秀的错误恢复策略使系统在出现问题时能够继续运行，提高系统的可用性和用户体验。
+
+❌ 常见错误：
+```python
+# 不恰当的错误处理
+def fetch_data(url):
+    try:
+        response = requests.get(url, timeout=5)
+        return response.json()
+    except:  # 无差别捕获所有异常
+        return {}  # 静默失败，丢失错误信息
+```
+
+✅ 正确做法：
+```python
+class DataFetchError(Exception):
+    """数据获取错误基类"""
+    pass
+
+class TemporaryDataFetchError(DataFetchError):
+    """临时性数据获取错误，可以重试"""
+    pass
+
+class PermanentDataFetchError(DataFetchError):
+    """永久性数据获取错误，重试无效"""
+    pass
+
+def fetch_data(url, retries=3, cache_key=None):
+    """从URL获取数据，支持重试、错误分类和缓存
+    
+    Args:
+        url: 请求的URL
+        retries: 重试次数
+        cache_key: 缓存键，如果提供且有缓存，将优先使用缓存
+        
+    Returns:
+        解析的JSON数据
+        
+    Raises:
+        PermanentDataFetchError: 当无法获取数据且错误不可恢复
+    """
+    # 优先使用缓存
+    if cache_key and cache.exists(cache_key):
+        logger.info(f"Using cached data for {url} with key {cache_key}")
+        try:
+            return cache.get(cache_key)
+        except Exception as e:
+            logger.warning(f"Cache retrieval failed for key {cache_key}: {e}")
+            # 缓存失败不阻止继续尝试网络请求
+    
+    # 指数退避参数
+    backoff_factor = 0.5
+    
+    for attempt in range(retries):
+        wait_time = backoff_factor * (2 ** attempt)
+        try:
+            logger.info(f"Fetching data from {url}, attempt {attempt+1}/{retries}")
+            start_time = time.time()
+            response = requests.get(url, timeout=5)
+            elapsed = time.time() - start_time
+            
+            # 记录性能指标
+            logger.debug(f"Request to {url} took {elapsed:.2f}s")
+            
+            # 处理HTTP错误
+            response.raise_for_status()
+            
+            # 处理响应
+            data = response.json()
+            
+            # 成功获取数据，存入缓存
+            if cache_key:
+                cache.set(cache_key, data, ttl=3600)  # 1小时过期
+                
+            return data
+            
+        except requests.exceptions.Timeout as e:
+            logger.warning(f"Timeout on {url}, attempt {attempt+1}/{retries}: {e}")
+            # 超时通常可以重试
+            if attempt == retries - 1:
+                raise TemporaryDataFetchError(f"Request timed out after {retries} attempts: {e}") from e
+                
+        except requests.exceptions.ConnectionError as e:
+            logger.warning(f"Connection error on {url}, attempt {attempt+1}/{retries}: {e}")
+            # 连接错误可能是临时的
+            if attempt == retries - 1:
+                raise TemporaryDataFetchError(f"Connection failed after {retries} attempts: {e}") from e
+                
+        except requests.exceptions.HTTPError as e:
+            status_code = e.response.status_code if e.response else "unknown"
+            logger.error(f"HTTP error {status_code} on {url}: {e}")
+            
+            # 根据HTTP状态码判断是否值得重试
+            if 500 <= status_code < 600:  # 服务器错误
+                if attempt == retries - 1:
+                    raise TemporaryDataFetchError(f"Server error {status_code} after {retries} attempts") from e
+            else:  # 客户端错误，一般不重试
+                raise PermanentDataFetchError(f"Client error {status_code}: {e}") from e
+                
+        except requests.exceptions.RequestException as e:
+            # 其他请求异常
+            logger.error(f"Request failed on {url}: {e}")
+            raise PermanentDataFetchError(f"Request failed: {e}") from e
+            
+        except ValueError as e:
+            # JSON解析错误
+            logger.error(f"Failed to parse JSON from {url}: {e}")
+            raise PermanentDataFetchError(f"Invalid response format: {e}") from e
+            
+        # 等待后重试
+        if attempt < retries - 1:
+            logger.info(f"Waiting {wait_time:.2f}s before next attempt")
+            time.sleep(wait_time)
+    
+    # 正常情况下，循环内会返回结果或抛出异常
+    # 这里是防御性代码
+    raise TemporaryDataFetchError(f"Failed to fetch data after {retries} attempts with no specific error")
+```
+
+🔄 重构路径：
+1. 确定关键操作可能的错误类型和恢复策略
+2. 设计合适的重试、缓存和回退策略
+3. 区分临时性错误和永久性错误
+4. 记录详细错误信息以便调试和监控
+5. 实现优雅降级机制，如使用缓存数据
+
+### 实践三：全面的日志记录
+
+为什么需要这样做：
+良好的日志记录在错误发生时提供关键上下文，有助于快速定位和解决问题。
+
+❌ 常见错误：
+```python
+# 不完整的日志记录
+def update_user(user_id, data):
+    try:
+        user = db.users.find_one({"id": user_id})
+        if not user:
+            return False
+        db.users.update_one({"id": user_id}, {"$set": data})
+        return True
+    except Exception as e:
+        print(f"Error: {e}")  # 简单打印错误
+        return False
+```
+
+✅ 正确做法：
+```python
+import logging
+import traceback
+import uuid
+import time
+import json
+from contextlib import contextmanager
+
+logger = logging.getLogger(__name__)
+
+@contextmanager
+def operation_logger(operation_name, **context):
+    """记录操作日志的上下文管理器
+    
+    Args:
+        operation_name: 操作名称
+        **context: 操作上下文信息
+    """
+    operation_id = str(uuid.uuid4())
+    start_time = time.time()
+    
+    # 脱敏上下文，移除敏感信息
+    safe_context = sanitize_context(context)
+    
+    logger.info(f"Starting operation {operation_name} [id={operation_id}] with context: {json.dumps(safe_context)}")
+    
+    try:
+        yield operation_id
+        elapsed = time.time() - start_time
+        logger.info(f"Operation {operation_name} [id={operation_id}] completed successfully in {elapsed:.2f}s")
+    except Exception as e:
+        elapsed = time.time() - start_time
+        logger.error(
+            f"Operation {operation_name} [id={operation_id}] failed after {elapsed:.2f}s: {e}",
+            exc_info=True  # 包含堆栈信息
+        )
+        # 重新抛出异常以便调用者处理
+        raise
+
+class DatabaseError(Exception):
+    """数据库操作错误"""
+    pass
+
+class UserNotFoundError(DatabaseError):
+    """用户未找到错误"""
+    pass
+
+class UserUpdateError(DatabaseError):
+    """用户更新错误"""
+    pass
+
+def update_user(user_id, data, request_id=None):
+    """更新用户信息
+    
+    Args:
+        user_id: 用户ID
+        data: 要更新的数据
+        request_id: 请求ID，用于跟踪
+        
+    Returns:
+        dict: 更新后的用户数据
+        
+    Raises:
+        UserNotFoundError: 指定用户不存在
+        UserUpdateError: 更新操作失败
+        DatabaseError: 其他数据库操作失败
+    """
+    context = {
+        "user_id": user_id,
+        "update_fields": list(data.keys()),  # 只记录字段名，不记录值
+        "request_id": request_id,
+    }
+    
+    with operation_logger("update_user", **context) as operation_id:
+        try:
+            # 先检查用户是否存在
+            user = db.users.find_one({"id": user_id})
+            if not user:
+                logger.warning(f"User {user_id} not found [operation={operation_id}]")
+                raise UserNotFoundError(f"User with ID {user_id} does not exist")
+            
+            # 验证更新数据
+            validation_errors = validate_user_data(data)
+            if validation_errors:
+                error_msg = f"Invalid user data: {', '.join(validation_errors)}"
+                logger.warning(f"{error_msg} [operation={operation_id}]")
+                raise UserUpdateError(error_msg)
+            
+            # 执行更新操作
+            start_time = time.time()
+            result = db.users.update_one(
+                {"id": user_id}, 
+                {"$set": data}
+            )
+            elapsed_db = time.time() - start_time
+            
+            # 检查更新结果
+            if result.matched_count == 0:
+                logger.warning(f"User {user_id} not found during update [operation={operation_id}]")
+                raise UserNotFoundError(f"User with ID {user_id} does not exist")
+                
+            if result.modified_count == 0:
+                logger.info(f"No changes made to user {user_id} [operation={operation_id}]")
+            else:
+                logger.info(f"Successfully updated user {user_id} [operation={operation_id}] in {elapsed_db:.2f}s")
+            
+            # 获取更新后的用户数据
+            updated_user = db.users.find_one({"id": user_id})
+            return updated_user
+            
+        except (UserNotFoundError, UserUpdateError):
+            # 已记录在上下文管理器中，直接重新抛出
+            raise
+        except Exception as e:
+            # 记录详细错误信息
+            logger.error(
+                f"Unexpected error updating user {user_id} [operation={operation_id}]: {e}",
+                exc_info=True
+            )
+            # 转换为自定义异常
+            raise DatabaseError(f"Database operation failed: {e}") from e
+```
+
+🔄 重构路径：
+1. 设计结构化的日志格式，包含操作ID和上下文
+2. 使用专业的日志库和灵活的日志级别
+3. 实现上下文管理器简化操作和错误日志
+4. 确保记录敏感信息前进行脱敏处理
+5. 包含性能指标以便分析系统瓶颈
+
+### 实践四：错误边界和灾难恢复
+
+为什么需要这样做：
+明确的错误边界和灾难恢复机制使系统能够隔离故障并从严重错误中恢复，提高整体可靠性。
+
+❌ 常见错误：
+```javascript
+// 没有错误边界的前端组件
+function UserDashboard() {
+  const [userData, setUserData] = useState(null);
+  
+  useEffect(() => {
+    fetchUserData()
+      .then(data => setUserData(data))
+      .catch(error => console.error("Failed to load user data:", error));
+  }, []);
+  
+  // 如果数据加载失败，将导致整个应用崩溃
+  return (
+    <div>
+      <h1>Welcome, {userData.name}</h1>
+      <div>Email: {userData.email}</div>
+    </div>
+  );
+}
+```
+
+✅ 正确做法：
+```javascript
+// 错误边界组件
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // 记录错误到监控服务
+    logErrorToService(error, errorInfo);
+    this.setState({ error, errorInfo });
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        <div className="error-container">
+          <h2>Something went wrong.</h2>
+          <button onClick={() => this.setState({ hasError: false })}>
+            Try again
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// 使用错误边界的组件
+function UserDashboard() {
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    let isMounted = true;
+    
+    async function loadData() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // 添加超时保护
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error("Request timed out")), 5000)
+        );
+        
+        // 竞争条件：数据加载和超时
+        const data = await Promise.race([fetchUserData(), timeoutPromise]);
+        
+        // 检查组件是否仍然挂载
+        if (isMounted) {
+          setUserData(data);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("Failed to load user data:", err);
+        // 检查组件是否仍然挂载
+        if (isMounted) {
+          setError(err.message || "Failed to load user data");
+          setLoading(false);
+        }
+        
+        // 上报错误
+        reportError("user_data_loading_failed", err);
+      }
+    }
+    
+    loadData();
+    
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+  
+  if (error) {
+    return (
+      <div className="error-state">
+        <p>Error: {error}</p>
+        <button onClick={() => loadData()}>Retry</button>
+      </div>
+    );
+  }
+  
+  if (!userData) {
+    return <EmptyState message="No user data available" />;
+  }
+  
+  return (
+    <ErrorBoundary fallback={<UserDashboardErrorState />}>
+      <div>
+        <h1>Welcome, {userData.name}</h1>
+        <div>Email: {userData.email}</div>
+        
+        <ErrorBoundary fallback={<p>Unable to load user statistics</p>}>
+          <UserStatistics userId={userData.id} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<p>Unable to load recent activity</p>}>
+          <RecentActivity userId={userData.id} />
+        </ErrorBoundary>
+      </div>
+    </ErrorBoundary>
+  );
+}
+```
+
+🔄 重构路径：
+1. 识别系统中的关键组件和错误边界
+2. 为每个边界实现专门的错误处理和恢复机制
+3. 使用超时和断路器保护系统资源
+4. 提供有意义的错误UI和恢复选项
+5. 确保错误状态不会导致级联故障
+
+## 决策指导
+
+🌲 决策树：
+1. 异常处理策略选择
+   - 是否为预期的错误情况？
+     - 是 -> 使用异常作为控制流的一部分
+     - 否 -> 捕获异常，记录并可能重新抛出
+   
+   - 错误是否可恢复？
+     - 是 -> 实现恢复策略（重试、降级等）
+     - 否 -> 清晰记录，向上传播
+
+2. 异常粒度选择
+   - 是基础设施/库代码？
+     - 是 -> 设计详细的异常层次结构
+     - 否 -> 复用现有异常，添加明确上下文
+   
+   - 是否需要外部代码特别处理？
+     - 是 -> 创建自定义异常类型
+     - 否 -> 使用标准异常类型
+
+3. 日志级别选择
+   - 意外错误 -> ERROR级别
+   - 可预见但异常的情况 -> WARNING级别
+   - 重要操作的结果 -> INFO级别
+   - 调试信息 -> DEBUG级别
+
+4. 错误恢复策略选择
+   - 临时性错误（网络、并发等）-> 实现重试策略
+   - 部分数据错误 -> 跳过错误项，处理有效项
+   - 关键组件失败 -> 使用备用实现或降级服务
+   - 不可恢复错误 -> 清晰报告并终止操作
+
+📊 方案对比：
+| 策略 | 优势 | 劣势 | 适用场景 |
+|-----|-----|-----|---------|
+| 精确异常捕获 | 处理精确，不掩盖其他问题 | 需要更多代码 | 关键业务逻辑 |
+| 通用异常捕获 | 代码简洁 | 可能掩盖潜在问题 | 外部API调用边界 |
+| 重试策略 | 提高系统稳定性 | 可能延迟失败 | 网络请求、IO操作 |
+| 错误边界 | 隔离故障，防止级联 | 增加代码复杂度 | 前端组件、微服务 |
+| 向上传播 | 保留完整错误上下文 | 可能导致程序终止 | 不可恢复的错误 |
+| 优雅降级 | 保持核心功能可用 | 功能受限 | 分布式系统 |
+
+## Checklist
+
+#### 异常设计阶段
+- [ ] 是否设计了清晰的异常层次结构
+      判断标准：有针对不同错误类型的自定义异常类
+      快速修复：设计并实现自定义异常类
+
+- [ ] 异常类名称是否明确表达错误性质
+      判断标准：名称明确表示错误类型和上下文
+      快速修复：重命名异常类以更好表达含义
+
+- [ ] 是否为异常提供了有意义的错误消息
+      判断标准：错误消息包含问题细节和可能的解决方案
+      快速修复：增强错误消息的内容和格式
+
+- [ ] 异常是否包含足够的上下文信息
+      判断标准：异常对象携带诊断所需的关键数据
+      快速修复：扩展异常类增加相关属性
+
+#### 异常处理阶段
+- [ ] 是否避免了空的except块
+      判断标准：每个except块都有实质性处理或明确的pass理由
+      快速修复：添加适当的日志记录或错误处理
+
+- [ ] 是否避免了过于宽泛的异常捕获
+      判断标准：except语句捕获特定类型异常，而非Exception
+      快速修复：将通用异常处理拆分为特定类型
+
+- [ ] 是否保留了原始异常上下文
+      判断标准：使用from语句链接相关异常
+      快速修复：添加from e到raise语句
+
+- [ ] 错误处理代码是否本身可能引发异常
+      判断标准：异常处理逻辑包含防御性编程
+      快速修复：添加嵌套的try-except保护错误处理逻辑
+
+#### 恢复与日志阶段
+- [ ] 是否实现了合适的重试策略
+      判断标准：对暂时性错误有重试机制，包含退避策略
+      快速修复：添加带退避的重试循环
+
+- [ ] 是否记录了足够的错误上下文
+      判断标准：日志包含操作、参数、错误详情
+      快速修复：增强日志内容，添加关键上下文
+
+- [ ] 是否在适当的级别处理了错误
+      判断标准：错误在合适的抽象层处理
+      快速修复：重构异常处理到合适的函数/类
+
+- [ ] 是否实现了灾难恢复机制
+      判断标准：系统能从严重错误中恢复，重要数据有备份
+      快速修复：添加应急恢复路径和资源备份
+
+#### 用户体验与安全
+- [ ] 是否向用户提供了有意义的错误消息
+      判断标准：用户看到的错误易于理解并提供后续步骤
+      快速修复：改进用户界面错误呈现
+
+- [ ] 是否避免了在错误消息中泄露敏感信息
+      判断标准：错误消息经过安全审查，移除敏感数据
+      快速修复：添加错误消息净化逻辑
+
+- [ ] 是否提供了错误跟踪机制
+      判断标准：每个错误有唯一标识，便于支持人员查找
+      快速修复：添加错误ID生成和关联
+
+- [ ] 是否为关键操作提供了回滚机制
+      判断标准：事务性操作有完整的回滚策略
+      快速修复：添加事务管理或补偿性操作 

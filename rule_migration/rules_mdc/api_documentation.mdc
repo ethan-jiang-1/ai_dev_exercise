@@ -1,0 +1,284 @@
+---
+description: 标准化API文档编写，确保接口文档的完整性、准确性和可用性
+globs: 
+alwaysApply: false
+---
+
+# API文档规范
+
+## 核心原则宣言
+
+⚡️ 核心问题：如何编写清晰、完整、实用的API文档，帮助使用者快速理解和正确使用API。
+
+💥 不遵循的后果：
+- API使用者理解成本高，开发效率低下
+- 接口使用错误增加，导致生产问题
+- 技术支持和维护成本上升
+- 代码可维护性降低，团队协作障碍
+
+💎 遵循的收益：
+- 降低API使用门槛，缩短上手时间
+- 减少使用错误，提高系统稳定性
+- 提高开发效率，加速项目交付
+- 便于API维护和演进，支持系统长期发展
+
+⚖️ 需要权衡：
+- 权衡点1：文档详尽度 VS 维护成本
+- 权衡点2：技术准确性 VS 可理解性
+- 权衡点3：示例简洁性 VS 全面覆盖
+
+## 关键实践
+
+### 实践一：结构化API文档模板
+
+为什么需要这样做：
+统一的文档结构便于阅读和维护，确保关键信息不会遗漏，提高文档整体质量。
+
+❌ 常见错误：
+```
+// 不规范的API文档
+/**
+ * 用户登录API
+ * 参数是用户名密码，返回token
+ */
+```
+
+✅ 正确做法：
+```
+/**
+ * @api {POST} /api/v1/login 用户登录
+ * @apiDescription 验证用户身份并生成访问令牌
+ * @apiVersion 1.2.0
+ * @apiPermission public
+ *
+ * @apiParam {String} username 用户名
+ * @apiParam {String} password 用户密码
+ * @apiParam {Boolean} [remember=false] 是否记住登录
+ *
+ * @apiSuccess {String} token JWT访问令牌
+ * @apiSuccess {Number} expires_in 令牌有效期(秒)
+ * @apiSuccess {Object} user 用户基本信息
+ * @apiSuccess {Number} user.id 用户ID
+ * @apiSuccess {String} user.name 用户名称
+ *
+ * @apiError (400) InvalidCredentials 用户名或密码错误
+ * @apiError (429) TooManyAttempts 登录尝试次数过多，账户被锁定
+ *
+ * @apiExample {curl} 示例请求:
+ *     curl -X POST -H "Content-Type: application/json" \
+ *          -d '{"username":"john","password":"secret"}' \
+ *          https://api.example.com/api/v1/login
+ *
+ * @apiSuccessExample {json} 成功响应:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+ *       "expires_in": 3600,
+ *       "user": {
+ *         "id": 123,
+ *         "name": "John Doe"
+ *       }
+ *     }
+ */
+```
+
+🔄 重构路径：
+1. 确定文档必要的章节结构
+2. 为每个章节创建清晰的标签
+3. 使用一致的格式和术语
+4. 确保信息的完整性和准确性
+
+### 实践二：详细的参数和返回值文档
+
+为什么需要这样做：
+清晰的参数和返回值说明是API文档的核心，直接影响API的正确使用。
+
+❌ 常见错误：
+```python
+def create_user(data):
+    """创建用户
+    
+    Args:
+        data: 用户数据
+        
+    Returns:
+        用户ID
+    """
+```
+
+✅ 正确做法：
+```python
+def create_user(data):
+    """创建新用户账户
+    
+    Args:
+        data (dict): 用户数据字典，包含以下字段:
+            - username (str): 用户名，3-20个字符，必填
+            - email (str): 有效的电子邮件地址，必填
+            - password (str): 密码，至少8个字符，必填
+            - role (str, optional): 用户角色，可选值['user', 'admin']，默认'user'
+            - status (str, optional): 账户状态，可选值['active', 'inactive']，默认'active'
+    
+    Returns:
+        dict: 包含以下字段的字典:
+            - user_id (int): 新创建用户的唯一标识符
+            - created_at (str): ISO8601格式的创建时间
+    
+    Raises:
+        ValidationError: 当提供的数据无效时
+        DuplicateError: 当用户名或邮箱已存在时
+        DatabaseError: 当数据库操作失败时
+    
+    Examples:
+        >>> user_data = {
+        ...     "username": "john_doe",
+        ...     "email": "john@example.com",
+        ...     "password": "secure_pass123"
+        ... }
+        >>> result = create_user(user_data)
+        >>> print(result)
+        {'user_id': 123, 'created_at': '2023-04-01T14:30:00Z'}
+    """
+```
+
+🔄 重构路径：
+1. 详细说明每个参数的类型、格式和约束
+2. 明确返回值的结构和含义
+3. 列出可能抛出的异常及其触发条件
+4. 添加具体的使用示例
+
+### 实践三：API变更和版本管理
+
+为什么需要这样做：
+良好的API变更和版本管理帮助使用者平滑升级，减少破坏性变更的影响。
+
+❌ 常见错误：
+```python
+# 无版本信息或废弃通知的API变更
+def get_user_data(user_id):
+    # 之前接受int类型user_id，现在改为只接受字符串
+    if not isinstance(user_id, str):
+        raise TypeError("user_id must be string")
+    # ...
+```
+
+✅ 正确做法：
+```python
+def get_user_data(user_id):
+    """获取用户数据
+    
+    注意: 从v2.0开始，user_id参数类型由int改为str
+    
+    Args:
+        user_id (str): 用户ID字符串
+        
+    Returns:
+        dict: 用户数据
+        
+    Deprecated:
+        3.0.0: 此函数将在v3.0版本中废弃，请使用get_user_profile()
+        
+    VersionChanges:
+        1.0.0: 首次引入
+        2.0.0: user_id参数类型由int改为str
+        2.5.0: 返回值增加'last_login'字段
+    """
+    # 向后兼容处理
+    if isinstance(user_id, int):
+        warnings.warn(
+            "Passing int as user_id is deprecated and will be removed in v3.0", 
+            DeprecationWarning, 
+            stacklevel=2
+        )
+        user_id = str(user_id)
+    
+    # 实现...
+```
+
+🔄 重构路径：
+1. 添加版本信息和变更历史
+2. 明确标注废弃功能和迁移路径
+3. 实现向后兼容的过渡策略
+4. 使用警告提示使用者进行升级
+
+## 决策指导
+
+🌲 决策树：
+1. API文档粒度选择
+   - 是公开API？
+     - 是 -> 完整详细文档，包含所有章节
+     - 否 -> 按照使用者需求调整粒度
+   
+   - 是否有复杂参数结构？
+     - 是 -> 提供详细类型说明和嵌套结构说明
+     - 否 -> 简洁描述即可
+   
+   - 是否有特殊使用限制？
+     - 是 -> 突出强调限制和注意事项
+     - 否 -> 保持标准格式
+
+2. 示例代码选择
+   - 多语言支持？
+     - 是 -> 提供多种语言的示例代码
+     - 否 -> 只提供主要目标语言的示例
+   
+   - 复杂用例？
+     - 是 -> 提供基础和高级两种使用示例
+     - 否 -> 提供典型使用示例
+
+3. 文档格式选择
+   - 是内部代码注释？
+     - 是 -> 使用标准代码文档格式（如docstring）
+     - 否 -> 考虑专用文档生成工具（如Swagger）
+   
+   - 是HTTP API？
+     - 是 -> 使用OpenAPI/Swagger规范
+     - 否 -> 选择适合语言/框架的文档格式
+
+📊 方案对比：
+| 文档方式 | 优势 | 劣势 | 适用场景 |
+|---------|-----|-----|---------|
+| 代码注释文档 | 与代码同步，易于维护 | 格式有限，检索不便 | 内部API，库函数 |
+| OpenAPI/Swagger | 交互性强，工具支持好 | 编写较复杂 | REST API，公开接口 |
+| 专用文档网站 | 丰富的展示形式，良好的导航 | 维护成本高，易与代码不同步 | 面向外部的重要API |
+
+## Checklist
+
+#### 文档基础检查
+- [ ] 是否有明确的API名称和描述
+      判断标准：名称准确，描述清晰表达API用途
+      快速修复：修改或补充API描述
+
+- [ ] 是否包含版本和状态信息
+      判断标准：标注当前版本号，明确API状态(稳定/测试/废弃)
+      快速修复：添加版本信息和状态标记
+
+- [ ] 是否说明了权限要求
+      判断标准：明确访问所需权限或认证方式
+      快速修复：补充权限需求说明
+
+#### 参数和返回值检查
+- [ ] 参数描述是否完整准确
+      判断标准：每个参数都有类型、约束条件和用途说明
+      快速修复：补充缺失的参数信息
+
+- [ ] 返回值描述是否详细
+      判断标准：清晰说明返回值结构、字段含义和可能的值
+      快速修复：完善返回值文档
+
+- [ ] 错误处理说明是否充分
+      判断标准：列出可能的错误情况、错误码和处理建议
+      快速修复：添加错误处理指南
+
+#### 使用指南检查
+- [ ] 是否提供了有用的示例代码
+      判断标准：示例代码覆盖典型使用场景，可直接运行
+      快速修复：增加或改进示例代码
+
+- [ ] 是否说明了使用限制和注意事项
+      判断标准：明确频率限制、性能考量等使用约束
+      快速修复：补充使用限制说明
+
+- [ ] 是否包含变更历史
+      判断标准：记录重要API变更及其影响
+      快速修复：添加版本变更记录 
