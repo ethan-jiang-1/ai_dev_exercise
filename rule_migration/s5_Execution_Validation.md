@@ -136,5 +136,3 @@
 *   **价值驱动 (Value-Driven):** 确保每条规则都能带来明确的、实际的价值；移除过时的规则。
 *   **实用性优先 (Practicality First):** 关注真实世界的场景、具体的示例和可操作的解决方案。
 *   **维度一致性 (Dimensional Consistency):** 保持每个规则在其定义的维度内，避免内容偏离其核心焦点。
-
-*来源: 基于 s3_Planning.md 和 s4_Implementation_Guide.md (Source: Derived from s3_Planning.md and s4_Implementation_Guide.md)* 
