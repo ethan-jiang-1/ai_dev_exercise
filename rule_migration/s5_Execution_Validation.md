@@ -33,40 +33,6 @@
 * **`s3_Planning.md`**: 包含内容重组维度和各规则类型的定位。
 * **`s4_Implementation_Guide.md`**: **最重要的内容指南** - 详细说明了如何编写每个 MDC 部分的具体内容，包括格式要求、提供的实例和模板。在编写和格式化规则内容时，请始终参考此文档。
 
-## 迁移计划清单 (Migration Plan Checklist)
-
-本清单按照内容维度和规则类型组织，遵循 `s3_Planning.md` 中的定义。每个规则实施时都需要从多个旧规则中提取相关内容并按新的维度重组。
-
-### 原则类规则 (Principles Rules)
-- [ ] **principles.mdc** - 高层次的设计和开发原则
-  - *主要来源*: `cursorrules_principles.md` 中的核心设计原则部分
-
-### 结构类规则 (Structure Rules)
-- [ ] **structure.mdc** - 项目文件和目录组织的最佳实践
-  - *主要来源*: `cursorrules_principles.md` 中的项目结构部分
-
-### 编码规范类规则 (Coding Style Rules)
-- [ ] **coding_style.mdc** - 代码格式和风格约定
-  - *主要来源*: 多个规则中的编码风格部分
-
-### 模块导入类规则 (Import Rules)
-- [ ] **imports.mdc** - 模块导入和依赖管理的最佳实践
-  - *主要来源*: 多个规则中的导入和依赖管理部分
-
-### 错误处理类规则 (Error Handling Rules)
-- [ ] **error_handling.mdc** - 异常处理和错误管理的综合指南
-  - *主要来源*: `cursorrules_principles.md` 中的错误处理部分及其他相关内容
-
-### 测试类规则 (Testing Rules)
-- [ ] **unit_testing.mdc** - 测试编写和组织的最佳实践
-  - *主要来源*: 多个规则中的测试相关内容
-
-### 文档类规则 (Documentation Rules)
-- [ ] **api_documentation.mdc** - API接口文档的编写规范
-  - *主要来源*: `cursorrules_doc_guide.md` 中的API文档部分
-- [ ] **technical_docs.mdc** - 系统和架构级文档的编写指南
-  - *主要来源*: `cursorrules_doc_guide.md` 中的技术文档部分
-
 ## 内容重组与迁移流程 (Content Reorganization & Migration Procedure)
 
 对每个目标 MDC 规则，执行以下步骤：
@@ -137,3 +103,57 @@
 *   **价值驱动 (Value-Driven):** 确保每条规则都能带来明确的、实际的价值；移除过时的规则。
 *   **实用性优先 (Practicality First):** 关注真实世界的场景、具体的示例和可操作的解决方案。
 *   **维度一致性 (Dimensional Consistency):** 保持每个规则在其定义的维度内，避免内容偏离其核心焦点。
+
+## 迁移计划步骤 (Migration Plan Steps)
+
+本节列出了按照内容维度和规则类型（遵循 `s3_Planning.md` 定义）生成每个目标 `.mdc` 文件的步骤。每个步骤都需要从 `rule_migration/rules_old/` 目录中的一个或多个旧规则中提取相关内容，并按照 `s4_Implementation_Guide.md` 的指导进行重组和编写。
+
+### Step 1: Produce principles.mdc
+- **目标**: 生成 `principles.mdc` - 高层次的设计和开发原则。
+- **主要来源**: 主要从 `cursorrules_principles.md` 提取，可能涉及其他文件的原则性内容。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `principles.mdc` 的重组方式（提取核心思想，添加示例，扩展为完整指南）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 2: Produce structure.mdc
+- **目标**: 生成 `structure.mdc` - 项目文件和目录组织的最佳实践。
+- **主要来源**: 主要从 `cursorrules_principles.md` 的项目结构部分和 `cursorrules_init_guide.md` 提取。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `structure.mdc` 的重组方式（提升为独立规则，添加不同类型项目建议，包含具体实践）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 3: Produce coding_style.mdc
+- **目标**: 生成 `coding_style.mdc` - 代码格式和风格约定。
+- **主要来源**: 从 `.cursorrules`, `cursorrules_iteration_guide.md` 及其他文件中分散的编码风格/格式规范提取。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `coding_style.mdc` 的重组方式（聚焦纯代码风格，提供清晰规范示例，添加工具指南）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 4: Produce imports.mdc
+- **目标**: 生成 `imports.mdc` - 模块导入和依赖管理的最佳实践。
+- **主要来源**: 从 `.cursorrules`, `cursorrules_iteration_guide.md` 及其他文件中分散的导入和依赖管理相关内容提取。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `imports.mdc` 的重组方式（整合导入规范，提供明确指导，添加依赖管理实践）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 5: Produce error_handling.mdc
+- **目标**: 生成 `error_handling.mdc` - 异常处理和错误管理的综合指南。
+- **主要来源**: 主要从 `cursorrules_principles.md` 的错误处理部分提取，并整合其他文件中相关的错误处理实践。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `error_handling.mdc` 的重组方式（建立完整框架，按类型/策略分类，提供示例/模式）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 6: Produce unit_testing.mdc
+- **目标**: 生成 `unit_testing.mdc` - 测试编写和组织的最佳实践。
+- **主要来源**: 从 `cursorrules_iteration_guide.md` 及其他文件中分散的测试相关内容提取。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `unit_testing.mdc` 的重组方式（整合测试指南，提供编写模式，包含组织/执行实践）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 7: Produce api_documentation.mdc
+- **目标**: 生成 `api_documentation.mdc` - API接口文档的编写规范。
+- **主要来源**: 主要从 `cursorrules_doc_guide.md` 的 API 文档部分提取。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `api_documentation.mdc` 的重组方式（专注函数/类/模块文档标准，提供示例/模板，包含生成指南）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+### Step 8: Produce technical_docs.mdc
+- **目标**: 生成 `technical_docs.mdc` - 系统和架构级文档的编写指南。
+- **主要来源**: 主要从 `cursorrules_doc_guide.md` 的技术文档部分和 `README.md` 提取。
+- **重组指导**: 遵循 `s3_Planning.md` 中关于 `technical_docs.mdc` 的重组方式（整合高级文档指南，按文档类型重组，添加模板/示例）。
+- **状态**: [ ] 未开始 / [ ] 进行中 / [ ] 已完成
+
+
