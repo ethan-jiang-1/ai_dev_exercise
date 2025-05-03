@@ -193,3 +193,13 @@
       *快速修复 (Quick Fix):* [如何修复]
 ```
 
+*   **`globs` 选择建议 (Tips for Choosing `globs`):**
+    *   **精确性优先 (Be Specific):** 尽量使 `globs` 模式精确，只匹配确实需要应用此规则的文件类型或目录。
+    *   **测试验证 (Test Your Globs):** 在启用规则前，可以通过工具或手动检查来验证 `globs` 模式是否按预期工作，避免误触发或遗漏。
+    *   **考虑项目结构 (Consider Project Structure):** 根据项目的典型结构来定义模式，例如 `src/**/*.py` 或 `tests/test_*.py`。
+    *   **避免过于宽泛 (Avoid Overly Broad Patterns):** 像 `*.*` 或 `**/*` 这样的模式通常过于宽泛，可能会在不相关的文件上触发规则，导致干扰。
+
+### 2. 内容结构要求 (Content Structure Requirements)
+
+在 YAML 元数据之后，每个 MDC 文件 **必须** 按顺序包含以下四个部分：
+
