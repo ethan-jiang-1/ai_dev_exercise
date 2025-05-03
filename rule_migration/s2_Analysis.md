@@ -36,7 +36,6 @@
 4.  `## 清单 (Checklist)`
     *   提供可操作的验证步骤。
 
-*   **(注意 Note:** 每个部分的详细编写指南位于 `s4_Implementation_Guide.md` 中。)*
 
 ## 旧规则内容分析框架 (Old Rules Content Analysis Framework)
 

@@ -31,7 +31,7 @@
 
 * **`s2_Analysis.md`**: 定义了 MDC 规则的基本结构和 YAML 元数据要求。
 * **`s3_Planning.md`**: 包含内容重组维度和各规则类型的定位。
-* **`s4_Implementation_Guide.md`**: **最重要的内容指南** - 详细说明了如何编写每个 MDC 部分的具体内容，包括格式要求、提供的实例和模板。在编写和格式化规则内容时，请始终参考此文档。
+* **`s4_MDC_Implementation_Guide.md`**: **最重要的内容指南** - 详细说明了如何编写每个 MDC 部分的具体内容，包括格式要求、提供的实例和模板。在编写和格式化规则内容时，请始终参考此文档。
 
 ## 内容重组与迁移流程 (Content Reorganization & Migration Procedure)
 
@@ -46,7 +46,7 @@
    * 创建一个临时的 `.txt` 文件（例如 `rule_migration/target_rule_name.txt`）
    * 为该规则设计适当的 YAML 元数据（description, globs, alwaysApply: false）
    * 按照四段式结构组织提取的内容，进行必要的重写和增强
-   * 参考 `s4_Implementation_Guide.md` 中该类型规则的特定实施指南
+   * 参考 `s4_MDC_Implementation_Guide.md` 中该类型规则的特定实施指南
 
 3. **内容编写与增强 (Content Writing & Enhancement):**
    * 按照 MDC 格式编写四个主要部分：
@@ -83,7 +83,7 @@
 2.  **文档结构 (Document Structure):**
     *   [ ] 文件是否按顺序包含了所有四个必需的 H2 部分？(`核心原则 Core Principles`, `关键实践 Key Practices`, `决策指导 Decision Guidance`, `清单 Checklist`)
     *   [ ] Markdown 格式是否正确（无渲染错误）？
-3.  **内容质量 (Content Quality - 参考 `s4_Implementation_Guide.md`):**
+3.  **内容质量 (Content Quality - 参考 `s4_MDC_Implementation_Guide.md`):**
     *   [ ] **核心原则 (Core Principles):** 是否清晰地陈述了问题、后果、好处和权衡？
     *   [ ] **关键实践 (Key Practices):** 是否提供了带有对比代码示例 (✅❌) 的清晰指导？
     *   [ ] **决策指导 (Decision Guidance):** 是否提供了清晰的决策标准或流程 (🌲📊)？
@@ -106,7 +106,7 @@
 
 ## 迁移计划步骤 (Migration Plan Steps)
 
-本节列出了按照内容维度和规则类型（遵循 `s3_Planning.md` 定义）生成每个目标 `.mdc` 文件的步骤。每个步骤都需要从 `rule_migration/rules_old/` 目录中的一个或多个旧规则中提取相关内容，并按照 `s4_Implementation_Guide.md` 的指导进行重组和编写。
+本节列出了按照内容维度和规则类型（遵循 `s3_Planning.md` 定义）生成每个目标 `.mdc` 文件的步骤。每个步骤都需要从 `rule_migration/rules_old/` 目录中的一个或多个旧规则中提取相关内容，并按照 `s4_MDC_Implementation_Guide.md` 的指导进行重组和编写。
 
 ### Step 1: Produce principles.mdc
 - **目标**: 生成 `principles.mdc` - 高层次的设计和开发原则。
