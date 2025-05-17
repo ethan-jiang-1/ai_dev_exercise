@@ -1,7 +1,17 @@
 # 单位转换常量
 INCHES_PER_FOOT = 12
-INCHES_TO_METERS = 0.0254
-POUNDS_TO_KG = 0.45359237
+INCHES_TO_METERS = 0.0254  # 1 inch = 0.0254 meters exactly
+POUNDS_TO_KG = 0.45359237  # 1 pound = 0.45359237 kg exactly
+
+# 身高体重范围常量
+MIN_HEIGHT_METERS = 0.1
+MAX_HEIGHT_METERS = 3.05  # 10 feet in meters
+MIN_WEIGHT_KG = 0.1
+MAX_WEIGHT_KG = 300
+
+# BMI 范围常量
+MIN_BMI = 1
+MAX_BMI = 100
 
 # 单位类型常量
 HEIGHT_UNIT_METERS = "m"
@@ -18,8 +28,11 @@ ERROR_MESSAGES = {
     "invalid_inches": "英寸必须在 0-11 范围内",
     "height_out_of_range": "身高超出有效范围",
     "weight_out_of_range": "体重超出有效范围",
-    "invalid_tuple": "英尺/英寸必须是包含两个数字的元组"
+    "invalid_tuple": "英尺/英寸必须是包含两个数字的元组",
+    "bmi_out_of_range": "计算得到的BMI值超出合理范围"
 }
+
+from decimal import Decimal, ROUND_HALF_UP
 
 def convert_height_to_meters(height: float | tuple[float, float], unit: str = HEIGHT_UNIT_METERS) -> float:
     """
@@ -50,7 +63,7 @@ def convert_height_to_meters(height: float | tuple[float, float], unit: str = HE
     if unit == HEIGHT_UNIT_METERS:
         if isinstance(height, bool) or not isinstance(height, (int, float)):
             raise TypeError(ERROR_MESSAGES["invalid_height_type"])
-        if height <= 0 or height > 3.0:
+        if height < MIN_HEIGHT_METERS or height > MAX_HEIGHT_METERS:
             raise ValueError(ERROR_MESSAGES["height_out_of_range"])
         return float(height)
     
@@ -73,15 +86,15 @@ def convert_height_to_meters(height: float | tuple[float, float], unit: str = HE
         if inches < 0 or inches >= 12:
             raise ValueError(ERROR_MESSAGES["invalid_inches"])
             
-        # 转换为米
+        # 转换为米，保持最高精度
         total_inches = feet * INCHES_PER_FOOT + inches
         meters = total_inches * INCHES_TO_METERS
         
         # 验证最终结果范围
-        if meters <= 0 or meters > 3.0:
+        if meters < MIN_HEIGHT_METERS or meters > MAX_HEIGHT_METERS:
             raise ValueError(ERROR_MESSAGES["height_out_of_range"])
             
-        return round(meters, 4)  # 保留4位小数以确保精度
+        return meters  # 不再对中间结果进行舍入
 
 def convert_weight_to_kg(weight: float, unit: str = WEIGHT_UNIT_KG) -> float:
     """
@@ -108,20 +121,27 @@ def convert_weight_to_kg(weight: float, unit: str = WEIGHT_UNIT_KG) -> float:
     if unit not in [WEIGHT_UNIT_KG, WEIGHT_UNIT_LB]:
         raise ValueError(ERROR_MESSAGES["invalid_weight_unit"])
     
+    # 使用Decimal进行高精度计算
+    weight_decimal = Decimal(str(weight))
+    
     # 处理千克单位
     if unit == WEIGHT_UNIT_KG:
-        if weight <= 0 or weight > 300:
+        if weight < MIN_WEIGHT_KG or weight > MAX_WEIGHT_KG:
             raise ValueError(ERROR_MESSAGES["weight_out_of_range"])
-        return float(weight)
+        return float(weight_decimal.quantize(Decimal('0.00000001')))
     
     # 处理磅单位
     if unit == WEIGHT_UNIT_LB:
         if weight <= 0 or weight > 660:
             raise ValueError(ERROR_MESSAGES["weight_out_of_range"])
-        kg = weight * POUNDS_TO_KG
-        if kg <= 0 or kg > 300:
+        # 使用Decimal进行高精度转换
+        pounds_to_kg = Decimal(str(POUNDS_TO_KG))
+        kg = weight_decimal * pounds_to_kg
+        kg = kg.quantize(Decimal('0.00000001'))
+        
+        if float(kg) < MIN_WEIGHT_KG or float(kg) > MAX_WEIGHT_KG:
             raise ValueError(ERROR_MESSAGES["weight_out_of_range"])
-        return round(kg, 4)  # 保留4位小数以确保精度
+        return float(kg)
 
 def bmi_calculate(height_m: float, weight_kg: float) -> float:
     """
@@ -136,7 +156,7 @@ def bmi_calculate(height_m: float, weight_kg: float) -> float:
         
     异常:
         TypeError: 当输入参数不是数字类型时
-        ValueError: 当输入参数小于或等于 0 时
+        ValueError: 当输入参数小于或等于 0 时，或计算结果超出合理范围时
     """
     # 类型检查
     if (isinstance(height_m, bool) or isinstance(weight_kg, bool) or
@@ -149,8 +169,19 @@ def bmi_calculate(height_m: float, weight_kg: float) -> float:
     if weight_kg <= 0:
         raise ValueError("体重必须大于0")
     
-    # 计算 BMI
-    bmi = weight_kg / (height_m ** 2)
+    # 使用Decimal进行高精度计算
+    height_decimal = Decimal(str(height_m))
+    weight_decimal = Decimal(str(weight_kg))
     
-    # 返回结果，保留两位小数
-    return round(bmi, 2) 
+    # 计算BMI
+    height_squared = height_decimal * height_decimal
+    bmi = weight_decimal / height_squared
+    
+    # 四舍五入到两位小数
+    rounded_bmi = float(bmi.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
+    
+    # 验证 BMI 是否在合理范围内
+    if rounded_bmi < MIN_BMI or rounded_bmi > MAX_BMI:
+        raise ValueError(ERROR_MESSAGES["bmi_out_of_range"])
+    
+    return rounded_bmi 
