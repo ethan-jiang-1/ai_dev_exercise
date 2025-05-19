@@ -82,7 +82,7 @@
 ## 提议的目录结构 (支持多故事)
 
 ```
-exercise_tdd_simple/
+exercise_tdd_llm/
 ├── teaching_framework/                     (框架文档目录)
 │   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
 │   └── planning_tdd_exercise_template.md   (本文件 - TDD 练习框架设计规划)
