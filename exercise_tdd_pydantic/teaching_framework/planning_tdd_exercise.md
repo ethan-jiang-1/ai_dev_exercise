@@ -82,42 +82,12 @@
 ## 提议的目录结构 (支持多故事, 只是示范, 参考, 指导目录结构而已)
 
 ```
-exercise_tdd_bmi/
+exercise_tdd_pydantic/
 ├── teaching_framework/                     (框架文档目录)
 │   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
 │   └── planning_tdd_exercise.md   (本文件 - TDD 练习框架设计规划)
 |
-├── story_tdd_xxx.md            (XXX故事描述)
 ├── story_tdd_yyy.md            (YYY故事描述)
-│
-├── tdd_xxx/                    (BMI计算器故事实例)
-│   ├── ExTDD_01_BMICalculation/           (BMI计算功能)
-│   │   ├── constraints/                    (约束文件)
-│   │   │   └── task_constraints.md        (任务特定约束)
-│   │   ├── inputs/                         (输入文件)
-│   │   │   └── user_story.md              (用户故事)
-│   │   ├── outputs/                        (输出文件)
-│   │   │   ├── _s1_think_options_bmi_calculate.md
-│   │   │   ├── _s2_think_design_bmi_calculate.md
-│   │   │   ├── _s3_think_validation_bmi_calculate.md
-│   │   │   ├── bmi_calculate.py
-│   │   │   ├── test_bmi_calculate.py
-│   │   │   └── doc_bmi_calculate.md
-│   │   └── README.md                      (练习说明)
-│   │
-│   └── ExTDD_02_BMICategorization/        (BMI分类功能)
-│       ├── constraints/                    (约束文件)
-│       │   └── task_constraints.md        (任务特定约束)
-│       ├── inputs/                         (输入文件)
-│       │   └── user_story.md              (用户故事)
-│       ├── outputs/                        (输出文件)
-│       │   ├── _s1_think_options_bmi_categorize.md
-│       │   ├── _s2_think_design_bmi_categorize.md
-│       │   ├── _s3_think_validation_bmi_categorize.md
-│       │   ├── bmi_categorize.py
-│       │   ├── test_bmi_categorize.py
-│       │   └── doc_bmi_categorize.md
-│       └── README.md                      (练习说明)
 │
 ├── tdd_yyy/                         (Pydantic功能故事实例)
 │   ├── story_tdd_yyy.md             (Pydantic功能故事描述)
