@@ -30,7 +30,7 @@ AI: "您好！今天我们来创建TDD练习。请问您希望：
 
 **上下文**: 此步骤在"步骤 0"确定了 `current_exercise_collection` （当前练习集）之后执行。
 
-**目标**: AI根据用户提供的故事主题和核心练习系列点子，参照 **位于 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` 的主模板**，生成详细的、结构化的单个"练习故事描述文件"（例如 `story_tdd_bmi_calculator.md`）。
+**目标**: AI根据用户提供的故事主题和核心练习系列点子，参照 **位于 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` 的主模板**，生成详细的、结构化的单个"练习故事描述文件"（例如 `story_tdd_bmi_calculator.md`）。
 
 **通用模板 (General Template):**
 
@@ -51,7 +51,7 @@ AI: "您好！今天我们来创建TDD练习。请问您希望：
         *   **功能核心点 (Core Functionality)**：`[例如：展示用户的所有任务列表]`
     *   `... (可以根据需要添加更多练习系列)`
 
-3.  **参考模板 (Reference Template)**：请严格参照位于项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` 的**主规划模板**中的目录结构规范、文件命名规范（特别是 `feature_name` 的 `snake_case` 格式和 `ExTDD_XX_FeatureName` 目录的 `CamelCase` 命名）、以及每个练习系列内部应包含的**"特定需求 (Specific Requirements)"、"技术要点 (Technical Points)"、"验收标准 (Acceptance Criteria)"**等详细信息。
+3.  **参考模板 (Reference Template)**：请严格参照位于项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` 的**主规划模板**中的目录结构规范、文件命名规范（特别是 `feature_name` 的 `snake_case` 格式和 `ExTDD_XX_FeatureName` 目录的 `CamelCase` 命名）、以及每个练习系列内部应包含的**"特定需求 (Specific Requirements)"、"技术要点 (Technical Points)"、"验收标准 (Acceptance Criteria)"**等详细信息。
     *   **重要说明**：生成的 `story_*.md` 文件将详细描述每个 `ExTDD_XX_FeatureName` 系列建议的目录结构（例如 `constraints/`, `inputs/`, `outputs/` 等）。这些具体的练习目录和文件结构将由用户在后续实际进行每个练习时，遵循 `story_*.md` 的指导逐步创建，而非由AI在这一步直接生成。`story_*.md` 会指明这些结构应位于当前练习集 `[AI应自动填充 current_exercise_collection]` 下的对应故事功能模块内 (例如: `[current_exercise_collection]/ExTDD_XX_FeatureName/`)。
 
 4.  **输出要求 (Output Requirements)**：
@@ -59,7 +59,7 @@ AI: "您好！今天我们来创建TDD练习。请问您希望：
         *   **文件名建议**: `story_[可选的练习集前缀]_[您的故事主题snake_case形式].md` (例如，如果练习集是 `llm`，主题是 `content_validation`，则为 `story_llm_content_validation.md`；或者直接 `story_content_validation.md` 如果练习集名称已经足够区分)。**AI应与用户确认最终文件名。**
         *   **文件存放路径**: 该文件应直接存放在 `[AI应自动填充 current_exercise_collection]/` 目录下。
     *   在生成的Markdown文件中，需要包含对整个故事的简介。
-    *   对于上述每一个"核心练习系列"，请按照项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` 的样式，将其扩展为一个完整的 `ExTDD_XX_FeatureName` 部分，包含清晰的 `feature_name` (`snake_case`)、模拟的目录结构、以及详细的"特定需求"、"技术要点"和"验收标准"。
+    *   对于上述每一个"核心练习系列"，请按照项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` 的样式，将其扩展为一个完整的 `ExTDD_XX_FeatureName` 部分，包含清晰的 `feature_name` (`snake_case`)、模拟的目录结构、以及详细的"特定需求"、"技术要点"和"验收标准"。
 
 目标是生成一个像 `@story_tdd_bmi_calculator.md` 或 `@story_tdd_pydantic.md` 那样可以直接用于指导学员进行TDD练习的详细文档。请确保内容丰富、结构清晰。
 ```
@@ -79,12 +79,12 @@ AI: "您好！今天我们来创建TDD练习。请问您希望：
         *   **建议的FeatureName (CamelCase)**：`BMICategorization`
         *   **功能核心点 (Core Functionality)**：`根据BMI值进行分类，支持不同标准，提供分类说明`
 
-3.  **参考模板 (Reference Template)**：请严格参照项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` 文件中定义的**目录结构规范 (Directory Structure Specification)**、**文件命名规范 (File Naming Convention)**（特别是 `feature_name` 的 `snake_case` 格式和 `ExTDD_XX_FeatureName` 目录的 `CamelCase` 命名）、以及每个练习系列内部应包含的**"特定需求 (Specific Requirements)"、"技术要点 (Technical Points)"、"验收标准 (Acceptance Criteria)"**等详细信息。
+3.  **参考模板 (Reference Template)**：请严格参照项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` 文件中定义的**目录结构规范 (Directory Structure Specification)**、**文件命名规范 (File Naming Convention)**（特别是 `feature_name` 的 `snake_case` 格式和 `ExTDD_XX_FeatureName` 目录的 `CamelCase` 命名）、以及每个练习系列内部应包含的**"特定需求 (Specific Requirements)"、"技术要点 (Technical Points)"、"验收标准 (Acceptance Criteria)"**等详细信息。
 
 4.  **输出要求 (Output Requirements)**：
     *   请为这个故事生成一个详细的Markdown描述文件，文件名建议为 `story_tdd_bmi_calculator.md`。
     *   在生成的Markdown文件中，需要包含对整个故事的简介。
-    *   对于上述每一个"核心练习系列"，请按照项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` 的样式，将其扩展为一个完整的 `ExTDD_XX_FeatureName` 部分，包含清晰的 `feature_name` (`snake_case`)、模拟的目录结构、以及详细的"特定需求"、"技术要点"和"验收标准"。
+    *   对于上述每一个"核心练习系列"，请按照项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` 的样式，将其扩展为一个完整的 `ExTDD_XX_FeatureName` 部分，包含清晰的 `feature_name` (`snake_case`)、模拟的目录结构、以及详细的"特定需求"、"技术要点"和"验收标准"。
 
 目标是生成一个像 `@story_tdd_bmi_calculator.md` 那样可以直接用于指导学员进行TDD练习的详细文档。请确保内容丰富、结构清晰。
 ```
@@ -111,15 +111,15 @@ AI: "您好！今天我们来创建TDD练习。请问您希望：
 
 1.  **同步教学框架模板 (Sync Teaching Framework Templates)**:
     *   检查 `[AI应自动填充 current_exercise_collection]/teaching_framework/` 目录是否存在。如果不存在，请创建它。
-    *   将项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` 复制到 `[AI应自动填充 current_exercise_collection]/teaching_framework/planning_tdd_exercise.md` (如果不存在或用户要求更新)。
-    *   将项目顶层 `exercise_tdd_template/teaching_framework/test_driven_development_with_ai_template.md` 复制到 `[AI应自动填充 current_exercise_collection]/teaching_framework/test_driven_development_with_ai.md` (如果不存在或用户要求更新)。
+    *   将项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` 复制到 `[AI应自动填充 current_exercise_collection]/teaching_framework/planning_tdd_exercise.md` (如果不存在或用户要求更新)。
+    *   将项目顶层 `exercise_tdd_template/teaching_framework/test_driven_development_with_ai.md` 复制到 `[AI应自动填充 current_exercise_collection]/teaching_framework/test_driven_development_with_ai.md` (如果不存在或用户要求更新)。
 
 2.  **(可选) 创建练习集专属的规划与理念文档 (Optionally Create Collection-Specific Planning & Philosophy Documents)**:
     *   询问用户是否希望为此练习集 `[AI应自动填充 current_exercise_collection]` 创建顶级的规划文档。
-    *   如果用户同意，则将项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise_template.md` (或一个更简洁的规划文档模板) 复制并重命名为 `[AI应自动填充 current_exercise_collection]/planning_this_collection.md` (或类似名称，例如 `planning_exercise_tdd_llm.md`)。
+    *   如果用户同意，则将项目顶层 `exercise_tdd_template/teaching_framework/planning_tdd_exercise.md` (或一个更简洁的规划文档模板) 复制并重命名为 `[AI应自动填充 current_exercise_collection]/planning_this_collection.md` (或类似名称，例如 `planning_exercise_tdd_llm.md`)。
         *   (理想情况) AI可以尝试基于 `[current_exercise_collection]` 内已有的 `story_*.md` 文件，对此新规划文档的示例部分进行初步填充。
     *   询问用户是否希望为此练习集 `[AI应自动填充 current_exercise_collection]` 创建顶级的核心理念文档。
-    *   如果用户同意，则将项目顶层 `exercise_tdd_template/teaching_framework/test_driven_development_with_ai_template.md` 复制并重命名为 `[AI应自动填充 current_exercise_collection]/philosophy_this_collection.md` (或类似名称)。
+    *   如果用户同意，则将项目顶层 `exercise_tdd_template/teaching_framework/test_driven_development_with_ai.md` 复制并重命名为 `[AI应自动填充 current_exercise_collection]/philosophy_this_collection.md` (或类似名称)。
 
 请确保在 `[AI应自动填充 current_exercise_collection]` 目录下，相关的框架文档已准备就绪，并且所有 `story_*.md` 文件都已按预期生成并放置。
 
