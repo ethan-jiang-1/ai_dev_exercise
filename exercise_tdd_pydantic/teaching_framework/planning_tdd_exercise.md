@@ -1,4 +1,5 @@
 # 规划文档：AI+TDD 练习框架：支持多故事实例
+> 版本: 0.1
 
 本文档概述了用于创建一系列 AI 辅助测试驱动开发 (TDD) 练习的**框架设计**。该框架基于 `test_driven_development_with_ai.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，每个故事包含若干个遵循 TDD 流程的**微功能开发系列 (Exercise Series)**。重点是使用 AI 辅助**系统性地实践 TDD 的 Red-Green-Refactor 循环**，并完成相应的思考和构建环节。
 
@@ -82,55 +83,61 @@
 ## 提议的目录结构 (支持多故事, 只是示范, 参考, 指导目录结构而已)
 
 ```
-exercise_tdd_pydantic/
+project_root_or_exercise_name/
 ├── teaching_framework/                     (框架文档目录)
-│   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
-│   └── planning_tdd_exercise.md   (本文件 - TDD 练习框架设计规划)
+│   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念)
+│   └── planning_tdd_exercise.md            (本文件 - TDD 练习框架设计规划)
 |
-├── story_tdd_yyy.md            (YYY故事描述)
+├── story_tdd_OverallStoryName.md           (某个具体"大故事"或"项目"的总体描述)
 │
-├── tdd_yyy/                         (Pydantic功能故事实例)
-│   ├── story_tdd_yyy.md             (Pydantic功能故事描述)
-│   ├── README.md                         (Pydantic练习总体说明)
+├── tdd_OverallStoryName/                   (针对 "OverallStoryName" 的TDD练习目录)
+│   ├── story_tdd_OverallStoryName.md       (该故事的详细描述或副本)
+│   ├── README.md                           (当前故事的总体说明和目标)
 │   │
-│   ├── ExTDD_01_PydanticValidation/      (API数据验证框架)
-│   │   ├── constraints/                   (约束文件)
-│   │   │   └── task_constraints.md       (任务特定约束)
-│   │   ├── inputs/                        (输入文件)
-│   │   │   ├── test_data.json            (测试数据)
-│   │   │   └── user_story.md             (用户故事)
-│   │   ├── outputs/                       (输出文件)
-│   │   │   ├── _s1_think_options_api_data_validator.md
-│   │   │   ├── _s2_think_design_api_data_validator.md
-│   │   │   ├── _s3_think_validation_api_data_validator.md
-│   │   │   ├── api_data_validator.py
-│   │   │   ├── test_api_data_validator.py
-│   │   │   └── doc_api_data_validator.md
-│   │   └── README.md                     (练习说明)
+│   ├── ExTDD_01_FeatureNameA/              (第一个具体功能点/模块的练习)
+│   │   ├── constraints/                    (约束文件目录)
+│   │   │   └── task_constraints.md         (当前功能点的特定约束)
+│   │   ├── inputs/                         (输入文件目录)
+│   │   │   ├── test_data.json              (或 relevant_input_data.{ext})
+│   │   │   └── user_story.md               (当前功能点的用户故事片段/需求)
+│   │   ├── outputs/                        (输出文件 - TDD步骤产物)
+│   │   │   ├── _s1_think_options_FeatureNameA.md
+│   │   │   ├── _s2_think_design_FeatureNameA.md
+│   │   │   ├── _s3_think_validation_FeatureNameA.md
+│   │   │   ├── FeatureNameA.{ext}          (例如: FeatureNameA.py, FeatureNameA.js)
+│   │   │   ├── test_FeatureNameA.{ext}     (例如: test_FeatureNameA.py)
+│   │   │   └── doc_FeatureNameA.md
+│   │   └── README.md                       (当前功能点 ExTDD_01_FeatureNameA 的练习说明)
 │   │
-│   ├── ExTDD_02_PydanticSerialization/  (数据序列化与转换)
-│   │   ├── constraints/                   (约束文件)
-│   │   ├── inputs/                        (输入文件)
-│   │   ├── outputs/                       (输出文件)
-│   │   └── README.md                     (练习说明)
+│   ├── ExTDD_02_FeatureNameB/              (第二个具体功能点/模块的练习)
+│   │   ├── constraints/
+│   │   ├── inputs/
+│   │   ├── outputs/                        (与 ExTDD_01_FeatureNameA/outputs/ 结构类似)
+│   │   │   ├── _s1_think_options_FeatureNameB.md
+│   │   │   ├── _s2_think_design_FeatureNameB.md
+│   │   │   ├── _s3_think_validation_FeatureNameB.md
+│   │   │   ├── FeatureNameB.{ext}
+│   │   │   ├── test_FeatureNameB.{ext}
+│   │   │   └── doc_FeatureNameB.md
+│   │   └── README.md                       (当前功能点 ExTDD_02_FeatureNameB 的练习说明)
 │   │
-│   ├── ExTDD_03_PydanticConfig/         (配置管理系统)
-│   │   ├── constraints/                   (约束文件)
-│   │   ├── inputs/                        (输入文件)
-│   │   ├── outputs/                       (输出文件)
-│   │   └── README.md                     (练习说明)
-│   │
-│   └── ExTDD_04_PydanticSchema/         (API模式演进与兼容性工具)
-│       ├── constraints/                   (约束文件)
-│       ├── inputs/                        (输入文件)
-│       ├── outputs/                       (输出文件)
-│       └── README.md                     (练习说明)
-└── ... (可以添加更多故事实例目录)
+│   ├── ... (更多 ExTDD_XX_FeatureNameX 目录，代表更多功能点)
+│
+├── tdd_AnotherStoryName/                   (另一个完整"大故事"的TDD练习目录)
+│   ├── story_tdd_AnotherStoryName.md
+│   ├── README.md
+│   ├── ExTDD_01_SomeOtherFeatureY/
+│   │   └── ... (结构同上)
+│   └── ...
+│
+└── ... (可以添加更多顶级故事实例目录 tdd_XYZStoryName)
 ```
+
 *说明*:
-- 每个故事实例（如 `tdd_bmi_calculator` 和 `tdd_pydantic`）都有对应的故事描述文件（`story_tdd_xxx.md` 和 `story_tdd_yyy.md`）。
-- 每个具体功能练习都组织在 `ExTDD_XX_FeatureName` 目录下，包含该功能所需的约束、输入和输出文件。
-- 每个功能练习的 TDD 流程都体现在其 outputs 目录下的 5 个步骤产物中。
+- 每个"大故事"实例 (例如 `tdd_OverallStoryName`, `tdd_AnotherStoryName`) 都在项目根目录级别有一个对应的总体故事描述文件 (如 `story_tdd_OverallStoryName.md`)，并且在其各自的 `tdd_OverallStoryName/` 目录下也会有一个详细的故事描述文件 (可以是副本或更细化的版本)。
+- 每个具体的功能点练习都组织在 `ExTDD_XX_FeatureName/` 目录下，包含该功能点开发所需的特定约束、输入数据和最终的输出产物。
+- 每个功能点练习的 TDD 流程都体现在其 `outputs/` 目录下的系列文件中，通常包括：思考选项 (`_s1_think_options_...`), 思考设计 (`_s2_think_design_...`), 思考验证 (`_s3_think_validation_...`), 功能实现代码 (`FeatureName.{ext}`), 测试代码 (`test_FeatureName.{ext}`), 和相关文档 (`doc_FeatureName.md`)。文件扩展名 (`.{ext}`) 会根据实际项目所用的技术栈 (如 Python 的 `.py`, JavaScript 的 `.js` 等) 而变化。
+- 这种结构旨在清晰地分离不同故事和同一故事内不同功能点的开发过程，并完整记录TDD的每一个思考和实现步骤。
 
 ## 框架文件说明
 

@@ -1,4 +1,5 @@
 # 规划文档：AI+TDD 练习框架：支持多故事实例
+> 版本: 0.1
 
 本文档概述了用于创建一系列 AI 辅助测试驱动开发 (TDD) 练习的**框架设计**。该框架基于 `test_driven_development_with_ai.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，每个故事包含若干个遵循 TDD 流程的**微功能开发系列 (Exercise Series)**。重点是使用 AI 辅助**系统性地实践 TDD 的 Red-Green-Refactor 循环**，并完成相应的思考和构建环节。
 
@@ -79,33 +80,64 @@
 *   遵循 TDD 流程，能够基于测试生成代码，并进行重构的能力。
 *   Markdown 渲染和生成技能。
 
-## 提议的目录结构 (支持多故事)
+## 提议的目录结构 (支持多故事, 只是示范, 参考, 指导目录结构而已)
 
 ```
-exercise_tdd_llm/
+project_root_or_exercise_name/
 ├── teaching_framework/                     (框架文档目录)
-│   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
-│   └── planning_tdd_exercise.md   (本文件 - TDD 练习框架设计规划)
+│   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念)
+│   └── planning_tdd_exercise.md            (本文件 - TDD 练习框架设计规划)
 |
-├── story_example_1/                        (故事实例 1)
-│   ├── story.md                           (故事描述文件)
-│   ├── constraints/                        (故事的约束文件，可选)
-│   │   └── exercise_constraints_01.md
-│   ├── inputs/                             (故事的输入文件)
-│   │   ├── user_story_01.md               (示例：功能1用户故事)
-│   │   └── user_story_02.md               (示例：功能2用户故事)
-│   └── outputs/                            (故事的练习输出)
-│       ├── ExTDD_01_Feature1/             (示例：功能1系列输出)
-│       │   ├── {func_name}.py             (功能实现代码)
-│       │   ├── test_{func_name}.py        (测试代码)
-│       │   └── doc_{func_name}.md         (文档)
-│       └── ExTDD_02_Feature2/             (示例：功能2系列输出)
-│           └── ...
-
+├── story_tdd_OverallStoryName.md           (某个具体"大故事"或"项目"的总体描述)
+│
+├── tdd_OverallStoryName/                   (针对 "OverallStoryName" 的TDD练习目录)
+│   ├── story_tdd_OverallStoryName.md       (该故事的详细描述或副本)
+│   ├── README.md                           (当前故事的总体说明和目标)
+│   │
+│   ├── ExTDD_01_FeatureNameA/              (第一个具体功能点/模块的练习)
+│   │   ├── constraints/                    (约束文件目录)
+│   │   │   └── task_constraints.md         (当前功能点的特定约束)
+│   │   ├── inputs/                         (输入文件目录)
+│   │   │   ├── test_data.json              (或 relevant_input_data.{ext})
+│   │   │   └── user_story.md               (当前功能点的用户故事片段/需求)
+│   │   ├── outputs/                        (输出文件 - TDD步骤产物)
+│   │   │   ├── _s1_think_options_FeatureNameA.md
+│   │   │   ├── _s2_think_design_FeatureNameA.md
+│   │   │   ├── _s3_think_validation_FeatureNameA.md
+│   │   │   ├── FeatureNameA.{ext}          (例如: FeatureNameA.py, FeatureNameA.js)
+│   │   │   ├── test_FeatureNameA.{ext}     (例如: test_FeatureNameA.py)
+│   │   │   └── doc_FeatureNameA.md
+│   │   └── README.md                       (当前功能点 ExTDD_01_FeatureNameA 的练习说明)
+│   │
+│   ├── ExTDD_02_FeatureNameB/              (第二个具体功能点/模块的练习)
+│   │   ├── constraints/
+│   │   ├── inputs/
+│   │   ├── outputs/                        (与 ExTDD_01_FeatureNameA/outputs/ 结构类似)
+│   │   │   ├── _s1_think_options_FeatureNameB.md
+│   │   │   ├── _s2_think_design_FeatureNameB.md
+│   │   │   ├── _s3_think_validation_FeatureNameB.md
+│   │   │   ├── FeatureNameB.{ext}
+│   │   │   ├── test_FeatureNameB.{ext}
+│   │   │   └── doc_FeatureNameB.md
+│   │   └── README.md                       (当前功能点 ExTDD_02_FeatureNameB 的练习说明)
+│   │
+│   ├── ... (更多 ExTDD_XX_FeatureNameX 目录，代表更多功能点)
+│
+├── tdd_AnotherStoryName/                   (另一个完整"大故事"的TDD练习目录)
+│   ├── story_tdd_AnotherStoryName.md
+│   ├── README.md
+│   ├── ExTDD_01_SomeOtherFeatureY/
+│   │   └── ... (结构同上)
+│   └── ...
+│
+└── ... (可以添加更多顶级故事实例目录 tdd_XYZStoryName)
 ```
+
 *说明*:
-- `outputs/` 下的子目录名格式为 `ExTDD_XX_FeatureName`，其中 `XX` 是练习系列编号，`FeatureName` 是根据用户故事命名的简短功能名。
-- 每个 `ExTDD_XX_FeatureName` 目录下包含该功能 TDD 流程的 5 个步骤产物。步骤 2、4、5 的代码实现和文档可能在同一个 `.py` 文件中迭代。
+- 每个"大故事"实例 (例如 `tdd_OverallStoryName`, `tdd_AnotherStoryName`) 都在项目根目录级别有一个对应的总体故事描述文件 (如 `story_tdd_OverallStoryName.md`)，并且在其各自的 `tdd_OverallStoryName/` 目录下也会有一个详细的故事描述文件 (可以是副本或更细化的版本)。
+- 每个具体的功能点练习都组织在 `ExTDD_XX_FeatureName/` 目录下，包含该功能点开发所需的特定约束、输入数据和最终的输出产物。
+- 每个功能点练习的 TDD 流程都体现在其 `outputs/` 目录下的系列文件中，通常包括：思考选项 (`_s1_think_options_...`), 思考设计 (`_s2_think_design_...`), 思考验证 (`_s3_think_validation_...`), 功能实现代码 (`FeatureName.{ext}`), 测试代码 (`test_FeatureName.{ext}`), 和相关文档 (`doc_FeatureName.md`)。文件扩展名 (`.{ext}`) 会根据实际项目所用的技术栈 (如 Python 的 `.py`, JavaScript 的 `.js` 等) 而变化。
+- 这种结构旨在清晰地分离不同故事和同一故事内不同功能点的开发过程，并完整记录TDD的每一个思考和实现步骤。
 
 ## 框架文件说明
 
@@ -132,53 +164,56 @@ exercise_tdd_llm/
     *   **系列目标 (Series Goal)**: 该**类型**的练习系列旨在让用户掌握的 TDD 应用场景或特定功能模式。
     *   **系列复杂度 (Series Complexity)**: 低、中、高，表示该**类型**系列通常涉及的功能复杂度。
     *   **针对该系列的 5 个步骤定义**: (注意：这些步骤共同构成了 TDD 的核心循环)
-        *   **步骤 1: 从用户故事到实现思考 (`_s1_think_options_{user_story}.md`)**
+        *   **步骤 1: 思考功能实现可选方案 (`_s1_think_options_{feature_name}.md`)**
             *   **目标**: 分析用户故事，识别核心需求、技术挑战和初步实现思路。
-            *   **输入模式**: `inputs/user_story_*.md`
+            *   **输入模式**: `inputs/user_story.md`
             *   **AI 助手角色**: 分析师，帮助理解需求、识别边界、提出初步方案。
-            *   **输出**: 包含分析结果的 Markdown 文件。
+            *   **输出**: 包含分析结果和可选实现方案的 Markdown 文件。
             *   **评估**: 是否准确识别需求和挑战？方案是否初步可行？
-        *   **步骤 2: 从实现思考到行动计划 (`_s2_think_design_{user_story}.md`, `{func_name}.py` 初始框架)**
-            *   **目标**: 将思路分解为任务，设计函数接口，创建代码框架。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s1_think_options_{user_story}.md`
-            *   **AI 助手角色**: 设计师/规划师，帮助分解任务、设计接口、生成代码骨架。
-            *   **输出**: 行动计划 Markdown 文件和包含函数签名的初始 Python 文件。
-            *   **评估**: 任务分解是否合理？接口设计是否清晰？
-        *   **步骤 3: 单元测试设计与审查 (`test_*_feature.py`)**
-            *   **目标**: 设计并编写覆盖核心场景的单元测试。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_think_design_{user_story}.md`, 初始 `{func_name}.py`
-            *   **AI 助手角色**: 测试工程师，帮助识别测试场景、编写 `unittest` 代码。
-            *   **输出**: 包含单元测试的 Python 文件 (此时运行应失败 - Red)。
-            *   **评估**: 测试用例是否覆盖主要路径和边界？代码是否符合 `unittest` 规范？
-        *   **步骤 4: 测试驱动开发实现 (`{func_name}.py` 完整实现)**
+        *   **步骤 2: 设计功能实现方案 (`_s2_think_design_{feature_name}.md`)**
+            *   **目标**: 将思路具体化为设计方案，设计函数接口，规划实现步骤。
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s1_think_options_{feature_name}.md`
+            *   **AI 助手角色**: 设计师/规划师，帮助详细设计功能的实现方案。
+            *   **输出**: 设计方案 Markdown 文件，包含函数设计、测试设计和实现步骤。
+            *   **评估**: 设计是否合理？接口设计是否清晰？测试设计是否全面？
+        *   **步骤 3: 验证功能实现思路 (`_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`)**
+            *   **目标**: 验证设计方案的可行性，编写测试用例。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_think_design_{feature_name}.md`
+            *   **AI 助手角色**: 测试工程师，帮助验证设计方案、编写测试用例。
+            *   **输出**: 验证方案 Markdown 文件和包含单元测试的 Python 文件 (此时运行应失败 - Red)。
+            *   **评估**: 测试用例是否覆盖主要路径和边界？测试是否可以正确运行？
+        *   **步骤 4: 功能实现代码 (`{feature_name}.py`)**
             *   **目标**: 编写刚好能通过所有测试的功能代码。**这是 TDD 的 "Green" 阶段，目标是让之前失败的测试通过**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/test_*_feature.py`, 初始 `{func_name}.py`
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`
             *   **AI 助手角色**: 开发者，根据测试用例编写功能代码，使其通过测试 (Green)。
             *   **输出**: 包含通过测试的功能代码的 Python 文件。
-            *   **评估**: 是否所有测试都通过？代码是否简洁且仅满足测试需求？（**避免过度设计是 Green 阶段的关键**）
-        *   **步骤 5: 函数文档完善与重构 (`{func_name}.py` 带文档, `doc_{func_name}.md`)**
-            *   **目标**: 添加文档字符串，进行必要的代码重构，生成 API 文档。**这是 TDD 的 "Refactor" 阶段，在测试保护下改进代码结构和可读性**。
-            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/{func_name}.py` (已通过测试)
-            *   **AI 助手角色**: 文档工程师/重构师，帮助添加文档、优化代码、生成 API 说明 (Refactor)。
-            *   **输出**: 带文档的最终 Python 代码和可选的 API 文档 Markdown 文件。
-            *   **评估**: 文档是否清晰准确？代码是否可读性强？重构是否保持测试通过？（**确保重构后所有测试仍然通过**）
-3.  **为具体故事创建输入用户故事**: 在**每个故事实例**的 `inputs/` 目录下，创建具体的 `user_story_*.md` 文件。
-4.  **审查与完善**: 审查本文档（模板库）的清晰性、一致性和可行性。
+            *   **评估**: 是否所有测试都通过？代码是否简洁且仅满足测试需求？
+        *   **步骤 5: 函数文档完善 (`doc_{feature_name}.md`)**
+            *   **目标**: 整理文档，说明函数用途、接口和使用示例。**这是 TDD 的 "Refactor" 阶段，在测试保护下完善文档和代码**。
+            *   **输入模式**: `outputs/ExTDD_XX_FeatureName/{feature_name}.py`, `test_{feature_name}.py`
+            *   **AI 助手角色**: 文档工程师/重构师，帮助完善文档、优化代码 (Refactor)。
+            *   **输出**: 完整的 API 文档 Markdown 文件。
+            *   **评估**: 文档是否清晰准确？使用示例是否充分？
+3.  **为具体故事创建输入用户故事**: 在每个故事实例的练习系列目录下的 `inputs/` 目录中，创建 `user_story.md` 文件，描述该练习系列的具体功能需求。
+4.  **创建任务约束文件**: 在每个故事实例的练习系列目录下的 `constraints/` 目录中，创建 `task_constraints.md` 文件，描述该功能实现的具体约束条件。
+5.  **审查与完善**: 审查本文档（模板库）的清晰性、一致性和可行性。
 
 ## 如何使用框架进行练习 (用户视角)
 
-1.  **选择一个故事实例**: 进入一个故事目录，例如 `story_example_1/`。
-2.  **选择一个用户故事**: 在 `inputs/` 目录下选择一个用户故事，例如 `inputs/user_story_01.md`。
-3.  **确定对应的练习系列类型**: 查阅本文档中的练习系列模板，确定该用户故事适合哪种类型，例如 `ExTDD_01`。
-4.  **创建输出目录**: 在 `outputs/` 下创建对应的子目录，例如 `outputs/ExTDD_01_Feature1/`。
+1.  **选择一个故事实例**: 选择一个故事实例目录，例如 `tdd_bmi_calculator/` 或 `tdd_pydantic/`。
+2.  **了解故事背景**: 阅读对应的故事描述文件，例如 `story_tdd_xxx.md` 或 `tdd_pydantic/story_tdd_yyy.md`。
+3.  **选择一个练习系列**: 根据故事中描述的功能，选择对应的 ExTDD 目录，例如 `tdd_bmi_calculator/ExTDD_01_BMICalculation/`。
+4.  **了解用户故事和约束**: 阅读该练习系列的 `inputs/user_story.md` 和 `constraints/task_constraints.md` 文件。
 5.  **按步骤执行 TDD 流程**:
-    *   **步骤 1**: 分析需求并设计解决方案，将思考过程记录在 `_s1_think_options_{user_story}.md` 中。
-    *   **步骤 2**: 创建行动计划，记录在 `_s2_think_design_{user_story}.md` 中。
-    *   **步骤 3**: 编写测试设计 `_s3_think_validation_{user_story}.md` 和测试代码 `test_{func_name}.py`。运行测试，确认失败 (Red)。
-    *   **步骤 4**: 实现功能代码 `{func_name}.py`，使其通过测试 (Green)。
-    *   **步骤 5**: 优化代码结构，完善文档 `doc_{func_name}.md` (Refactor)。
-6.  **反思与评估**: 参考每个步骤的评估要点，反思 TDD 流程和 AI 辅助的效果。
-7.  **重复**: 为故事中的其他用户故事选择合适的练习系列模板，重复步骤 3-6。
+   *   **步骤 1**: 思考功能实现的可选方案，将思考过程记录在 `outputs/_s1_think_options_{feature_name}.md` 中。
+   *   **步骤 2**: 设计功能实现方案，记录在 `outputs/_s2_think_design_{feature_name}.md` 中。
+   *   **步骤 3**: 验证功能实现思路并编写测试代码，记录验证思路在 `outputs/_s3_think_validation_{feature_name}.md` 中，编写测试代码 `outputs/test_{feature_name}.py`。运行测试，确认失败 (Red)。
+   *   **步骤 4**: 实现功能代码 `outputs/{feature_name}.py`，使其通过测试 (Green)。
+   *   **步骤 5**: 完善文档 `outputs/doc_{feature_name}.md` (Refactor)。
+6.  **反思与评估**: 参考每个步骤的评估要点，反思 TDD 流程的应用和 AI 辅助的效果。
+7.  **继续下一个练习**: 选择同一故事中的下一个练习系列，或者选择另一个故事实例，重复步骤 3-6。
+
+文件命名应遵循前文所述的命名规范，确保所有练习的文件结构保持一致性。
 
 ## 输入文件设计原则 (针对具体故事的用户故事)
 
@@ -186,7 +221,37 @@ exercise_tdd_llm/
 *   **明确验收标准**: 用户故事中应包含清晰的成功条件，便于后续设计测试用例。
 *   **故事相关性**: 用户故事内容需与所属故事实例的背景和目标一致。
 *   **适度复杂性**: 用户故事的复杂度可根据故事或练习系列类型调整，允许从简单到复杂。
-*   **聚焦 Python**: 所有技术示例均使用 Python 后端开发场景。
+
+## 文件命名规范
+
+为确保所有文件和目录结构的一致性，我们采用以下命名规范：
+
+1. **特性名称 (feature_name)**：
+   - 格式：`小写字母_用下划线分隔`
+   - 示例：`bmi_calculate`, `bmi_categorize`, `api_data_validator`
+   - 要求：描述性、简洁、表明功能
+
+2. **目录命名**：
+   - 练习系列目录：`ExTDD_XX_FeatureName`
+     - XX：两位数字编号（01、02等）
+     - FeatureName：驼峰式命名
+     - 示例：`ExTDD_01_BMICalculation`, `ExTDD_02_BMICategorization`
+
+3. **文件命名**：
+   - 思考文件：`_s{step}_{type}_{feature_name}.md`
+     - 示例：`_s1_think_options_bmi_calculate.md`
+   - 代码文件：`{feature_name}.py`
+     - 示例：`bmi_calculate.py`, `api_data_validator.py`
+   - 测试文件：`test_{feature_name}.py`
+     - 示例：`test_bmi_calculate.py`
+   - 文档文件：`doc_{feature_name}.md`
+     - 示例：`doc_bmi_calculate.md`
+
+4. **用户故事和约束文件**：
+   - 用户故事：`user_story.md`
+   - 任务约束：`task_constraints.md`
+
+这些命名规范确保了所有练习系列和功能实现的文件结构保持一致，便于组织和查找。
 
 ## AI 能力边界注意
 
