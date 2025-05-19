@@ -85,7 +85,7 @@
 exercise_tdd_simple/
 ├── teaching_framework/                     (框架文档目录)
 │   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念 V2)
-│   └── planning_tdd_exercise_template.md   (本文件 - TDD 练习框架设计规划)
+│   └── planning_tdd_exercise.md   (本文件 - TDD 练习框架设计规划)
 |
 ├── story_tdd_xxx.md            (XXX故事描述)
 ├── story_tdd_yyy.md            (YYY故事描述)
@@ -171,7 +171,7 @@ exercise_tdd_simple/
     *   强调了思考留痕和结构化思考的重要性。
     *   提供了 AI 协作的最佳实践和 6 个思考/构建阶段。
 
-2.  **TDD 练习框架设计规划** (本文件 `planning_tdd_exercise_template.md`)
+2.  **TDD 练习框架设计规划** (本文件 `planning_tdd_exercise.md`)
     *   定义了一套完整的 **TDD 练习系列模板 (Exercise Series Templates)**。
     *   提供了每个 TDD 步骤的实施指南和评估标准。
     *   规范了练习系列的输入输出格式和文件命名。

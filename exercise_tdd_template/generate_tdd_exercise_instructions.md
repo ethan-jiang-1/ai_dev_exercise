@@ -79,12 +79,12 @@ AI: "您好！今天我们来创建TDD练习。请问您希望：
         *   **建议的FeatureName (CamelCase)**：`BMICategorization`
         *   **功能核心点 (Core Functionality)**：`根据BMI值进行分类，支持不同标准，提供分类说明`
 
-3.  **参考模板 (Reference Template)**：请严格参照 `@planning_tdd_exercise_template.md` 文件中定义的**目录结构规范 (Directory Structure Specification)**、**文件命名规范 (File Naming Convention)**（特别是 `feature_name` 的 `snake_case` 格式和 `ExTDD_XX_FeatureName` 目录的 `CamelCase` 命名）、以及每个练习系列内部应包含的**"特定需求 (Specific Requirements)"、"技术要点 (Technical Points)"、"验收标准 (Acceptance Criteria)"**等详细信息。
+3.  **参考模板 (Reference Template)**：请严格参照 `@planning_tdd_exercise.md` 文件中定义的**目录结构规范 (Directory Structure Specification)**、**文件命名规范 (File Naming Convention)**（特别是 `feature_name` 的 `snake_case` 格式和 `ExTDD_XX_FeatureName` 目录的 `CamelCase` 命名）、以及每个练习系列内部应包含的**"特定需求 (Specific Requirements)"、"技术要点 (Technical Points)"、"验收标准 (Acceptance Criteria)"**等详细信息。
 
 4.  **输出要求 (Output Requirements)**：
     *   请为这个故事生成一个详细的Markdown描述文件，文件名建议为 `story_tdd_bmi_calculator.md`。
     *   在生成的Markdown文件中，需要包含对整个故事的简介。
-    *   对于上述每一个"核心练习系列"，请按照 `@planning_tdd_exercise_template.md` 的样式，将其扩展为一个完整的 `ExTDD_XX_FeatureName` 部分，包含清晰的 `feature_name` (`snake_case`)、模拟的目录结构、以及详细的"特定需求"、"技术要点"和"验收标准"。
+    *   对于上述每一个"核心练习系列"，请按照 `@planning_tdd_exercise.md` 的样式，将其扩展为一个完整的 `ExTDD_XX_FeatureName` 部分，包含清晰的 `feature_name` (`snake_case`)、模拟的目录结构、以及详细的"特定需求"、"技术要点"和"验收标准"。
 
 目标是生成一个像 `@story_tdd_bmi_calculator.md` 那样可以直接用于指导学员进行TDD练习的详细文档。请确保内容丰富、结构清晰。
 ```
