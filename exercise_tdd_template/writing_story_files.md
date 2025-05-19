@@ -92,7 +92,24 @@
 
 完成以上两个步骤后，就可以将规划好的系列结构和为每个特性编写的核心用户需求整合到 `story_xxx.md` 文件中。此时，还需补充以下标准内容：
 
-*   **文档头部说明**：如工作目录、核心开发理念文档链接等元信息。
+*   **文档头部说明 (Standard Header)**：这部分是每个 `story_xxx.md` 文件顶部的标准元信息，必须包含：
+    *   **工作目录说明**：一个明确的引用块，说明当前文档所在的目录，并强调所有文件引用路径均基于此目录。同时，提供一个具体的例子，展示相对路径如何解析为绝对路径（基于用户的实际工作区路径）。
+        *   **示例格式**:
+            ```markdown
+            > **工作目录说明**：本文档位于 `~/your_workspace_root/current_exercise_directory/` 目录下，所有文件引用路径均基于此目录。例如，`./some_file.md` 实际指向 `/path/to/your_workspace_root/current_exercise_directory/some_file.md`。
+            ```
+            *(请根据实际的练习系列目录调整路径，例如 `~/ai_dev_exercise/exercise_tdd_pydantic/`)*
+    *   **(可选) 实现目录说明**：如果实际代码实现位于主故事文档目录的子目录中，也应在此处说明。
+        *   **示例格式**:
+            ```markdown
+            > **实现目录说明**：本练习的实际实现位于 `./tdd_sub_directory/` 目录下。
+            ```
+    *   **核心开发理念链接**：指向通用的开发理念和框架规划文档的相对链接。
+        *   **示例格式**:
+            ```markdown
+            (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
+            (练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise.md))
+            ```
 *   **对整个练习系列的简要介绍**：阐述该系列的目的和主要内容。
 *   **基础结构说明**：重申或链接到通用的命名规范、目录结构规范。
 *   **针对当前练习系列的特定实现概览**：
