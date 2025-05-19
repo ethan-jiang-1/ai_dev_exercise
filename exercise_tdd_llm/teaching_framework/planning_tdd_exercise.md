@@ -1,5 +1,5 @@
 # 规划文档：AI+TDD 练习框架：支持多故事实例
-> 版本: 0.1
+> 版本: 0.2
 
 本文档概述了用于创建一系列 AI 辅助测试驱动开发 (TDD) 练习的**框架设计**。该框架基于 `test_driven_development_with_ai.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，每个故事包含若干个遵循 TDD 流程的**微功能开发系列 (Exercise Series)**。重点是使用 AI 辅助**系统性地实践 TDD 的 Red-Green-Refactor 循环**，并完成相应的思考和构建环节。
 
@@ -8,7 +8,7 @@
 设计一个可扩展的 TDD 练习框架，其中：
 1.  定义一套**通用的、可复用的 TDD 练习系列模板 (Exercise Series Templates)**，这些系列演示 `test_driven_development_with_ai.md` 中描述的 AI 辅助 TDD 流程。
 2.  允许用户为**不同的故事实例 (Story Instances)**（例如不同的项目或场景）提供独立的输入数据（用户故事）和存储独立的输出结果（思考文档、测试代码、实现代码、API文档）。
-3.  阐明框架的核心思考与构建循环 (`think_*` -> `build_*`) 如何在不同练习系列和故事中体现，**并强调 TDD 如何驱动这个循环**。
+3.  阐明框架的核心思考与构建循环 如何在不同练习系列和故事中体现，**并强调 TDD 如何驱动这个循环**。
 4.  练习将主要聚焦于后端 Python 开发场景，并严格遵循 TDD 的 "红-绿-重构" 循环思想，**使用 AI 作为 TDD 过程中的辅助工具**。
 5.  **帮助学习者通过实践掌握 TDD 的核心节奏 (Red-Green-Refactor) 和 AI 协作技巧**。
 
@@ -17,7 +17,7 @@
 本框架的核心设计理念是：**一套通用的 TDD 练习系列流程模板，应用于多个不同的故事场景，每个故事包含多个具体的微功能开发系列**。
 
 这意味着：
-1.  **TDD 练习系列 (Exercise Series)** 是通用的流程模板，定义了从需求分析到文档完善的 TDD 完整闭环，包含 5 个核心步骤 (`_1` 到 `_5`)，**严格对应 TDD 的思考、测试先行 (Red)、编码实现 (Green)、重构与文档 (Refactor) 阶段**，并与 `test_driven_development_with_ai.md` 中的思考与构建阶段相呼应。这些模板定义在本文件中。
+1.  **TDD 练习系列 (Exercise Series)** 是通用的流程模板，定义了从需求分析到文档完善的 TDD 完整闭环，包含 5 个核心步骤，**严格对应 TDD 的思考、测试先行 (Red)、编码实现 (Green)、重构与文档 (Refactor) 阶段**，并与 `test_driven_development_with_ai.md` 中的思考与构建阶段相呼应。这些模板定义在本文件中。
 2.  **故事实例 (Story Instance)** 是具体的，提供特定领域或场景的上下文、用户故事和可选的约束文件。每个故事拥有独立的目录。
 3.  **微功能实现 (Micro-feature Implementation)** 是在特定故事背景下，对一个 TDD 练习系列模板的具体应用，通常围绕一个用户故事展开。
 4.  学习者可以：
@@ -47,7 +47,7 @@
     *   提供练习系列目录（例如 ExTDD_01 到 ExTDD_N）。
 
 3.  **故事实例层**：
-    *   `story_example_*.md`: 定义具体的故事背景、业务目标、技术栈和初始用户故事。
+    *   `story_tdd_*.md`: 定义具体的故事背景、业务目标、技术栈和初始用户故事。
     *   每个故事实例包含多个微功能开发，每个微功能遵循一个 ExTDD 系列模板。
 
 每个故事实例下的微功能开发都是对框架的具体实现：
@@ -200,9 +200,9 @@ project_root_or_exercise_name/
 
 ## 如何使用框架进行练习 (用户视角)
 
-1.  **选择一个故事实例**: 选择一个故事实例目录，例如 `tdd_bmi_calculator/` 或 `tdd_pydantic/`。
+1.  **选择一个故事实例**: 选择一个故事实例目录，例如 `exercise_tdd_xxx/` 或 `exercise_tdd_yyy/`。
 2.  **了解故事背景**: 阅读对应的故事描述文件，例如 `story_tdd_xxx.md` 或 `tdd_pydantic/story_tdd_yyy.md`。
-3.  **选择一个练习系列**: 根据故事中描述的功能，选择对应的 ExTDD 目录，例如 `tdd_bmi_calculator/ExTDD_01_BMICalculation/`。
+3.  **选择一个练习系列**: 根据故事中描述的功能，选择对应的 ExTDD 目录，例如 `tdd_bmi_calculator/ExTDD_01_{task_name}/`。
 4.  **了解用户故事和约束**: 阅读该练习系列的 `inputs/user_story.md` 和 `constraints/task_constraints.md` 文件。
 5.  **按步骤执行 TDD 流程**:
    *   **步骤 1**: 思考功能实现的可选方案，将思考过程记录在 `outputs/_s1_think_options_{feature_name}.md` 中。
@@ -264,7 +264,7 @@ project_root_or_exercise_name/
 ## 后续步骤
 
 1.  审查这份最终的规划文档。
-2.  **选择或创建一个初始故事实例** (例如 `story_example_1/`)。
+2.  **选择或创建一个初始故事实例** (例如 `story_tdd_xxx/`)。
 3.  为该初始故事实例，在对应的 `inputs/` 目录中创建至少一到两个具体的 `user_story_*.md` 文件，与本文档中定义的练习系列类型相匹配。
 
 ## 核心理念与练习框架的步骤映射
