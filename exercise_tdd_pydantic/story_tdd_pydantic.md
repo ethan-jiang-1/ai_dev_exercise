@@ -1,6 +1,6 @@
 # User Story: Pydantic功能练习
 
-> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_bmi/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_bmi/teaching_framework/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_pydantic/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_pydantic/teaching_framework/test_driven_development_with_ai.md`。
 >
 > **实现目录说明**：本练习的实际实现位于 `./tdd_pydantic/` 目录下。
 
