@@ -1,6 +1,8 @@
+> **Note:** All file paths in this document are relative to the exercise's root directory: `exercise_md_er/` (unless otherwise specified).
+
 # User Story: E-commerce Recommendation Engine - part 3
 
-(参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md))
+(参考核心开发理念：[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai_complex.md))
 > **实现目录说明**：本练习的实际实现位于 `./exercise_md_er/` 目录下。
 
 ## 1. User Story (用户故事)
@@ -46,7 +48,7 @@
 
 ```
 exercise_md_er/
-├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
+├── teaching_framework/planning_mds_exercise_complex.md         (框架设计规划与练习类型定义)
 |
 ├── dt_ecommerce_recommendation/       (本故事)
 │   ├── inputs/                           (故事的输入文件)
@@ -70,7 +72,7 @@ exercise_md_er/
 ## 如何使用本故事进行练习
 
 1. **准备**：熟悉本故事背景、业务目标和技术栈。
-2. **选择练习**：查阅 `teaching_framework/planning_mds_exercise_template.md` 中定义的练习类型，选择你想尝试的练习。
+2. **选择练习**：查阅 `teaching_framework/planning_mds_exercise_complex.md` 中定义的练习类型，选择你想尝试的练习。
 3. **定位输入**：根据练习类型的要求，在本故事的 `inputs/` 目录下找到对应的输入文件。
 4. **执行练习**：使用AI助手，根据练习要求处理输入文件。
 5. **保存结果**：将生成的输出保存到 `outputs/` 目录下对应的子目录中。

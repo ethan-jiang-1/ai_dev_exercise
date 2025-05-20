@@ -1,6 +1,8 @@
+> **Note:** All file paths in this document are relative to the exercise's root directory: `exercise_md_mia/` (unless otherwise specified).
+
 # User Story: Medical Imaging Analysis API - part 1
 
-(参考核心开发理念：[思考驱动开发与AI协作](./teaching_framework/thinking_driven_development_with_ai.md))
+(参考核心开发理念：[思考驱动开发与AI协作](./teaching_framework/thinking_driven_development_with_ai_complex.md))
 > **实现目录说明**：本练习的实际实现位于 `./exercise_md_mia/` 目录下。
 
 
@@ -58,7 +60,7 @@
 
 ```
 exercise_md_mia/
-├── teaching_framework/planning_mds_exercise_template.md         (框架设计规划与练习类型定义)
+├── teaching_framework/planning_mds_exercise_complex.md         (框架设计规划与练习类型定义)
 |
 ├── dt_medical_imaging_api/            (本故事)
 │   ├── inputs/                           (故事的输入文件)
@@ -97,7 +99,7 @@ exercise_md_mia/
 ## 如何使用本故事进行练习
 
 1. **准备**：熟悉本故事背景、业务目标和技术栈。
-2. **学习核心理念**：阅读[思考驱动开发与AI协作](teaching_framework/thinking_driven_development_with_ai.md)，理解分步骤思考的重要性。
+2. **学习核心理念**：阅读[思考驱动开发与AI协作](./teaching_framework/thinking_driven_development_with_ai_complex.md)，理解分步骤思考的重要性。
 3. **选择练习**：查阅下方练习列表，选择你想尝试的练习。
 4. **定位输入**：根据练习描述，在本故事的 `inputs/` 目录下找到对应的输入文件。
 5. **执行练习**：使用AI助手，根据练习要求处理输入文件。
