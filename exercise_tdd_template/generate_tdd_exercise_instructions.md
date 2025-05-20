@@ -92,7 +92,7 @@
 
 3.  **可选内容收集 (Optional Content Collection) - 交互式收集:**
     *   **AI**: "核心练习系列已定义完毕。现在，您可以选择为这个故事文件补充一些可选的全局信息。如果您不需要添加某项，可以直接跳过或回复'否'。"
-    *   **AI**: "是否有 **额外的总体故事约束 (Additional Overall Story Constraints)** 需要说明？（例如，特定技术栈的强制使用，或对所有练习的通用限制。对应模板中 `{{ADDITIONAL_STORY_CONSTRAINTS_PLACEHOLDER}}`）"
+    *   **AI**: "是否有 **额外的总体故事约束 (Additional Overall Story Constraints)** 需要说明？（例如，特定技术栈的强制使用，或对所有练习的通用限制。此内容将加入文件头部的约束说明中，每一行都会以'> '开头保持格式。）对应模板中 `{{ADDITIONAL_STORY_CONSTRAINTS_PLACEHOLDER}}`）"
     *   **用户**: `[提供额外约束说明 或 否]`
     *   **AI**: (记录)
     *   **AI**: "这个练习系列是否依赖特定的 **工具包或共享库 (Toolkit or Shared Library)** 需要特别说明其功能？（对应模板中 `{{OPTIONAL_TOOLKIT_DESCRIPTION_PLACEHOLDER}}`）"
@@ -134,7 +134,7 @@
     *   根据用户系统信息提供的绝对路径填充 `{{USER_WORKSPACE_ROOT}}`。
     *   确保 `FeatureName` 的 `CamelCase` 和 `snake_case` 形式根据用户输入（通常是CamelCase）正确派生并用于相应的占位符。
     *   基于故事主题为模板中的 `{{EXAMPLE_FEATURE_NAME_...}}` 占位符生成具有上下文相关性的示例。
-    *   智能处理可选内容的占位符：如果用户没有为某个可选部分提供内容，AI应确保不输出空的或不完整的Markdown结构（例如，移除占位符及其所在的行，或确保该部分在最终文档中被合理地省略）。
+    *   智能处理可选内容的占位符：如果用户没有为某个可选部分提供内容，AI应确保不输出空的或不完整的Markdown结构（例如，移除占位符及其所在的行，或确保该部分在最终文档中被合理地省略）。对于 `{{ADDITIONAL_STORY_CONSTRAINTS_PLACEHOLDER}}`，如果用户提供了内容，AI需确保每行文本前都加上 `> ` 以维持其在模板中的块引用格式。
 *   **核心指南3 - 目录结构指示 (Path representation inside `story_xxx.md`)**: 生成的 `story_xxx.md` 文件应描述每个 `ExTDD_XX_FeatureName` 系列建议的目录结构。这些路径在 `story_xxx.md` 内部应表示为相对于 `story_xxx.md` 文件自身位置的路径，并结合用户确认的"主要实现目录名称"（如 `./[主要实现目录名称]/ExTDD_XX_FeatureName/`）。
 *   **输出文件**: 用户确认的文件名，存放在 `[current_exercise_collection]/` 目录下。
 
@@ -176,4 +176,6 @@
 1.  **AI开场**: AI解释交互式流程。
 2.  **第1阶段 - 设定练习集**: AI与用户对话，确定当前要操作的"练习集" (是现有还是新建)，并确认。
 3.  **第2阶段 - 创建练习故事描述 (`story_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义故事识别信息 (主题、主要实现目录名、故事文件名) 和所有核心练习系列 (FeatureName、核心用户目标)。在此过程中，AI会提供关于规划练习系列和撰写"核心用户需求"的指导。然后，AI声明将使用 `exercise_tdd_template/story_tdd_template.md` 作为结构模板，并结合本指令文档中的撰写指南来生成 `story_xxx.md` 文件，并告知用户生成结果。对每个新故事重复此步骤。
-4.  **第3阶段 - 初始化框架文档**: AI与用户交互确认，同步通用的教学框架模板 (`planning_tdd_exercise.md`
+4.  **第3阶段 - 初始化框架文档**: AI与用户交互确认，同步通用的教学框架模板 (`planning_tdd_exercise.md` 和 `test_driven_development_with_ai.md`) 到练习集内部，并可选择性地为该练习集创建顶级的规划与理念文档，每一步操作都进行沟通。
+
+目标是生成一个结构和内容都符合预期的 `story_xxx.md` 文件，可以直接用于指导学员进行TDD练习。请确保内容满足用户输入，并严格遵循所引用的模板和本文档内的撰写指南，实现结构清晰、风格一致。
