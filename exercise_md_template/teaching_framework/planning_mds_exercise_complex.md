@@ -1,4 +1,5 @@
 # 规划文档：AI+Markdown 练习框架：支持多故事实例
+> 版本 1.0
 
 本文档概述了用于创建一系列 AI+Markdown 练习的**框架设计**。该框架基于 `thinking_driven_development_with_ai.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，同时复用一套通用的**练习类型定义**。重点是使用 AI 处理 Markdown 以完成常见的研发任务。
 
