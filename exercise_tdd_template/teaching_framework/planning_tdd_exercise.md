@@ -1,5 +1,5 @@
 # 规划文档：AI+TDD 练习框架：支持多故事实例
-> 版本: 0.2
+> 版本: 1.0
 
 本文档概述了用于创建一系列 AI 辅助测试驱动开发 (TDD) 练习的**框架设计**。该框架基于 `test_driven_development_with_ai.md` 的核心理念，旨在支持**多个独立的"故事"或"案例场景"**，每个故事包含若干个遵循 TDD 流程的**微功能开发系列 (Exercise Series)**。重点是使用 AI 辅助**系统性地实践 TDD 的 Red-Green-Refactor 循环**，并完成相应的思考和构建环节。
 
@@ -177,7 +177,7 @@ project_root_or_exercise_name/
             *   **输出**: 设计方案 Markdown 文件，包含函数设计、测试设计和实现步骤。
             *   **评估**: 设计是否合理？接口设计是否清晰？测试设计是否全面？
         *   **步骤 3: 验证功能实现思路 (`_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`)**
-            *   **目标**: 验证设计方案的可行性，编写测试用例。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。
+            *   **目标**: 验证设计方案的可行性，编写测试用例。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。在设计这些测试时，如果功能单元依赖其他模块，通常需要运用测试替身（如Mock对象）来隔离依赖，确保测试的焦点。关于如何有效地设计这些单元测试及应用Mocking技术，请参阅《TDD单元测试设计技巧》(`./tdd_unit_test_design_techniques.md`)。
             *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_think_design_{feature_name}.md`
             *   **AI 助手角色**: 测试工程师，帮助验证设计方案、编写测试用例。
             *   **输出**: 验证方案 Markdown 文件和包含单元测试的 Python 文件 (此时运行应失败 - Red)。
