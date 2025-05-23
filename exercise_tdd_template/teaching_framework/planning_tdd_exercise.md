@@ -200,6 +200,31 @@ project_root_or_exercise_name/
 
 ## 如何使用框架进行练习 (用户视角)
 
+#### **关于运行单元测试的重要说明**
+
+本框架中的单元测试文件（`test_{feature_name}.py`）和其对应的被测功能代码文件（`{feature_name}.py`）都位于各自特性练习目录下的 `outputs/` 子目录中 (例如，`./tdd_OverallStoryName/ExTDD_01_FeatureNameA/outputs/`)。
+
+为了确保测试文件能够正确导入同一目录下的被测模块，同时避免在内容生成或编辑过程中频繁手动切换主终端的工作目录，**推荐采用让单元测试命令本身临时改变其执行工作目录的方式**。
+
+例如，在Linux或macOS的bash/zsh环境下，可以这样执行测试：
+
+*   运行特定的测试文件 (例如 `test_FeatureNameA.py`)：
+    ```bash
+    (cd ./tdd_OverallStoryName/ExTDD_01_FeatureNameA/outputs/ && python -m unittest test_FeatureNameA.py)
+    ```
+*   运行指定目录下所有的测试文件 (discover模式)：
+    ```bash
+    (cd ./tdd_OverallStoryName/ExTDD_01_FeatureNameA/outputs/ && python -m unittest discover)
+    ```
+
+**这种方式的工作原理：**
+*   `(...)`：圆括号会创建一个子shell（subshell）。
+*   `cd ./path/to/.../outputs/`：在子shell中，首先临时切换到包含测试和代码文件的 `outputs/` 目录。请将示例路径替换为实际的练习路径。
+*   `python -m unittest ...`：接着，在该 `outputs/` 目录下执行Python的单元测试命令。
+*   当子shell中的命令执行完毕后，子shell会退出，您的主终端工作目录将保持在执行此命令之前的位置，不受影响。
+
+采用这种方法可以有效地避免因Python模块导入错误（`ImportError`）导致的测试失败，并保持您主工作流程的整洁与连贯。
+
 1.  **选择一个故事实例**: 选择一个故事实例目录，例如 `exercise_tdd_xxx/` 或 `exercise_tdd_yyy/`。
 2.  **了解故事背景**: 阅读对应的故事描述文件，例如 `story_tdd_xxx.md` 或 `tdd_pydantic/story_tdd_yyy.md`。
 3.  **选择一个练习系列**: 根据故事中描述的功能，选择对应的 ExTDD 目录，例如 `tdd_bmi_calculator/ExTDD_01_{task_name}/`。
