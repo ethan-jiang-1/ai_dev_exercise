@@ -1,10 +1,12 @@
 # User Story: {{STORY_THEME_TITLE}}
+> 版本: 1.0
 
 > **工作目录说明**：本文档位于 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/teaching_framework/test_driven_development_with_ai.md`。
 >
 > **实现目录说明**：本练习的实际实现位于 `./{{MAIN_IMPLEMENTATION_DIR_NAME}}/` 目录下。
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
+(单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise.md))
 
 ## 1. User Story (用户故事)
