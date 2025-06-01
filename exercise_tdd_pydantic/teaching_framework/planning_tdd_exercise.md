@@ -91,13 +91,13 @@
 
 ## 提议的目录结构 (示意)
 
-本文档中先前描述的目录结构仅为早期构思的示意，旨在说明TDD练习可以如何组织。**所有实际项目开发和TDD练习的代码、测试、以及最终的思考和设计文档，都必须遵循项目根目录下 `migration/overall_folder_structure.md` 文件中定义的统一目录结构。**
+本文档中先前描述的目录结构仅为早期构思的示意，旨在说明TDD练习可以如何组织。**所有实际项目开发和TDD练习的代码、测试、以及最终的思考和设计文档，都必须遵循项目根目录下 `README_folders.md` 文件中定义的统一目录结构。**
 
 该权威文档明确指出：
 - `ai_wellness_advisor/` 是所有生产代码、测试代码、最终用户故事、详细设计文档和配置文件的唯一、权威存放地。
 - 所有 `exercise_tdd_xxx/` 目录（包括本练习所属的 `exercise_tdd_dcnc/`）严格作为TDD练习的“控制器”或“入口点”（静态指南），其内部不包含实际的Python源代码或测试脚本。
 
-因此，在进行本TDD练习时，请参考项目根目录下 `migration/overall_folder_structure.md` 中定义的规范来确定各类文件的正确存放位置，尤其注意所有代码和测试都应在 `ai_wellness_advisor` 项目的相关子目录中创建和修改。
+因此，在进行本TDD练习时，请参考项目根目录下 `README_folders.md` 中定义的规范来确定各类文件的正确存放位置，尤其注意所有代码和测试都应在 `ai_wellness_advisor` 项目的相关子目录中创建和修改。
 
 ## 框架核心文档
 
@@ -116,7 +116,7 @@
     *   **系列目标 (Series Goal)**: 该**类型**的练习系列旨在让用户掌握的 TDD 应用场景或特定功能模式。
     *   **系列复杂度 (Series Complexity)**: 低、中、高，表示该**类型**系列通常涉及的功能复杂度。
     *   **针对该系列的 5 个步骤定义**: (注意：这些步骤共同构成了 TDD 的核心循环)
-        *   **通用输出规范**：所有步骤中生成的思考类Markdown文档（如 `_s1_think_options_...`，`_s2_think_design_...`，`_s3_think_validation_...`），其临时草稿存放于当前练习系列的 `outputs/` 目录下。最终的权威版本将统一归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`。代码文件 (`{feature_name}.py`, `test_{feature_name}.py`) 和最终的函数文档 (`doc_{feature_name}.md`) 的存放位置遵循 `migration/overall_folder_structure.md` 中定义的项目结构。
+        *   **通用输出规范**：所有步骤中生成的思考类Markdown文档（如 `_s1_think_options_...`，`_s2_think_design_...`，`_s3_think_validation_...`），其临时草稿存放于当前练习系列的 `outputs/` 目录下。最终的权威版本将统一归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`。代码文件 (`{feature_name}.py`, `test_{feature_name}.py`) 和最终的函数文档 (`doc_{feature_name}.md`) 的存放位置遵循 `README_folders.md` 中定义的项目结构。
 
         *   **步骤 1: 思考功能实现可选方案 (`_s1_think_options_{feature_name}.md`)**
             *   **目标**: 分析用户故事，识别核心需求、技术挑战和初步实现思路。
