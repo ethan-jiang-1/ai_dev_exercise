@@ -68,22 +68,22 @@
 **阶段四：通过TDD开发第1层和第2层功能 (`core_services`)**
 
 *   **P4_F01_WellnessProfileBuilder_ExecuteTDD**: [ ] 4.1 执行 `ExTDD_01_WellnessProfileBuilder`:
-    *   **P4_F01_S01_GenerateThinkingDocs**: [ ] 4.1.1 遵循 `story_ai_wellness_advisor_core_services.md` 中该练习系列的指引，在 `exercise_ai_wellness_advisor/core_services/ExTDD_01_WellnessProfileBuilder/outputs/` 中生成 `_s1_think_options_wellness_profile_builder.md`, `_s2_think_design_wellness_profile_builder.md`, `_s3_think_validation_wellness_profile_builder.md`。
+    *   **P4_F01_S01_GenerateThinkingDocs_And_Placeholder**: [ ] 4.1.1 遵循 `story_ai_wellness_advisor_core_services.md` 中该练习系列的指引，在 `ai_wellness_advisor/docs/tdd_process_archive/core_services/ExTDD_01_WellnessProfileBuilder/` 中生成实际的思考文档 `_s1_think_options_wellness_profile_builder.md`, `_s2_think_design_wellness_profile_builder.md`, `_s3_think_validation_wellness_profile_builder.md`。同时，在 `exercise_ai_wellness_advisor/tdd_feature_notes/ExTDD_01_WellnessProfileBuilder/` 目录下创建指向这些实际文档的占位符或引用说明文件 (例如，`README.md` 或 `reference_to_actual_docs.md`)。
     *   **P4_F01_S02_CreateTestFile_Red**: [ ] 4.1.2 在 `ai_wellness_advisor/tests/core_services/` 中创建 `test_wellness_profile_builder.py` (Red)。
     *   **P4_F01_S03_CreateSourceFile_Green**: [ ] 4.1.3 在 `ai_wellness_advisor/src/core_services/` 中创建 `wellness_profile_builder.py` (Green)。
-    *   **P4_F01_S04_GenerateFeatureDoc_Refactor**: [ ] 4.1.4 在 `exercise_ai_wellness_advisor/core_services/ExTDD_01_WellnessProfileBuilder/outputs/` 中生成 `doc_wellness_profile_builder.md` (Refactor)。
+    *   **P4_F01_S04_GenerateFeatureDoc_And_Placeholder_Refactor**: [ ] 4.1.4 在 `ai_wellness_advisor/docs/tdd_process_archive/core_services/ExTDD_01_WellnessProfileBuilder/` 中生成实际的特性文档 `doc_wellness_profile_builder.md` (Refactor)。同时，在 `exercise_ai_wellness_advisor/tdd_feature_notes/ExTDD_01_WellnessProfileBuilder/` 目录下的占位符或引用说明文件中更新或添加指向此特性文档的引用。
 *   **P4_F02_PersonalizedAdvisor_ExecuteTDD**: [ ] 4.2 执行 `ExTDD_02_PersonalizedAdvisor`:
-    *   **P4_F02_S01_GenerateThinkingDocs**: [ ] 4.2.1 遵循 `story_ai_wellness_advisor_core_services.md` 中该练习系列的指引，在 `exercise_ai_wellness_advisor/core_services/ExTDD_02_PersonalizedAdvisor/outputs/` 中生成相应的思考、设计、验证文档。
+    *   **P4_F02_S01_GenerateThinkingDocs_And_Placeholder**: [ ] 4.2.1 遵循 `story_ai_wellness_advisor_core_services.md` 中该练习系列的指引，在 `ai_wellness_advisor/docs/tdd_process_archive/core_services/ExTDD_02_PersonalizedAdvisor/` 中生成相应的实际思考、设计、验证文档。同时，在 `exercise_ai_wellness_advisor/tdd_feature_notes/ExTDD_02_PersonalizedAdvisor/` 目录下创建指向这些实际文档的占位符或引用说明文件。
     *   **P4_F02_S02_CreateTestFile_Red**: [ ] 4.2.2 在 `ai_wellness_advisor/tests/core_services/` 中创建 `test_personalized_advisor.py` (Red)。
     *   **P4_F02_S03_CreateSourceFile_Green**: [ ] 4.2.3 在 `ai_wellness_advisor/src/core_services/` 中创建 `personalized_advisor.py` (Green)。
-    *   **P4_F02_S04_GenerateFeatureDoc_Refactor**: [ ] 4.2.4 在 `exercise_ai_wellness_advisor/core_services/ExTDD_02_PersonalizedAdvisor/outputs/` 中生成相应的文档 (Refactor)。
+    *   **P4_F02_S04_GenerateFeatureDoc_And_Placeholder_Refactor**: [ ] 4.2.4 在 `ai_wellness_advisor/docs/tdd_process_archive/core_services/ExTDD_02_PersonalizedAdvisor/` 中生成相应的实际特性文档 (Refactor)。同时，在 `exercise_ai_wellness_advisor/tdd_feature_notes/ExTDD_02_PersonalizedAdvisor/` 目录下的占位符或引用说明文件中更新或添加指向此特性文档的引用。
     *   **LLM协作注意事项 (阶段四 - 针对每个ExTDD练习):**
         *   **TDD流程引导**: 在每个练习（如 `ExTDD_01_WellnessProfileBuilder`）开始时，明确告知LLM当前处于TDD的哪个阶段（Red, Green, Refactor），并给出该阶段的具体任务。
-        *   **Red (编写测试)**: 要求LLM根据用户需求编写测试用例。人工审查测试的覆盖率和有效性。LLM应先创建测试文件并写入测试代码，此时运行测试预期失败。
-        *   **Green (编写代码)**: 要求LLM编写最小化的功能代码以使测试通过。LLM创建或修改源代码文件。运行测试预期通过。
-        *   **Refactor (重构与文档)**: 指导LLM对代码进行重构（如改进结构、消除重复、提高可读性），并生成必要的文档。此阶段不应破坏测试。
+        *   **Red (编写测试)**: 要求LLM根据用户需求编写测试用例。人工审查测试的覆盖率和有效性。LLM应先创建测试文件并写入测试代码，此时运行测试预期失败。测试文件创建于 `ai_wellness_advisor/tests/core_services/`。
+        *   **Green (编写代码)**: 要求LLM编写最小化的功能代码以使测试通过。LLM创建或修改源代码文件。运行测试预期通过。源代码文件创建于 `ai_wellness_advisor/src/core_services/`。
+        *   **Refactor (重构与文档)**: 指导LLM对代码进行重构（如改进结构、消除重复、提高可读性），并生成必要的文档。此阶段不应破坏测试。实际的TDD过程文档（思考、设计、特性文档）生成在 `ai_wellness_advisor/docs/tdd_process_archive/core_services/{FeatureName}/`，并在 `exercise_ai_wellness_advisor/tdd_feature_notes/{FeatureName}/` 中创建或更新引用。
         *   **Pydantic与LLM工具集应用**: 在开发 `WellnessProfileBuilder` 时，明确指示LLM使用Pydantic模型定义数据结构。在开发 `PersonalizedAdvisor` 时，明确指示LLM如何调用先前建立的LLM API工具集。
-        *   **文件路径精确性**: 始终确保LLM在正确的文件路径下操作（思考文档在 `exercise_.../outputs/`，代码在 `ai_wellness_advisor/src/...`，测试在 `ai_wellness_advisor/tests/...`）。
+        *   **文件路径精确性**: 始终确保LLM在正确的文件路径下操作：实际的TDD思考和特性文档在 `ai_wellness_advisor/docs/tdd_process_archive/core_services/{FeatureName}/`；占位符/引用文档在 `exercise_ai_wellness_advisor/tdd_feature_notes/{FeatureName}/`；代码在 `ai_wellness_advisor/src/core_services/`；测试在 `ai_wellness_advisor/tests/core_services/`。
 
 **阶段五：整合与完善**
 

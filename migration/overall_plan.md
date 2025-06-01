@@ -8,7 +8,116 @@
 
 当前我们拥有多个独立的TDD练习项目（`exercise_tdd_bmi`、`exercise_tdd_dcnc`、`exercise_tdd_pydantic`、`exercise_tdd_llm`），它们分别代表了“AI个性化健康顾问”这个“大故事”中的基础功能模块（可视为**第0层**的小故事）。
 
-**核心迁移思想**是将这些分散的、独立的TDD练习产出物（源代码、测试、文档）整合到一个**统一的、新的顶级项目目录**中（暂定名为 `ai_wellness_advisor`）。这个统一的项目将承载我们构建“AI个性化健康顾问”的完整应用。
+**核心迁移思想**是将这些分散的、独立的TDD练习产出物（源代码、测试、文档）整合到一个**统一的、新的顶级项目目录**中（暂定名为 `ai_wellness_advisor`）。这个统一的 `ai_wellness_advisor` 项目将是**所有生产代码、测试、最终文档和配置的唯一存放地**，承载我们构建“AI个性化健康顾问”的完整应用。与之相对，所有 `exercise_xxx` 目录（包括现有的和新增的）都将严格定位为**静态的TDD练习指南/启动器**，其内部不包含任何实际的、动态的生产内容。
+
+**建议的 `ai_wellness_advisor` 项目目录结构：**
+
+```
+ai_wellness_advisor/
+├── .gitignore
+├── README.md
+├── requirements.txt  # 或者 pyproject.toml
+├── src/                # 所有Python模块源代码
+│   ├── __init__.py
+│   ├── bmi/            # BMI计算器模块 (第0层)
+│   │   ├── __init__.py
+│   │   └── calculator.py
+│   ├── dcnc/           # DCNC模块 (第0层)
+│   │   ├── __init__.py
+│   │   └── calculator.py
+│   ├── pydantic_models/ # Pydantic模型 (第0层，或按需组织)
+│   │   ├── __init__.py
+│   │   └── user_profile_models.py # 示例
+│   ├── llm_clients/    # LLM API客户端 (第0层)
+│   │   ├── __init__.py
+│   │   └── openai_client.py   # 示例
+│   ├── core_services/  # 核心服务 (第1层和第2层)
+│   │   ├── __init__.py
+│   │   ├── wellness_profile_builder.py
+│   │   └── personalized_advisor.py
+│   └── main.py         # 应用主入口 (可选)
+├── tests/              # 所有Python测试代码
+│   ├── __init__.py
+│   ├── bmi/
+│   │   ├── __init__.py
+│   │   └── test_calculator.py
+│   ├── dcnc/
+│   │   ├── __init__.py
+│   │   └── test_calculator.py
+│   ├── pydantic_models/
+│   │   ├── __init__.py
+│   │   └── test_user_profile_models.py
+│   ├── llm_clients/
+│   │   ├── __init__.py
+│   │   └── test_openai_client.py
+│   ├── core_services/
+│   │   ├── __init__.py
+│   │   ├── test_wellness_profile_builder.py
+│   │   └── test_personalized_advisor.py
+│   └── test_integration.py # 集成测试 (可选)
+├── docs/               # 项目级文档、架构图等
+│   ├── architecture.md
+│   ├── user_stories/   # 所有模块的用户故事/需求文档
+│   │   ├── bmi_story.md
+│   │   ├── dcnc_story.md
+│   │   ├── pydantic_story.md
+│   │   ├── llm_clients_story.md
+│   │   └── core_services_story.md # 对应 exercise_ai_wellness_advisor
+│   └── tdd_process_archive/ # TDD过程中的思考和设计文档归档
+│       ├── bmi/
+│       │   └── ExTDD_01_BMICalculator/
+│       ├── dcnc/
+│       │   └── ExTDD_01_CalculateBMR/
+│       └── core_services/
+│           ├── ExTDD_01_WellnessProfileBuilder/
+│           └── ExTDD_02_PersonalizedAdvisor/
+└── scripts/            # 辅助脚本 (例如：数据迁移、部署脚本等，可选)
+
+```
+
+**整体项目顶级目录结构概览 (`/Users/bowhead/ai_dev_exercise_tdd/`)：**
+
+```
+/Users/bowhead/ai_dev_exercise_tdd/
+├── ai_wellness_advisor/      # 新的统一应用项目 (如上文详细结构所示)
+│   ├── .gitignore
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── src/
+│   ├── tests/
+│   └── docs/
+├── exercise_tdd_bmi/         # BMI计算器的TDD练习入口与指南
+│   ├── story_tdd_bmi_calculator.md
+│   └── teaching_framework/
+├── exercise_tdd_dcnc/        # DCNC的TDD练习入口与指南
+│   ├── story_dcnc_daily_caloric_needs_calculator.md
+│   └── teaching_framework/
+├── exercise_tdd_llm/         # LLM工具集的TDD练习入口与指南
+│   ├── story_tdd_llm_exercises.md
+│   └── teaching_framework/
+├── exercise_tdd_pydantic/    # Pydantic模型的TDD练习入口与指南
+│   ├── story_tdd_pydantic.md
+│   └── teaching_framework/
+├── exercise_ai_wellness_advisor/ # 核心服务层的TDD练习入口与指南 (第1、2层)
+│   ├── story_ai_wellness_advisor_core_services.md
+│   └── teaching_framework/
+├── exercise_tdd_template/    # TDD练习模板
+│   └── ...
+├── migration/                # 迁移计划文档
+│   ├── overall_plan.md
+│   └── execution_plan.md
+└── utils_llm/                # LLM基础工具 (可能部分会并入 ai_wellness_advisor/src/llm_clients)
+    └── ...
+```
+
+**重要原则再次强调:**
+*   **`ai_wellness_advisor/` 是我们构建的实际应用程序，是所有生产代码、测试代码、最终用户故事、详细设计文档和配置文件的唯一、权威存放地。**
+*   **所有 `exercise_tdd_xxx/` 和 `exercise_ai_wellness_advisor/` 目录严格作为TDD练习的“控制器”或“入口点”（静态指南）。** 它们内部主要包含：
+    *   高级别的用户故事 (`story_xxx.md`)，用于启动和指导TDD练习。
+    *   指向 `ai_wellness_advisor/` 内部对应模块代码、测试和详细文档的明确引用或链接。
+    *   通用的TDD教学材料 (`teaching_framework/`)。
+    *   **绝不包含任何实际的Python源代码、测试脚本或重复的详细设计文档。** 所有这些动态的、演进的内容都必须位于 `ai_wellness_advisor/` 项目中。
+*   简而言之：`exercise_xxx` 目录是“静态的地图和指南”，而 `ai_wellness_advisor` 是“动态的城市本身”。
 
 **转变与定位：**
 
@@ -50,19 +159,22 @@
     *   **核心用户需求**: “作为健康顾问系统，我需要能够基于用户的健康档案（包含BMI、DCNC计算结果、生活习惯、目标等），利用LLM的智能分析能力，为用户生成个性化的健康评估、风险提示、饮食建议和运动计划。建议需要具体、可操作，并能以友好的方式呈现给用户。”
     *   **涉及层面**: 第2层 - 个性化建议与交互
 
-**产出物位置：**
+**产出物位置与原则（再次强调以避免歧义）：**
 
-*   `exercise_ai_wellness_advisor` 目录将包含 `story_ai_wellness_advisor_core_services.md` 以及遵循TDD流程产生的思考文档 (`_s1_think_options_xxx.md` 等)。
-*   **但是，所有实际的Python源代码 (`wellness_profile_builder.py`, `personalized_advisor.py` 等) 和测试代码 (`test_wellness_profile_builder.py`, `test_personalized_advisor.py` 等) 将直接创建和存放在统一的 `ai_wellness_advisor` 项目的相应模块目录下** (例如 `ai_wellness_advisor/src/core_services/` 和 `ai_wellness_advisor/tests/core_services/`)。
+*   **`exercise_ai_wellness_advisor` 目录的铁律**：**严格作为TDD练习的静态“启动器”和“指南”**。它本身**绝对不应包含、也绝不能包含任何重复的生产代码、测试代码或最终的详细设计文档。** 其全部价值在于提供练习的上下文和入口。
+*   该目录主要包含且仅应包含：
+    *   `story_ai_wellness_advisor_core_services.md`：定义用户故事、TDD练习目标和高级步骤。这是练习的起点。
+    *   `tdd_feature_notes/`：此目录下的 `.md` 文件（例如 `ExTDD_01_WellnessProfileBuilder.md`）**必须**作为**纯粹的占位符或高级别指引**。它们的作用是简述对应Feature的TDD练习核心要点，并**强制性地、清晰地引用或链接**到 `ai_wellness_advisor/docs/tdd_process_archive/core_services/` 中对应Feature的**唯一、权威的**详细思考、设计文档和TDD过程记录。
+    *   `teaching_framework/`：包含对通用TDD教学和规划方法论文档的引用，或者在必要时存放这些文档的静态副本（如果它们不适合放在 `ai_wellness_advisor/docs` 中）。
+*   **所有实际的、可执行的Python源代码** (例如 `wellness_profile_builder.py`, `personalized_advisor.py`) **和所有对应的、可运行的测试代码** (例如 `test_wellness_profile_builder.py`, `test_personalized_advisor.py`) **必须、也只能直接创建和存放在统一的 `ai_wellness_advisor` 项目的相应模块目录下** (例如 `ai_wellness_advisor/src/core_services/` 和 `ai_wellness_advisor/tests/core_services/`)。**这是不可动摇的原则。**
+*   **所有TDD过程中的详细思考、设计决策、代码片段演化、遇到的问题与解决方案等文档**，在对应Feature的TDD练习过程中产生后，**必须、也只能最终整理并归档到 `ai_wellness_advisor/docs/tdd_process_archive/core_services/` 下对应的Feature目录中**。`exercise_ai_wellness_advisor/tdd_feature_notes/` 中的文件仅仅是这些权威归档文档的“路标”或“索引入口”，绝非内容副本。
 
-## 3. LLM协作漂移风险及应对策略 (通用指南)
+## 3. LLM协作漂移风险及应对策略 (核心要点)
 
-在执行这种多步骤、长周期的项目计划时，特别是与LLM深度协作时，“上下文漂移”或“指令遗忘”是一个需要关注的风险。以下是一些通用应对策略，适用于后续的执行计划：
+与LLM协作执行长周期计划时，为防范“上下文漂移”或“指令遗忘”，核心应对策略如下：
 
-*   **明确的阶段性目标与核对清单**: 将整个计划分解为具有明确输入、输出和验收标准的阶段。每个阶段开始前，重申该阶段的目标和关键任务。完成后，对照核对清单进行检查。
-*   **状态的显式传递与持久化**: 对于跨越多轮交互的任务，可以将关键的上下文信息（如当前模块、已完成步骤、下一步骤的关键参数等）明确地传递给LLM，或者记录在共享的临时文档中，让LLM在需要时查阅。
-*   **“心跳”式检查与纠偏**: 在长时间任务执行过程中，可以设置一些“心跳”式的检查点，主动询问LLM当前的任务理解、进度和遇到的问题，及时发现并纠正偏差。
-*   **指令的简洁与聚焦**: 避免一次性给LLM下达过于复杂或包含过多子任务的指令。尽量让每个指令聚焦于一个可管理的操作单元。
-*   **利用版本控制进行回溯**: 对于代码和文档的修改，充分利用Git等版本控制系统。在LLM执行了重要修改后，及时提交。如果发现严重漂移或错误，可以方便地回溯到上一个稳定版本。
-*   **逐步构建与迭代**: 优先完成核心路径和关键模块的迁移与开发，形成一个可工作的最小版本，然后在此基础上逐步迭代和完善其他部分。这有助于降低一次性完成所有任务的复杂度和风险。
-*   **日志与记录**: 详细记录与LLM的交互过程、LLM的关键输出以及人工的决策和修正，这有助于在出现问题时进行分析和追溯，也是改进协作流程的宝贵资料。
+*   **目标明确与分解**: 设定清晰的阶段性目标，并将任务分解为小而可管理的单元。
+*   **上下文维持**: 在多轮交互中，主动提醒LLM关键上下文信息。
+*   **简洁指令**: 给予LLM简洁、聚焦的指令，避免单次任务过于复杂。
+*   **增量验证与迭代**: 频繁检查LLM的输出，小步快跑，及时纠偏，利用版本控制回溯。
+*   **人工监督**: 关键决策和最终确认由人工负责。
