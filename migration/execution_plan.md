@@ -9,6 +9,8 @@
 *   **错误处理与迭代**：如果LLM的输出不符合预期，需要有机制进行反馈、修正指令并要求LLM重试。
 *   **人类监督与决策**：对于设计决策、复杂逻辑判断或最终确认等环节，仍需人工介入和把关。
 
+详细的项目目录结构请查阅：[`overall_folder_structure.md`](./overall_folder_structure.md)
+
 ## 执行步骤 (TodoList)
 
 **阶段一：搭建统一项目基础 (`ai_wellness_advisor`)**

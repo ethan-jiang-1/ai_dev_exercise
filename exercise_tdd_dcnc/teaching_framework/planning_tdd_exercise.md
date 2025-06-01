@@ -80,64 +80,15 @@
 *   遵循 TDD 流程，能够基于测试生成代码，并进行重构的能力。
 *   Markdown 渲染和生成技能。
 
-## 提议的目录结构 (支持多故事, 只是示范, 参考, 指导目录结构而已)
+## 提议的目录结构 (示意)
 
-```
-project_root_or_exercise_name/
-├── teaching_framework/                     (框架文档目录)
-│   ├── test_driven_development_with_ai.md  (思考驱动开发核心理念)
-│   └── planning_tdd_exercise.md            (本文件 - TDD 练习框架设计规划)
-|
-├── story_tdd_OverallStoryName.md           (某个具体"大故事"或"项目"的总体描述)
-│
-├── tdd_OverallStoryName/                   (针对 "OverallStoryName" 的TDD练习目录)
-│   ├── story_tdd_OverallStoryName.md       (该故事的详细描述或副本)
-│   ├── README.md                           (当前故事的总体说明和目标)
-│   │
-│   ├── ExTDD_01_FeatureNameA/              (第一个具体功能点/模块的练习)
-│   │   ├── constraints/                    (约束文件目录)
-│   │   │   └── task_constraints.md         (当前功能点的特定约束)
-│   │   ├── inputs/                         (输入文件目录)
-│   │   │   ├── test_data.json              (或 relevant_input_data.{ext})
-│   │   │   └── user_story.md               (当前功能点的用户故事片段/需求)
-│   │   ├── outputs/                        (输出文件 - TDD步骤产物)
-│   │   │   ├── _s1_think_options_FeatureNameA.md
-│   │   │   ├── _s2_think_design_FeatureNameA.md
-│   │   │   ├── _s3_think_validation_FeatureNameA.md
-│   │   │   ├── FeatureNameA.{ext}          (例如: FeatureNameA.py, FeatureNameA.js)
-│   │   │   ├── test_FeatureNameA.{ext}     (例如: test_FeatureNameA.py)
-│   │   │   └── doc_FeatureNameA.md
-│   │   └── README.md                       (当前功能点 ExTDD_01_FeatureNameA 的练习说明)
-│   │
-│   ├── ExTDD_02_FeatureNameB/              (第二个具体功能点/模块的练习)
-│   │   ├── constraints/
-│   │   ├── inputs/
-│   │   ├── outputs/                        (与 ExTDD_01_FeatureNameA/outputs/ 结构类似)
-│   │   │   ├── _s1_think_options_FeatureNameB.md
-│   │   │   ├── _s2_think_design_FeatureNameB.md
-│   │   │   ├── _s3_think_validation_FeatureNameB.md
-│   │   │   ├── FeatureNameB.{ext}
-│   │   │   ├── test_FeatureNameB.{ext}
-│   │   │   └── doc_FeatureNameB.md
-│   │   └── README.md                       (当前功能点 ExTDD_02_FeatureNameB 的练习说明)
-│   │
-│   ├── ... (更多 ExTDD_XX_FeatureNameX 目录，代表更多功能点)
-│
-├── tdd_AnotherStoryName/                   (另一个完整"大故事"的TDD练习目录)
-│   ├── story_tdd_AnotherStoryName.md
-│   ├── README.md
-│   ├── ExTDD_01_SomeOtherFeatureY/
-│   │   └── ... (结构同上)
-│   └── ...
-│
-└── ... (可以添加更多顶级故事实例目录 tdd_XYZStoryName)
-```
+本文档中先前描述的目录结构仅为早期构思的示意，旨在说明TDD练习可以如何组织。**所有实际项目开发和TDD练习的代码、测试、以及最终的思考和设计文档，都必须遵循项目根目录下 `migration/overall_folder_structure.md` 文件中定义的统一目录结构。**
 
-*说明*:
-- 每个"大故事"实例 (例如 `tdd_OverallStoryName`, `tdd_AnotherStoryName`) 都在项目根目录级别有一个对应的总体故事描述文件 (如 `story_tdd_OverallStoryName.md`)，并且在其各自的 `tdd_OverallStoryName/` 目录下也会有一个详细的故事描述文件 (可以是副本或更细化的版本)。
-- 每个具体的功能点练习都组织在 `ExTDD_XX_FeatureName/` 目录下，包含该功能点开发所需的特定约束、输入数据和最终的输出产物。
-- 每个功能点练习的 TDD 流程都体现在其 `outputs/` 目录下的系列文件中，通常包括：思考选项 (`_s1_think_options_...`), 思考设计 (`_s2_think_design_...`), 思考验证 (`_s3_think_validation_...`), 功能实现代码 (`FeatureName.{ext}`), 测试代码 (`test_FeatureName.{ext}`), 和相关文档 (`doc_FeatureName.md`)。文件扩展名 (`.{ext}`) 会根据实际项目所用的技术栈 (如 Python 的 `.py`, JavaScript 的 `.js` 等) 而变化。
-- 这种结构旨在清晰地分离不同故事和同一故事内不同功能点的开发过程，并完整记录TDD的每一个思考和实现步骤。
+该权威文档明确指出：
+- `ai_wellness_advisor/` 是所有生产代码、测试代码、最终用户故事、详细设计文档和配置文件的唯一、权威存放地。
+- 所有 `exercise_tdd_xxx/` 目录（包括本练习所属的 `exercise_tdd_dcnc/`）严格作为TDD练习的“控制器”或“入口点”（静态指南），其内部不包含实际的Python源代码或测试脚本。
+
+因此，在进行本TDD练习时，请参考项目根目录下 `migration/overall_folder_structure.md` 中定义的规范来确定各类文件的正确存放位置，尤其注意所有代码和测试都应在 `ai_wellness_advisor` 项目的相关子目录中创建和修改。
 
 ## 框架文件说明
 
@@ -168,31 +119,31 @@ project_root_or_exercise_name/
             *   **目标**: 分析用户故事，识别核心需求、技术挑战和初步实现思路。
             *   **输入模式**: `inputs/user_story.md`
             *   **AI 助手角色**: 分析师，帮助理解需求、识别边界、提出初步方案。
-            *   **输出**: 包含分析结果和可选实现方案的 Markdown 文件。
+            *   **输出**: 包含分析结果和可选实现方案的 Markdown 文件 (临时草稿存放于练习目录的 `outputs/` 下，最终权威版本归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`)。
             *   **评估**: 是否准确识别需求和挑战？方案是否初步可行？
         *   **步骤 2: 设计功能实现方案 (`_s2_think_design_{feature_name}.md`)**
             *   **目标**: 将思路具体化为设计方案，设计函数接口，规划实现步骤。
             *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s1_think_options_{feature_name}.md`
             *   **AI 助手角色**: 设计师/规划师，帮助详细设计功能的实现方案。
-            *   **输出**: 设计方案 Markdown 文件，包含函数设计、测试设计和实现步骤。
+            *   **输出**: 设计方案 Markdown 文件，包含函数设计、测试设计和实现步骤 (临时草稿存放于练习目录的 `outputs/` 下，最终权威版本归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`)。
             *   **评估**: 设计是否合理？接口设计是否清晰？测试设计是否全面？
         *   **步骤 3: 验证功能实现思路 (`_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`)**
             *   **目标**: 验证设计方案的可行性，编写测试用例。**这是 TDD 的 "Red" 阶段的准备工作，目标是编写一个（或一组）会失败的测试**。
             *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s2_think_design_{feature_name}.md`
             *   **AI 助手角色**: 测试工程师，帮助验证设计方案、编写测试用例。
-            *   **输出**: 验证方案 Markdown 文件和包含单元测试的 Python 文件 (此时运行应失败 - Red)。
+            *   **输出**: 验证方案 Markdown 文件 (临时草稿存放于练习目录的 `outputs/` 下，最终权威版本归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`)。对应的测试代码 `test_{feature_name}.py` 直接创建于 `ai_wellness_advisor/tests/{module_name}/` (此时运行应失败 - Red)。
             *   **评估**: 测试用例是否覆盖主要路径和边界？测试是否可以正确运行？
         *   **步骤 4: 功能实现代码 (`{feature_name}.py`)**
             *   **目标**: 编写刚好能通过所有测试的功能代码。**这是 TDD 的 "Green" 阶段，目标是让之前失败的测试通过**。
             *   **输入模式**: `outputs/ExTDD_XX_FeatureName/_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`
             *   **AI 助手角色**: 开发者，根据测试用例编写功能代码，使其通过测试 (Green)。
-            *   **输出**: 包含通过测试的功能代码的 Python 文件。
+            *   **输出**: 包含通过测试的功能代码的 Python 文件 (`{feature_name}.py`)，直接创建于 `ai_wellness_advisor/src/{module_name}/`。
             *   **评估**: 是否所有测试都通过？代码是否简洁且仅满足测试需求？
         *   **步骤 5: 函数文档完善 (`doc_{feature_name}.md`)**
             *   **目标**: 整理文档，说明函数用途、接口和使用示例。**这是 TDD 的 "Refactor" 阶段，在测试保护下完善文档和代码**。
             *   **输入模式**: `outputs/ExTDD_XX_FeatureName/{feature_name}.py`, `test_{feature_name}.py`
             *   **AI 助手角色**: 文档工程师/重构师，帮助完善文档、优化代码 (Refactor)。
-            *   **输出**: 完整的 API 文档 Markdown 文件。
+            *   **输出**: 完整的 API 文档 Markdown 文件 (`doc_{feature_name}.md`)，最终归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`。
             *   **评估**: 文档是否清晰准确？使用示例是否充分？
 3.  **为具体故事创建输入用户故事**: 在每个故事实例的练习系列目录下的 `inputs/` 目录中，创建 `user_story.md` 文件，描述该练习系列的具体功能需求。
 4.  **创建任务约束文件**: 在每个故事实例的练习系列目录下的 `constraints/` 目录中，创建 `task_constraints.md` 文件，描述该功能实现的具体约束条件。
@@ -207,9 +158,9 @@ project_root_or_exercise_name/
 5.  **按步骤执行 TDD 流程**:
    *   **步骤 1**: 思考功能实现的可选方案，将思考过程记录在 `outputs/_s1_think_options_{feature_name}.md` 中。
    *   **步骤 2**: 设计功能实现方案，记录在 `outputs/_s2_think_design_{feature_name}.md` 中。
-   *   **步骤 3**: 验证功能实现思路并编写测试代码，记录验证思路在 `outputs/_s3_think_validation_{feature_name}.md` 中，编写测试代码 `outputs/test_{feature_name}.py`。运行测试，确认失败 (Red)。
-   *   **步骤 4**: 实现功能代码 `outputs/{feature_name}.py`，使其通过测试 (Green)。
-   *   **步骤 5**: 完善文档 `outputs/doc_{feature_name}.md` (Refactor)。
+   *   **步骤 3**: 验证功能实现思路并编写测试代码。将验证思路的临时草稿记录在练习目录的 `outputs/_s3_think_validation_{feature_name}.md` 中 (最终归档至 `ai_wellness_advisor`)。在 `ai_wellness_advisor/tests/{module_name}/` 目录下编写测试代码 `test_{feature_name}.py`。运行测试，确认失败 (Red)。
+   *   **步骤 4**: 在 `ai_wellness_advisor/src/{module_name}/` 目录下实现功能代码 `{feature_name}.py`，使其通过测试 (Green)。
+   *   **步骤 5**: 在 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/` 目录下完善文档 `doc_{feature_name}.md` (Refactor)。
 6.  **反思与评估**: 参考每个步骤的评估要点，反思 TDD 流程的应用和 AI 辅助的效果。
 7.  **继续下一个练习**: 选择同一故事中的下一个练习系列，或者选择另一个故事实例，重复步骤 3-6。
 
@@ -240,12 +191,13 @@ project_root_or_exercise_name/
 3. **文件命名**：
    - 思考文件：`_s{step}_{type}_{feature_name}.md`
      - 示例：`_s1_think_options_bmi_calculate.md`
-   - 代码文件：`{feature_name}.py`
-     - 示例：`bmi_calculate.py`, `api_data_validator.py`
-   - 测试文件：`test_{feature_name}.py`
-     - 示例：`test_bmi_calculate.py`
-   - 文档文件：`doc_{feature_name}.md`
-     - 示例：`doc_bmi_calculate.md`
+   - 代码文件：`{feature_name}.py` (位于 `ai_wellness_advisor/src/{module_name}/`)
+     - 示例：`ai_wellness_advisor/src/bmi/bmi_calculate.py`, `ai_wellness_advisor/src/core_services/api_data_validator.py`
+   - 测试文件：`test_{feature_name}.py` (位于 `ai_wellness_advisor/tests/{module_name}/`)
+     - 示例：`ai_wellness_advisor/tests/bmi/test_bmi_calculate.py`
+   - 文档文件：`doc_{feature_name}.md` (最终归档于 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`)
+     - 示例：`ai_wellness_advisor/docs/tdd_process_archive/bmi/ExTDD_01_BMICalculation/doc_bmi_calculate.md`
+   - 思考文件：`_s{step}_{type}_{feature_name}.md` (临时草稿存放于练习目录的 `outputs/` 下，最终权威版本归档至 `ai_wellness_advisor/docs/tdd_process_archive/{module_name}/ExTDD_XX_FeatureName/`)
 
 4. **用户故事和约束文件**：
    - 用户故事：`user_story.md`
