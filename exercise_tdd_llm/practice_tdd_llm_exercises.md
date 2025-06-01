@@ -1,4 +1,4 @@
-# User Story: LLM API调用练习系列
+# Practice: LLM API调用练习系列
 
 > **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_llm/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_llm/teaching_framework/test_driven_development_with_ai.md`。
 

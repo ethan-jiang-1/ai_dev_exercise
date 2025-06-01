@@ -1,4 +1,4 @@
-# User Story: Simple BMI Calculator
+# Practice: Simple BMI Calculator
 
 > **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_bmi/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md`。
 > 

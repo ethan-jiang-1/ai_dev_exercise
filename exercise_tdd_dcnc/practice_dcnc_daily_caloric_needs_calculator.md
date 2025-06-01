@@ -1,4 +1,4 @@
-# User Story: 每日所需热量计算器 (Daily Caloric Needs Calculator)
+# Practice: 每日所需热量计算器 (Daily Caloric Needs Calculator)
 
 > **工作目录说明**：本文档位于 /Users/bowhead/ai_dev_exercise/exercise_tdd_dcnc/ 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_dcnc/teaching_framework/test_driven_development_with_ai.md`。
 >
