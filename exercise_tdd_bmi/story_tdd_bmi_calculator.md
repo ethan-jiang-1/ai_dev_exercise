@@ -42,17 +42,17 @@
 每个TDD练习周期（例如 `ExTDD_01_BMICalculation`）的产出物，归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_XX_FeatureName/` 目录下，其内部结构**必须, 一定**包含：
 
 ```
-ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_XX_FeatureName/
+ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 ├── constraints/                    # (Constraints) 约束条件
-│   └── {feature_name}_constraints.md # (Task Constraints) 任务特定约束 (注意: 文件名已更新)
-├── outputs/                       # (Outputs) 输出文件
-│   ├── _s1_think_options_{feature_name}.md
-│   ├── _s2_think_design_{feature_name}.md
-│   ├── _s3_think_validation_{feature_name}.md
-│   ├── {feature_name}.py             # 实际代码 (最终会整合到 ai_wellness_advisor/src/bmi/)
-│   ├── test_{feature_name}.py        # 实际测试 (最终会整合到 ai_wellness_advisor/tests/bmi/)
-│   └── doc_{feature_name}.md         # 特性相关文档
-└── README.md                      # (README) TDD本周期的练习说明、总结
+│   └── {feature_name}_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
+├── outputs/                       # (Outputs) TDD周期内的主要产出物
+│   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
+│   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
+│   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
+│   ├── {feature_name}.py             # TDD周期中实现的功能代码。此文件是过程性产出，其稳定版本最终会整合到 ai_wellness_advisor/src/exercise_name/{feature_name}.py 模块中。
+│   ├── test_{feature_name}.py        # TDD周期中编写的单元测试代码。此文件是过程性产出，其稳定版本最终会整合到 ai_wellness_advisor/tests/exercise_name/test_{feature_name}.py 模块中。
+│   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
+└── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
 
 **请注意**：
@@ -71,14 +71,15 @@ feature_name: bmi_calculate
 ```
 ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_01_BMICalculation/
 ├── constraints/
-│   └── bmi_calculate_constraints.md # BMI计算的特定约束
-└── outputs/
-    ├── _s1_think_options_bmi_calculate.md
-    ├── _s2_think_design_bmi_calculate.md
-    ├── _s3_think_validation_bmi_calculate.md
-    ├── bmi_calculate.py
-    ├── test_bmi_calculate.py
-    └── doc_bmi_calculate.md
+│   └── bmi_calculate_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
+├── outputs/
+│   ├── _s1_think_options_bmi_calculate.md  # 思考过程：方案选择与分析。
+│   ├── _s2_think_design_bmi_calculate.md   # 思考过程：详细设计。
+│   ├── _s3_think_validation_bmi_calculate.md # 思考过程：验证和测试点设计。
+│   ├── bmi_calculate.py             # TDD周期中实现的功能代码。此文件是过程性产出，其稳定版本最终会整合到 ai_wellness_advisor/src/bmi/bmi_calculate.py 模块中。
+│   ├── test_bmi_calculate.py        # TDD周期中编写的单元测试代码。此文件是过程性产出，其稳定版本最终会整合到 ai_wellness_advisor/tests/bmi/test_bmi_calculate.py 模块中。
+│   └── doc_bmi_calculate.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
+└── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
 
 #### 核心用户需求 (ExTDD_01_BMICalculation)
@@ -94,14 +95,15 @@ feature_name: bmi_categorize
 ```
 ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_02_BMICategorization/
 ├── constraints/
-│   └── bmi_categorize_constraints.md # BMI分类的特定约束
-└── outputs/
-    ├── _s1_think_options_bmi_categorize.md
-    ├── _s2_think_design_bmi_categorize.md
-    ├── _s3_think_validation_bmi_categorize.md
-    ├── bmi_categorize.py
-    ├── test_bmi_categorize.py
-    └── doc_bmi_categorize.md
+│   └── bmi_categorize_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
+├── outputs/
+│   ├── _s1_think_options_bmi_categorize.md  # 思考过程：方案选择与分析。
+│   ├── _s2_think_design_bmi_categorize.md   # 思考过程：详细设计。
+│   ├── _s3_think_validation_bmi_categorize.md # 思考过程：验证和测试点设计。
+│   ├── bmi_categorize.py             # TDD周期中实现的功能代码。此文件是过程性产出，其稳定版本最终会整合到 ai_wellness_advisor/src/bmi/bmi_categorize.py 模块中。
+│   ├── test_bmi_categorize.py        # TDD周期中编写的单元测试代码。此文件是过程性产出，其稳定版本最终会整合到 ai_wellness_advisor/tests/bmi/test_bmi_categorize.py 模块中。
+│   └── doc_bmi_categorize.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
+└── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
 
 #### 核心用户需求 (ExTDD_02_BMICategorization)

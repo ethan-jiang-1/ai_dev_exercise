@@ -44,11 +44,11 @@ ai_wellness_advisor/
 ├── docs/               # (Documentation) 项目级文档、架构图等
 │   ├── architecture.md
 │   ├── user_stories/   # (User Stories) 所有模块的用户故事/需求文档
-│   │   ├── bmi_story.md
-│   │   ├── dcnc_story.md
-│   │   ├── pydantic_story.md
-│   │   ├── llm_clients_story.md
-│   │   └── core_services_story.md # 对应 exercise_ai_wellness_advisor
+│   │   ├── bmi_story_featureN.md
+│   │   ├── dcnc_story_featureN.md
+│   │   ├── pydantic_story_featureN.md
+│   │   ├── llm_clients_story_featureN.md
+│   │   └── core_services_story_featureN.md # 对应 exercise_ai_wellness_advisor
 │   │
 │   └── archived_tdd_cycles/ # (Archived TDD Cycles) TDD周期内的思考、设计和实现记录归档
 │       ├── bmi/                            # (Archived TDD Cycles for BMI)
