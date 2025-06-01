@@ -1,14 +1,34 @@
 # 项目整体目录结构
 
-本文档定义了 `ai_wellness_advisor` 项目及其在整体项目中的位置和结构。
+本文档定义了 `ai_dev_exercise_tdd` 项目（根目录）及其内部 `ai_wellness_advisor` 应用的目录结构和文件组织规范。
 
-### 项目整体目录结构的细节
+### 1. 根目录 (`ai_dev_exercise_tdd/`)
+
+这是整个TDD练习项目的根目录。它包含了各个独立的TDD练习模块 (`exercise_tdd_xxx/`)、最终整合的AI健康助手应用 (`ai_wellness_advisor/`) 以及一些通用工具和文档。
+
+*   **`README_folders.md`**: (本文档) 描述了整个项目的目录结构和文件组织规范。
+*   **`README_prj.md`**: 项目的总体说明、目标、如何开始、贡献指南等。
+*   **`exercise_tdd_xxx/`**: 包含各个具体TDD练习的目录，例如 `exercise_tdd_bmi/`, `exercise_tdd_dcnc/` 等。每个这样的目录都是一个独立的学习单元，包含练习说明、教学框架和可能的辅助材料。
+*   **`ai_wellness_advisor/`**: 这是通过各个TDD练习逐步构建起来的最终AI健康助手应用程序。它有自己独立的源代码 (`src/`)、测试代码 (`tests/`)、文档 (`docs/`) 等。 **注意**：下面的项目结构图示例中，为了更清晰地展示 `ai_wellness_advisor` 内部结构，该图示的“根”实际是 `ai_wellness_advisor/` 目录，并非整个 `ai_dev_exercise_tdd/` 的根。但为了完整性，结构图的顶层已补充了实际根目录下的关键 `README` 文件。
+*   **`utils_llm/`**: (可选) 如果项目中用到了大型语言模型 (LLM) 相关的通用工具，可以放在这里。
+*   **`migration/`**: (可选) 如果项目涉及到从旧结构迁移到当前结构的计划和文档，可以放在这里。
+*   `.gitignore`: 指定Git版本控制系统应忽略的文件和目录。
+*   `.flake8` (或 `pyproject.toml` 中的 `tool.flake8`): Flake8代码风格检查工具的配置文件。
+
+### 2. `ai_wellness_advisor/` 应用目录结构细节
+
+(接下来的结构图主要展示 `ai_wellness_advisor/` 内部)
 
 ```
-ai_wellness_advisor/
+ai_dev_exercise_tdd/  # Actual project root
+├── README_folders.md # (This file)
+├── README_prj.md     # (Overall project README)
 ├── .gitignore
-├── README.md
 ├── requirements.txt  # 或者 pyproject.toml
+├── ai_wellness_advisor/ # Application specific folder
+│   ├── README.md         # README for ai_wellness_advisor application
+│   ├── src/              # (Source code) ... (rest of the structure as previously defined)
+    # Note: The detailed breakdown below focuses on `ai_wellness_advisor/` and its subdirectories.
 ├── src/                # (Source code) 所有Python模块源代码
 │   ├── __init__.py
 │   ├── bmi/            # (Test Module) BMI计算器模块测试            # (Module) BMI计算器模块 (第0层)
@@ -88,6 +108,8 @@ ai_wellness_advisor/
 └── utils_llm/                # (LLM Utilities) LLM基础工具
     └── ...
 
+# Reminder: The structure depicted above under `ai_wellness_advisor/` is nested within the `ai_dev_exercise_tdd/` root directory, which also contains `README_folders.md` (this file) and `README_prj.md`.
+
 ```
 
 ## 每个 ExTDD 练习的目录结构 (在 archived_tdd_cycles 目录下)
@@ -137,19 +159,18 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 
 3.  **TDD过程文档 (周期性产出物归档):**
     *   **位置**：所有TDD练习周期中的详细思考过程、约束分析、迭代代码、迭代测试和周期性总结（README）等，统一归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/` 目录下。
-    *   **内容**：具体结构请参见上一节“每个 ExTDD 练习的目录结构 (在 archived_tdd_cycles 目录下)”的详细说明。其中 `outputs/` 目录下的 `.py` 文件是TDD过程中的代码快照，用于记录迭代，其稳定版本必须整合到 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
+    *   **内容**：具体结构请参见上一节“每个 ExTDD 练习的目录结构 (在 archived_tdd_cycles 目录下)”的详细说明。该结构明确指出 `outputs/` 目录用于存放TDD思考过程的 `.md` 文档等非代码产出物，而TDD周期中产生的代码快照（迭代代码和测试）则位于该练习归档目录（`ExTDD_XX_FeatureName`）下的 `src/` 和 `tests/` 子目录中。这些代码快照的最终稳定版本必须整合到主项目 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
     *   **目的**：此归档的主要目的是为了追溯和复盘TDD的完整过程，而非作为最终代码的部署或引用源。
 
 **总结速查表:**
 
 | 文件类型             | 主要存放位置                                                                 | 说明                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **启动TDD的练习** | `exercise_tdd_xxx/practice_xxx.md`                                              | 高级别、练习入口                                                                                        |
+| **启动TDD的练习** | `exercise_tdd_xxx/practice_yyy.md`                                              | 高级别、练习入口                                                                                            |
 | **用户故事(按Feature)**     | `ai_wellness_advisor/docs/user_stories/user_story_{PracticeName}_{FeatureName}.md`                                     | 模块化、权威版本                                                                                        |
 | **TDD过程文档**      | `ai_wellness_advisor/docs/archived_tdd_cycles/.../ExTDD_XX_FeatureName/`     | 包含思考、约束、迭代代码/测试、周期总结  
-| **最终功能代码**     | `ai_wellness_advisor/src/`                                                   | 生产环境代码                                                                                          |
-| **最终测试代码**     | `ai_wellness_advisor/tests/`                                                 | 生产环境测试                                                                                          |
-                                                                   |
-| **最终项目/模块文档** | `ai_wellness_advisor/ (README.md, docs/*)`                                   | 项目概述、架构、详细设计等                                                                                |
+| **最终功能代码**     | `ai_wellness_advisor/src/...`                                                   | 功能代码                                                                                          |
+| **最终测试代码**     | `ai_wellness_advisor/tests/...`                                                 | 测试代码                                                                                          |
+| **模块文档** | `ai_wellness_advisor/docs/...`                                   | 项目概述、架构、详细设计, user_story, feature文档等                                                                                |
 
 简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其 `docs/archived_tdd_cycles/` 则记录了“城市的建设蓝图和过程”。
