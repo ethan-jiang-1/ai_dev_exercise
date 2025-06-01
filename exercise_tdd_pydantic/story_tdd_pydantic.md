@@ -5,6 +5,7 @@
 > **实现目录说明**：本练习的实际实现位于 `./tdd_pydantic/` 目录下。
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
+(单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise.md))
 
 ## 1. User Story (用户故事)
