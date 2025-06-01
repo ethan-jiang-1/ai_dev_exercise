@@ -20,27 +20,35 @@
 (接下来的结构图主要展示 `ai_wellness_advisor/` 内部)
 
 ```
-ai_dev_exercise_tdd/  # Actual project root
+/  # Actual project root
 ├── README_folders.md # (This file)
 ├── README_prj.md     # (Overall project README)
 ├── .gitignore
 ├── requirements.txt  # 或者 pyproject.toml
-├── ai_wellness_advisor/ # Application specific folder
-│   ├── README.md         # README for ai_wellness_advisor application
-│   ├── src/              # (Source code) ... (rest of the structure as previously defined)
-    # Note: The detailed breakdown below focuses on `ai_wellness_advisor/` and its subdirectories.
+├── ai_wellness_advisor/ # Application specific folder (see detailed structure below)
+│   └── ...
+├── exercise_tdd_xxx/ # TDD exercise folders
+│   └── ...
+├── utils_llm/        # Optional LLM utilities
+│   └── ...
+└── migration/        # Optional migration documents
+    └── ...
+
+# Detailed structure of `ai_wellness_advisor/`:
+ai_wellness_advisor/
+├── README.md         # README for ai_wellness_advisor application
 ├── src/                # (Source code) 所有Python模块源代码
 │   ├── __init__.py
-│   ├── bmi/            # (Test Module) BMI计算器模块测试            # (Module) BMI计算器模块 (第0层)
+│   ├── bmi/            # (Module) BMI计算器模块 (第0层)
 │   │   ├── __init__.py
 │   │   └── bmi_calculator.py
-│   ├── dcnc/           # (Test Module) DCNC模块测试           # (Module) DCNC模块 (第0层)
+│   ├── dcnc/           # (Module) DCNC模块 (第0层)
 │   │   ├── __init__.py
 │   │   └── dcnc_calculator.py
-│   ├── pydantic_models/ # (Test Module) Pydantic模型测试 # (Module) Pydantic模型 (第0层，或按需组织)
+│   ├── pydantic_models/ # (Module) Pydantic模型 (第0层，或按需组织)
 │   │   ├── __init__.py
 │   │   └── user_profile_models.py # 示例
-│   ├── core_services/  # (Test Module) 核心服务测试  # (Module) 核心服务 (第1层和第2层)
+│   ├── core_services/  # (Module) 核心服务 (第1层和第2层)
 │   │   ├── __init__.py
 │   │   ├── wellness_profile_builder.py
 │   │   └── personalized_advisor.py
@@ -93,7 +101,7 @@ ai_dev_exercise_tdd/  # Actual project root
 │   ├── src/                    # (Source code) LLM相关模块源代码
 │   ├── tests/                  # (Tests) LLM相关模块测试代码
 │   ├── practice_tdd_llm_exercises.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架   # (Teaching Framework) 通用TDD教学框架
+│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
 ├── exercise_tdd_pydantic/    # (TDD Exercise Entry) Pydantic模型的TDD练习入口与指南
 │   ├── practice_tdd_pydantic.md
 │   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
@@ -104,7 +112,7 @@ ai_dev_exercise_tdd/  # Actual project root
 │   └── ...
 ├── migration/                # (Migration Documents) 迁移计划文档
 │   ├── overall_plan.md
-│   └── oexecution_plan.md
+│   └── execution_plan.md
 └── utils_llm/                # (LLM Utilities) LLM基础工具
     └── ...
 
@@ -112,13 +120,13 @@ ai_dev_exercise_tdd/  # Actual project root
 
 ```
 
-## 每个 ExTDD 练习的目录结构 (在 archived_tdd_cycles 目录下)
+## 每个 ExTDD 练习的目录结构 (在 `ai_wellness_advisor/docs/archived_tdd_cycles/` 目录下)
 
-每个TDD练习周期（例如 `ExTDD_01_BMICalculation`）的产出物，将归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/` 目录下。其内部结构和文件说明如下：
+每个TDD练习周期（例如，针对BMI模块的 `ExTDD_01_BMICalculation`）的产出物，将归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/{module_name}/ExTDD_XX_{FeatureName}/` 目录下。其中 `{module_name}` 对应如 `bmi`, `dcnc` 等模块名。其内部结构和文件说明如下：
 
 ```
 ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
-├── constraints/                    # (Constraints) 约束条件
+├── constraints/                    # (Optional Constraints) 约束条件
 │   └── {feature_name}_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
 ├── outputs/                       # (Outputs) TDD周期内的主要产出物
 │   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
@@ -141,26 +149,22 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 
 **重要原则与文件定位指南:**
 
-为了确保项目结构的清晰和一致性，以下原则明确了各类文件和文档的存放位置：
+为确保项目结构的清晰与一致性，各类文件和文档的存放位置遵循以下核心原则：
 
-1.  **`ai_wellness_advisor/` 项目核心地位:**
-    *   此目录是我们构建的 **实际应用程序** 的唯一、权威存放地。
-    *   **最终生产代码**：位于 `ai_wellness_advisor/src/` 下的相应模块中。
-    *   **最终测试代码**：位于 `ai_wellness_advisor/tests/` 下的相应模块中。
-    *   **最终用户故事/需求文档**：针对各模块的权威用户故事和需求文档，统一存放在 `ai_wellness_advisor/docs/user_stories/`。
-    *   **最终项目与模块文档**：包括项目整体 `README.md`、架构文档 (`ai_wellness_advisor/docs/architecture.md`) 以及各模块的详细设计文档等，均位于 `ai_wellness_advisor/` 或其 `docs/` 子目录内。
+1.  **`ai_wellness_advisor/`：应用核心**
+    *   作为实际构建的应用程序，是所有最终生产代码 (`src/`)、最终测试代码 (`tests/`)、权威用户故事 (`docs/user_stories/`) 及项目与模块文档 (`README.md`, `docs/architecture.md` 等) 的唯一存放地。
 
-2.  **`exercise_tdd_xxx/` 目录角色 (TDD练习入口与指南):**
-    *   这些目录严格作为TDD练习的 **“控制器”或“入口点”（静态指南）**。
-    *   **高级别用户故事 (练习起点)**：每个 `exercise_tdd_xxx/` 目录下包含一个 `practice_xxx.md` 文件。此文件作为启动和指导对应TDD练习的 **高级别、初始用户故事**。它应简明扼要，并可链接到 `ai_wellness_advisor/docs/user_stories/` 中更详细的、作为最终版本参考的对应模块用户故事。
-    *   **教学材料**：包含通用的TDD教学框架文档 (`teaching_framework/`)。
-    *   **引用链接**：可能包含指向 `ai_wellness_advisor/` 内部对应模块最终代码、测试和详细文档的明确引用或链接，以引导开发者查阅最终实现。
-    *   **禁止存放实际代码/测试**：这些目录 **绝不包含任何实际的Python源代码、测试脚本或重复的详细设计文档**。所有这些动态的、演进的内容都必须位于 `ai_wellness_advisor/` 项目中。
+2.  **`exercise_tdd_xxx/`：TDD练习指南**
+    *   扮演TDD练习的“静态入口点”角色，提供高级别初始用户故事 (`practice_xxx.md`) 和教学框架 (`teaching_framework/`)。
+    *   `practice_xxx.md` 可链接至 `ai_wellness_advisor/docs/user_stories/` 中的详细需求。
+    *   **严禁** 在此存放任何实际Python源代码、测试脚本或重复的详细设计文档；这些动态内容均属 `ai_wellness_advisor/`。
 
-3.  **TDD过程文档 (周期性产出物归档):**
-    *   **位置**：所有TDD练习周期中的详细思考过程、约束分析、迭代代码、迭代测试和周期性总结（README）等，统一归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/` 目录下。
-    *   **内容**：具体结构请参见上一节“每个 ExTDD 练习的目录结构 (在 archived_tdd_cycles 目录下)”的详细说明。该结构明确指出 `outputs/` 目录用于存放TDD思考过程的 `.md` 文档等非代码产出物，而TDD周期中产生的代码快照（迭代代码和测试）则位于该练习归档目录（`ExTDD_XX_FeatureName`）下的 `src/` 和 `tests/` 子目录中。这些代码快照的最终稳定版本必须整合到主项目 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
-    *   **目的**：此归档的主要目的是为了追溯和复盘TDD的完整过程，而非作为最终代码的部署或引用源。
+3.  **`ai_wellness_advisor/docs/archived_tdd_cycles/`：TDD过程归档**
+    *   用于归档每个TDD练习周期 (`.../{module_name}/ExTDD_XX_{FeatureName}/`) 的完整记录，包括：
+        *   思考过程与约束分析：`outputs/` 子目录下的 `.md` 文件。
+        *   迭代代码与测试快照：该练习归档目录下的 `src/` 和 `tests/` 子目录。
+        *   周期性总结：可能包含的 `README.md`。
+    *   此归档主要服务于过程追溯与复盘，其代码快照的最终稳定版本须整合进 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
 
 **总结速查表:**
 
