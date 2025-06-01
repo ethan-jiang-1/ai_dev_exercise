@@ -30,30 +30,30 @@
 
 ---
 
-## 第2阶段：创建练习故事描述 (`story_xxx.md`) (Creating the Exercise Story Description)
+## 第2阶段：创建练习故事描述 (`practice_xxx.md`) (Creating the Exercise practice Description)
 
 **上下文**: 此阶段在"第1阶段"确定了 `current_exercise_collection` （当前练习集）之后执行。
 
-**目标**: AI通过与用户进行一系列交互式问答和确认，收集必要信息，然后参照新创建的 `exercise_tdd_template/story_tdd_template.md` 作为结构蓝本，并结合本指令文档中嵌入的撰写指南，生成结构化的单个"练习故事描述文件"。
+**目标**: AI通过与用户进行一系列交互式问答和确认，收集必要信息，然后参照新创建的 `exercise_tdd_template/practice_tdd_template.md` 作为结构蓝本，并结合本指令文档中嵌入的撰写指南，生成结构化的单个"练习故事描述文件"。
 
-**交互式故事构建 (Interactive Story Building):**
+**交互式故事构建 (Interactive practice Building):**
 
 **AI**: "现在我们来定义练习故事的整体信息。"
 
-1.  **故事识别信息 (Story Identification) - 交互式收集与确认:**
-    *   **AI**: "首先，这个练习故事的总体 **主题 (Story Theme)** 是什么？（例如：'BMI计算器' 或 'LLM API调用'）"
+1.  **故事识别信息 (practice Identification) - 交互式收集与确认:**
+    *   **AI**: "首先，这个练习故事的总体 **主题 (practice Theme)** 是什么？（例如：'BMI计算器' 或 'LLM API调用'）"
     *   **用户**: `[提供故事主题]`
     *   **AI**: (记录主题) "明白了，故事主题是 `[用户提供的主题]`。"
     *   **AI**: "基于此主题，我建议此故事的主要代码实现存放在一个名为 `tdd_[主题的snake_case形式]` 的子目录中。例如，如果主题是 'BMI计算器', 目录名建议为 `tdd_bmi_calculator`。您对 **主要实现目录建议名称 (Suggested Main Implementation Directory Name)** 有什么想法或指定吗？如果同意我的建议，可以直接确认。"
     *   **用户**: `[确认建议 或 提供自定义名称，例如：my_bmi_implementation]`
     *   **AI**: (记录主要实现目录名) "好的，主要实现目录将是 `[用户确认/提供的目录名]`。"
-    *   **AI**: "接下来是故事文件的名称。基于练习集 `[current_exercise_collection]` (如果名称类似 `exercise_tdd_[specific_theme]`, 我会尝试提取 `[specific_theme]` 作为建议前缀) 和主题 `[用户提供的主题]`，我建议文件名为 `story_[建议前缀]_[主题的snake_case形式].md`。或者，如果您希望省略前缀，可以是 `story_[主题的snake_case形式].md`。您是否接受此建议，或有特定的 **故事文件名 (Story Filename)**？"
+    *   **AI**: "接下来是故事文件的名称。基于练习集 `[current_exercise_collection]` (如果名称类似 `exercise_tdd_[specific_theme]`, 我会尝试提取 `[specific_theme]` 作为建议前缀) 和主题 `[用户提供的主题]`，我建议文件名为 `practice_[建议前缀]_[主题的snake_case形式].md`。或者，如果您希望省略前缀，可以是 `practice_[主题的snake_case形式].md`。您是否接受此建议，或有特定的 **故事文件名 (practice Filename)**？"
     *   **用户**: `[确认建议 或 提供自定义文件名]`
     *   **AI (Verification)**: (记录故事文件名) "很好。总结一下故事识别信息：
         *   练习集 (Collection): `[current_exercise_collection]`
         *   故事主题 (Theme): `[用户提供的主题]`
         *   主要实现目录名 (Main Impl. Dir): `[用户确认/提供的目录名]`
-        *   故事文件名 (Story Filename): `[用户确认/提供的文件名]`
+        *   故事文件名 (practice Filename): `[用户确认/提供的文件名]`
         请确认以上信息是否都正确？(是/否)"
     *   **用户**: `[是/否]` (如果不正确，AI应回溯并修正相应条目)
 

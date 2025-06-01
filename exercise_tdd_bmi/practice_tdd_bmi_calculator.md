@@ -3,6 +3,10 @@
 > **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_bmi/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md`。
 > 
 > **TDD周期产出物归档说明**：本练习相关的每个TDD周期（例如 `ExTDD_01_BMICalculation`）的详细思考过程、约束、代码实现、测试代码和周期性README等产出物，将统一归档到主应用项目 `ai_wellness_advisor` 的文档区内，具体路径为 `../ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_XX_FeatureName/`。本项目中的 `story_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
+> 
+> 本练习中定义的各特性对应的最终用户故事文档位于 `ai_wellness_advisor` 项目中：
+> - BMI 计算特性 (`bmi_calculate`): [`../ai_wellness_advisor/docs/user_stories/bmi_story_bmi_calculate.md`](../ai_wellness_advisor/docs/user_stories/bmi_story_bmi_calculate.md)
+> - BMI 分类特性 (`bmi_categorize`): [`../ai_wellness_advisor/docs/user_stories/bmi_story_bmi_categorize.md`](../ai_wellness_advisor/docs/user_stories/bmi_story_bmi_categorize.md)
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))

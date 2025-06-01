@@ -44,11 +44,11 @@ ai_wellness_advisor/
 ├── docs/               # (Documentation) 项目级文档、架构图等
 │   ├── architecture.md
 │   ├── user_stories/   # (User Stories) 所有模块的用户故事/需求文档
-│   │   ├── bmi_story_featureN.md
-│   │   ├── dcnc_story_featureN.md
-│   │   ├── pydantic_story_featureN.md
-│   │   ├── llm_clients_story_featureN.md
-│   │   └── core_services_story_featureN.md # 对应 exercise_ai_wellness_advisor
+│   │   ├── user_story_bmi_featureN.md
+│   │   ├── user_story_dcnc_featureN.md
+│   │   ├── user_story_pydantic_featureN.md
+│   │   ├── user_story_llm_clients_featureN.md
+│   │   └── user_story_core_services_featureN.md # 对应 exercise_ai_wellness_advisor
 │   │
 │   └── archived_tdd_cycles/ # (Archived TDD Cycles) TDD周期内的思考、设计和实现记录归档
 │       ├── bmi/                            # (Archived TDD Cycles for BMI)
@@ -78,8 +78,8 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 │   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
 │   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
 │   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
-│   ├── {feature_name}.py             # TDD周期中实现的功能代码。此文件是过程性产出，其稳定版本最终会整合到 `ai_wellness_advisor/src/exercise_name/` 目录下对应的模块中。
-│   ├── test_{feature_name}.py        # TDD周期中编写的单元测试代码。此文件是过程性产出，其稳定版本最终会整合到 `ai_wellness_advisor/tests/exercise_name/` 目录下对应的测试模块中。
+│   └── {feature_name}.py             # TDD周期中实现的功能代码。此文件是过程性产出，其稳定版本最终会整合到 `ai_wellness_advisor/src/exercise_name/` 目录下对应的模块中。
+│   └── test_{feature_name}.py        # TDD周期中编写的单元测试代码。此文件是过程性产出，其稳定版本最终会整合到 `ai_wellness_advisor/tests/exercise_name/` 目录下对应的测试模块中。
 │   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
 └── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
