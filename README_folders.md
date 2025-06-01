@@ -49,26 +49,45 @@ ai_wellness_advisor/
 │   │   ├── pydantic_story.md
 │   │   ├── llm_clients_story.md
 │   │   └── core_services_story.md # 对应 exercise_ai_wellness_advisor
-│   └── tdd_process_archive/ # (TDD Archive) TDD过程中的思考和设计文档归档
-│       ├── bmi/                            # (TDD Archive for BMI)
-│       │   └── ExTDD_XX_FeatureName/       # (Example: ExTDD_01_BMICalculation)
-│       ├── dcnc/                           # (TDD Archive for DCNC)
-│       │   └── ExTDD_XX_FeatureName/       # (Example: ExTDD_01_CalculateBMR)
-│       ├── pydantic_models/                # (TDD Archive for Pydantic Models)
-│       │   └── ExTDD_XX_FeatureName/       # (Example: ExTDD_01_UserProfileValidation)
-│       ├── llm_clients/                    # (TDD Archive for LLM Clients)
-│       │   └── ExTDD_XX_FeatureName/       # (Example: ExTDD_01_BasicChat)
-│       └── core_services/                  # (TDD Archive for Core Services)
-│           ├── ExTDD_XX_FeatureName/       # (Example: ExTDD_01_WellnessProfileBuilder)
-│           └── ExTDD_YY_AnotherFeature/    # (Example: ExTDD_02_PersonalizedAdvisor)
+│   │
+│   └── archived_tdd_cycles/ # (Archived TDD Cycles) TDD周期内的思考、设计和实现记录归档
+│       ├── bmi/                            # (Archived TDD Cycles for BMI)
+│       │   └── ExTDD_01_BMICalculation/    # (Example TDD Cycle, see structure above)
+│       ├── dcnc/                           # (Archived TDD Cycles for DCNC)
+│       │   └── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
+│       ├── pydantic_models/                # (Archived TDD Cycles for Pydantic Models)
+│       │   └── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
+│       ├── llm_clients/                    # (Archived TDD Cycles for LLM Clients)
+│       │   └── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
+│       └── core_services/                  # (Archived TDD Cycles for Core Services)
+│           ├── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
+│           └── ExTDD_YY_AnotherFeature/    # (Example TDD Cycle, see structure above)
 └── scripts/            # (Scripts) 辅助脚本 (例如：数据迁移、部署脚本等，可选)
 
 ```
 
-## 整体项目顶级目录结构概览 (`/Users/bowhead/ai_dev_exercise_tdd/`)
+## 每个 ExTDD 练习的目录结构 (在 archived_tdd_cycles 目录下)
+```
+archived_tdd_cycles/
+├── exercise_name/                            # (Archived TDD Cycles for exercise_name)
+│   ├── # 每个TDD练习周期 (ExTDD_XX_FeatureName) 的内部结构示例:
+│   │   # ExTDD_XX_FeatureName/ (例如: ExTDD_01_BMICalculation)
+│   │   # ├── constraints/                    # (Constraints) 约束条件
+│   │   # │   └── {feature_name}_constraints.md        # (Task Constraints) 任务特定约束
+│   │   # ├── outputs/                       # (Outputs) 输出文件
+│   │   # │   ├── _s1_think_options_{feature_name}.md
+│   │   # │   ├── _s2_think_design_{feature_name}.md
+│   │   # │   ├── _s3_think_validation_{feature_name}.md
+│   │   # │   ├── {feature_name}.py
+│   │   # │   ├── test_{feature_name}.py
+│   │   # │   └── doc_{feature_name}.md
+│   │   # └── README.md                      # (README) 练习说明
+```
+
+## 整体项目顶级目录结构概览 (以本项目根目录为 `/`)
 
 ```
-/Users/bowhead/ai_dev_exercise_tdd/
+/
 ├── ai_wellness_advisor/      # (Application) 新的统一应用项目 (如上文详细结构所示)
 │   ├── .gitignore
 │   ├── README.md
