@@ -2,7 +2,7 @@
 
 > **工作目录说明**：本文档位于 /Users/bowhead/ai_dev_exercise/exercise_tdd_dcnc/ 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_dcnc/teaching_framework/test_driven_development_with_ai.md`。
 >
-> **实现目录说明**：本练习的实际实现位于 `./tdd_daily_caloric_needs_calculator/` 目录下。
+> **归档目录说明**：本练习各TDD周期的详细思考、设计、代码快照及总结，均归档于 `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/` 目录下。实际的功能代码和测试代码在稳定后，将整合到 `../ai_wellness_advisor/src/dcnc/` 和 `../ai_wellness_advisor/tests/dcnc/`。用户故事的权威版本位于 `../ai_wellness_advisor/docs/user_stories/`。
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
@@ -37,24 +37,22 @@
     *   测试文件：`test_{feature_name}.py`
     *   文档文件：`doc_{feature_name}.md`
 
-### 目录结构规范
+### 目录结构规范 (TDD周期归档)
 
-每个练习系列都**必须, 一定**包含：
+每个练习系列的TDD周期产出物将归档在 `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_XX_FeatureName/` 目录下，其结构**必须, 一定**包含：
 
 ```
-tdd_daily_caloric_needs_calculator/ExTDD_XX_FeatureName/
-├── constraints/                    # 约束条件
-│   └── task_constraints.md        # 任务特定约束
-├── inputs/                        # 输入文件
-│   └── user_story.md             # 用户故事
-├── outputs/                       # 输出文件
-│   ├── _s1_think_options_{feature_name}.md
-│   ├── _s2_think_design_{feature_name}.md
-│   ├── _s3_think_validation_{feature_name}.md
-│   ├── {feature_name}.py
-│   ├── test_{feature_name}.py
-│   └── doc_{feature_name}.md
-└── README.md                      # 练习说明
+../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_XX_FeatureName/
+├── constraints/                    # (Constraints) 约束条件
+│   └── {feature_name}_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
+├── outputs/                       # (Outputs) TDD周期内的主要产出物
+│   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
+│   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
+│   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
+│   ├── {feature_name}.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_{feature_name}.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
+│   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档。
+└── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
 
 ## 每日所需热量计算器 (Daily Caloric Needs Calculator) 特定实现
@@ -63,19 +61,19 @@ tdd_daily_caloric_needs_calculator/ExTDD_XX_FeatureName/
 
 feature_name: calculate_bmr
 
+归档目录: `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_01_CalculateBMR/`
 ```
-tdd_daily_caloric_needs_calculator/ExTDD_01_CalculateBMR/
+../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_01_CalculateBMR/
 ├── constraints/
-│   └── task_constraints.md        # 计算基础代谢率 (BMR)的特定约束
-├── inputs/
-│   └── user_story.md             # 计算基础代谢率 (BMR)的用户故事
-└── outputs/
-    ├── _s1_think_options_calculate_bmr.md
-    ├── _s2_think_design_calculate_bmr.md
-    ├── _s3_think_validation_calculate_bmr.md
-    ├── calculate_bmr.py
-    ├── test_calculate_bmr.py
-    └── doc_calculate_bmr.md
+│   └── calculate_bmr_constraints.md # 计算基础代谢率 (BMR)的特定约束
+├── outputs/
+│   ├── _s1_think_options_calculate_bmr.md  # 思考过程：方案选择与分析。
+│   ├── _s2_think_design_calculate_bmr.md   # 思考过程：详细设计。
+│   ├── _s3_think_validation_calculate_bmr.md # 思考过程：验证和测试点设计。
+│   ├── calculate_bmr.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_calculate_bmr.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
+│   └── doc_calculate_bmr.md         # (Optional) 特性相关的简要说明或API文档。
+└── README.md                      # 对 ExTDD_01_CalculateBMR 周期的总结
 ```
 
 #### 核心用户需求 (ExTDD_01_CalculateBMR)
@@ -85,19 +83,19 @@ tdd_daily_caloric_needs_calculator/ExTDD_01_CalculateBMR/
 
 feature_name: calculate_tdee
 
+归档目录: `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_02_CalculateTDEE/`
 ```
-tdd_daily_caloric_needs_calculator/ExTDD_02_CalculateTDEE/
+../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_02_CalculateTDEE/
 ├── constraints/
-│   └── task_constraints.md        # 计算每日总能量消耗 (TDEE)的特定约束
-├── inputs/
-│   └── user_story.md             # 计算每日总能量消耗 (TDEE)的用户故事
-└── outputs/
-    ├── _s1_think_options_calculate_tdee.md
-    ├── _s2_think_design_calculate_tdee.md
-    ├── _s3_think_validation_calculate_tdee.md
-    ├── calculate_tdee.py
-    ├── test_calculate_tdee.py
-    └── doc_calculate_tdee.md
+│   └── calculate_tdee_constraints.md # 计算每日总能量消耗 (TDEE)的特定约束
+├── outputs/
+│   ├── _s1_think_options_calculate_tdee.md  # 思考过程：方案选择与分析。
+│   ├── _s2_think_design_calculate_tdee.md   # 思考过程：详细设计。
+│   ├── _s3_think_validation_calculate_tdee.md # 思考过程：验证和测试点设计。
+│   ├── calculate_tdee.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_calculate_tdee.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
+│   └── doc_calculate_tdee.md         # (Optional) 特性相关的简要说明或API文档。
+└── README.md                      # 对 ExTDD_02_CalculateTDEE 周期的总结
 ```
 
 #### 核心用户需求 (ExTDD_02_CalculateTDEE)

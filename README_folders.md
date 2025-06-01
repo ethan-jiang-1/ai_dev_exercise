@@ -78,8 +78,8 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 │   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
 │   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
 │   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
-│   └── {feature_name}.py             # TDD周期中实现的功能代码。此文件是过程性产出，其稳定版本最终会整合到 `ai_wellness_advisor/src/exercise_name/` 目录下对应的模块中。
-│   └── test_{feature_name}.py        # TDD周期中编写的单元测试代码。此文件是过程性产出，其稳定版本最终会整合到 `ai_wellness_advisor/tests/exercise_name/` 目录下对应的测试模块中。
+│   ├── {feature_name}.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_{feature_name}.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
 │   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
 └── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
