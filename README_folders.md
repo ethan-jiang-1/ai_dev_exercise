@@ -2,7 +2,7 @@
 
 本文档定义了 `ai_wellness_advisor` 项目及其在整体项目中的位置和结构。
 
-## `ai_wellness_advisor` 项目目录结构
+### 项目整体目录结构的细节
 
 ```
 ai_wellness_advisor/
@@ -43,7 +43,7 @@ ai_wellness_advisor/
 │   └── test_integration.py # (Integration Test) 集成测试 (可选)
 ├── docs/               # (Documentation) 项目级文档、架构图等
 │   ├── architecture.md
-│   ├── user_stories/   # (User Stories) 所有模块的用户故事/需求文档
+│   ├── user_stories/   # (User Stories for TDD) TDD练习中各特性(feature)的用户故事/需求文档, 每个特性对应一个文件
 │   │   ├── user_story_bmi_featureN.md
 │   │   ├── user_story_dcnc_featureN.md
 │   │   ├── user_story_pydantic_featureN.md
@@ -62,7 +62,31 @@ ai_wellness_advisor/
 │       └── core_services/                  # (Archived TDD Cycles for Core Services)
 │           ├── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
 │           └── ExTDD_YY_AnotherFeature/    # (Example TDD Cycle, see structure above)
-└── scripts/            # (Scripts) 辅助脚本 (例如：数据迁移、部署脚本等，可选)
+|
+├── exercise_tdd_bmi/         # (TDD Exercise Entry) BMI计算器的TDD练习入口与指南
+│   ├── practice_tdd_bmi_calculator.md
+│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
+├── exercise_tdd_dcnc/        # (TDD Exercise Entry) DCNC的TDD练习入口与指南
+│   ├── practice_dcnc_daily_caloric_needs_calculator.md
+│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
+├── exercise_tdd_llm/         # (TDD Exercise Entry) LLM工具集的TDD练习入口与指南
+│   ├── src/                    # (Source code) LLM相关模块源代码
+│   ├── tests/                  # (Tests) LLM相关模块测试代码
+│   ├── practice_tdd_llm_exercises.md
+│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架   # (Teaching Framework) 通用TDD教学框架
+├── exercise_tdd_pydantic/    # (TDD Exercise Entry) Pydantic模型的TDD练习入口与指南
+│   ├── practice_tdd_pydantic.md
+│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
+├── exercise_ai_wellness_advisor/ # (TDD Exercise Entry) 核心服务层的TDD练习入口与指南 (第1、2层)
+│   ├── practice_ai_wellness_advisor_core_services.md
+│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
+├── exercise_tdd_template/    # (TDD Template) TDD练习模板
+│   └── ...
+├── migration/                # (Migration Documents) 迁移计划文档
+│   ├── overall_plan.md
+│   └── oexecution_plan.md
+└── utils_llm/                # (LLM Utilities) LLM基础工具
+    └── ...
 
 ```
 
@@ -78,53 +102,20 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 │   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
 │   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
 │   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
-│   ├── {feature_name}.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_{feature_name}.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
 │   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
-└── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
+└── src/
+|    └── bmi/
+|        ├── __init__.py
+|        └── bmi_calculator.py  # 或者 new_feature_for_bmi.py
+└── tests/
+    └── bmi/
+        ├── __init__.py
+        └── test_bmi_calculator.py # 或者 test_new_feature_for_bmi.py
 ```
 
 **核心原则**：
 - `outputs/` 目录中的 `.md` 文件（如 `_s1_think_...`）是TDD思考过程的永久记录。
-- `outputs/` 目录中的 `{feature_name}.py` 和 `test_{feature_name}.py` 是对应TDD周期的代码和测试快照。它们的主要目的是记录开发过程，**不应被其他模块直接引用**。这些代码在成熟和稳定后，**必须**被整合进 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/` 下的相应模块，成为主应用程序的一部分。
-
-## 整体项目顶级目录结构概览 (以本项目根目录为 `/`)
-
-```
-/
-├── ai_wellness_advisor/      # (Application) 新的统一应用项目 (如上文详细结构所示)
-│   ├── .gitignore
-│   ├── README.md
-│   ├── requirements.txt
-│   ├── src/
-│   ├── tests/
-│   └── docs/
-├── exercise_tdd_bmi/         # (TDD Exercise Entry) BMI计算器的TDD练习入口与指南
-│   ├── story_tdd_bmi_calculator.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_dcnc/        # (TDD Exercise Entry) DCNC的TDD练习入口与指南
-│   ├── story_dcnc_daily_caloric_needs_calculator.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_llm/         # (TDD Exercise Entry) LLM工具集的TDD练习入口与指南
-│   ├── src/                    # (Source code) LLM相关模块源代码
-│   ├── tests/                  # (Tests) LLM相关模块测试代码
-│   ├── story_tdd_llm_exercises.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_pydantic/    # (TDD Exercise Entry) Pydantic模型的TDD练习入口与指南
-│   ├── story_tdd_pydantic.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_ai_wellness_advisor/ # (TDD Exercise Entry) 核心服务层的TDD练习入口与指南 (第1、2层)
-│   ├── story_ai_wellness_advisor_core_services.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_template/    # (TDD Template) TDD练习模板
-│   └── ...
-├── migration/                # (Migration Documents) 迁移计划文档
-│   ├── overall_plan.md
-│   ├── execution_plan.md
-│   └── overall_folder_structure.md # (This Document) 本文档
-└── utils_llm/                # (LLM Utilities) LLM基础工具
-    └── ...
-```
+- `outputs/` 目录不再用于存放TDD周期中产生的 `{feature_name}.py` 和 `test_{feature_name}.py` 代码文件。这些代码的开发和版本控制应直接在 `ai_wellness_advisor/src/...` 和 `ai_wellness_advisor/tests/...` 的目标位置进行，或遵循更新后的项目开发流程。
 
 **重要原则与文件定位指南:**
 
@@ -139,7 +130,7 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 
 2.  **`exercise_tdd_xxx/` 目录角色 (TDD练习入口与指南):**
     *   这些目录严格作为TDD练习的 **“控制器”或“入口点”（静态指南）**。
-    *   **高级别用户故事 (练习起点)**：每个 `exercise_tdd_xxx/` 目录下包含一个 `story_xxx.md` 文件。此文件作为启动和指导对应TDD练习的 **高级别、初始用户故事**。它应简明扼要，并可链接到 `ai_wellness_advisor/docs/user_stories/` 中更详细的、作为最终版本参考的对应模块用户故事。
+    *   **高级别用户故事 (练习起点)**：每个 `exercise_tdd_xxx/` 目录下包含一个 `practice_xxx.md` 文件。此文件作为启动和指导对应TDD练习的 **高级别、初始用户故事**。它应简明扼要，并可链接到 `ai_wellness_advisor/docs/user_stories/` 中更详细的、作为最终版本参考的对应模块用户故事。
     *   **教学材料**：包含通用的TDD教学框架文档 (`teaching_framework/`)。
     *   **引用链接**：可能包含指向 `ai_wellness_advisor/` 内部对应模块最终代码、测试和详细文档的明确引用或链接，以引导开发者查阅最终实现。
     *   **禁止存放实际代码/测试**：这些目录 **绝不包含任何实际的Python源代码、测试脚本或重复的详细设计文档**。所有这些动态的、演进的内容都必须位于 `ai_wellness_advisor/` 项目中。
@@ -153,11 +144,12 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 
 | 文件类型             | 主要存放位置                                                                 | 说明                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **启动TDD的用户故事** | `exercise_tdd_xxx/story_xxx.md`                                              | 高级别、练习入口                                                                                        |
-| **最终用户故事**     | `ai_wellness_advisor/docs/user_stories/`                                     | 模块化、权威版本                                                                                        |
+| **启动TDD的练习** | `exercise_tdd_xxx/practice_xxx.md`                                              | 高级别、练习入口                                                                                        |
+| **用户故事(按Feature)**     | `ai_wellness_advisor/docs/user_stories/user_story_{PracticeName}_{FeatureName}.md`                                     | 模块化、权威版本                                                                                        |
+| **TDD过程文档**      | `ai_wellness_advisor/docs/archived_tdd_cycles/.../ExTDD_XX_FeatureName/`     | 包含思考、约束、迭代代码/测试、周期总结  
 | **最终功能代码**     | `ai_wellness_advisor/src/`                                                   | 生产环境代码                                                                                          |
 | **最终测试代码**     | `ai_wellness_advisor/tests/`                                                 | 生产环境测试                                                                                          |
-| **TDD过程文档**      | `ai_wellness_advisor/docs/archived_tdd_cycles/.../ExTDD_XX_FeatureName/`     | 包含思考、约束、迭代代码/测试、周期总结                                                                     |
+                                                                   |
 | **最终项目/模块文档** | `ai_wellness_advisor/ (README.md, docs/*)`                                   | 项目概述、架构、详细设计等                                                                                |
 
 简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其 `docs/archived_tdd_cycles/` 则记录了“城市的建设蓝图和过程”。

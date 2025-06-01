@@ -1,6 +1,6 @@
 # Practice: 每日所需热量计算器 (Daily Caloric Needs Calculator)
 
-> **工作目录说明**：本文档位于 /Users/bowhead/ai_dev_exercise/exercise_tdd_dcnc/ 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_dcnc/teaching_framework/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 /Users/bowhead/ai_dev_exercise_tdd/exercise_tdd_dcnc/ 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise_tdd/exercise_tdd_dcnc/teaching_framework/test_driven_development_with_ai.md`。
 >
 > **归档目录说明**：本练习各TDD周期的详细思考、设计、代码快照及总结，均归档于 `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/` 目录下。实际的功能代码和测试代码在稳定后，将整合到 `../ai_wellness_advisor/src/dcnc/` 和 `../ai_wellness_advisor/tests/dcnc/`。用户故事的权威版本位于 `../ai_wellness_advisor/docs/user_stories/`。
 
@@ -49,9 +49,9 @@
 │   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
 │   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
 │   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
-│   ├── {feature_name}.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_{feature_name}.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
-│   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档。
+│   ├── {feature_name}.py              # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_{feature_name}.py         # TDD练习的单元测试 (归档快照, 非项目最终代码)。
+│   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
 └── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
 ```
 
@@ -70,9 +70,9 @@ feature_name: calculate_bmr
 │   ├── _s1_think_options_calculate_bmr.md  # 思考过程：方案选择与分析。
 │   ├── _s2_think_design_calculate_bmr.md   # 思考过程：详细设计。
 │   ├── _s3_think_validation_calculate_bmr.md # 思考过程：验证和测试点设计。
-│   ├── calculate_bmr.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_calculate_bmr.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
-│   └── doc_calculate_bmr.md         # (Optional) 特性相关的简要说明或API文档。
+│   ├── calculate_bmr.py              # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_calculate_bmr.py         # TDD练习的单元测试 (归档快照, 非项目最终代码)。
+│   └── doc_calculate_bmr.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
 └── README.md                      # 对 ExTDD_01_CalculateBMR 周期的总结
 ```
 
@@ -92,9 +92,9 @@ feature_name: calculate_tdee
 │   ├── _s1_think_options_calculate_tdee.md  # 思考过程：方案选择与分析。
 │   ├── _s2_think_design_calculate_tdee.md   # 思考过程：详细设计。
 │   ├── _s3_think_validation_calculate_tdee.md # 思考过程：验证和测试点设计。
-│   ├── calculate_tdee.py             # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_calculate_tdee.py        # TDD练习的单元测试 (归档快照, 非项目最终代码)。
-│   └── doc_calculate_tdee.md         # (Optional) 特性相关的简要说明或API文档。
+│   ├── calculate_tdee.py              # TDD练习的功能代码 (归档快照, 非项目最终代码)。
+│   ├── test_calculate_tdee.py         # TDD练习的单元测试 (归档快照, 非项目最终代码)。
+│   └── doc_calculate_tdee.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
 └── README.md                      # 对 ExTDD_02_CalculateTDEE 周期的总结
 ```
 
