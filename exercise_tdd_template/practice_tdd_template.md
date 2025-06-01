@@ -1,5 +1,5 @@
-# User Story: {{STORY_THEME_TITLE}}
-> 版本: 1.0
+# Practice: {{STORY_THEME_TITLE}}
+> 版本: 2.0
 
 > **工作目录说明**：本文档位于 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/teaching_framework/test_driven_development_with_ai.md`。
 >
@@ -11,16 +11,16 @@
 
 ## 1. User Story (用户故事)
 
-# {{STORY_TITLE_WITH_THEME}}: AI+TDD练习故事实例
+# {{STORY_TITLE_WITH_THEME}}: AI+TDD练习实践实例
 
-> **重要约束**：在整个故事实践过程中，请确保所有在Cursor中的交互对话均使用中文，这是出于演示目的的要求。
+> **重要约束**：在整个实践过程中，请确保所有在Cursor中的交互对话均使用中文，这是出于演示目的的要求。
 > {{ADDITIONAL_STORY_CONSTRAINTS_PLACEHOLDER}}
 
 {{OPTIONAL_TOOLKIT_DESCRIPTION_PLACEHOLDER}}
 
 ## 基础结构说明
 
-本故事遵循标准的TDD练习框架结构：
+本实践遵循标准的TDD练习框架结构：
 
 ### 命名规范
 
@@ -61,7 +61,7 @@
 └── README.md                      # 练习说明
 ```
 
-## {{STORY_THEME_TITLE}} 特定实现
+## {{STORY_THEME_TITLE}} 特定实践
 
 {{#each FEATURES}}
 ### {{FEATURE_INDEX_PADDED}}. ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}: {{FEATURE_FRIENDLY_TITLE}}
@@ -90,4 +90,4 @@ feature_name: {{FEATURE_NAME_SNAKECASE}}
 {{OPTIONAL_GENERAL_CONSTRAINTS_PLACEHOLDER}}
 {{OPTIONAL_LEARNING_ORDER_PLACEHOLDER}}
 {{OPTIONAL_TECH_DEPENDENCIES_PLACEHOLDER}}
-{{OPTIONAL_DIFFICULTY_PROGRESSION_PLACEHOLDER}} 
+{{OPTIONAL_DIFFICULTY_PROGRESSION_PLACEHOLDER}}
