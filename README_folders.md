@@ -20,9 +20,6 @@ ai_wellness_advisor/
 │   ├── pydantic_models/ # Pydantic模型 (第0层，或按需组织)
 │   │   ├── __init__.py
 │   │   └── user_profile_models.py # 示例
-│   ├── llm_clients/    # LLM API客户端 (第0层)
-│   │   ├── __init__.py
-│   │   └── openai_client.py   # 示例
 │   ├── core_services/  # 核心服务 (第1层和第2层)
 │   │   ├── __init__.py
 │   │   ├── wellness_profile_builder.py
@@ -39,9 +36,6 @@ ai_wellness_advisor/
 │   ├── pydantic_models/
 │   │   ├── __init__.py
 │   │   └── test_user_profile_models.py
-│   ├── llm_clients/
-│   │   ├── __init__.py
-│   │   └── test_openai_client.py
 │   ├── core_services/
 │   │   ├── __init__.py
 │   │   ├── test_wellness_profile_builder.py
