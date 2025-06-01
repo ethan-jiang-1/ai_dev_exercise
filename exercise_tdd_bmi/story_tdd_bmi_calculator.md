@@ -1,8 +1,8 @@
 # User Story: Simple BMI Calculator
 
-> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_bmi/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_bmi/teaching_framework/test_driven_development_with_ai.md`。
->
-> **实现目录说明**：本练习的实际实现位于 `./tdd_bmi_calculator/` 目录下。
+> **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_bmi/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md`。
+> 
+> **TDD周期产出物归档说明**：本练习相关的每个TDD周期（例如 `ExTDD_01_BMICalculation`）的详细思考过程、约束、代码实现、测试代码和周期性README等产出物，将统一归档到主应用项目 `ai_wellness_advisor` 的文档区内，具体路径为 `../ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_XX_FeatureName/`。本项目中的 `story_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
@@ -37,25 +37,27 @@
    - 测试文件：`test_{feature_name}.py`
    - 文档文件：`doc_{feature_name}.md`
 
-### 目录结构规范
+### TDD周期产出物目录结构规范 (位于 `ai_wellness_advisor` 项目内)
 
-每个练习系列（如ExTDD_01_BMICalculation）都**必须, 一定**包含：
+每个TDD练习周期（例如 `ExTDD_01_BMICalculation`）的产出物，归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_XX_FeatureName/` 目录下，其内部结构**必须, 一定**包含：
 
 ```
-tdd_bmi_calculator/ExTDD_XX_FeatureName/
-├── constraints/                    # 约束条件
-│   └── task_constraints.md        # 任务特定约束
-├── inputs/                        # 输入文件
-│   └── user_story.md             # 用户故事
-├── outputs/                       # 输出文件
+ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_XX_FeatureName/
+├── constraints/                    # (Constraints) 约束条件
+│   └── {feature_name}_constraints.md # (Task Constraints) 任务特定约束 (注意: 文件名已更新)
+├── outputs/                       # (Outputs) 输出文件
 │   ├── _s1_think_options_{feature_name}.md
 │   ├── _s2_think_design_{feature_name}.md
 │   ├── _s3_think_validation_{feature_name}.md
-│   ├── {feature_name}.py
-│   ├── test_{feature_name}.py
-│   └── doc_{feature_name}.md
-└── README.md                      # 练习说明
+│   ├── {feature_name}.py             # 实际代码 (最终会整合到 ai_wellness_advisor/src/bmi/)
+│   ├── test_{feature_name}.py        # 实际测试 (最终会整合到 ai_wellness_advisor/tests/bmi/)
+│   └── doc_{feature_name}.md         # 特性相关文档
+└── README.md                      # (README) TDD本周期的练习说明、总结
 ```
+
+**请注意**：
+- `inputs/user_story.md` 不再是此归档结构的一部分，因为高级用户故事（如本文档）位于 `exercise_tdd_bmi/` 目录下。
+- `{feature_name}.py` 和 `test_{feature_name}.py` 在TDD开发周期中产生于此归档目录，但其最终稳定版本应整合到 `ai_wellness_advisor/src/bmi/` 和 `ai_wellness_advisor/tests/bmi/` 相应模块下。此归档目录主要记录TDD的 *过程*。
 
 ## BMI计算器特定实现
 
@@ -63,12 +65,13 @@ tdd_bmi_calculator/ExTDD_XX_FeatureName/
 
 feature_name: bmi_calculate
 
+对应的TDD周期产出物归档路径：`../ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_01_BMICalculation/`
+
+其内部结构遵循上述“TDD周期产出物目录结构规范”，例如：
 ```
-tdd_bmi_calculator/ExTDD_01_BMICalculation/
+ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_01_BMICalculation/
 ├── constraints/
-│   └── task_constraints.md        # BMI计算的特定约束
-├── inputs/
-│   └── user_story.md             # BMI计算的用户故事
+│   └── bmi_calculate_constraints.md # BMI计算的特定约束
 └── outputs/
     ├── _s1_think_options_bmi_calculate.md
     ├── _s2_think_design_bmi_calculate.md
@@ -85,12 +88,13 @@ tdd_bmi_calculator/ExTDD_01_BMICalculation/
 
 feature_name: bmi_categorize
 
+对应的TDD周期产出物归档路径：`../ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_02_BMICategorization/`
+
+其内部结构遵循上述“TDD周期产出物目录结构规范”，例如：
 ```
-tdd_bmi_calculator/ExTDD_02_BMICategorization/
+ai_wellness_advisor/docs/archived_tdd_cycles/bmi/ExTDD_02_BMICategorization/
 ├── constraints/
-│   └── task_constraints.md        # BMI分类的特定约束
-├── inputs/
-│   └── user_story.md             # BMI分类的用户故事
+│   └── bmi_categorize_constraints.md # BMI分类的特定约束
 └── outputs/
     ├── _s1_think_options_bmi_categorize.md
     ├── _s2_think_design_bmi_categorize.md
