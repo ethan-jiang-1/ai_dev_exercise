@@ -81,7 +81,7 @@ ai_wellness_advisor/
 │   │   ├── user_story_llm_clients_featureN.md
 │   │   └── user_story_core_services_featureN.md # 对应 exercise_ai_wellness_advisor
 │   │
-│   └── archived_tdd_cycles/ # (Archived TDD Cycles) TDD周期内的思考、设计和实现记录归档
+│   └── dev_cycles/ # (Archived TDD Cycles) TDD周期内的思考、设计和实现记录归档
 │       ├── bmi/                            # (Archived TDD Cycles for BMI)
 │       │   └── ExTDD_01_BMICalculation/    # (Example TDD Cycle, see structure above)
 │       ├── dcnc/                           # (Archived TDD Cycles for DCNC)
@@ -123,32 +123,33 @@ ai_wellness_advisor/
 
 ```
 
-## 每个 ExTDD 练习的目录结构 (在 `ai_wellness_advisor/docs/archived_tdd_cycles/` 目录下)
+## 每个 ExTDD 练习的目录结构 (针对 feature的详尽说明)
 
-每个TDD练习周期（例如，针对BMI模块的 `ExTDD_01_BMICalculation`）的产出物，将归档在 `ai_wellness_advisor/docs/archived_tdd_cycles/{module_name}/ExTDD_XX_{FeatureName}/` 目录下。其中 `{module_name}` 对应如 `bmi`, `dcnc` 等模块名。其内部结构和文件说明如下：
+每个TDD练习周期（例如，针对BMI模块的 `ExTDD_01_BMICalculation`）的产出物，将归档在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_XX_{FeatureName}/` 目录下。其中 `{module_name}` 对应如 `bmi`, `dcnc` 等模块名。其内部结构和文件说明如下：
 
 ```
-ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
-├── constraints/                    # (Optional Constraints) 约束条件
-│   └── {feature_name}_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
-├── outputs/                       # (Outputs) TDD周期内的主要产出物
-│   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
-│   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
-│   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
-│   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
-└── src/
-|    └── bmi/
-|        ├── __init__.py
-|        └── bmi_calculator.py  # 或者 new_feature_for_bmi.py
-└── tests/
-    └── bmi/
-        ├── __init__.py
-        └── test_bmi_calculator.py # 或者 test_new_feature_for_bmi.py
+ai_wellness_advisor/
+├── src/                            # (Source Code Snapshot) TDD周期内的源代码快照
+│   └── {module_name}/              # 例如 bmi/
+│       └── {feature_name}.py
+├── tests/                          # (Test Code Snapshot) TDD周期内的测试代码快照
+│   └── {module_name}/              # 例如 bmi/
+│       └── test_{feature_name}.py
+├── dev_cycles/            # (User Story, Design and Planning Documents) 思考、设计、约束、验证等文档
+│   └── {module_name}/              # 例如 bmi/
+|       └── ExTDD_XX_{feature_name}/ # 例如 ExTDD_01_BMICalculation/
+│         ├── _user_story_{feature_name}.md
+│         ├── _s1_think_options_{feature_name}.md
+│         ├── _s2_think_design_{feature_name}.md
+│         ├── _s3_think_validation_{feature_name}.md
+│         └── _constraints_{feature_name}.md # (Optional)
+└── README_prj.md                       
 ```
 
 **核心原则**：
-- `outputs/` 目录中的 `.md` 文件（如 `_s1_think_...`）是TDD思考过程的永久记录。
-- `outputs/` 目录不再用于存放TDD周期中产生的 `{feature_name}.py` 和 `test_{feature_name}.py` 代码文件。这些代码的开发和版本控制应直接在 `ai_wellness_advisor/src/...` 和 `ai_wellness_advisor/tests/...` 的目标位置进行，或遵循更新后的项目开发流程。
+- `design_and_planning/` 目录中的 `.md` 文件（如 `_s1_think_...`）是TDD思考过程和设计规划的永久记录。
+- `src/` 和 `tests/` 子目录存放该TDD周期结束时的代码和测试快照，主要用于过程追溯和复盘。这些代码的最终稳定版本须整合进项目顶层的 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
+- `story_references/README.md` 用于链接到 `ai_wellness_advisor/docs/user_stories/` 中的权威用户故事，并记录本周期内对这些故事的特定解读或关注点。
 
 **重要原则与文件定位指南:**
 
@@ -162,7 +163,7 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
     *   `practice_xxx.md` 可链接至 `ai_wellness_advisor/docs/user_stories/` 中的详细需求。
     *   **严禁** 在此存放任何实际Python源代码、测试脚本或重复的详细设计文档；这些动态内容均属 `ai_wellness_advisor/`。
 
-3.  **`ai_wellness_advisor/docs/archived_tdd_cycles/`：TDD过程归档**
+3.  **`ai_wellness_advisor/docs/dev_cycles/`：TDD过程归档**
     *   用于归档每个TDD练习周期 (`.../{module_name}/ExTDD_XX_{FeatureName}/`) 的完整记录，包括：
         *   思考过程与约束分析：`outputs/` 子目录下的 `.md` 文件。
         *   迭代代码与测试快照：该练习归档目录下的 `src/` 和 `tests/` 子目录。
@@ -175,9 +176,9 @@ ai_wellness_advisor/docs/archived_tdd_cycles/exercise_name/ExTDD_XX_FeatureName/
 | -------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | **启动TDD的练习** | `exercise_tdd_xxx/practice_yyy.md`                                              | 高级别、练习入口                                                                                            |
 | **用户故事(按Feature)**     | `ai_wellness_advisor/docs/user_stories/user_story_{PracticeName}_{FeatureName}.md`                                     | 模块化、权威版本                                                                                        |
-| **TDD过程文档**      | `ai_wellness_advisor/docs/archived_tdd_cycles/.../ExTDD_XX_FeatureName/`     | 包含思考、约束、迭代代码/测试、周期总结  
+| **TDD过程文档**      | `ai_wellness_advisor/docs/dev_cycles/.../ExTDD_XX_FeatureName/`     | 包含思考、约束、迭代代码/测试、周期总结  
 | **最终功能代码**     | `ai_wellness_advisor/src/...`                                                   | 功能代码                                                                                          |
 | **最终测试代码**     | `ai_wellness_advisor/tests/...`                                                 | 测试代码                                                                                          |
 | **模块文档** | `ai_wellness_advisor/docs/...`                                   | 项目概述、架构、详细设计, user_story, feature文档等                                                                                |
 
-简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其 `docs/archived_tdd_cycles/` 则记录了“城市的建设蓝图和过程”。
+简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其 `docs/dev_cycles/` 则记录了“城市的建设蓝图和过程”。
