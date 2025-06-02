@@ -1,135 +1,159 @@
-<!-- 定义占位符 -->
-<!-- 
-{app_name}: 指代项目或应用的根目录名称，例如 "ai_wellness_advisor"。
-{module_name}: 指代项目中的一个模块名称，例如 "bmi" 或 "user_profile"。
-{FeatureName}: 指代模块下的一个具体特性名称，采用驼峰式命名，例如 "BMICalculation"。
-{feature_name}: 指代模块下的一个具体特性名称，采用下划线命名，例如 "bmi_calculation"。
-NN: 指代特性的两位数序号，例如 "01", "02"。
+<!-- 定义核心占位符 -->
+<!--
+  {app_name}: 项目/应用根目录名 (例如: "ai_wellness_advisor")。
+  {module_name}: {app_name} 内的模块名 (例如: "bmi", "wellness_profile")。
+  {FeatureName}: 驼峰式特性名 (例如: "BMICalculation", "ComprehensiveProfileModel")。
+  {feature_name}: 下划线式特性名 (例如: "bmi_calculation", "comprehensive_profile_model")。
+  {NN}: 特性两位数序号 (例如: "01", "02")。
+  {CURRENT_EXERCISE_DIR}: 当前练习指导文件所在的目录名 (例如: "exercise_tdd_bmi", "exercise_tdd_awa_core")。
 -->
 
-# Practice: {{STORY_THEME_TITLE}}
-> 版本: 3.0
+# Practice: {{PRACTICE_TITLE}}
+{{#if PRACTICE_VERSION}} > 版本: {{PRACTICE_VERSION}} {{/if}}
 
-> **工作目录说明**：本文档位于 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/` 目录下，所有文件引用路径均基于此目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 实际指向 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/teaching_framework/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `{{CURRENT_EXERCISE_DIR}}/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 指向的是项目根目录下的 `tdd_rules/test_driven_development_with_ai.md`。
 >
-> **实现目录说明**：本练习的实际代码实现位于 `{{USER_WORKSPACE_ROOT}}/{app_name}/src/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/` 目录下，测试代码位于 `{{USER_WORKSPACE_ROOT}}/{app_name}/tests/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`，相关的TDD开发过程文档（如思考、设计、约束、用户故事、最终功能说明等）位于 `{{USER_WORKSPACE_ROOT}}/{app_name}/dev_cycles/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`。模板中的 `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 将指代 `{app_name}` 项目内模块的相对路径，例如 `bmi` 或 `dcnc`。
+> {{#if MAIN_IMPLEMENTATION_PATH_INFO}}
+> **实现目录说明**：本练习系列的实际代码实现位于 `../{app_name}/src/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`，测试代码位于 `../{app_name}/tests/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`，相关的TDD开发过程文档位于 `../{app_name}/dev_cycles/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`。
+> {{else if SPECIFIC_TECH_IMPLEMENTATION_PATH_INFO}}
+> **实现目录说明**：本练习的实际实现位于 `{{SPECIFIC_TECH_IMPLEMENTATION_PATH_INFO.base_path}}/` 目录下 (相对于 `{{CURRENT_EXERCISE_DIR}}/`)。
+> {{/if}}
 
 (核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](../tdd_rules/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](../tdd_rules/planning_tdd_exercise.md))
 (目录结构核心原则参考: [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+{{#if PROJECT_OVERVIEW_LINK}}
+(项目整体结构参考: [项目整体目录结构](../README_folders.md))
+{{/if}}
 
 ## 1. User Story (用户故事)
 
-# {{STORY_TITLE_WITH_THEME}}: AI+TDD练习实践实例
+# {{USER_STORY_MAIN_TITLE}}
 
-> **重要约束**：在整个实践过程中，请确保所有在Cursor中的交互对话均使用中文，这是出于演示目的的要求。
-> {{ADDITIONAL_STORY_CONSTRAINTS_PLACEHOLDER}}
+> **重要约束**：
+> 1. 在整个实践过程中，请确保所有在Cursor/Trae中的交互对话均使用中文，这是出于演示目的的要求。
+> {{#each GENERAL_CONSTRAINTS}}
+> {{this}}
+> {{/each}}
 
-{{OPTIONAL_TOOLKIT_DESCRIPTION_PLACEHOLDER}}
+{{#if TOOLKIT_DESCRIPTION}}
+## 工具包说明
+
+{{{TOOLKIT_DESCRIPTION}}}
+{{/if}}
 
 ## 基础结构说明
 
-本实践遵循标准的TDD练习框架结构：
+{{#if GENERAL_PLACEHOLDER_DEFINITIONS}}
+在本练习系列中，涉及到的占位符具体含义如下：
+*   `{app_name}`: `{{app_name_value}}`
+{{#if module_name_value_is_dynamic}}
+*   `{module_name}`: 具体模块名将在各练习系列中定义 (例如 `{{EXAMPLE_MODULE_NAME_1}}`, `{{EXAMPLE_MODULE_NAME_2}}`)
+{{else}}
+*   `{module_name}`: `{{module_name_value}}` (具体在各特性实现部分会再次明确)
+{{/if}}
+{{/if}}
 
-### 命名规范
+本实践遵循标准的TDD练习框架结构。详细的目录结构、文件命名规范以及TDD周期产出物的组织方式，请严格遵循以下权威文档：
+*   [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md) (定义了特性研发周期内，如 `dev_cycles`, `src`, `tests` 中各产出物的具体组织和命名)
+*   [项目整体目录结构](../README_folders.md) (定义了项目根目录及 `{app_name}` 应用的整体结构)
+
+#### 核心命名原则摘要
 
 1.  **特性名称 (feature_name)**：
     *   格式：`小写字母_用下划线分隔`
     *   示例：`{{EXAMPLE_FEATURE_NAME_SNAKECASE_1}}`, `{{EXAMPLE_FEATURE_NAME_SNAKECASE_2}}`
     *   要求：描述性、简洁、表明功能
 
-2.  **目录命名**：
-    *   练习系列目录：`ExTDD_XX_FeatureName`
-        *   XX：两位数字编号（01、02等）
-        *   FeatureName：驼峰式命名
-        *   示例：`ExTDD_01_{{EXAMPLE_FEATURE_NAME_CAMELCASE}}`
+{{#if SPECIFIC_NAMING_CONVENTION_DETAILS}}
+{{{SPECIFIC_NAMING_CONVENTION_DETAILS}}}
+{{/if}}
 
-3.  **文件命名**：
-    *   思考文件：`_s{step}_{type}_{feature_name}.md`
-    *   代码文件：`{feature_name}.py`
-    *   测试文件：`test_{feature_name}.py`
-    *   文档文件：`doc_{feature_name}.md`
+{{#if TDD_CYCLE_OUTPUT_PATH_INFO}}
+**TDD周期产出物归档核心路径**：
+本练习系列相关的每个TDD周期（例如 `ExTDD_{{NN}}_{{FeatureName}}`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{{module_name}}/ExTDD_{{NN}}_{{FeatureName}}/` (例如 `../{{app_name_value}}/dev_cycles/{{EXAMPLE_MODULE_NAME_1}}/ExTDD_01_SampleFeature/`)。对应的代码和测试快照则位于 `../{app_name}/src/{{module_name}}/` 和 `../{app_name}/tests/{{module_name}}/`。
 
-### 目录结构规范
+本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
+{{#if DETAILED_USER_STORY_LOCATION_INFO}}
+本练习中定义的各特性对应的详细用户故事文档 (`_user_story_{feature_name}.md`) 位于上述 `{app_name}` 项目的相应特性开发周期目录中。
+{{/if}}
+{{/if}}
 
-根据项目根目录下的 `README_folders.md` 和 `README_folder_feature.md` 定义，所有实际开发内容均在 `{app_name}` 项目下进行。每个特性 (Feature) 的TDD开发周期将涉及以下结构（以特性 `ExTDD_XX_FeatureName` 为例，其模块名为 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}`）：
+{{#if SPECIFIC_DIRECTORY_STRUCTURE}}
+### 目录结构规范 ({{PRACTICE_TITLE}} 特定)
 
-**源代码目录 (`{app_name}/src/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`):**
-```
-{app_name}/
-└── src/
-    └── {{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
-        ├── README_{{feature_name}}.md      # 特性代码说明
-        └── {{feature_name}}.py             # 功能实现代码
-```
+{{{SPECIFIC_DIRECTORY_STRUCTURE}}}
+{{/if}}
 
-**测试代码目录 (`{app_name}/tests/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`):**
-```
-{app_name}/
-└── tests/
-    └── {{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
-        └── test_{{feature_name}}.py      # 测试代码
-```
-
-**开发过程与文档目录 (`{app_name}/dev_cycles/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`):**
-```
-{app_name}/
-└── dev_cycles/
-    └── {{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
-        └── ExTDD_XX_FeatureName/
-            ├── _user_story_{feature_name}.md
-            ├── _s1_think_options_{feature_name}.md
-            ├── _s2_think_design_{feature_name}.md
-            ├── _s3_think_validation_{feature_name}.md
-            └── _constraints_{feature_name}.md # (可选)
-```
-
-**注意**: `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 在此模板中通常指代 `{app_name}` 项目内的一个模块名 (例如 `bmi`, `dcnc`)，实际生成时应替换为 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 以强调其相对于 `src`, `tests`, `dev_cycles` 的路径。
-
-## {{STORY_THEME_TITLE}} 特定实践
+{{#if FEATURES_OVERVIEW_TITLE}}
+## {{FEATURES_OVERVIEW_TITLE}}
+{{/if}}
 
 {{#each FEATURES}}
-### {{FEATURE_INDEX_PADDED}}. ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}: {{FEATURE_FRIENDLY_TITLE}}
+### {{#if IS_EXERCISE_SERIES}}{{../SERIES_PREFIX}} {{FEATURE_INDEX_PADDED}}: {{else}}{{@index_plus_1}}. {{/if}}`{{FEATURE_ID_PREFIX}}_{{#unless IS_EXERCISE_SERIES}}{{FEATURE_INDEX_PADDED}}_{{/unless}}{{FEATURE_NAME_CAMELCASE}}` - {{FEATURE_FRIENDLY_TITLE}}
 
-**模块名 (Module Name within `{app_name}`):** `{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}`
-**特性名 (Feature Name - snake_case):** `{{FEATURE_NAME_SNAKECASE}}`
-**特性开发目录 (Feature Development Directory - CamelCase):** `ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}`
+{{#if EXERCISE_SERIES_DETAILS}}
+*   **目标**: {{EXERCISE_SERIES_DETAILS.goal}}
+*   **对应 `README_prj.md` 模块**: {{EXERCISE_SERIES_DETAILS.readme_prj_module}}
+*   **建议模块名 (`{module_name}`)**: `{{EXERCISE_SERIES_DETAILS.suggested_module_name}}`
+*   **包含特性 (Features)**:
+    {{#each EXERCISE_SERIES_DETAILS.sub_features}}
+    1.  **`{{this.id}}`**:
+        *   **用户故事**: {{this.user_story}}
+        *   **核心任务**: {{this.core_task}}
+    {{/each}}
+{{else if SINGLE_FEATURE_DETAILS}}
+**模块名 (`{module_name}` within `{app_name}`):** `{{SINGLE_FEATURE_DETAILS.module_name}}`
+**特性名 (Feature Name - snake_case):** `{{SINGLE_FEATURE_DETAILS.feature_name_snakecase}}`
+{{#if SINGLE_FEATURE_DETAILS.feature_dev_dir_camelcase}}
+**特性开发目录 (Feature Development Directory - CamelCase):** `{{SINGLE_FEATURE_DETAILS.feature_dev_dir_camelcase}}`
+{{/if}}
 
+{{#if SINGLE_FEATURE_DETAILS.tdd_cycle_docs_path}}
+对应的TDD周期文档存放路径：`{{SINGLE_FEATURE_DETAILS.tdd_cycle_docs_path}}`
+(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+{{/if}}
+
+{{#if SINGLE_FEATURE_DETAILS.specific_paths_overview}}
 **相关文件路径概览 (Paths within `{app_name}` project):**
+{{{SINGLE_FEATURE_DETAILS.specific_paths_overview}}}
+{{/if}}
 
-*   **源代码:** `{app_name}/src/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/{{FEATURE_NAME_SNAKECASE}}.py` (及 `README_{{FEATURE_NAME_SNAKECASE}}.md`)
-*   **测试代码:** `{app_name}/tests/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/test_{{FEATURE_NAME_SNAKECASE}}.py`
-*   **开发过程文档根目录:** `{app_name}/dev_cycles/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/`
-    *   用户故事: `_user_story_{{FEATURE_NAME_SNAKECASE}}.md`
-    *   思考与选项: `_s1_think_options_{{FEATURE_NAME_SNAKECASE}}.md`
-    *   设计方案: `_s2_think_design_{{FEATURE_NAME_SNAKECASE}}.md`
-    *   验证方法: `_s3_think_validation_{{FEATURE_NAME_SNAKECASE}}.md`
-    *   约束(可选): `_constraints_{{FEATURE_NAME_SNAKECASE}}.md`
-
+{{#if SINGLE_FEATURE_DETAILS.specific_directory_structure_snippet}}
 ```
-# {app_name}/src/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
-# ├── README_{{FEATURE_NAME_SNAKECASE}}.md
-# └── {{FEATURE_NAME_SNAKECASE}}.py
-
-# {app_name}/tests/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
-# └── test_{{FEATURE_NAME_SNAKECASE}}.py
-
-# {app_name}/dev_cycles/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/
-# ├── _user_story_{{FEATURE_NAME_SNAKECASE}}.md
-# ├── _s1_think_options_{{FEATURE_NAME_SNAKECASE}}.md
-# ├── _s2_think_design_{{FEATURE_NAME_SNAKECASE}}.md
-# ├── _s3_think_validation_{{FEATURE_NAME_SNAKECASE}}.md
-# └── _constraints_{{FEATURE_NAME_SNAKECASE}}.md # (可选)
+{{{SINGLE_FEATURE_DETAILS.specific_directory_structure_snippet}}}
 ```
+{{/if}}
 
-#### 核心用户需求 (ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}})
+#### 核心用户需求 ({{FEATURE_ID_PREFIX}}_{{FEATURE_NAME_CAMELCASE}})
 > {{CORE_USER_NEED}}
+{{/if}}
 {{/each}}
 
-**重要提示**: 请确保在实际生成 `practice_xxx.md` 文件时，将占位符 `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 或 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 替换为实际的模块名 (例如 `bmi`, `dcnc`, `llm_integration` 等)，并且所有路径引用都正确指向 `{app_name}` 项目内部。模板中的 `{{USER_WORKSPACE_ROOT}}` 应替换为实际的工作区根路径。
+{{#if IMPORTANT_NOTES}}
+**重要提示**:
+{{#each IMPORTANT_NOTES}}
+- {{this}}
+{{/each}}
+{{/if}}
 
-{{OPTIONAL_GENERAL_CONSTRAINTS_PLACEHOLDER}}
-{{OPTIONAL_LEARNING_ORDER_PLACEHOLDER}}
-{{OPTIONAL_TECH_DEPENDENCIES_PLACEHOLDER}}
-{{OPTIONAL_DIFFICULTY_PROGRESSION_PLACEHOLDER}}
+{{#if GENERAL_CONSTRAINTS_SECTION}}
+## 通用约束
+{{{GENERAL_CONSTRAINTS_SECTION}}}
+{{/if}}
+
+{{#if LEARNING_ORDER_SECTION}}
+## 建议学习顺序
+{{{LEARNING_ORDER_SECTION}}}
+{{/if}}
+
+{{#if TECH_DEPENDENCIES_SECTION}}
+## 技术依赖
+{{{TECH_DEPENDENCIES_SECTION}}}
+{{/if}}
+
+{{#if DIFFICULTY_PROGRESSION_SECTION}}
+## 练习难度递进
+{{{DIFFICULTY_PROGRESSION_SECTION}}}
+{{/if}}

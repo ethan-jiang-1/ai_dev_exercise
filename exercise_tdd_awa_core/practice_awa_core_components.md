@@ -17,7 +17,7 @@
 
 在本练习系列中，涉及到的占位符具体含义如下：
 *   `{app_name}`: `ai_wellness_advisor`
-*   `{module_name}`: 具体模块名将在各练习系列中定义 (例如 `wellness_profile`, `personalized_advisor`, `app_logic`)
+*   `{module_name}`: `awa`
 
 本实践遵循标准的TDD练习框架结构。详细的目录结构、文件命名规范以及TDD周期产出物的组织方式，请严格遵循以下权威文档：
 *   [ExTDD 特性研发目录结构：核心原则与详解](../../README_folder_feature.md) (定义了特性研发周期内，如 `dev_cycles`, `src`, `tests` 中各产出物的具体组织和命名)
@@ -44,7 +44,7 @@
 ### 练习系列 1: `ExTDD_WellnessProfileBuilder` - 构建完整的健康档案模块
 *   **目标**：实现一个健壮的健康档案构建和管理模块。
 *   **对应 `README_prj.md` 模块**: `WellnessProfileBuilder` (第1层模块)
-*   **建议模块名 (`{module_name}`)**: `wellness_profile`
+*   **建议模块名 (`{module_name}`)**: `awa`
 *   **包含特性 (Features)**:
     1.  **`Feature_WPB_01_ComprehensiveProfileModel`**:
         *   **用户故事**: 作为开发者，我希望定义一个全面的Pydantic模型 (`UserProfile`)，用于存储用户的个人信息、健康指标（BMI, BMR, TDEE）、活动水平及潜在的健康目标，确保数据的完整性和类型安全。
@@ -59,7 +59,7 @@
 ### 练习系列 2: `ExTDD_PersonalizedAdvisor` - 实现个性化健康顾问核心逻辑
 *   **目标**：构建一个能够根据用户健康档案，通过LLM提供个性化健康建议的模块。
 *   **对应 `README_prj.md` 模块**: `PersonalizedAdvisor` (第2层模块)
-*   **建议模块名 (`{module_name}`)**: `personalized_advisor`
+*   **建议模块名 (`{module_name}`)**: `awa`
 *   **包含特性 (Features)**:
     1.  **`Feature_PA_01_IntegratedAdviceGeneration`**:
         *   **用户故事**: 作为拥有完整健康档案的用户，我希望能基于我的所有数据（BMI, BMR, TDEE, 活动水平等），从个性化顾问处获得由LLM生成的覆盖饮食、运动和生活方式的个性化建议。
@@ -74,7 +74,7 @@
 ### 练习系列 3: `ExTDD_AppIntegration` - 应用层逻辑与初步集成
 *   **目标**：将各个独立开发的模块整合起来，形成一个初步可用的应用流程。
 *   **对应 `README_prj.md` 模块**: 顶层应用逻辑与集成
-*   **建议模块名 (`{module_name}`)**: `app_logic` (或直接在 `{app_name}/src/` 下的主应用逻辑部分)
+*   **建议模块名 (`{module_name}`)**: `awa`
 *   **包含特性 (Features)**:
     1.  **`Feature_AI_01_MainWorkflow`**:
         *   **用户故事**: 作为用户，我希望能通过一个简单的流程与系统交互：输入我的数据，创建/更新我的档案，然后获得个性化建议。
