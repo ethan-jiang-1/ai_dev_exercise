@@ -2,7 +2,9 @@
 
 本文档定义了 `ai_dev_exercise_tdd` 项目（根目录）及其内部 `ai_wellness_advisor` 应用的目录结构和文件组织规范。
 
-### 1. 根目录 (`ai_dev_exercise_tdd/`)
+### 1. 根目录 
+
+根目录就是项目根目录, README_prj.md 和READ_folders.md, 和 .env所在的目录.
 
 这是整个TDD练习项目的根目录。它包含了各个独立的TDD练习模块 (`exercise_tdd_xxx/`)、最终整合的AI健康助手应用 (`ai_wellness_advisor/`) 以及一些通用工具和文档。
 
@@ -23,8 +25,9 @@
 /  # Actual project root
 ├── README_folders.md # (This file)
 ├── README_prj.md     # (Overall project README)
-├── .gitignore
-├── requirements.txt  # 或者 pyproject.toml
+├── .env # 环境变量配置文件
+├── .gitignore # Git忽略文件
+├── requirements.txt  # Python依赖管理
 ├── ai_wellness_advisor/ # Application specific folder (see detailed structure below)
 │   └── ...
 ├── exercise_tdd_xxx/ # TDD exercise folders
