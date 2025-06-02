@@ -41,7 +41,7 @@
 ```
 # Detailed structure of `ai_wellness_advisor/`:
 ai_wellness_advisor/
-├── README.md         # README for ai_wellness_advisor application
+├── README.md         # (Application Entry Point) 应用的简要入口和导航，指向更详细的文档
 ├── src/                # (Source code) 所有Python模块源代码
 │   ├── __init__.py
 │   ├── bmi/            # (Module) BMI计算器模块 (第0层)
@@ -127,7 +127,7 @@ ai_wellness_advisor/
 为确保项目结构的清晰与一致性，各类文件和文档的存放位置遵循以下核心原则：
 
 1.  **`ai_wellness_advisor/`：应用核心**
-    *   作为实际构建的应用程序，是所有最终生产代码 (`src/`)、最终测试代码 (`tests/`)、以及项目与模块级文档 (`README.md`, `docs/architecture.md` 等) 的主要存放地。权威的用户故事和详细的TDD开发周期文档位于其下的 `dev_cycles/` 目录中，具体结构遵循 `README_folder_feature.md`。
+    *   作为实际构建的应用程序，是所有最终生产代码 (`src/`)、最终测试代码 (`tests/`) 的主要存放地。其根目录下的 `README.md` 作为应用的简要入口和导航。项目与模块级详细文档（如架构设计）位于 `docs/` 目录。权威的用户故事和详细的TDD开发周期文档位于其下的 `dev_cycles/` 目录中，具体结构遵循 `README_folder_feature.md`。
 
 2.  **`exercise_tdd_xxx/`：TDD练习指南**
     *   扮演TDD练习的“静态入口点”角色，提供高级别初始用户故事 (`practice_xxx.md`) 和教学框架 (`teaching_framework/`)。
