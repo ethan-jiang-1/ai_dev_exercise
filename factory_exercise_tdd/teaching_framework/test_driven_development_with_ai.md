@@ -66,7 +66,9 @@ TDD 带来的系统性优势：
 - **活文档**：测试即使用示例，是 AI 也能理解和验证的"规格说明"。
 - **持续进化**：系统可以在人机协作下安全地持续改进。
 
-**这三种思维模式并非孤立，而是相互融合，共同构成了驾驭 AI 进行高质量软件开发的基石。** 传统流程提供宏观结构和阶段目标，顺序思维保障过程透明和思考留痕，**而 TDD 则是在这个框架内确保代码质量、驱动功能实现、安全迭代的核心实践循环。本框架的练习将围绕 TDD 展开。**
+*   **传统软件工程思维**: 强调预先规划、全面设计、文档驱动。在AI协作中，人类负责定义清晰的需求、设计系统架构、编写详细的规格说明书（例如，`{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/_user_story_{feature_name}.md`, `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/_s1_think_options_{feature_name}.md`, `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/_s2_think_design_{feature_name}.md`）。AI则基于这些输入生成代码框架、实现具体功能模块、编写初步的测试用例（例如，生成 `{app_name}/src/{module_name}/{feature_name}.{ext}` 和 `{app_name}/tests/{module_name}/test_{feature_name}.{ext}` 的初稿）。
+*   **顺序思维 (Sequential Thinking)**: 强调将复杂问题分解为一系列线性步骤，逐步解决。在AI协作中，人类负责将大的用户故事拆解为更小的、可管理的开发任务，并为每个任务定义清晰的输入、处理逻辑和预期输出。AI则可以辅助完成每个小步骤的具体实现和验证（例如，针对 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/_s2_think_design_{feature_name}.md` 中的每个细分步骤进行编码和单元测试）。
+*   **测试驱动开发 (TDD)**: 强调先编写测试用例，再编写刚好能通过测试的功能代码，最后重构。在AI协作中，人类可以专注于设计高质量的测试用例（例如，`{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/_s3_think_validation_{feature_name}.md` 和 `{app_name}/tests/{module_name}/test_{feature_name}.{ext}`），明确代码的行为和边界条件。AI则可以基于这些测试用例生成满足需求的功能代码（例如，`{app_name}/src/{module_name}/{feature_name}.{ext}`），并辅助进行代码重构和文档生成（例如，`{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/_doc_{feature_name}.md`）。
 
 ## 证据链：思维痕迹即资产与AI指令
 
@@ -91,12 +93,12 @@ Markdown是记录思维过程并构建AI知识库的理想媒介：
 
 为每个开发阶段创建明确的 Markdown 文件，**它们既是人类的思考记录，也是指导 AI 的核心文档**：（注意：步骤 4 和 5 通常在 TDD 循环中迭代进行）
 
-1. `user_story.md` → 思考问题定义 (use_story)
-2. `_s1_think_options_{user_story}.md` → 思考解决方案 (solution)
-3. `_s2_think_design_{user_story}.md` → 思考设计方案 (tasks, todo list)
-4. `_s3_think_validation_{user_story}.md` → 构建验证策略 (TDD 的起点)
-5. `{user_story}.{ext}` (在 `ai_wellness_advisor/src/{module_name}/`) + `test_{user_story}.{ext}` (在 `ai_wellness_advisor/tests/{module_name}/`) → 构建解决方案 (遵循 Red-Green-Refactor)
-6. `_doc_{user_story}.md` (在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 构建文档 
+1. `_user_story_{feature_name}.md` (在 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 思考问题定义 (feature_name)
+2. `_s1_think_options_{feature_name}.md` (在 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 思考解决方案 (solution)
+3. `_s2_think_design_{feature_name}.md` (在 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 思考设计方案 (tasks, todo list)
+4. `_s3_think_validation_{feature_name}.md` (在 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 构建验证策略 (TDD 的起点)
+5. `{feature_name}.{ext}` (在 `{app_name}/src/{module_name}/`) + `test_{feature_name}.{ext}` (在 `{app_name}/tests/{module_name}/`) → 构建解决方案 (遵循 Red-Green-Refactor)
+6. `_doc_{feature_name}.md` (在 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 构建文档 
 
 ## 与AI协作：主导而非跟随，教练而非依赖
 
