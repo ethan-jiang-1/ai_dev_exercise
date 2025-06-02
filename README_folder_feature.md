@@ -1,6 +1,6 @@
 ## 每个 ExTDD 练习的目录结构 (针对 feature的详尽说明, 核心思想)
 
-每个TDD练习周期（例如，针对BMI模块的 `ExTDD_01_BMICalculation`）的产出物，将归档在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_XX_{FeatureName}/` 目录下。其中 `{module_name}` 对应如 `bmi`, `dcnc` 等模块名。其内部结构和文件说明如下：
+每个模块的TDD练习周期（例如，针对BMI模块的 `ExTDD_01_BMICalculation`）的产出物，将输出在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_XX_{FeatureName}/` 目录下。其中 `{module_name}` 对应如 `bmi`, `dcnc` 等模块名。总体结构和src, tests 都在用模块名起名的子目录下,  其内部结构和文件说明如下：
 
 ```
 ai_wellness_advisor/

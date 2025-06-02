@@ -125,8 +125,7 @@ ai_wellness_advisor/
 
 ## 每个 ExTDD 练习的目录结构 (针对 feature的详尽说明, 核心思想)
 
-关于每个TDD练习周期的产出物归档目录结构和文件说明的核心思想，请参考：[./README_folder_feature.md](./README_folder_feature.md)
-
+关于每个TDD练习周期的产出物输出目录结构和文件说明的核心思想，请参考：[./README_folder_feature.md](./README_folder_feature.md)
 
 
 **重要原则与文件定位指南:**
