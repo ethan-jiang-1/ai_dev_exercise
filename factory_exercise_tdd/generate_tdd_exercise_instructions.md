@@ -34,7 +34,7 @@
 
 **上下文**: 此阶段在"第1阶段"确定了 `current_exercise_collection` （当前练习集）之后执行。
 
-**目标**: AI通过与用户进行一系列交互式问答和确认，收集必要信息，然后参照新创建的 `exercise_tdd_template/practice_tdd_template.md` 作为结构蓝本，并结合本指令文档中嵌入的撰写指南，生成结构化的单个"练习practice描述文件"。
+**目标**: AI通过与用户进行一系列交互式问答和确认，收集必要信息，然后参照新创建的 `factory_exercise_tdd/practice_tdd_template.md` 作为结构蓝本，并结合本指令文档中嵌入的撰写指南，生成结构化的单个"练习practice描述文件"。
 
 **交互式practice构建 (Interactive practice Building):**
 
@@ -116,7 +116,7 @@
     *   **AI**: "非常好！我已经收集了所有必要的信息。现在我将根据这些信息生成 `[practice文件名]` 文件。在生成过程中，我会：
         1.  使用您确认的识别信息（主题、实现目录名、文件名、特性列表、核心user_story目标、口语化标题、以及所有可选部分的说明等）。
         2.  为每个定义的练习系列，**严格遵循本指令文档中关于"功能核心目标"的撰写指导原则** 来填充"核心用户需求"部分。
-        3.  `practice_xxx.md` 文件的整体结构将基于 `exercise_tdd_template/practice_tdd_template.md` 文件。我会用收集到的信息填充所有相关占位符，例如：
+        3.  `practice_xxx.md` 文件的整体结构将基于 `factory_exercise_tdd/practice_tdd_template.md` 文件。我会用收集到的信息填充所有相关占位符，例如：
             *   `{{USER_WORKSPACE_ROOT}}` 将使用您系统信息中的工作区绝对路径。
             *   `{{EXAMPLE_FEATURE_NAME_SNAKECASE_1}}`, `{{EXAMPLE_FEATURE_NAME_SNAKECASE_2}}`, `{{EXAMPLE_FEATURE_NAME_CAMELCASE}}` 等示例将根据当前practice主题生成相关的或通用的例子。
             *   所有特性相关的占位符如 `{{FEATURE_NAME_CAMELCASE}}`, `{{FEATURE_NAME_SNAKECASE}}`, `{{CORE_USER_NEED}}`, `{{FEATURE_FRIENDLY_TITLE}}` 等都将被正确填充。
@@ -130,7 +130,7 @@
 
 *   **输入源 (Input Sources)**: 用户通过上述交互确认的所有信息 (练习集, practice主题, 主要实现目录名, practice文件名, 各练习系列的FeatureName、口语化标题、核心user_story目标，以及所有可选部分的说明等)。
 *   **核心指南1 - "核心user_story需求"内容与风格**: 为每个练习系列撰写"核心user_story需求"时，严格遵循本指令文档"第2阶段"中"核心练习系列规划与定义"部分所列出的撰写原则和指导。
-*   **核心指南2 - 整体文件结构与Boilerplate (`practice_tdd_template.md`)**: 使用 `exercise_tdd_template/practice_tdd_template.md` 文件作为 `practice_xxx.md` 的基础结构模板。AI必须：
+*   **核心指南2 - 整体文件结构与Boilerplate (`practice_tdd_template.md`)**: 使用 `factory_exercise_tdd/practice_tdd_template.md` 文件作为 `practice_xxx.md` 的基础结构模板。AI必须：
     *   使用用户确认的各项信息（如"主要实现目录名称"、特性列表、核心user_story需求、口语化标题、可选内容等）来正确填充此模板中的所有占位符。
     *   根据用户系统信息提供的绝对路径填充 `{{USER_WORKSPACE_ROOT}}`。
     *   确保 `FeatureName` 的 `CamelCase` 和 `snake_case` 形式根据用户输入（通常是CamelCase）正确派生并用于相应的占位符。
@@ -145,7 +145,7 @@
 
 **上下文**: 此阶段在"第1阶段"确定了 `current_exercise_collection` 之后执行，并且通常在"第2阶段"为一个或多个practice生成了描述文件之后。
 
-**目标**: AI通过与用户交互，确认并将通用的框架文档模板从 `exercise_tdd_template/teaching_framework/` 复制到当前的 `current_exercise_collection` 目录下，并可选择性创建练习集顶级的规划与理念文档。
+**目标**: AI通过与用户交互，确认并将通用的框架文档模板从 `factory_exercise_tdd/teaching_framework/` 复制到当前的 `current_exercise_collection` 目录下，并可选择性创建练习集顶级的规划与理念文档。
 
 **交互式文档同步 (Interactive Document Sync):**
 
@@ -176,7 +176,7 @@
 
 1.  **AI开场**: AI解释交互式流程。
 2.  **第1阶段 - 设定练习集**: AI与用户对话，确定当前要操作的"练习集" (是现有还是新建)，并确认。
-3.  **第2阶段 - 创建练习practice描述 (`practice_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义practice识别信息 (主题、主要实现目录名、practice文件名) 和所有核心练习系列 (FeatureName、核心user_story目标)。在此过程中，AI会提供关于规划练习系列和撰写"核心user_story需求"的指导。然后，AI声明将使用 `exercise_tdd_template/practice_tdd_template.md` 作为结构模板，并结合本指令文档中的撰写指南来生成 `practice_xxx.md` 文件，并告知用户生成结果。对每个新practice重复此步骤。
+3.  **第2阶段 - 创建练习practice描述 (`practice_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义practice识别信息 (主题、主要实现目录名、practice文件名) 和所有核心练习系列 (FeatureName、核心user_story目标)。在此过程中，AI会提供关于规划练习系列和撰写"核心user_story需求"的指导。然后，AI声明将使用 `factory_exercise_tdd/practice_tdd_template.md` 作为结构模板，并结合本指令文档中的撰写指南来生成 `practice_xxx.md` 文件，并告知用户生成结果。对每个新practice重复此步骤。
 4.  **第3阶段 - 初始化框架文档**: AI与用户交互确认，同步通用的教学框架模板 (`planning_tdd_exercise.md` 和 `test_driven_development_with_ai.md`) 到练习集内部，并可选择性地为该练习集创建顶级的规划与理念文档，每一步操作都进行沟通。
 
 目标是生成一个结构和内容都符合预期的 `practice_xxx.md` 文件，可以直接用于指导学员进行TDD练习。请确保内容满足用户输入，并严格遵循所引用的模板和本文档内的撰写指南，实现结构清晰、风格一致。
