@@ -1,10 +1,11 @@
 # Practice: LLM API调用练习系列 - AI个性化健康顾问
 
-> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_llm/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_llm/teaching_framework/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_llm/` 目录下，所有文件引用路径均基于此目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_llm/teaching_framework/test_driven_development_with_ai.md`。
 
-(核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
-(单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
-(练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise.md))
+(核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/test_driven_development_with_ai.md))
+(单元测试设计参考: [TDD单元测试设计技巧](../tdd_rules/tdd_unit_test_design_techniques.md))
+(练习框架规划参考: [TDD练习框架设计规划](../tdd_rules/planning_tdd_exercise.md))
+(目录结构核心原则参考: [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 ## 1. User Story (用户故事)
 

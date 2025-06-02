@@ -10,13 +10,14 @@ NN: 指代特性的两位数序号，例如 "01", "02"。
 # Practice: {{STORY_THEME_TITLE}}
 > 版本: 3.0
 
-> **工作目录说明**：本文档位于 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/teaching_framework/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/` 目录下，所有文件引用路径均基于此目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 实际指向 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/teaching_framework/test_driven_development_with_ai.md`。
 >
 > **实现目录说明**：本练习的实际代码实现位于 `{{USER_WORKSPACE_ROOT}}/{app_name}/src/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/` 目录下，测试代码位于 `{{USER_WORKSPACE_ROOT}}/{app_name}/tests/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`，相关的TDD开发过程文档（如思考、设计、约束、用户故事、最终功能说明等）位于 `{{USER_WORKSPACE_ROOT}}/{app_name}/dev_cycles/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`。模板中的 `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 将指代 `{app_name}` 项目内模块的相对路径，例如 `bmi` 或 `dcnc`。
 
-(核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
-(单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
-(练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise.md))
+(核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/test_driven_development_with_ai.md))
+(单元测试设计参考: [TDD单元测试设计技巧](../tdd_rules/tdd_unit_test_design_techniques.md))
+(练习框架规划参考: [TDD练习框架设计规划](../tdd_rules/planning_tdd_exercise.md))
+(目录结构核心原则参考: [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 ## 1. User Story (用户故事)
 
