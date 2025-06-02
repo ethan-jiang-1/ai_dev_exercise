@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/bowhead/ai_dev_exercise_tdd/factory_exercise_tdd",
-      "program": "/Users/bowhead/ai_dev_exercise_tdd/factory_exercise_tdd/build/Debug/outDebug"
+      "cwd": "/Users/bowhead/ai_dev_exercise_tdd/tdd_rules",
+      "program": "/Users/bowhead/ai_dev_exercise_tdd/tdd_rules/build/Debug/outDebug"
     }
   ]
 }
