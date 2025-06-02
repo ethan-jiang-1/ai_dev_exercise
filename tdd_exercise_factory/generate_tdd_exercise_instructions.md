@@ -43,65 +43,70 @@ NN: 指代特性的两位数序号，例如 "01", "02"。
 
 **上下文**: 此阶段在"第1阶段"确定了 `current_exercise_collection` （当前练习集）之后执行。
 
-**目标**: AI通过与用户进行一系列交互式问答和确认，收集必要信息，然后参照新创建的 `factory_exercise_tdd/practice_tdd_template.md` 作为结构蓝本，并结合本指令文档中嵌入的撰写指南，生成结构化的单个"练习practice描述文件"。
+**目标**: AI通过与用户进行一系列交互式问答和确认，收集必要信息，然后参照更新后的 `tdd_exercise_factory/practice_tdd_template.md` 作为结构蓝本，并结合本指令文档中嵌入的撰写指南，生成结构化的单个"练习practice描述文件"。
 
 **交互式practice构建 (Interactive practice Building):**
 
 **AI**: "现在我们来定义练习practice的整体信息。"
 
 1.  **practice识别信息 (practice Identification) - 交互式收集与确认:**
-    *   **AI**: "首先，这个练习practice的总体 **主题 (practice Theme)** 是什么？（例如：'BMI计算器' 或 'LLM API调用'）"
+    *   **AI**: "首先，这个练习practice的总体 **主题 (practice Theme) / 应用友好名称 (APP_FRIENDLY_NAME)** 是什么？（例如：'BMI Calculator' 或 'LLM API Caller'）"
     *   **用户**: `[提供故事主题]`
-    *   **AI**: (记录主题) "明白了，practice主题是 `[用户提供的主题]`。"
-    *   **AI**: "基于此主题，我建议此practice的主要代码实现位于 `{app_name}/src/` 下一个名为 `[主题的snake_case形式]` 的子目录中，例如，如果主题是 'BMI计算器', 那么模块目录建议为 `{app_name}/src/bmi_calculator`。相关的测试代码将位于 `{app_name}/tests/bmi_calculator`，开发过程文档将位于 `{app_name}/dev_cycles/bmi_calculator`。我们将这个模块名（如 `bmi_calculator`）称为 **主要实现模块名 (Main Implementation Module Name)**。您对此建议有什么想法或指定吗？如果同意我的建议，可以直接确认。"
+    *   **AI**: (记录主题/友好名称) "明白了，practice主题/友好名称是 `[用户提供的主题]`。"
+    *   **AI**: "基于此主题，我建议此practice的 **应用核心名称 (APP_NAME)** 为 `[主题的snake_case形式]` (例如 'bmi_calculator')。主要代码实现将位于 `{app_name}/src/[APP_NAME]`，相关的测试代码将位于 `{app_name}/tests/[APP_NAME]`，开发过程文档将位于 `{app_name}/dev_cycles/[APP_NAME]`。您对此建议有什么想法或指定吗？如果同意我的建议，可以直接确认。"
     *   **用户**: `[确认建议 或 提供自定义名称，例如：my_bmi_implementation]`
-    *   **AI**: (记录主要实现目录名) "好的，主要实现目录将是 `[用户确认/提供的目录名]`。"
-    *   **AI**: "接下来是practice文件的名称。基于练习集 `[current_exercise_collection]` (如果名称类似 `exercise_tdd_[specific_theme]`, 我会尝试提取 `[specific_theme]` 作为建议前缀) 和主题 `[用户提供的主题]`，我建议文件名为 `practice_[建议前缀]_[主题的snake_case形式].md`。或者，如果您希望省略前缀，可以是 `practice_[主题的snake_case形式].md`。您是否接受此建议，或有特定的 **practice文件名 (practice Filename)**？"
+    *   **AI**: (记录应用核心名称 APP_NAME) "好的，应用核心名称 (APP_NAME) 将是 `[用户确认/提供的APP_NAME]`。"
+    *   **AI**: "接下来是practice文件的名称。基于应用核心名称 `[APP_NAME]`，我建议文件名为 `practice_tdd_[APP_NAME].md`。您是否接受此建议，或有特定的 **practice文件名 (practice Filename)**？"
     *   **用户**: `[确认建议 或 提供自定义文件名]`
     *   **AI (Verification)**: (记录practice文件名) "很好。总结一下practice识别信息：
         *   练习集 (Collection): `[current_exercise_collection]`
-        *   practice主题 (Theme): `[用户提供的主题]`
-        *   主要实现模块名 (Main Impl. Module Name within `{app_name}`): `[用户确认/提供的模块名]`
+        *   practice主题/应用友好名称 (Theme/APP_FRIENDLY_NAME): `[用户提供的主题]`
+        *   应用核心名称 (APP_NAME): `[用户确认/提供的APP_NAME]`
         *   practice文件名 (practice Filename): `[用户确认/提供的文件名]`
         请确认以上信息是否都正确？(是/否)"
     *   **用户**: `[是/否]` (如果不正确，AI应回溯并修正相应条目)
 
 2.  **核心练习系列规划与定义 (Core Exercise Series Planning & Definition) - 交互式迭代收集与确认:**
-    *   **AI**: "在定义具体的练习系列之前，让我们先规划一下整个练习系列的蓝图。请思考：
-        1.  **总体学习目标或产品愿景**: 通过这个系列，学习者应掌握什么？或产品要实现什么核心场景？
-        2.  **分解主题为特性单元**: 如何将主题分解为逻辑递进、由简入繁的特性单元？每个单元将是一个`ExTDD_XX_FeatureName`练习。
-        3.  **学习曲线和复杂度**: 特性单元的顺序是否能形成平滑的学习曲线？
-        准备好后，我们将逐个定义这些特性单元。"
-    *   **AI**: "现在我们来逐个定义这个practice中包含的核心练习系列。对于第一个练习系列："
-    *   **AI**: "请提供一个描述性的 **建议的FeatureName (CamelCase)** (驼峰式命名)，例如 `BMICalculation` 或 `UserAuthentication`。这将用于目录和代码命名。"
+    *   **AI**: "在定义具体的特性之前，请先提供 **特性ID前缀 (FEATURE_ID_PREFIX)**，例如 `BMI` 或 `AWA_CORE`。这个前缀将用于构成完整的特性ID。"
+    *   **用户**: `[提供FEATURE_ID_PREFIX]`
+    *   **AI**: (记录并确认) "好的，特性ID前缀是 `[用户提供的FEATURE_ID_PREFIX]`。"
+    *   **AI**: "现在我们来逐个定义这个practice中包含的特性。对于第一个特性："
+    *   **AI**: "请提供一个描述性的 **特性名称 (FEATURE_NAME_CAMELCASE)** (驼峰式命名)，例如 `calculateBmi` 或 `authenticateUser`。这将用于目录和代码命名。我稍后会自动为其生成补零的索引。"
     *   **用户**: `[提供FeatureName]`
-    *   **AI**: (记录并确认) "好的，FeatureName是 `[用户提供的FeatureName]`。"
-    *   **AI**: "这个练习系列的 **特性口语化标题 (Feature Friendly Title)** 是什么？这将用于章节标题等处，例如，如果FeatureName是 `BMICalculation`，口语化标题可以是 'BMI值计算' 或 '计算身体质量指数'。"
+    *   **AI**: (记录并确认) "好的，特性名称 (FEATURE_NAME_CAMELCASE) 是 `[用户提供的特性名称]`。"
+    *   **AI**: "这个特性的 **友好标题 (FEATURE_FRIENDLY_TITLE)** 是什么？这将用于章节标题等处，例如，如果特性名称是 `calculateBmi`，友好标题可以是 'Calculate BMI' 或 '计算身体质量指数'。"
     *   **用户**: `[提供特性口语化标题]`
-    *   **AI**: (记录并确认) "收到，口语化标题是 `[用户提供的特性口语化标题]`。"
-    *   **AI**: "接下来，这个练习系列的 **功能核心目标 (Core User Goal)** 是什么？请遵循以下原则撰写：
-        *   **用户视角**：始终从最终用户的角度出发。他们想完成什么？他们有什么痛点？
-        *   **简洁明了**：用简单、日常的语言（"用人话说"）来描述，避免技术术语和内部行话。
-        *   **关注"什么"，而非"如何"**：描述用户需要什么功能或想解决什么问题，而不是如何技术实现。
-        *   **保持高层**：这是一个"粗糙的"practice，细节将在后续的TDD思考阶段中逐步明确。
-        *   **避免细节**: 不要在核心用户需求中包含详尽的特定需求清单、具体技术选型、或完整的测试用例/验收标准。这些将在后续TDD步骤中展开。
-        例如：'作为一名注册用户，我希望能查看我的个人资料页面，这样我可以看到我的基本信息，比如我的名字和注册时间。' 或者 '用户希望计算出自己的健康指数，如果输入无效，能得到友好提示。'
-        请提供它的核心用户目标："
+    *   **AI**: (记录并确认) "收到，友好标题是 `[用户提供的友好标题]`。"
+    *   **AI**: "接下来，这个特性的 **用户故事 (USER_STORY)** 是什么？请遵循敏捷开发中用户故事的格式，例如：'作为一名[角色]，我想要[行为]，以便[价值]。'"
+    *   **用户**: `[提供用户故事]`
+    *   **AI**: (记录并确认) "好的，用户故事是：`[用户提供的用户故事]`。"
+    *   **AI**: "请提供这个特性的 **验收标准 (ACCEPTANCE_CRITERIA)**，使用Markdown列表格式。"
+    *   **用户**: `[提供验收标准]`
+    *   **AI**: (记录并确认) "好的，验收标准已记录。"
+    *   **AI**: "是否有关于此特性的 **技术说明 (TECHNICAL_NOTES)**？（可选）"
+    *   **用户**: `[提供技术说明 或 否]`
+    *   **AI**: (记录技术说明，如果提供)
     *   **用户**: `[提供功能核心目标]`
-    *   **AI (Verification per feature)**: "练习系列1: FeatureName=`[FeatureName]`, 口语化标题=`[特性口语化标题]`, 功能核心目标=`[核心目标]`。"
-    *   **AI**: "您希望为这个practice添加更多练习系列吗？(是/否)"
+    *   **AI (Verification per feature)**: "特性1: 名称=`[FEATURE_NAME_CAMELCASE]`, 友好标题=`[FEATURE_FRIENDLY_TITLE]`, 用户故事=`[USER_STORY]`, 验收标准记录完毕, 技术说明(如有)=`[TECHNICAL_NOTES]`。"
+    *   **AI**: "您希望为此practice添加更多特性吗？(是/否)"
     *   **用户**: `[是/否]`
-        *   如果 **是**：AI重复上述步骤收集下一个练习系列的信息 (FeatureName, 口语化标题, 核心目标)，并相应增加练习系列编号。
+        *   如果 **是**：AI重复上述步骤收集下一个特性的信息 (FEATURE_NAME_CAMELCASE, FEATURE_FRIENDLY_TITLE, USER_STORY, ACCEPTANCE_CRITERIA, TECHNICAL_NOTES)，并自动为其生成补零的索引。
         *   如果 **否**：AI继续。
-    *   **AI (Overall Verification for series)**: "好的，我们为此practice定义了以下 `[数量]` 个练习系列：
-        1.  FeatureName: `[FeatureName1]`, 口语化标题: `[FriendlyTitle1]`, 核心目标: `[Goal1]`
-        2.  FeatureName: `[FeatureName2]`, 口语化标题: `[FriendlyTitle2]`, 核心目标: `[Goal2]`
+    *   **AI (Overall Verification for features)**: "好的，我们为此practice定义了以下 `[数量]` 个特性 (特性ID前缀为 `[FEATURE_ID_PREFIX]`)：
+        1.  名称: `[FEATURE_NAME_CAMELCASE_1]`, 友好标题: `[FRIENDLY_TITLE_1]`, 用户故事: `[USER_STORY_1]`, ...
+        2.  名称: `[FEATURE_NAME_CAMELCASE_2]`, 友好标题: `[FRIENDLY_TITLE_2]`, 用户故事: `[USER_STORY_2]`, ...
         `...以此类推...`
         这些信息都正确吗？(是/否)"
     *   **用户**: `[是/否]` (如果不正确，AI应允许用户指定哪个系列需要修改，并重新收集该系列信息)。
 
 3.  **可选内容收集 (Optional Content Collection) - 交互式收集:**
-    *   **AI**: "核心练习系列已定义完毕。现在，您可以选择为这个practice文件补充一些可选的全局信息。如果您不需要添加某项，可以直接跳过或回复'否'。"
+    *   **AI**: "特性列表已定义完毕。现在，您可以选择为这个practice文件补充一些可选的全局信息。如果您不需要添加某项，可以直接跳过或回复'否'。这些信息将用于填充模板中的相应占位符。"
+    *   **AI**: "这是否是一个系列练习 (IS_SERIES_EXERCISE)？（是/否）如果是，请提供系列ID (SERIES_ID) 和系列友好名称 (SERIES_FRIENDLY_NAME)。"
+    *   **用户**: `[是/否，以及可选的系列信息]`
+    *   **AI**: (记录IS_SERIES_EXERCISE, SERIES_ID, SERIES_FRIENDLY_NAME)
+    *   **AI**: "如果这是一个系列练习，并且有共享的核心实现路径说明 (MAIN_IMPLEMENTATION_PATH_INFO)，请提供。例如，`awa_core_components` 目录是做什么的。"
+    *   **用户**: `[提供MAIN_IMPLEMENTATION_PATH_INFO 或 否]`
+    *   **AI**: (记录MAIN_IMPLEMENTATION_PATH_INFO)
     *   **AI**: "是否有 **额外的总体practice约束 (Additional Overall practice Constraints)** 需要说明？（例如，特定技术栈的强制使用，或对所有练习的通用限制。此内容将加入文件头部的约束说明中，每一行都会以'> '开头保持格式。）对应模板中 `{{ADDITIONAL_PRACTICE_CONSTRAINTS_PLACEHOLDER}}`）"
     *   **用户**: `[提供额外约束说明 或 否]`
     *   **AI**: (记录)
@@ -123,13 +128,10 @@ NN: 指代特性的两位数序号，例如 "01", "02"。
 
 4.  **AI生成`practice_xxx.md`文件 - AI执行与告知:**
     *   **AI**: "非常好！我已经收集了所有必要的信息。现在我将根据这些信息生成 `[practice文件名]` 文件。在生成过程中，我会：
-        1.  使用您确认的识别信息（主题、主要实现模块名、文件名、特性列表、核心user_story目标、口语化标题、以及所有可选部分的说明等）。
-        2.  为每个定义的练习系列，**严格遵循本指令文档中关于"功能核心目标"的撰写指导原则** 来填充"核心用户需求"部分。
-        3.  `practice_xxx.md` 文件的整体结构将基于 `factory_exercise_tdd/practice_tdd_template.md` 文件。我会用收集到的信息填充所有相关占位符，例如：
-            *   `{{USER_WORKSPACE_ROOT}}` 将使用您系统信息中的工作区绝对路径。
-            *   `{{EXAMPLE_FEATURE_NAME_SNAKECASE_1}}`, `{{EXAMPLE_FEATURE_NAME_SNAKECASE_2}}`, `{{EXAMPLE_FEATURE_NAME_CAMELCASE}}` 等示例将根据当前practice主题生成相关的或通用的例子。
-            *   所有特性相关的占位符如 `{{FEATURE_NAME_CAMELCASE}}`, `{{FEATURE_NAME_SNAKECASE}}`, `{{CORE_USER_NEED}}`, `{{FEATURE_FRIENDLY_TITLE}}` 等都将被正确填充。
-            *   所有可选内容占位符将根据您的输入填充，如果某项无输入，则该占位符及其所在行（如果合适）将被移除或留空。
+        1.  使用您确认的识别信息（APP_NAME, APP_FRIENDLY_NAME, practice文件名, IS_SERIES_EXERCISE, SERIES_ID, SERIES_FRIENDLY_NAME, MAIN_IMPLEMENTATION_PATH_INFO, FEATURE_ID_PREFIX, 以及 FEATURES 数组中的所有字段）。
+        2.  `practice_xxx.md` 文件的整体结构将基于 `tdd_exercise_factory/practice_tdd_template.md` 文件。我会用收集到的信息填充所有相关占位符。
+        3.  确保特性列表 (`FEATURES`) 以正确的数组对象格式传递给模板渲染引擎。
+        4.  所有可选内容占位符将根据您的输入填充，模板中的条件渲染逻辑 (`{{#if ...}}`) 会处理不存在值的字段。
         4.  文件将保存在 `[current_exercise_collection]/[practice文件名]`。
         我现在开始生成，请稍候。"
     *   **(AI执行文件生成)**
@@ -137,15 +139,14 @@ NN: 指代特性的两位数序号，例如 "01", "02"。
 
 **AI生成`practice_xxx.md`的核心遵循原则 (AI's Core Principles for Generating `practice_xxx.md`):**
 
-*   **输入源 (Input Sources)**: 用户通过上述交互确认的所有信息 (练习集, practice主题, 主要实现目录名, practice文件名, 各练习系列的FeatureName、口语化标题、核心user_story目标，以及所有可选部分的说明等)。
-*   **核心指南1 - "核心user_story需求"内容与风格**: 为每个练习系列撰写"核心user_story需求"时，严格遵循本指令文档"第2阶段"中"核心练习系列规划与定义"部分所列出的撰写原则和指导。
-*   **核心指南2 - 整体文件结构与Boilerplate (`practice_tdd_template.md`)**: 使用 `factory_exercise_tdd/practice_tdd_template.md` 文件作为 `practice_xxx.md` 的基础结构模板。AI必须：
-    *   使用用户确认的各项信息（如"主要实现目录名称"、特性列表、核心user_story需求、口语化标题、可选内容等）来正确填充此模板中的所有占位符。
+*   **输入源 (Input Sources)**: 用户通过上述交互确认的所有信息，包括 `APP_NAME`, `APP_FRIENDLY_NAME`, `IS_SERIES_EXERCISE`, `SERIES_ID`, `SERIES_FRIENDLY_NAME`, `MAIN_IMPLEMENTATION_PATH_INFO`, `FEATURE_ID_PREFIX`, 以及包含每个特性详情的 `FEATURES` 数组 (`FEATURE_INDEX_PADDED`, `FEATURE_NAME_CAMELCASE`, `FEATURE_FRIENDLY_TITLE`, `USER_STORY`, `ACCEPTANCE_CRITERIA`, `TECHNICAL_NOTES`)，还有所有可选部分的说明等。
+*   **核心指南1 - 数据结构**: 确保传递给模板渲染引擎的数据结构与 `practice_tdd_template.md` 中的占位符和逻辑 (如 `{{#each FEATURES}}`, `{{#if IS_SERIES_EXERCISE}}`) 相匹配。
+*   **核心指南2 - 整体文件结构与Boilerplate (`practice_tdd_template.md`)**: 使用 `tdd_exercise_factory/practice_tdd_template.md` 文件作为 `practice_xxx.md` 的基础结构模板。AI必须：
+    *   使用收集到的信息正确填充模板中的所有占位符。
     *   根据用户系统信息提供的绝对路径填充 `{{USER_WORKSPACE_ROOT}}`。
-    *   确保 `FeatureName` 的 `CamelCase` 和 `snake_case` 形式根据用户输入（通常是CamelCase）正确派生并用于相应的占位符。
-    *   基于practice主题为模板中的 `{{EXAMPLE_FEATURE_NAME_...}}` 占位符生成具有上下文相关性的示例。
-    *   智能处理可选内容的占位符：如果用户没有为某个可选部分提供内容，AI应确保不输出空的或不完整的Markdown结构（例如，移除占位符及其所在的行，或确保该部分在最终文档中被合理地省略）。对于 `{{ADDITIONAL_PRACTICE_CONSTRAINTS_PLACEHOLDER}}`，如果用户提供了内容，AI需确保每行文本前都加上 `> ` 以维持其在模板中的块引用格式。
-*   **核心指南3 - 目录结构指示 (Path representation inside `practice_xxx.md`)**: 生成的 `practice_xxx.md` 文件应清晰地描述每个 `ExTDD_XX_FeatureName` 系列的源代码、测试代码和开发过程文档的存放位置。所有这些路径都**必须**明确指向 `{app_name}` 项目的相应子目录（即 `{app_name}/src/[模块名]/ExTDD_XX_FeatureName/`，`{app_name}/tests/[模块名]/ExTDD_XX_FeatureName/`，以及 `{app_name}/dev_cycles/[模块名]/ExTDD_XX_FeatureName/`）。模板中的占位符如 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 或类似的变量，应被用户确认的“主要实现模块名”替换。**严禁**在 `practice_xxx.md` 中使用相对于 `practice_xxx.md` 文件自身位置的路径来表示实际代码或测试文件的存放位置。所有实现都发生在 `{app_name}` 内部。
+    *   确保特性ID (`{{FEATURE_ID_PREFIX}}_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}`) 能被正确构建和渲染。
+    *   模板中的条件渲染逻辑将处理可选字段的显示。
+*   **核心指南3 - 目录结构指示 (Path representation inside `practice_xxx.md`)**: 生成的 `practice_xxx.md` 文件应清晰地描述每个特性 (`{{FEATURE_ID_PREFIX}}_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}`) 的源代码、测试代码和开发过程文档的存放位置。所有这些路径都**必须**明确指向 `../{{APP_NAME}}` 项目的相应子目录（例如 `../{{APP_NAME}}/src/{{APP_NAME}}/{{FEATURE_ID_PREFIX}}_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/`）。模板已更新以使用正确的相对路径，AI只需确保 `APP_NAME` 和特性相关的占位符被正确替换。
 *   **输出文件**: 用户确认的文件名，存放在 `[current_exercise_collection]/` 目录下。
 
 ---
@@ -185,7 +186,7 @@ NN: 指代特性的两位数序号，例如 "01", "02"。
 
 1.  **AI开场**: AI解释交互式流程。
 2.  **第1阶段 - 设定练习集**: AI与用户对话，确定当前要操作的"练习集" (是现有还是新建)，并确认。
-3.  **第2阶段 - 创建练习practice描述 (`practice_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义practice识别信息 (主题、主要实现模块名、practice文件名) 和所有核心练习系列 (FeatureName、核心user_story目标)。在此过程中，AI会提供关于规划练习系列和撰写"核心user_story需求"的指导，并强调所有代码和文档都将位于 `{app_name}` 项目内。然后，AI声明将使用 `factory_exercise_tdd/practice_tdd_template.md` (已更新以反映正确的路径原则) 作为结构模板，并结合本指令文档中的撰写指南来生成 `practice_xxx.md` 文件，并告知用户生成结果。对每个新practice重复此步骤。
+3.  **第2阶段 - 创建练习practice描述 (`practice_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义practice识别信息 (`APP_NAME`, `APP_FRIENDLY_NAME`, practice文件名) 和所有特性 (`FEATURE_ID_PREFIX`, `FEATURES` 数组包含 `FEATURE_NAME_CAMELCASE`, `FEATURE_FRIENDLY_TITLE`, `USER_STORY`, `ACCEPTANCE_CRITERIA`, `TECHNICAL_NOTES`)。AI还会收集可选的系列信息 (`IS_SERIES_EXERCISE`, `SERIES_ID`, `SERIES_FRIENDLY_NAME`, `MAIN_IMPLEMENTATION_PATH_INFO`)。然后，AI声明将使用 `tdd_exercise_factory/practice_tdd_template.md` 作为结构模板生成 `practice_xxx.md` 文件，并告知用户生成结果。对每个新practice重复此步骤。
 4.  **第3阶段 - 初始化框架文档**: AI与用户交互确认，同步通用的教学框架模板 (`planning_tdd_exercise.md` 和 `test_driven_development_with_ai.md`) 到练习集内部，并可选择性地为该练习集创建顶级的规划与理念文档，每一步操作都进行沟通。
 
 目标是生成一个结构和内容都符合预期的 `practice_xxx.md` 文件，可以直接用于指导学员进行TDD练习。请确保内容满足用户输入，并严格遵循所引用的模板和本文档内的撰写指南，实现结构清晰、风格一致。
