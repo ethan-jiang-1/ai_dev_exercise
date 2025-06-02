@@ -1,5 +1,7 @@
 # Practice: Simple BMI Calculator
 
+> **工作目录说明**：本文档位于 `exercise_tdd_bmi/` 目录下（相对于项目根目录 `~/ai_dev_exercise_tdd/`）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 指向的是项目根目录下的 `tdd_rules/test_driven_development_with_ai.md`。
+
 (核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](../tdd_rules/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](../tdd_rules/planning_tdd_exercise.md))

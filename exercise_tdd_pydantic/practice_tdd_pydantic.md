@@ -1,6 +1,6 @@
 # Practice: Pydantic在AI个性化健康顾问中的应用
 
-> **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_pydantic/` 目录下，所有文件引用路径均基于此目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_pydantic/teaching_framework/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `exercise_tdd_pydantic/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 指向的是项目根目录下的 `tdd_rules/test_driven_development_with_ai.md`。
 >
 > **实现目录说明**：本练习的实际实现位于 `./tdd_pydantic/` 目录下。
 
