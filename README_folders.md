@@ -31,97 +31,93 @@
 /  
 ├── README_folders.md # (This file)
 ├── README_prj.md     # (Overall project README)
-├── .env              # 环境变量配置文件
+├── .env              # 环境变量配置文件 (如果项目需要)
 ├── .gitignore        # Git忽略文件
-├── requirements.txt  # Python依赖管理
-├── {app_name}/ # Application specific folder (see detailed structure below)
-│   └── ...
-├── exercise_tdd_xxx/ # TDD exercise folders
-│   └── ...
-└── utils_llm/        # Optional LLM utilities
+├── requirements.txt  # Python依赖管理 (如果项目需要)
+├── ai_wellness_advisor/ # ({app_name}) 应用目录
+│   └── README_awd.md
+├── exercise_tdd_awa_core/
+├── exercise_tdd_bmi/
+├── exercise_tdd_dcnc/
+├── exercise_tdd_llm/
+├── exercise_tdd_pydantic/
+├── tdd_exercise_factory/ # TDD练习生成指令和模板
+├── tdd_rules/            # TDD通用规则和教学框架文档
+└── utils_llm/            # LLM 相关通用工具 (如果项目需要)
     └── ...
 ```
 
-### 2. `{app_name}/` 应用目录结构细节, 位于根目录下
-(接下来的结构图主要展示 `{app_name}/` 内部)
+### 2. `ai_wellness_advisor/` (`{app_name}`) 应用目录结构细节
 
+`ai_wellness_advisor/` 目录是最终AI健康助手应用程序的根目录。当前其结构较为简单，主要包含应用的入口说明文档。随着开发的深入，其内部会逐步建立起源代码、测试、文档和开发周期记录等目录。
+
+**当前实际结构:**
 ```
-# Detailed structure of `{app_name}/`:
-{app_name}/
-├── README_awd.md         # (Application Entry Point) 应用的简要入口和导航，指向更详细的文档
-├── src/                # (Source code) 所有Python模块源代码
-│   ├── __init__.py
-│   ├── bmi/            # (Module) BMI计算器模块 (第0层)
-│   │   ├── __init__.py
-│   │   └── bmi_calculator.py
-│   ├── dcnc/           # (Module) DCNC模块 (第0层)
-│   │   ├── __init__.py
-│   │   └── dcnc_calculator.py
-│   ├── pydantic_models/ # (Module) Pydantic模型 (第0层，或按需组织)
-│   │   ├── __init__.py
-│   │   └── user_profile_models.py # 示例
-│   ├── core_services/  # (Module) 核心服务 (第1层和第2层)
-│   │   ├── __init__.py
-│   │   ├── wellness_profile_builder.py
-│   │   └── personalized_advisor.py
-│   └── main.py         # (Entry point) 应用主入口 (可选)
-├── tests/              # (Tests) 所有Python测试代码
-│   ├── __init__.py
-│   ├── bmi/            # (Test Module) BMI计算器模块测试
-│   │   ├── __init__.py
-│   │   └── test_bmi_calculator.py
-│   ├── dcnc/           # (Test Module) DCNC模块测试
-│   │   ├── __init__.py
-│   │   └── test_dcnc_calculator.py
-│   ├── pydantic_models/ # (Test Module) Pydantic模型测试
-│   │   ├── __init__.py
-│   │   └── test_user_profile_models.py
-│   ├── core_services/  # (Test Module) 核心服务测试
-│   │   ├── __init__.py
-│   │   ├── test_wellness_profile_builder.py
-│   │   └── test_personalized_advisor.py
-│   └── test_integration.py # (Integration Test) 集成测试 (可选)
-├── docs/               # (Documentation) 项目级文档、架构图等
-│   ├── architecture.md
-│   └── module_feature_overview.md # (Example: Overview of module and feature organization)
-│   
-├── dev_cycles/ #  TDD周期内的思考、设计和实现记录 (详细内部结构请参考 `./README_folder_feature.md`)
-│   ├── {module_name}/             # 例如: bmi/, dcnc/, core_services/
-│   │   └── ExTDD_NN_{feature_name}/   # 例如: ExTDD_01_BMICalculation/, ExTDD_02_DCNCCalculation/
-│   │       ├── _user_story_{feature_name}.md
-│   │       ├── _s1_think_options_{feature_name}.md
-│   │       ├── _s2_think_design_{feature_name}.md
-│   │       ├── _s3_think_validation_{feature_name}.md
-│   │       └── _constraints_{feature_name}.md # (可选)
-│   └── ...    # 其他模块的TDD周期记录以此类推
+ai_wellness_advisor/
+└── README_awd.md         # 应用的简要入口和导航
 ```
+
+**预期逐步完善的结构 (示例):**
+```
+ai_wellness_advisor/ ({app_name})
+├── README_awd.md         # 应用的简要入口和导航
+├── src/                # 所有Python模块源代码
+│   ├── __init__.py
+│   ├── {module_name}/    # 例如: bmi/, dcnc/, core_services/
+│   │   ├── __init__.py
+│   │   └── ...           # 模块具体实现
+│   └── main.py         # 应用主入口 (可选)
+├── tests/              # 所有Python测试代码
+│   ├── __init__.py
+│   └── {module_name}/    # 例如: bmi/, dcnc/, core_services/
+│       ├── __init__.py
+│       └── ...           # 模块测试代码
+├── docs/               # 项目级文档、架构图等
+│   └── ...
+├── dev_cycles/         # TDD周期内的思考、设计和实现记录
+│   └── {module_name}/
+│       └── ExTDD_NN_{feature_name}/
+│           └── ...       # 具体特性开发周期文档 (遵循 README_folder_feature.md)
+└── ...
+```
+**注意**: `{app_name}` 在本项目中具体指 `ai_wellness_advisor`。
 
 ### 3. 各`exercise_tdd_xxx/`练习目录概览
-(这些目录位于项目根目录下，提供各TDD练习的入口和教学材料)
+(这些目录位于项目根目录下，提供各TDD练习的入口和相关说明文档)
 
 ```
 /
-├── exercise_tdd_bmi/         # (TDD Exercise Entry) BMI计算器的TDD练习入口与指南
-│   ├── practice_tdd_bmi_calculator.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_dcnc/        # (TDD Exercise Entry) DCNC的TDD练习入口与指南
-│   ├── practice_dcnc_daily_caloric_needs_calculator.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_llm/         # (TDD Exercise Entry) LLM工具集的TDD练习入口与指南
-│   ├── practice_tdd_llm_exercises.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_tdd_pydantic/    # (TDD Exercise Entry) Pydantic模型的TDD练习入口与指南
-│   ├── practice_tdd_pydantic.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── exercise_{app_name}/ # (TDD Exercise Entry) 核心服务层的TDD练习入口与指南 (第1、2层)
-│   ├── practice_{app_name}_core_services.md
-│   └── teaching_framework/   # (Teaching Framework) 通用TDD教学框架
-├── factory_exercise_tdd/     # (TDD Exercise Template) TDD练习模板
-│   └── ...
+├── exercise_tdd_awa_core/    # AI Wellness Advisor 核心组件的TDD练习
+│   └── practice_awa_core_components.md
+├── exercise_tdd_bmi/         # BMI计算器的TDD练习
+│   └── practice_tdd_bmi_calculator.md
+├── exercise_tdd_dcnc/        # DCNC的TDD练习
+│   └── practice_dcnc_daily_caloric_needs_calculator.md
+├── exercise_tdd_llm/         # LLM工具集的TDD练习
+│   └── practice_tdd_llm_exercises.md
+├── exercise_tdd_pydantic/    # Pydantic模型的TDD练习
+│   └── practice_tdd_pydantic.md
 # ... 其他 exercise_tdd_xxx 目录以此类推
 ```
 
-**Reminder**: The `exercise_tdd_xxx` directories are at the root level, alongside `{app_name}/`. The main application code and its TDD cycle documents reside within `{app_name}/` as detailed in section 2 and `README_folder_feature.md`.
+**通用教学框架和规则**: 相关的通用TDD教学框架文档、规划指南和测试设计技巧等，统一存放在根目录下的 `tdd_rules/` 目录中，例如：
+```
+/
+└── tdd_rules/
+    ├── planning_tdd_exercise.md
+    ├── tdd_unit_test_design_techniques.md
+    └── test_driven_development_with_ai.md
+```
+
+**TDD练习生成工厂**: 用于生成TDD练习结构和模板的指令及文件位于 `tdd_exercise_factory/` 目录：
+```
+/
+└── tdd_exercise_factory/
+    ├── generate_tdd_exercise_instructions.md
+    └── practice_tdd_template.md
+```
+
+**提醒**: `exercise_tdd_xxx` 目录位于项目根级别，与 `ai_wellness_advisor/` (`{app_name}`) 并列。主要的应用程序代码及其TDD周期文档位于 `ai_wellness_advisor/` 内部，如第2节和 `README_folder_feature.md` 中所述。通用TDD规则和教学框架位于 `tdd_rules/`。
 
 
 #### 每个 ExTDD 练习的目录结构 (针对 feature的详尽说明, 核心思想)
@@ -137,9 +133,10 @@
     *   作为实际构建的应用程序，是所有最终生产代码 (`src/`)、最终测试代码 (`tests/`) 的主要存放地。其根目录下的 `README.md` 作为应用的简要入口和导航。项目与模块级详细文档（如架构设计）位于 `docs/` 目录。权威的用户故事和详细的TDD开发周期文档位于其下的 `dev_cycles/` 目录中，具体结构遵循 `README_folder_feature.md`。
 
 2.  **`exercise_tdd_xxx/`：TDD练习指南**
-    *   扮演TDD练习的“静态入口点”角色，提供高级别初始用户故事 (`practice_xxx.md`) 和教学框架 (`teaching_framework/`)。
-    *   `practice_xxx.md` 中的高级别用户故事，其详细阐述和演进记录在 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/_user_story_{feature_name}.md` 中。
-    *   **严禁** 在此存放任何实际Python源代码、测试脚本或重复的详细设计文档；这些动态内容均属 `{app_name}/`。
+    *   扮演TDD练习的“静态入口点”角色，提供高级别初始用户故事和练习说明 (如 `practice_xxx.md`)。
+    *   `practice_xxx.md` 中的高级别用户故事，其详细阐述和演进记录在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/_user_story_{feature_name}.md` 中 (当应用开发逐步推进时)。
+    *   **严禁** 在 `exercise_tdd_xxx/` 目录下存放任何实际Python源代码、测试脚本或重复的详细设计文档；这些动态内容均属 `ai_wellness_advisor/` (`{app_name}/`)。
+    *   通用的教学框架和TDD规则文档位于根目录下的 `tdd_rules/` 目录。
 
 3.  **`{app_name}/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/`：TDD过程记录**
     *   在 `{app_name}` 应用的 `dev_cycles` 目录下，会按照模块名 (`{module_name}`) 和特性 (`ExTDD_NN_{feature_name}`) 进一步组织各个TDD练习周期的详细记录文档。
@@ -148,12 +145,15 @@
 
 ## 总结速查表
 
-| 文件类型             | 主要存放位置                                                                 | 说明                                                                                                |
-| -------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **启动TDD的练习** | `exercise_tdd_xxx/practice_yyy.md`                                              | 高级别、练习入口, 里面指定了模块名 {module_name}                                                                                            |
-| **TDD开发周期文档** | `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/`                               | 包含用户故事、思考、设计、验证等特性开发全过程的文档，遵循 `README_folder_feature.md` 规范。 |
-| **最终功能代码**     | `{app_name}/src/{module_name}/...`                                                   | 功能代码                                                                                          |
-| **最终测试代码**     | `{app_name}/tests/{module_name}/...`                                                 | 测试代码                                                                                          |
-| **模块文档** | `{app_name}/docs/` (项目级文档) <br> `{app_name}/src/{module_name}/README_{feature_name}.md` (特性代码说明) <br> `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/` (特性开发周期文档) | 项目概述、架构图等存放于 `docs/`。特性相关的代码说明和开发周期文档遵循 `README_folder_feature.md` 规范。                                                                              |
+| 文件类型                      | 主要存放位置                                                                    | 说明                                                                                                                               |
+| ----------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **启动TDD的练习说明**         | `exercise_tdd_xxx/practice_yyy.md`                                              | 各独立TDD练习的入口和高级别用户故事/说明。                                                                                             |
+| **TDD通用规则与教学框架**   | `tdd_rules/`                                                                    | 包含TDD规划、测试设计技巧、AI辅助TDD等通用性文档。                                                                                     |
+| **TDD练习生成指令与模板**   | `tdd_exercise_factory/`                                                         | 包含生成新TDD练习的说明文档 (`generate_tdd_exercise_instructions.md`) 和练习模板 (`practice_tdd_template.md`)。                      |
+| **TDD开发周期文档**         | `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/`           | 详细记录特性开发的用户故事、思考、设计、验证等过程，遵循 `README_folder_feature.md` 规范 (随应用开发逐步创建)。                               |
+| **最终功能代码**              | `ai_wellness_advisor/src/{module_name}/...`                                       | 应用程序的实际功能代码 (随应用开发逐步创建)。                                                                                             |
+| **最终测试代码**              | `ai_wellness_advisor/tests/{module_name}/...`                                     | 应用程序的单元测试、集成测试等代码 (随应用开发逐步创建)。                                                                                       |
+| **应用级文档**                | `ai_wellness_advisor/docs/`                                                       | 应用程序的整体架构、模块概览等 (随应用开发逐步创建)。                                                                                           |
+| **项目级README**              | `/README_prj.md`, `/README_folders.md`, `/README_folder_feature.md`             | 项目的总体说明、目录结构规范、特性开发规范。                                                                                               |
 
-简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `{app_name}/` 是“动态的城市本身”，其内部的 `src/`、`tests/` 和 `dev_cycles/` 共同构成了每个特性“建设蓝图、过程和产出”。所有这些都严格遵循 `README_folder_feature.md` 中定义的核心原则。
+简而言之：`exercise_tdd_xxx/` 目录提供独立的TDD练习入口；`tdd_rules/` 提供通用的TDD方法论指导；`tdd_exercise_factory/` 辅助创建新的练习；而 `ai_wellness_advisor/` (`{app_name}`) 是实际构建的应用程序，其内部的 `src/`、`tests/` 和 `dev_cycles/` 共同构成了每个特性“建设蓝图、过程和产出”。所有这些都严格遵循 `README_folder_feature.md` 中定义的核心原则。
