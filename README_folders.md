@@ -123,33 +123,11 @@ ai_wellness_advisor/
 
 ```
 
-## 每个 ExTDD 练习的目录结构 (针对 feature的详尽说明)
+## 每个 ExTDD 练习的目录结构 (针对 feature的详尽说明, 核心思想)
 
-每个TDD练习周期（例如，针对BMI模块的 `ExTDD_01_BMICalculation`）的产出物，将归档在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_XX_{FeatureName}/` 目录下。其中 `{module_name}` 对应如 `bmi`, `dcnc` 等模块名。其内部结构和文件说明如下：
+关于每个TDD练习周期的产出物归档目录结构和文件说明的核心思想，请参考：[./README_folder_feature.md](./README_folder_feature.md)
 
-```
-ai_wellness_advisor/
-├── src/                            # (Source Code Snapshot) TDD周期内的源代码快照
-│   └── {module_name}/              # 例如 bmi/
-│       ├── README_{feature_name}.md
-│       └── {feature_name}.py
-├── tests/                          # (Test Code Snapshot) TDD周期内的测试代码快照
-│   └── {module_name}/              # 例如 bmi/
-│       └── test_{feature_name}.py
-├── dev_cycles/                     # (User Story, Design and Planning Documents) 思考、设计、约束、验证等文档
-│   └── {module_name}/              # 例如 bmi/
-│       └── ExTDD_XX_{feature_name}/ # 例如 ExTDD_01_BMICalculation/
-│           ├── _user_story_{feature_name}.md
-│           ├── _s1_think_options_{feature_name}.md
-│           ├── _s2_think_design_{feature_name}.md
-│           ├── _s3_think_validation_{feature_name}.md
-│           └── _constraints_{feature_name}.md # (Optional)
-```
 
-**核心原则**：
-- `design_and_planning/` 目录中的 `.md` 文件（如 `_s1_think_...`）是TDD思考过程和设计规划的永久记录。
-- `src/` 和 `tests/` 子目录存放该TDD周期结束时的代码和测试快照，主要用于过程追溯和复盘。这些代码的最终稳定版本须整合进项目顶层的 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
-- `story_references/README.md` 用于链接到 `ai_wellness_advisor/docs/user_stories/` 中的权威用户故事，并记录本周期内对这些故事的特定解读或关注点。
 
 **重要原则与文件定位指南:**
 
