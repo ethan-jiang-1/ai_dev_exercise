@@ -35,6 +35,8 @@
 **TDD周期产出物归档核心路径**：
 本练习系列相关的每个TDD周期（例如 `ExTDD_01_ComprehensiveProfileModel`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../../ai_wellness_advisor/dev_cycles/wellness_profile/ExTDD_01_ComprehensiveProfileModel/`)。对应的代码和测试快照则位于 `../../{app_name}/src/{module_name}/` 和 `../../{app_name}/tests/{module_name}/`。
 
+**重要提示：** 在每个TDD周期中，务必创建所有相关的思考文档（如 `_user_story_*.md`, `_s1_think_options_*.md`, `_s2_think_design_*.md`, `_s3_think_validation_*.md` 等）。这些文档是TDD过程透明化和可追溯性的关键，有助于完整记录决策过程。
+
 本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 
 ## 核心组件开发练习系列
@@ -42,6 +44,8 @@
 为了构建 `ai_wellness_advisor` 的核心功能，我们将开展以下三个练习系列：
 
 ### 练习系列 1: `ExTDD_WellnessProfileBuilder` - 构建完整的健康档案模块
+
+> **重要提示**：开始此系列练习中的每个特性时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_*.md`) 以及所有相关的思考文档 (`_s1_think_options_*.md`, `_s2_think_design_*.md`, `_s3_think_validation_*.md` 等)，然后再编写测试、实现代码和重构。
 *   **目标**：实现一个健壮的健康档案构建和管理模块。
 *   **对应 `README_prj.md` 模块**: `WellnessProfileBuilder` (第1层模块)
 *   **建议模块名 (`{module_name}`)**: `awa`
@@ -57,6 +61,8 @@
         *   **核心任务**: 实现 `UserProfile` 实例的保存与加载；考虑多用户档案的管理方式；测试保存、加载及错误处理（如文件未找到）。
 
 ### 练习系列 2: `ExTDD_PersonalizedAdvisor` - 实现个性化健康顾问核心逻辑
+
+> **重要提示**：开始此系列练习中的每个特性时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_*.md`) 以及所有相关的思考文档 (`_s1_think_options_*.md`, `_s2_think_design_*.md`, `_s3_think_validation_*.md` 等)，然后再编写测试、实现代码和重构。
 *   **目标**：构建一个能够根据用户健康档案，通过LLM提供个性化健康建议的模块。
 *   **对应 `README_prj.md` 模块**: `PersonalizedAdvisor` (第2层模块)
 *   **建议模块名 (`{module_name}`)**: `awa`
@@ -72,6 +78,8 @@
         *   **核心任务**: 定义用于组织从LLM获取的建议的Pydantic模型；实现将此结构化建议格式化以便显示（即便实际UI非当前重点，其数据结构仍很重要）；测试从原始LLM输出（模拟）到定义的建议结构的转换。
 
 ### 练习系列 3: `ExTDD_AppIntegration` - 应用层逻辑与初步集成
+
+> **重要提示**：开始此系列练习中的每个特性时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_*.md`) 以及所有相关的思考文档 (`_s1_think_options_*.md`, `_s2_think_design_*.md`, `_s3_think_validation_*.md` 等)，然后再编写测试、实现代码和重构。
 *   **目标**：将各个独立开发的模块整合起来，形成一个初步可用的应用流程。
 *   **对应 `README_prj.md` 模块**: 顶层应用逻辑与集成
 *   **建议模块名 (`{module_name}`)**: `awa`

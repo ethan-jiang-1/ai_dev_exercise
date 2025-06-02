@@ -53,7 +53,7 @@
 *   [项目整体目录结构](../README_folders.md)
 
 **核心要点回顾**：
-*   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md` 等）请参见上述规范文档。
+*   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md`, `_s2_think_design_{feature_name}.md`, `_s3_think_validation_{feature_name}.md` 等）请参见上述规范文档。这些文档记录了TDD周期的关键思考过程，是确保AI辅助开发过程透明化和可追溯性的重要环节，**强烈建议在每个TDD周期中按规范创建，以完整体现思考和决策过程**。
 *   **源代码快照**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
 *   **特性代码说明**：位于 `{app_name}/src/{module_name}/README_{feature_name}.md`。
 *   **测试代码快照**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
@@ -67,6 +67,8 @@
 
 ### 1. ExTDD_01_BMICalculation: 实现BMI值的计算
 
+> **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_bmi_calculate.md`) 以及所有相关的思考文档 (`_s1_think_options_bmi_calculate.md`, `_s2_think_design_bmi_calculate.md`, `_s3_think_validation_bmi_calculate.md` 等)，然后再编写测试、实现代码和重构。
+
 module_name: bmi
 feature_name: bmi_calculate
 
@@ -77,6 +79,8 @@ feature_name: bmi_calculate
 > 作为一名普通用户，我希望能方便地输入我的身高（以米为单位）和体重（以千克为单位），然后系统能帮我算出我的身体质量指数（BMI）。如果我输错了数字（比如不是有效的身高体重值），希望能得到一个友好的提示。我最主要就是想知道计算出来的BMI结果。
 
 ### 2. ExTDD_02_BMICategorization: 实现BMI值的分类
+
+> **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_bmi_categorize.md`) 以及所有相关的思考文档 (`_s1_think_options_bmi_categorize.md`, `_s2_think_design_bmi_categorize.md`, `_s3_think_validation_bmi_categorize.md` 等)，然后再编写测试、实现代码和重构。
 
 module_name: bmi
 feature_name: bmi_categorize

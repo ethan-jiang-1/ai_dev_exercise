@@ -55,7 +55,7 @@
 *   [项目整体目录结构](../README_folders.md)
 
 **核心要点回顾**：
-*   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md` 等）请参见上述规范文档。
+*   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md`, `_s2_think_design_{feature_name}.md`, `_s3_think_validation_{feature_name}.md` 等）请参见上述规范文档。这些文档记录了TDD周期的关键思考过程，是确保AI辅助开发过程透明化和可追溯性的重要环节，**强烈建议在每个TDD周期中按规范创建，以完整体现思考和决策过程**。
 *   **源代码快照**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
 *   **特性代码说明**：位于 `{app_name}/src/{module_name}/README_{feature_name}.md`。
 *   **测试代码快照**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
@@ -69,6 +69,8 @@
 
 ### 1. ExTDD_01_CalculateBMR: 实现BMR值的计算
 
+> **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_calculate_bmr.md`) 以及所有相关的思考文档 (`_s1_think_options_calculate_bmr.md`, `_s2_think_design_calculate_bmr.md`, `_s3_think_validation_calculate_bmr.md` 等)，然后再编写测试、实现代码和重构。
+
 module_name: dcnc
 feature_name: calculate_bmr
 
@@ -79,6 +81,8 @@ feature_name: calculate_bmr
 > 用户希望输入自己的性别、年龄、身高和体重，就能知道自己每天最少需要消耗多少能量来维持生命。如果输入信息不完整或无效，希望能得到清晰的提示。
 
 ### 2. ExTDD_02_CalculateTDEE: 实现TDEE值的计算
+
+> **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_calculate_tdee.md`) 以及所有相关的思考文档 (`_s1_think_options_calculate_tdee.md`, `_s2_think_design_calculate_tdee.md`, `_s3_think_validation_calculate_tdee.md` 等)，然后再编写测试、实现代码和重构。
 
 module_name: dcnc
 feature_name: calculate_tdee

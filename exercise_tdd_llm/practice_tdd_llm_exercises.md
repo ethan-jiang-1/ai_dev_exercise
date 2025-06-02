@@ -74,7 +74,7 @@
 
 ### 目录结构规范
 
-每个练习系列都必须包含：
+每个练习系列都必须包含，并严格遵循TDD的五个核心步骤，确保生成相应的思考过程文档：
 
 ```
 ExTDD_XX_FeatureName/
@@ -83,20 +83,24 @@ ExTDD_XX_FeatureName/
 ├── inputs/                        # 输入文件
 │   └── user_story.md             # 用户故事
 ├── outputs/                       # 输出文件
-│   ├── _s1_think_options_{feature_name}.md
-│   ├── _s2_think_design_{feature_name}.md
-│   ├── _s3_think_validation_{feature_name}.md
-│   ├── {feature_name}.py
-│   ├── test_{feature_name}.py
-│   └── doc_{feature_name}.md
+│   ├── _s1_think_options_{feature_name}.md  # 步骤1：思考与选项分析
+│   ├── _s2_think_design_{feature_name}.md   # 步骤2：设计思考
+│   ├── _s3_think_validation_{feature_name}.md # 步骤3：验证逻辑思考
+│   ├── test_{feature_name}.py              # 步骤4：编写测试 (红灯)
+│   ├── {feature_name}.py                   # 步骤5：编写实现 (绿灯)
+│   └── doc_{feature_name}.md               # 特性说明文档 (重构与文档)
 └── README.md                      # 练习说明
 ```
+
+**重要提示**：在每个TDD周期中，务必创建 `_s1_think_options_{feature_name}.md`, `_s2_think_design_{feature_name}.md`, 和 `_s3_think_validation_{feature_name}.md` 这三个中间思考文档。这些文档是TDD方法论的重要组成部分，有助于记录决策过程、设计思路和验证策略，确保开发过程的严谨性和可追溯性。跳过这些步骤将视为未完整执行TDD流程。
 
 ## LLM API调用特定实现 (AI个性化健康顾问)
 
 ### 1. ExTDD_01_DeepSeekHealthRecommendation: 基于DEEPSEEK的健康推荐
 
 feature_name: `deepseek_health_recommendation`
+
+**TDD核心循环提示**：请务必遵循完整的TDD五步循环，包括创建 `_s1_think_options_deepseek_health_recommendation.md`, `_s2_think_design_deepseek_health_recommendation.md`, 和 `_s3_think_validation_deepseek_health_recommendation.md` 等中间思考文档。
 
 ```
 ExTDD_01_DeepSeekHealthRecommendation/
@@ -120,6 +124,8 @@ ExTDD_01_DeepSeekHealthRecommendation/
 ### 2. ExTDD_02_DeepSeekExperimentPlatform: DEEPSEEK模型调用实验平台
 
 feature_name: `deepseek_experiment_platform`
+
+**TDD核心循环提示**：请务必遵循完整的TDD五步循环，包括创建 `_s1_think_options_deepseek_experiment_platform.md`, `_s2_think_design_deepseek_experiment_platform.md`, 和 `_s3_think_validation_deepseek_experiment_platform.md` 等中间思考文档。
 
 ```
 ExTDD_02_DeepSeekExperimentPlatform/

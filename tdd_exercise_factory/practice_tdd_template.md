@@ -83,6 +83,26 @@
 {{#if SPECIFIC_DIRECTORY_STRUCTURE}}
 ### 目录结构规范 ({{PRACTICE_TITLE}} 特定)
 
+在遵循 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md) 的基础上，针对本练习系列的特性，其产出物（包括中间思考文档）的组织结构如下。请务必严格遵循TDD的五个核心步骤，确保生成相应的思考过程文档：
+
+```
+ExTDD_{{NN}}_{{FeatureName}}/
+├── constraints/                    # 约束条件
+│   └── task_constraints.md        # 任务特定约束
+├── inputs/                        # 输入文件
+│   └── _user_story_{{feature_name}}.md # 用户故事 (通常链接到 dev_cycles 中的版本)
+├── outputs/                       # 输出文件 (在 dev_cycles 中实际生成和归档)
+│   ├── _s1_think_options_{{feature_name}}.md  # 步骤1：思考与选项分析
+│   ├── _s2_think_design_{{feature_name}}.md   # 步骤2：设计思考
+│   ├── _s3_think_validation_{{feature_name}}.md # 步骤3：验证逻辑思考
+│   ├── test_{{feature_name}}.py              # 步骤4：编写测试 (红灯)
+│   ├── {{feature_name}}.py                   # 步骤5：编写实现 (绿灯)
+│   └── doc_{{feature_name}}.md               # 特性说明文档 (重构与文档)
+└── README.md                      # 练习说明 (通常是本 practice_*.md 的副本或引用)
+```
+
+**重要提示**：在每个TDD周期中，务必创建 `_s1_think_options_{{feature_name}}.md`, `_s2_think_design_{{feature_name}}.md`, 和 `_s3_think_validation_{{feature_name}}.md` 这三个中间思考文档。这些文档是TDD方法论的重要组成部分，有助于记录决策过程、设计思路和验证策略，确保开发过程的严谨性和可追溯性。跳过这些步骤将视为未完整执行TDD流程。
+
 {{{SPECIFIC_DIRECTORY_STRUCTURE}}}
 {{/if}}
 
@@ -128,6 +148,8 @@
 
 #### 核心用户需求 ({{FEATURE_ID_PREFIX}}_{{FEATURE_NAME_CAMELCASE}})
 > {{CORE_USER_NEED}}
+
+**TDD核心循环提示**：请务必遵循完整的TDD五步循环，包括创建 `_s1_think_options_{{feature_name}}.md`, `_s2_think_design_{{feature_name}}.md`, 和 `_s3_think_validation_{{feature_name}}.md` 等中间思考文档。
 {{/if}}
 {{/each}}
 
