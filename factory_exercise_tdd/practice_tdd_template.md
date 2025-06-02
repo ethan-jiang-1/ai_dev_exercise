@@ -3,7 +3,7 @@
 
 > **工作目录说明**：本文档位于 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `{{USER_WORKSPACE_ROOT}}/{{CURRENT_EXERCISE_COLLECTION_DIR_NAME}}/teaching_framework/test_driven_development_with_ai.md`。
 >
-> **实现目录说明**：本练习的实际实现位于 `./{{MAIN_IMPLEMENTATION_DIR_NAME}}/` 目录下。
+> **实现目录说明**：本练习的实际代码实现位于 `{{USER_WORKSPACE_ROOT}}/ai_wellness_advisor/src/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/` 目录下，测试代码位于 `{{USER_WORKSPACE_ROOT}}/ai_wellness_advisor/tests/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`，相关的TDD开发过程文档（如思考、设计、约束、用户故事、最终功能说明等）位于 `{{USER_WORKSPACE_ROOT}}/ai_wellness_advisor/dev_cycles/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`。模板中的 `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 将指代 `ai_wellness_advisor` 项目内模块的相对路径，例如 `bmi` 或 `dcnc`。
 
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
@@ -43,49 +43,92 @@
 
 ### 目录结构规范
 
-每个练习系列都**必须, 一定**包含：
+根据项目根目录下的 `README_folders.md` 和 `README_folder_feature.md` 定义，所有实际开发内容均在 `ai_wellness_advisor` 项目下进行。每个特性 (Feature) 的TDD开发周期将涉及以下结构（以特性 `ExTDD_XX_FeatureName` 为例，其模块名为 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}`）：
 
+**源代码目录 (`ai_wellness_advisor/src/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`):**
 ```
-{{MAIN_IMPLEMENTATION_DIR_NAME}}/ExTDD_XX_FeatureName/
-├── constraints/                    # 约束条件
-│   └── task_constraints.md        # 任务特定约束
-├── inputs/                        # 输入文件
-│   └── user_story.md             # 用户故事
-├── outputs/                       # 输出文件
-│   ├── _s1_think_options_{feature_name}.md
-│   ├── _s2_think_design_{feature_name}.md
-│   ├── _s3_think_validation_{feature_name}.md
-│   ├── {feature_name}.py
-│   ├── test_{feature_name}.py
-│   └── doc_{feature_name}.md
-└── README.md                      # 练习说明
+ai_wellness_advisor/
+└── src/
+    └── {{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
+        └── ExTDD_XX_FeatureName/
+            └── {{feature_name}}.py             # 功能实现代码
 ```
+
+**测试代码目录 (`ai_wellness_advisor/tests/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`):**
+```
+ai_wellness_advisor/
+└── tests/
+    └── {{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
+        └── ExTDD_XX_FeatureName/
+            └── test_{{feature_name}}.py      # 测试代码
+```
+
+**开发过程与文档目录 (`ai_wellness_advisor/dev_cycles/{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/`):**
+```
+ai_wellness_advisor/
+└── dev_cycles/
+    └── {{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/
+        └── ExTDD_XX_FeatureName/
+            ├── README.md                      # 当前特性练习说明与导航
+            ├── inputs/
+            │   └── user_story.md             # 用户故事
+            ├── constraints/
+            │   └── task_constraints.md        # 任务特定约束
+            ├── thinking_process/              # 思考过程记录
+            │   ├── _s1_think_options_{feature_name}.md
+            │   ├── _s2_think_design_{feature_name}.md
+            │   └── _s3_think_validation_{feature_name}.md
+            └── documentation/                 # 最终功能文档
+                └── doc_{feature_name}.md
+```
+
+**注意**: `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 在此模板中通常指代 `ai_wellness_advisor` 项目内的一个模块名 (例如 `bmi`, `dcnc`)，实际生成时应替换为 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 以强调其相对于 `src`, `tests`, `dev_cycles` 的路径。
 
 ## {{STORY_THEME_TITLE}} 特定实践
 
 {{#each FEATURES}}
 ### {{FEATURE_INDEX_PADDED}}. ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}: {{FEATURE_FRIENDLY_TITLE}}
 
-feature_name: {{FEATURE_NAME_SNAKECASE}}
+**模块名 (Module Name within `ai_wellness_advisor`):** `{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}`
+**特性名 (Feature Name - snake_case):** `{{FEATURE_NAME_SNAKECASE}}`
+**特性开发目录 (Feature Development Directory - CamelCase):** `ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}`
+
+**相关文件路径概览 (Paths within `ai_wellness_advisor` project):**
+
+*   **源代码:** `ai_wellness_advisor/src/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/{{FEATURE_NAME_SNAKECASE}}.py`
+*   **测试代码:** `ai_wellness_advisor/tests/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/test_{{FEATURE_NAME_SNAKECASE}}.py`
+*   **开发过程文档根目录:** `ai_wellness_advisor/dev_cycles/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/`
+    *   用户故事: `inputs/user_story.md`
+    *   约束: `constraints/task_constraints.md`
+    *   思考过程: `thinking_process/_sX_think_..._{{FEATURE_NAME_SNAKECASE}}.md`
+    *   最终文档: `documentation/doc_{{FEATURE_NAME_SNAKECASE}}.md`
 
 ```
-{{MAIN_IMPLEMENTATION_DIR_NAME}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/
-├── constraints/
-│   └── task_constraints.md        # {{FEATURE_FRIENDLY_TITLE}}的特定约束
-├── inputs/
-│   └── user_story.md             # {{FEATURE_FRIENDLY_TITLE}}的用户故事
-└── outputs/
-    ├── _s1_think_options_{{FEATURE_NAME_SNAKECASE}}.md
-    ├── _s2_think_design_{{FEATURE_NAME_SNAKECASE}}.md
-    ├── _s3_think_validation_{{FEATURE_NAME_SNAKECASE}}.md
-    ├── {{FEATURE_NAME_SNAKECASE}}.py
-    ├── test_{{FEATURE_NAME_SNAKECASE}}.py
-    └── doc_{{FEATURE_NAME_SNAKECASE}}.md
+# ai_wellness_advisor/src/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/
+# └── {{FEATURE_NAME_SNAKECASE}}.py
+
+# ai_wellness_advisor/tests/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/
+# └── test_{{FEATURE_NAME_SNAKECASE}}.py
+
+# ai_wellness_advisor/dev_cycles/{{../MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}/ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}}/
+# ├── README.md
+# ├── inputs/
+# │   └── user_story.md
+# ├── constraints/
+# │   └── task_constraints.md
+# ├── thinking_process/
+# │   ├── _s1_think_options_{{FEATURE_NAME_SNAKECASE}}.md
+# │   ├── _s2_think_design_{{FEATURE_NAME_SNAKECASE}}.md
+# │   └── _s3_think_validation_{{FEATURE_NAME_SNAKECASE}}.md
+# └── documentation/
+#     └── doc_{{FEATURE_NAME_SNAKECASE}}.md
 ```
 
 #### 核心用户需求 (ExTDD_{{FEATURE_INDEX_PADDED}}_{{FEATURE_NAME_CAMELCASE}})
 > {{CORE_USER_NEED}}
 {{/each}}
+
+**重要提示**: 请确保在实际生成 `practice_xxx.md` 文件时，将占位符 `{{MAIN_IMPLEMENTATION_DIR_NAME}}` 或 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 替换为实际的模块名 (例如 `bmi`, `dcnc`, `llm_integration` 等)，并且所有路径引用都正确指向 `ai_wellness_advisor` 项目内部。模板中的 `{{USER_WORKSPACE_ROOT}}` 应替换为实际的工作区根路径。
 
 {{OPTIONAL_GENERAL_CONSTRAINTS_PLACEHOLDER}}
 {{OPTIONAL_LEARNING_ORDER_PLACEHOLDER}}
