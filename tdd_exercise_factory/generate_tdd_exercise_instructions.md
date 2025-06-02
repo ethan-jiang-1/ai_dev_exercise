@@ -93,13 +93,12 @@ NN: 指代特性的两位数序号，例如 "01", "02"。
 
 **上下文**: 在"第1阶段"确定 `current_exercise_collection` 后，通常在"第2阶段"生成一个或多个practice描述文件后执行。
 
-**目标**: AI与用户交互，确认并将通用框架文档模板从 `factory_exercise_tdd/teaching_framework/` 复制到 `current_exercise_collection`，并可选创建练习集专属的规划与理念文档。
+**目标**: AI与用户交互，并可选创建练习集专属的规划与理念文档。
 
 **交互式文档同步 (Interactive Document Sync):**
-1.  AI提议同步核心框架文件 (`planning_tdd_exercise.md`, `test_driven_development_with_ai.md`) 到 `[current_exercise_collection]/teaching_framework/`，用户确认后执行。
-2.  AI询问用户是否要创建练习集专属的规划文档 (基于模板，可自定义文件名，AI可尝试初步内容适配)，用户确认后执行。
-3.  AI询问用户是否要创建练习集专属的核心理念文档 (基于模板，可自定义文件名)，用户确认后执行。
-4.  AI告知框架文档处理完毕。
+1.  AI询问用户是否要创建练习集专属的规划文档 (基于模板，可自定义文件名，AI可尝试初步内容适配)，用户确认后执行。
+2.  AI询问用户是否要创建练习集专属的核心理念文档 (基于模板，可自定义文件名)，用户确认后执行。
+3.  AI告知框架文档处理完毕。
 
 ---
 
