@@ -1,3 +1,12 @@
+<!-- 定义占位符 -->
+<!-- 
+{app_name}: 指代项目或应用的根目录名称，例如 "ai_wellness_advisor"。
+{module_name}: 指代项目中的一个模块名称，例如 "bmi" 或 "user_profile"。
+{FeatureName}: 指代模块下的一个具体特性名称，采用驼峰式命名，例如 "BMICalculation"。
+{feature_name}: 指代模块下的一个具体特性名称，采用下划线命名，例如 "bmi_calculation"。
+NN: 指代特性的两位数序号，例如 "01", "02"。
+-->
+
 # AI协作生成TDD练习框架指令
 > 版本: 3.0
 
@@ -44,7 +53,7 @@
     *   **AI**: "首先，这个练习practice的总体 **主题 (practice Theme)** 是什么？（例如：'BMI计算器' 或 'LLM API调用'）"
     *   **用户**: `[提供故事主题]`
     *   **AI**: (记录主题) "明白了，practice主题是 `[用户提供的主题]`。"
-    *   **AI**: "基于此主题，我建议此practice的主要代码实现位于 `ai_wellness_advisor/src/` 下一个名为 `[主题的snake_case形式]` 的子目录中，例如，如果主题是 'BMI计算器', 那么模块目录建议为 `ai_wellness_advisor/src/bmi_calculator`。相关的测试代码将位于 `ai_wellness_advisor/tests/bmi_calculator`，开发过程文档将位于 `ai_wellness_advisor/dev_cycles/bmi_calculator`。我们将这个模块名（如 `bmi_calculator`）称为 **主要实现模块名 (Main Implementation Module Name)**。您对此建议有什么想法或指定吗？如果同意我的建议，可以直接确认。"
+    *   **AI**: "基于此主题，我建议此practice的主要代码实现位于 `{app_name}/src/` 下一个名为 `[主题的snake_case形式]` 的子目录中，例如，如果主题是 'BMI计算器', 那么模块目录建议为 `{app_name}/src/bmi_calculator`。相关的测试代码将位于 `{app_name}/tests/bmi_calculator`，开发过程文档将位于 `{app_name}/dev_cycles/bmi_calculator`。我们将这个模块名（如 `bmi_calculator`）称为 **主要实现模块名 (Main Implementation Module Name)**。您对此建议有什么想法或指定吗？如果同意我的建议，可以直接确认。"
     *   **用户**: `[确认建议 或 提供自定义名称，例如：my_bmi_implementation]`
     *   **AI**: (记录主要实现目录名) "好的，主要实现目录将是 `[用户确认/提供的目录名]`。"
     *   **AI**: "接下来是practice文件的名称。基于练习集 `[current_exercise_collection]` (如果名称类似 `exercise_tdd_[specific_theme]`, 我会尝试提取 `[specific_theme]` 作为建议前缀) 和主题 `[用户提供的主题]`，我建议文件名为 `practice_[建议前缀]_[主题的snake_case形式].md`。或者，如果您希望省略前缀，可以是 `practice_[主题的snake_case形式].md`。您是否接受此建议，或有特定的 **practice文件名 (practice Filename)**？"
@@ -52,7 +61,7 @@
     *   **AI (Verification)**: (记录practice文件名) "很好。总结一下practice识别信息：
         *   练习集 (Collection): `[current_exercise_collection]`
         *   practice主题 (Theme): `[用户提供的主题]`
-        *   主要实现模块名 (Main Impl. Module Name within `ai_wellness_advisor`): `[用户确认/提供的模块名]`
+        *   主要实现模块名 (Main Impl. Module Name within `{app_name}`): `[用户确认/提供的模块名]`
         *   practice文件名 (practice Filename): `[用户确认/提供的文件名]`
         请确认以上信息是否都正确？(是/否)"
     *   **用户**: `[是/否]` (如果不正确，AI应回溯并修正相应条目)
@@ -136,7 +145,7 @@
     *   确保 `FeatureName` 的 `CamelCase` 和 `snake_case` 形式根据用户输入（通常是CamelCase）正确派生并用于相应的占位符。
     *   基于practice主题为模板中的 `{{EXAMPLE_FEATURE_NAME_...}}` 占位符生成具有上下文相关性的示例。
     *   智能处理可选内容的占位符：如果用户没有为某个可选部分提供内容，AI应确保不输出空的或不完整的Markdown结构（例如，移除占位符及其所在的行，或确保该部分在最终文档中被合理地省略）。对于 `{{ADDITIONAL_PRACTICE_CONSTRAINTS_PLACEHOLDER}}`，如果用户提供了内容，AI需确保每行文本前都加上 `> ` 以维持其在模板中的块引用格式。
-*   **核心指南3 - 目录结构指示 (Path representation inside `practice_xxx.md`)**: 生成的 `practice_xxx.md` 文件应清晰地描述每个 `ExTDD_XX_FeatureName` 系列的源代码、测试代码和开发过程文档的存放位置。所有这些路径都**必须**明确指向 `ai_wellness_advisor` 项目的相应子目录（即 `ai_wellness_advisor/src/[模块名]/ExTDD_XX_FeatureName/`，`ai_wellness_advisor/tests/[模块名]/ExTDD_XX_FeatureName/`，以及 `ai_wellness_advisor/dev_cycles/[模块名]/ExTDD_XX_FeatureName/`）。模板中的占位符如 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 或类似的变量，应被用户确认的“主要实现模块名”替换。**严禁**在 `practice_xxx.md` 中使用相对于 `practice_xxx.md` 文件自身位置的路径来表示实际代码或测试文件的存放位置。所有实现都发生在 `ai_wellness_advisor` 内部。
+*   **核心指南3 - 目录结构指示 (Path representation inside `practice_xxx.md`)**: 生成的 `practice_xxx.md` 文件应清晰地描述每个 `ExTDD_XX_FeatureName` 系列的源代码、测试代码和开发过程文档的存放位置。所有这些路径都**必须**明确指向 `{app_name}` 项目的相应子目录（即 `{app_name}/src/[模块名]/ExTDD_XX_FeatureName/`，`{app_name}/tests/[模块名]/ExTDD_XX_FeatureName/`，以及 `{app_name}/dev_cycles/[模块名]/ExTDD_XX_FeatureName/`）。模板中的占位符如 `{{MAIN_IMPLEMENTATION_DIR_NAME_RELATIVE_TO_SRC}}` 或类似的变量，应被用户确认的“主要实现模块名”替换。**严禁**在 `practice_xxx.md` 中使用相对于 `practice_xxx.md` 文件自身位置的路径来表示实际代码或测试文件的存放位置。所有实现都发生在 `{app_name}` 内部。
 *   **输出文件**: 用户确认的文件名，存放在 `[current_exercise_collection]/` 目录下。
 
 ---
@@ -176,7 +185,7 @@
 
 1.  **AI开场**: AI解释交互式流程。
 2.  **第1阶段 - 设定练习集**: AI与用户对话，确定当前要操作的"练习集" (是现有还是新建)，并确认。
-3.  **第2阶段 - 创建练习practice描述 (`practice_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义practice识别信息 (主题、主要实现模块名、practice文件名) 和所有核心练习系列 (FeatureName、核心user_story目标)。在此过程中，AI会提供关于规划练习系列和撰写"核心user_story需求"的指导，并强调所有代码和文档都将位于 `ai_wellness_advisor` 项目内。然后，AI声明将使用 `factory_exercise_tdd/practice_tdd_template.md` (已更新以反映正确的路径原则) 作为结构模板，并结合本指令文档中的撰写指南来生成 `practice_xxx.md` 文件，并告知用户生成结果。对每个新practice重复此步骤。
+3.  **第2阶段 - 创建练习practice描述 (`practice_xxx.md`)**: AI通过交互式问答和逐层确认，与用户共同定义practice识别信息 (主题、主要实现模块名、practice文件名) 和所有核心练习系列 (FeatureName、核心user_story目标)。在此过程中，AI会提供关于规划练习系列和撰写"核心user_story需求"的指导，并强调所有代码和文档都将位于 `{app_name}` 项目内。然后，AI声明将使用 `factory_exercise_tdd/practice_tdd_template.md` (已更新以反映正确的路径原则) 作为结构模板，并结合本指令文档中的撰写指南来生成 `practice_xxx.md` 文件，并告知用户生成结果。对每个新practice重复此步骤。
 4.  **第3阶段 - 初始化框架文档**: AI与用户交互确认，同步通用的教学框架模板 (`planning_tdd_exercise.md` 和 `test_driven_development_with_ai.md`) 到练习集内部，并可选择性地为该练习集创建顶级的规划与理念文档，每一步操作都进行沟通。
 
 目标是生成一个结构和内容都符合预期的 `practice_xxx.md` 文件，可以直接用于指导学员进行TDD练习。请确保内容满足用户输入，并严格遵循所引用的模板和本文档内的撰写指南，实现结构清晰、风格一致。
