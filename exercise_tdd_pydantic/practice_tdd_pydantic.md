@@ -1,4 +1,4 @@
-# Practice: Pydantic功能练习
+# Practice: Pydantic在AI个性化健康顾问中的应用
 
 > **工作目录说明**：本文档位于 `~/ai_dev_exercise/exercise_tdd_pydantic/` 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise/exercise_tdd_pydantic/teaching_framework/test_driven_development_with_ai.md`。
 >
@@ -10,7 +10,9 @@
 
 ## 1. User Story (用户故事)
 
-# Pydantic功能练习：AI+TDD练习实践实例
+# Pydantic在AI个性化健康顾问中的应用：AI+TDD练习实践实例
+
+本项目旨在构建一个AI个性化健康顾问系统 (`{app_name}`)，Pydantic将在其中扮演关键角色，特别是在**健康档案构建器 (`WellnessProfileBuilder`)**模块中，我们将借助 **Pydantic** 库来处理和验证用户的健康数据，如BMI（身体质量指数）、BMR（基础代谢率）、TDEE（每日总能量消耗）等。
 
 > **重要约束**：在整个实践过程中，请确保所有在Cursor中的交互对话均使用中文，这是出于演示目的的要求。
 
@@ -20,22 +22,22 @@
 
 ### 命名规范
 
-1. **特性名称 (feature_name)**：
-   - 格式：`小写字母_用下划线分隔`
-   - 示例：`api_data_validator`, `data_serializer`
-   - 要求：描述性、简洁、表明功能
+1.  **特性名称 (feature_name)**：
+    *   格式：`小写字母_用下划线分隔`
+    *   示例：`health_data_validation`, `health_data_persistence`
+    *   要求：描述性、简洁、表明功能
 
-2. **目录命名**：
-   - 练习系列目录：`ExTDD_XX_FeatureName`
-     - XX：两位数字编号（01、02等）
-     - FeatureName：驼峰式命名
-     - 示例：`ExTDD_01_PydanticValidation`
+2.  **目录命名**：
+    *   练习系列目录：`ExTDD_XX_FeatureName`
+        *   XX：两位数字编号（01、02等）
+        *   FeatureName：驼峰式命名
+        *   示例：`ExTDD_01_HealthDataValidation`
 
-3. **文件命名**：
-   - 思考文件：`_s{step}_{type}_{feature_name}.md`
-   - 代码文件：`{feature_name}.py`
-   - 测试文件：`test_{feature_name}.py`
-   - 文档文件：`doc_{feature_name}.md`
+3.  **文件命名**：
+    *   思考文件：`_s{step}_{type}_{feature_name}.md`
+    *   代码文件：`{feature_name}.py`
+    *   测试文件：`test_{feature_name}.py`
+    *   文档文件：`doc_{feature_name}.md`
 
 ### 目录结构规范
 
@@ -57,92 +59,72 @@ ExTDD_XX_FeatureName/
 └── README.md                      # 练习说明
 ```
 
-## Pydantic功能特定实现
+## Pydantic在健康顾问项目中的特定实现
 
-### 1. ExTDD_01_PydanticValidation: 实现API数据验证框架
+我们将借助 **Pydantic** 库来完成以下用户故事：
 
-feature_name: api_data_validator
+### 1. ExTDD_01_HealthDataValidation: 实现健康数据的输入验证
+
+feature_name: `health_data_validation`
 
 ```
-ExTDD_01_PydanticValidation/
+ExTDD_01_HealthDataValidation/
 ├── constraints/
-│   └── task_constraints.md       # 数据验证的特定约束
+│   └── task_constraints.md       # 健康数据（如身高、体重、年龄、性别、活动水平）输入的特定约束
 ├── inputs/
-│   └── user_story.md            # 数据验证的用户故事
+│   └── user_story.md            # 健康数据验证的用户故事
 └── outputs/
-    ├── _s1_think_options_api_data_validator.md
-    ├── _s2_think_design_api_data_validator.md
-    ├── _s3_think_validation_api_data_validator.md
-    ├── api_data_validator.py
-    ├── test_api_data_validator.py
-    └── doc_api_data_validator.md
+    ├── _s1_think_options_health_data_validation.md
+    ├── _s2_think_design_health_data_validation.md
+    ├── _s3_think_validation_health_data_validation.md
+    ├── health_data_validation.py
+    ├── test_health_data_validation.py
+    └── doc_health_data_validation.md
 ```
 
-#### 核心用户需求 (ExTDD_01_PydanticValidation)
-> 我希望系统能帮我检查用户填的信息对不对，比如邮箱格式、年龄范围啥的。如果填错了，要清楚地告诉用户哪里错了。
+#### 核心用户需求 (ExTDD_01_HealthDataValidation)
+> 作为健康顾问系统的用户，我希望在我输入个人信息（如身高、体重、年龄、性别、活动水平等用于计算BMI, BMR, TDEE的数据）时，系统能借助 **Pydantic** 模型来验证这些数据的有效性和合理性（例如，年龄不能为负数，身高体重在合理范围内）。如果输入有误，系统应明确提示错误信息。
 
-### 2. ExTDD_02_PydanticSerialization: 实现数据序列化与转换
+### 2. ExTDD_02_HealthDataPersistence: 实现健康数据的存档（序列化与保存）
 
-feature_name: data_serializer
+feature_name: `health_data_persistence`
 
 ```
-ExTDD_02_PydanticSerialization/
+ExTDD_02_HealthDataPersistence/
 ├── constraints/
-│   └── task_constraints.md
+│   └── task_constraints.md       # 健康数据存档的特定约束（如存储格式JSON，文件命名规则等）
 ├── inputs/
-│   └── user_story.md
+│   └── user_story.md            # 健康数据存档的用户故事
 └── outputs/
-    ├── _s1_think_options_data_serializer.md
-    ├── _s2_think_design_data_serializer.md
-    ├── _s3_think_validation_data_serializer.md
-    ├── data_serializer.py
-    ├── test_data_serializer.py
-    └── doc_data_serializer.md
+    ├── _s1_think_options_health_data_persistence.md
+    ├── _s2_think_design_health_data_persistence.md
+    ├── _s3_think_validation_health_data_persistence.md
+    ├── health_data_persistence.py
+    ├── test_health_data_persistence.py
+    └── doc_health_data_persistence.md
 ```
 
-#### 核心用户需求 (ExTDD_02_PydanticSerialization)
-> 我需要把系统里的数据（比如用户信息、订单详情）方便地转成不同的格式，有时候是给前端App看（JSON），有时候是存到文件里，或者给别的系统用。还要能处理好日期这些特殊东西。
+#### 核心用户需求 (ExTDD_02_HealthDataPersistence)
+> 作为健康顾问系统的用户，我希望系统能将我的健康档案信息（包含原始输入数据、计算出的BMI、BMR、TDEE结果等）通过 **Pydantic** 模型安全地序列化并保存到文件中（例如JSON格式），以便后续查阅或分析。
 
-### 3. ExTDD_03_PydanticConfig: 实现基于Pydantic的配置管理系统
+### 3. ExTDD_03_HealthDataLoading: 实现历史健康数据的加载（反序列化与读取）
 
-feature_name: config_manager
+feature_name: `health_data_loading`
 
 ```
-ExTDD_03_PydanticConfig/
+ExTDD_03_HealthDataLoading/
 ├── constraints/
-│   └── task_constraints.md
+│   └── task_constraints.md       # 健康数据加载的特定约束（如从指定文件路径读取，处理文件不存在或格式错误的情况）
 ├── inputs/
-│   └── user_story.md
+│   └── user_story.md            # 健康数据加载的用户故事
 └── outputs/
-    ├── _s1_think_options_config_manager.md
-    ├── _s2_think_design_config_manager.md
-    ├── _s3_think_validation_config_manager.md
-    ├── config_manager.py
-    ├── test_config_manager.py
-    └── doc_config_manager.md
+    ├── _s1_think_options_health_data_loading.md
+    ├── _s2_think_design_health_data_loading.md
+    ├── _s3_think_validation_health_data_loading.md
+    ├── health_data_loading.py
+    ├── test_health_data_loading.py
+    └── doc_health_data_loading.md
 ```
 
-#### 核心用户需求 (ExTDD_03_PydanticConfig)
-> 我希望我的程序能方便地读取各种配置信息，比如数据库地址、API密钥什么的。这些配置可能来自不同的地方，比如配置文件或者环境变量，而且有些敏感信息（像密码）得安全地存起来。
-
-### 4. ExTDD_04_PydanticSchema: 实现API模式演进与兼容性工具
-
-feature_name: schema_evolution
-
-```
-ExTDD_04_PydanticSchema/
-├── constraints/
-│   └── task_constraints.md
-├── inputs/
-│   └── user_story.md
-└── outputs/
-    ├── _s1_think_options_schema_evolution.md
-    ├── _s2_think_design_schema_evolution.md
-    ├── _s3_think_validation_schema_evolution.md
-    ├── schema_evolution.py
-    ├── test_schema_evolution.py
-    └── doc_schema_evolution.md
-```
-
-#### 核心用户需求 (ExTDD_04_PydanticSchema)
-> 我们的API会经常升级，加一些新功能或者改动一些旧的返回信息。我希望系统能处理好不同版本的API，老的App还能用，新的App也能用上新功能，别一升级就都坏了。最好还能自动更新API文档，让大家都知道最新的接口是啥样的。
+#### 核心用户需求 (ExTDD_03_HealthDataLoading)
+> 作为健康顾问系统的用户，我希望系统能够从之前保存的存档文件中加载我的历史健康数据。加载后的数据应能通过 **Pydantic** 模型正确地反序列化，并恢复为程序可用的对象，以便我查看历史记录或进行趋势分析。
