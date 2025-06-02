@@ -1,118 +1,87 @@
 # Practice: 每日所需热量计算器 (Daily Caloric Needs Calculator)
 
-> **工作目录说明**：本文档位于 /Users/bowhead/ai_dev_exercise_tdd/exercise_tdd_dcnc/ 目录下，所有文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md` 实际指向 `/Users/bowhead/ai_dev_exercise_tdd/exercise_tdd_dcnc/teaching_framework/test_driven_development_with_ai.md`。
->
-> **归档目录说明**：本练习各TDD周期的详细思考、设计、代码快照及总结，均归档于 `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/` 目录下。实际的功能代码和测试代码在稳定后，将整合到 `../ai_wellness_advisor/src/dcnc/` 和 `../ai_wellness_advisor/tests/dcnc/`。用户故事的权威版本位于 `../ai_wellness_advisor/docs/user_stories/`。
-
 (核心开发理念参考: [测试驱动开发核心理念](./teaching_framework/test_driven_development_with_ai.md))
 (单元测试设计参考: [TDD单元测试设计技巧](./teaching_framework/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](./teaching_framework/planning_tdd_exercise.md))
+(目录结构核心原则参考: [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
-## 1. User Story (用户故事)
+## User Story (原始用户故事)
+> 作为一名关心健康的用户，我希望能够输入我的个人信息（如性别、年龄、身高、体重）和日常活动量，来计算我的基础代谢率（BMR）和每日总能量消耗（TDEE），从而更好地管理我的健康。
 
-# 每日所需热量计算器 (Daily Caloric Needs Calculator): AI+TDD练习实践实例
+## 功能需求 (Feature Requirements)
+1.  输入性别、年龄、身高（厘米）、体重（千克），计算基础代谢率 (BMR)。
+2.  基于计算出的BMR和用户选择的日常活动量水平，计算每日总能量消耗 (TDEE)。
+3.  对无效输入或计算中可能发生的异常情况提供适当反馈。
 
-> **重要约束**：在整个实践过程中，请确保所有在Cursor中的交互对话均使用中文，这是出于演示目的的要求。
+## 每日所需热量计算器 (Daily Caloric Needs Calculator): AI+TDD练习实践实例
 
-## 基础结构说明
+> **重要约束**：在整个练习实践过程中，请确保所有在Cursor/Trae中的交互对话均使用中文，这是出于演示目的的要求。
 
-本实践遵循标准的TDD练习框架结构：
+### 基础结构说明
 
-### 命名规范
+在本练习中，涉及到的占位符具体含义如下：
+*   `{app_name}`: `ai_wellness_advisor`
+*   `{module_name}`: `dcnc` (具体在各特性实现部分会再次明确)
+
+本实践遵循标准的TDD练习框架结构。详细的目录结构、文件命名规范以及TDD周期产出物的组织方式，请严格遵循以下权威文档：
+*   [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md) (定义了特性研发周期内，如 `dev_cycles`, `src`, `tests` 中各产出物的具体组织和命名)
+*   [项目整体目录结构](../README_folders.md) (定义了项目根目录及 `{app_name}` 应用的整体结构)
+
+#### 核心命名原则摘要
 
 1.  **特性名称 (feature_name)**：
     *   格式：`小写字母_用下划线分隔`
     *   示例：`calculate_bmr`, `calculate_tdee`
     *   要求：描述性、简洁、表明功能
 
-2.  **目录命名**：
-    *   练习系列目录：`ExTDD_XX_FeatureName`
-        *   XX：两位数字编号（01、02等）
-        *   FeatureName：驼峰式命名
-        *   示例：`ExTDD_01_CalculateBMR`
+**工作目录说明**：本文档（用户故事）位于 `exercise_tdd_dcnc/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`./teaching_framework/test_driven_development_with_ai.md`。
 
-3.  **文件命名**：
-    *   思考文件：`_s{step}_{type}_{feature_name}.md`
-    *   代码文件：`{feature_name}.py`
-    *   测试文件：`test_{feature_name}.py`
-    *   文档文件：`doc_{feature_name}.md`
+**TDD周期产出物归档核心路径**：
+本练习相关的每个TDD周期（例如 `ExTDD_01_CalculateBMR`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/dcnc/ExTDD_01_CalculateBMR/`)。对应的代码和测试快照则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
 
-### 目录结构规范 (TDD周期归档)
+本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 
-每个练习系列的TDD周期产出物将归档在 `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_XX_FeatureName/` 目录下，其结构**必须, 一定**包含：
+本练习中定义的各特性对应的详细用户故事文档 (`_user_story_{feature_name}.md`) 位于上述 `{app_name}` 项目的相应特性开发周期目录中，例如：
+*   BMR 计算特性 (`calculate_bmr`): `../{app_name}/dev_cycles/dcnc/ExTDD_01_CalculateBMR/_user_story_calculate_bmr.md`
+*   TDEE 计算特性 (`calculate_tdee`): `../{app_name}/dev_cycles/dcnc/ExTDD_02_CalculateTDEE/_user_story_calculate_tdee.md`
 
-```
-../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_XX_FeatureName/
-├── constraints/                    # (Constraints) 约束条件
-│   └── {feature_name}_constraints.md # (Task Constraints) 记录当前TDD周期的特定约束和假设。
-├── outputs/                       # (Outputs) TDD周期内的主要产出物
-│   ├── _s1_think_options_{feature_name}.md  # 思考过程：方案选择与分析。
-│   ├── _s2_think_design_{feature_name}.md   # 思考过程：详细设计。
-│   ├── _s3_think_validation_{feature_name}.md # 思考过程：验证和测试点设计。
-│   ├── {feature_name}.py              # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_{feature_name}.py         # TDD练习的单元测试 (归档快照, 非项目最终代码)。
-│   └── doc_{feature_name}.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
-└── README.md                      # (README) 对当前TDD周期的总结、遇到的问题、学习和反思。
-```
+### TDD周期产出物遵循的规范
 
-## 每日所需热量计算器 (Daily Caloric Needs Calculator) 特定实现
+所有TDD练习周期的产出物，包括思考文档、源代码快照和测试代码快照的目录结构、文件命名及存放位置，均严格遵循以下权威文档的规定：
+*   [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md)
+*   [项目整体目录结构](../README_folders.md)
 
-### 01. ExTDD_01_CalculateBMR: 计算基础代谢率 (BMR)
+**核心要点回顾**：
+*   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md` 等）请参见上述规范文档。
+*   **源代码快照**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
+*   **特性代码说明**：位于 `{app_name}/src/{module_name}/README_{feature_name}.md`。
+*   **测试代码快照**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
 
+**重要提示**：
+- 本文档 (`practice_dcnc_daily_caloric_needs_calculator_v2.md`) 作为练习的起点，提供了高级别的用户故事。
+- 各特性更详细的用户故事阐述和演进记录位于其对应的 `dev_cycles` 目录下的 `_user_story_{feature_name}.md` 文件中。
+- `dev_cycles` 目录专注于记录思考、设计和演进过程的文档，实际的代码和测试产出物位于 `src` 和 `tests` 目录中。
+
+## 每日所需热量计算器特定实现(两个Feature)
+
+### 1. ExTDD_01_CalculateBMR: 实现BMR值的计算
+
+module_name: dcnc
 feature_name: calculate_bmr
 
-归档目录: `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_01_CalculateBMR/`
-```
-../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_01_CalculateBMR/
-├── constraints/
-│   └── calculate_bmr_constraints.md # 计算基础代谢率 (BMR)的特定约束
-├── outputs/
-│   ├── _s1_think_options_calculate_bmr.md  # 思考过程：方案选择与分析。
-│   ├── _s2_think_design_calculate_bmr.md   # 思考过程：详细设计。
-│   ├── _s3_think_validation_calculate_bmr.md # 思考过程：验证和测试点设计。
-│   ├── calculate_bmr.py              # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_calculate_bmr.py         # TDD练习的单元测试 (归档快照, 非项目最终代码)。
-│   └── doc_calculate_bmr.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
-└── README.md                      # 对 ExTDD_01_CalculateBMR 周期的总结
-```
+对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_01_CalculateBMR/`
+(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
-#### 核心用户需求 (ExTDD_01_CalculateBMR)
-> 用户希望输入自己的性别、年龄、身高和体重，就能知道自己每天最少需要消耗多少能量来维持生命。
+#### 核心用户故事 (ExTDD_01_CalculateBMR) 针对Feature_01
+> 用户希望输入自己的性别、年龄、身高和体重，就能知道自己每天最少需要消耗多少能量来维持生命。如果输入信息不完整或无效，希望能得到清晰的提示。
 
-### 02. ExTDD_02_CalculateTDEE: 计算每日总能量消耗 (TDEE)
+### 2. ExTDD_02_CalculateTDEE: 实现TDEE值的计算
 
+module_name: dcnc
 feature_name: calculate_tdee
 
-归档目录: `../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_02_CalculateTDEE/`
-```
-../ai_wellness_advisor/docs/archived_tdd_cycles/dcnc/ExTDD_02_CalculateTDEE/
-├── constraints/
-│   └── calculate_tdee_constraints.md # 计算每日总能量消耗 (TDEE)的特定约束
-├── outputs/
-│   ├── _s1_think_options_calculate_tdee.md  # 思考过程：方案选择与分析。
-│   ├── _s2_think_design_calculate_tdee.md   # 思考过程：详细设计。
-│   ├── _s3_think_validation_calculate_tdee.md # 思考过程：验证和测试点设计。
-│   ├── calculate_tdee.py              # TDD练习的功能代码 (归档快照, 非项目最终代码)。
-│   ├── test_calculate_tdee.py         # TDD练习的单元测试 (归档快照, 非项目最终代码)。
-│   └── doc_calculate_tdee.md         # (Optional) 特性相关的简要说明或API文档（如果适用）。
-└── README.md                      # 对 ExTDD_02_CalculateTDEE 周期的总结
-```
+对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_02_CalculateTDEE/`
+(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
-#### 核心用户需求 (ExTDD_02_CalculateTDEE)
-> 在知道了自己的基础代谢率之后，用户希望通过选择自己的日常活动量，来估算每天实际消耗的总热量。
-
-## 通用约束条件
-*   所有代码实现应遵循 PEP 8 Python 编码规范。
-*   函数和方法应具有清晰、描述性的名称，并遵循单一职责原则。
-*   测试用例的名称应明确描述其所验证的行为或场景。
-*   如前所述，实现应仅依赖Python标准库，不引入外部包。
-*   错误处理应明确，对无效输入或计算中可能发生的异常情况提供适当反馈（尽管具体的错误提示也是一个特性）。
-
-## 学习顺序
-学习顺序将强调从简单到复杂，确保学习者首先完成 `CalculateBMR` (计算基础代谢率) 的练习，然后再进行到 `CalculateTDEE` (计算每日总能量消耗) 的练习。
-
-## 技术依赖
-Python 3.12
-
-## 练习难度递进
-练习从核心的BMR计算开始，这是一个相对直接的公式实现，帮助学习者熟悉TDD的基本流程和单个功能的构建。随后，练习过渡到TDEE的计算，它建立在BMR的基础上，并引入了基于用户选择（活动水平）的条件逻辑和乘数，增加了少许复杂性，要求学习者处理不同分支情况和状态的组合。这种安排旨在平稳地引导学习者从简单计算到稍复杂的逻辑处理。
+#### 核心用户故事 (ExTDD_02_CalculateTDEE) 针对Feature_02
+> 在知道了自己的基础代谢率（BMR）之后，用户希望通过选择自己的日常活动量水平（例如：久坐、轻度活动、中度活动、重度活动、极重度活动），来估算每天实际消耗的总热量（TDEE）。如果BMR未计算或活动量未选择，希望能得到相应的提示。
