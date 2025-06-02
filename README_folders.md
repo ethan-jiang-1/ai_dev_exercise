@@ -74,20 +74,17 @@ ai_wellness_advisor/
 │   └── test_integration.py # (Integration Test) 集成测试 (可选)
 ├── docs/               # (Documentation) 项目级文档、架构图等
 │   ├── architecture.md
-│   └── modeul_feature.py  
+│   └── module_feature_overview.md # (Example: Overview of module and feature organization)
 │   
-├── dev_cycles/ #  TDD周期内的思考、设计和实现记录
-│       ├── bmi/                            # (Archived TDD Cycles for BMI)
-│       │   └── ExTDD_01_BMICalculation/    # (Example TDD Cycle, see structure above)
-│       ├── dcnc/                           # (Archived TDD Cycles for DCNC)
-│       │   └── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
-│       ├── pydantic_models/                # (Archived TDD Cycles for Pydantic Models)
-│       │   └── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
-│       ├── llm_clients/                    # (Archived TDD Cycles for LLM Clients)
-│       │   └── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
-│       └── core_services/                  # (Archived TDD Cycles for Core Services)
-│           ├── ExTDD_XX_FeatureName/       # (Example TDD Cycle, see structure above)
-│           └── ExTDD_YY_AnotherFeature/    # (Example TDD Cycle, see structure above)
+├── dev_cycles/ #  TDD周期内的思考、设计和实现记录 (详细内部结构请参考 `./README_folder_feature.md`)
+│   ├── {module_name}/             # 例如: bmi/, dcnc/, core_services/
+│   │   └── ExTDD_NN_{FeatureName}/   # 例如: ExTDD_01_BMICalculation/, ExTDD_02_DCNCCalculation/
+│   │       ├── _user_story_{feature_name}.md
+│   │       ├── _s1_think_options_{feature_name}.md
+│   │       ├── _s2_think_design_{feature_name}.md
+│   │       ├── _s3_think_validation_{feature_name}.md
+│   │       └── _constraints_{feature_name}.md # (可选)
+│   └── ...    # 其他模块的TDD周期记录以此类推
 |
 ├── exercise_tdd_bmi/         # (TDD Exercise Entry) BMI计算器的TDD练习入口与指南
 │   ├── practice_tdd_bmi_calculator.md
@@ -145,10 +142,10 @@ ai_wellness_advisor/
 | 文件类型             | 主要存放位置                                                                 | 说明                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | **启动TDD的练习** | `exercise_tdd_xxx/practice_yyy.md`                                              | 高级别、练习入口                                                                                            |
-| **用户故事(按Feature)**     | `ai_wellness_advisor/docs/user_stories/user_story_{PracticeName}_{FeatureName}.md`                                     | 模块化、权威版本                                                                                        |
+| **用户故事(按Feature)**     | `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/_user_story_{feature_name}.md`                                     | 模块化、权威版本，遵循特性开发周期文档规范                                                                                        |
 | **TDD过程文档**      | `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/_user_story_{feature_name}.md` (及其他s1,s2,s3等文档) | 记录每个TDD周期的详细思考、设计和实现过程。 |
 | **最终功能代码**     | `ai_wellness_advisor/src/...`                                                   | 功能代码                                                                                          |
 | **最终测试代码**     | `ai_wellness_advisor/tests/...`                                                 | 测试代码                                                                                          |
-| **模块文档** | `ai_wellness_advisor/docs/...`                                   | 项目概述、架构、详细设计, user_story, feature文档等                                                                                |
+| **模块文档** | `ai_wellness_advisor/docs/` (项目级文档) <br> `ai_wellness_advisor/src/{module_name}/README_{feature_name}.md` (特性代码说明) <br> `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (特性开发周期文档) | 项目概述、架构图等存放于 `docs/`。特性相关的代码说明和开发周期文档遵循 `README_folder_feature.md` 规范。                                                                              |
 
-简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其内部的 `dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 详细记录了每个特性“建设蓝图和过程”。
+简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其内部的 `src/`、`tests/` 和 `dev_cycles/` 共同构成了每个特性“建设蓝图、过程和产出”。所有这些都严格遵循 `README_folder_feature.md` 中定义的核心原则。
