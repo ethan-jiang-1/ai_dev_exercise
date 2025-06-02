@@ -1,12 +1,19 @@
 # AI个性化健康顾问 (AI Personalized Wellness Advisor)
 
+本文档使用以下占位符：
+*   `{app_name}`: 代表应用程序的名称。
+*   `{module_name}`: 代表功能模块的名称 (例如 `bmi`, `dcnc`)。
+*   `{FeatureName}`: 代表特性的驼峰式名称 (例如 `BMICalculation`)。
+*   `{feature_name}`: 代表特性的小写名称 (例如 `bmicalculation`)。
+*   `NN`: 代表特性在该模块内的两位数字顺序编号 (例如 `01`, `02`)。
+
 ## 项目概述
 
 本项目旨在构建一个先进的AI个性化健康顾问系统。该系统整合了多项健康评估工具与智能分析能力，致力于为用户提供定制化的健康管理方案和建议，帮助用户更好地理解和改善自身健康状况。
 
 ##核心目标
 
-*   **统一平台**：创建一个名为 `ai_wellness_advisor` 的统一代码库，作为所有健康相关模块和服务的中央枢纽。
+*   **统一平台**：创建一个名为 `{app_name}` 的统一代码库，作为所有健康相关模块和服务的中央枢纽。
 *   **模块化设计**：采用清晰的模块化架构，将功能分解为可独立开发、测试和维护的组件。
 *   **TDD驱动开发**：严格遵循测试驱动开发（TDD）原则，确保代码质量、可靠性和可维护性。
 *   **智能化服务**：利用大型语言模型（LLM）和其他AI技术，提供智能化的健康分析和个性化建议。
@@ -38,15 +45,15 @@
 
 ## 项目结构
 
-项目 `ai_wellness_advisor` 将遵循标准的Python项目结构。更详细的整体项目目录结构和各目录的用途说明，请参考 [README_folders.md](README_folders.md)。
+项目 `{app_name}` 将遵循标准的Python项目结构。更详细的整体项目目录结构和各目录的用途说明，请参考 [README_folders.md](README_folders.md)。
 
 ### TDD实践下的目录结构
 
 本项目严格遵循测试驱动开发（TDD）原则。每个功能的开发都始于编写测试用例，这些测试用例定义了功能的期望行为。随后编写代码以使测试通过，并进行重构以优化代码质量。
 
-*  **功能代码**位于 `ai_wellness_advisor/src/` 目录下。
-*   **测试代码**位于 `ai_wellness_advisor/tests/` 目录下，并与 `src/` 中的模块结构相对应。
-*  **最终文档**：项目的最终文档，将在 `ai_wellness_advisor/docs/` 目录下。
-*   **TDD练习周期文档**：每个模块(module) 下的特性（Feature）的TDD练习周期的详细思考、设计、代码快照和总结文档，遵循 `README_folder_feature.md` 中定义的规范，存放于`ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下. 例如，`bmi` 模块的第一个特性 `BMICalculation` 的相关文档会存放在 `ai_wellness_advisor/dev_cycles/bmi/ExTDD_01_BMICalculation/` 中。
+*  **功能代码**位于 `{app_name}/src/` 目录下。
+*  **测试代码**位于 `{app_name}/tests/` 目录下，并与 `src/` 中的模块结构相对应。
+*  **最终文档**：项目的最终文档，将在 `{app_name}/docs/` 目录下。
+*  **TDD练习周期文档**：每个模块(module) 下的特性（feature）的TDD练习周期的详细思考、设计、代码快照和总结文档，遵循 `README_folder_feature.md` 中定义的规范，存放于`{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下. 例如，`bmi` 模块的第一个特性 `BMICalculation` 的相关文档会存放在 `{app_name}/dev_cycles/bmi/ExTDD_01_BMICalculation/` 中。
 
 这个项目旨在通过现代软件工程实践（如TDD）和AI技术，打造一个实用且强大的个性化健康管理工具。
