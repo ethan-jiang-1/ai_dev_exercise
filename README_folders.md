@@ -131,19 +131,19 @@ ai_wellness_advisor/
 ai_wellness_advisor/
 ├── src/                            # (Source Code Snapshot) TDD周期内的源代码快照
 │   └── {module_name}/              # 例如 bmi/
+│       ├── README_{feature_name}.md
 │       └── {feature_name}.py
 ├── tests/                          # (Test Code Snapshot) TDD周期内的测试代码快照
 │   └── {module_name}/              # 例如 bmi/
 │       └── test_{feature_name}.py
-├── dev_cycles/            # (User Story, Design and Planning Documents) 思考、设计、约束、验证等文档
+├── dev_cycles/                     # (User Story, Design and Planning Documents) 思考、设计、约束、验证等文档
 │   └── {module_name}/              # 例如 bmi/
-|       └── ExTDD_XX_{feature_name}/ # 例如 ExTDD_01_BMICalculation/
-│         ├── _user_story_{feature_name}.md
-│         ├── _s1_think_options_{feature_name}.md
-│         ├── _s2_think_design_{feature_name}.md
-│         ├── _s3_think_validation_{feature_name}.md
-│         └── _constraints_{feature_name}.md # (Optional)
-└── README_prj.md                       
+│       └── ExTDD_XX_{feature_name}/ # 例如 ExTDD_01_BMICalculation/
+│           ├── _user_story_{feature_name}.md
+│           ├── _s1_think_options_{feature_name}.md
+│           ├── _s2_think_design_{feature_name}.md
+│           ├── _s3_think_validation_{feature_name}.md
+│           └── _constraints_{feature_name}.md # (Optional)
 ```
 
 **核心原则**：
