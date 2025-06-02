@@ -1,5 +1,5 @@
 # 软件工程思维：思考质量决定代码质量
-> 版本: 1.0
+> 版本: 3.0
 
 > 这不是一篇理论文章，而是实战指南。适用于所有AI+Markdown练习项目，**尤其侧重于测试驱动开发 (TDD) 的实践**。
 
@@ -95,8 +95,8 @@ Markdown是记录思维过程并构建AI知识库的理想媒介：
 2. `_s1_think_options_{user_story}.md` → 思考解决方案 (solution)
 3. `_s2_think_design_{user_story}.md` → 思考设计方案 (tasks, todo list)
 4. `_s3_think_validation_{user_story}.md` → 构建验证策略 (TDD 的起点)
-5. `build_solution.{ext}` + `build_solution_tests.{ext}` → 构建解决方案 (遵循 Red-Green-Refactor)
-6. `doc_build_solution.md` → 构建文档 
+5. `{user_story}.{ext}` (在 `ai_wellness_advisor/src/{module_name}/`) + `test_{user_story}.{ext}` (在 `ai_wellness_advisor/tests/{module_name}/`) → 构建解决方案 (遵循 Red-Green-Refactor)
+6. `_doc_{user_story}.md` (在 `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`) → 构建文档 
 
 ## 与AI协作：主导而非跟随，教练而非依赖
 
@@ -190,4 +190,4 @@ AI输出的最大危险不是明显错误，而是"看似合理但实际有缺�
 
 **思考即资产，代码只是实现。思维留痕是驾驭AI的基础。** 保存、审视、迭代你的思考过程，并用它指导和验证AI的工作，这远比单纯让AI生产更多代码重要得多。
 
-好的软件工程不在于"写了多少代码"，而在于"思考了多深"，**以及如何有效地将这种深度思考传递给并验证于你的AI协作伙伴**。 
+好的软件工程不在于"写了多少代码"，而在于"思考了多深"，**以及如何有效地将这种深度思考传递给并验证于你的AI协作伙伴**。
