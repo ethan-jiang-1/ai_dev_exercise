@@ -35,7 +35,7 @@
 ├── .gitignore        # Git忽略文件
 ├── requirements.txt  # Python依赖管理 (如果项目需要)
 ├── ai_wellness_advisor/ # ({app_name}) 应用目录
-│   └── README_awd.md
+│   └── README_awa.md
 ├── exercise_tdd_awa_core/
 ├── exercise_tdd_bmi/
 ├── exercise_tdd_dcnc/
@@ -54,13 +54,13 @@
 **当前实际结构:**
 ```
 ai_wellness_advisor/
-└── README_awd.md         # 应用的简要入口和导航
+└── README_awa.md         # 应用的简要入口和导航
 ```
 
 **预期逐步完善的结构 (示例):**
 ```
 ai_wellness_advisor/ ({app_name})
-├── README_awd.md         # 应用的简要入口和导航
+├── README_awa.md         # 应用的简要入口和导航
 ├── src/                # 所有Python模块源代码
 │   ├── __init__.py
 │   ├── {module_name}/    # 例如: bmi/, dcnc/, core_services/
