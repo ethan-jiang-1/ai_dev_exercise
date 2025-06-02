@@ -41,7 +41,7 @@
 ```
 # Detailed structure of `ai_wellness_advisor/`:
 ai_wellness_advisor/
-├── README.md         # (Application Entry Point) 应用的简要入口和导航，指向更详细的文档
+├── README_awd.md         # (Application Entry Point) 应用的简要入口和导航，指向更详细的文档
 ├── src/                # (Source code) 所有Python模块源代码
 │   ├── __init__.py
 │   ├── bmi/            # (Module) BMI计算器模块 (第0层)
