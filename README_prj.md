@@ -47,6 +47,6 @@
 *  **功能代码**位于 `ai_wellness_advisor/src/` 目录下。
 *   **测试代码**位于 `ai_wellness_advisor/tests/` 目录下，并与 `src/` 中的模块结构相对应。
 *  **最终文档**：项目的最终文档，将在 `ai_wellness_advisor/docs/` 目录下。
-*   **TDD练习周期文档**：每个模块(module) 下的特性（Feature）的TDD练习周期的详细思考、设计、代码快照和总结文档，遵循 `README_folder_feature.md` 中定义的规范，存放于`ai_wellness_advisor/dev_cycles/` 目录下.
+*   **TDD练习周期文档**：每个模块(module) 下的特性（Feature）的TDD练习周期的详细思考、设计、代码快照和总结文档，遵循 `README_folder_feature.md` 中定义的规范，存放于`ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下. 例如，`bmi` 模块的第一个特性 `BMICalculation` 的相关文档会存放在 `ai_wellness_advisor/dev_cycles/bmi/ExTDD_01_BMICalculation/` 中。
 
 这个项目旨在通过现代软件工程实践（如TDD）和AI技术，打造一个实用且强大的个性化健康管理工具。

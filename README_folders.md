@@ -135,10 +135,10 @@ ai_wellness_advisor/
     *   `practice_xxx.md` 可链接至 `ai_wellness_advisor/docs/user_stories/` 中的详细需求。
     *   **严禁** 在此存放任何实际Python源代码、测试脚本或重复的详细设计文档；这些动态内容均属 `ai_wellness_advisor/`。
 
-3.  **`exercise_tdd_xxx/ExTDD_NN_{FeatureName}/dev_cycles/`：TDD过程记录**
-    *   每个特性开发目录 `ExTDD_NN_{FeatureName}` 下的 `dev_cycles` 子目录用于存放该特性开发过程中的详细TDD周期记录文档。
+3.  **`ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/`：TDD过程记录**
+    *   在 `ai_wellness_advisor` 应用的 `dev_cycles` 目录下，会按照模块名 (`{module_name}`) 和特性 (`ExTDD_NN_{FeatureName}`) 进一步组织各个TDD练习周期的详细记录文档。
     *   这些文档记录了思考过程、约束分析、代码迭代和测试演进，遵循 `README_folder_feature.md` 中定义的命名和组织规范。
-    *   其对应的源代码和测试代码分别位于 `ExTDD_NN_{FeatureName}/src/` 和 `ExTDD_NN_{FeatureName}/tests/`。最终稳定版本会整合到 `ai_wellness_advisor/src/` 和 `ai_wellness_advisor/tests/`。
+    *   其对应的源代码和测试代码快照也遵循 `README_folder_feature.md` 中定义的结构，位于 `ai_wellness_advisor/src/{module_name}/` 和 `ai_wellness_advisor/tests/{module_name}/` 下（在特性开发过程中，这些可能是临时的快照，最终稳定版会整合）。
 
 **总结速查表:**
 
@@ -146,9 +146,9 @@ ai_wellness_advisor/
 | -------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | **启动TDD的练习** | `exercise_tdd_xxx/practice_yyy.md`                                              | 高级别、练习入口                                                                                            |
 | **用户故事(按Feature)**     | `ai_wellness_advisor/docs/user_stories/user_story_{PracticeName}_{FeatureName}.md`                                     | 模块化、权威版本                                                                                        |
-| **TDD过程文档**      | `exercise_tdd_xxx/ExTDD_NN_{FeatureName}/dev_cycles/ExTDD_NN_{FeatureName}_YYYYMMDD_HHMM.md` | 记录每个TDD周期的详细思考、设计和实现过程。 |
+| **TDD过程文档**      | `ai_wellness_advisor/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/_user_story_{feature_name}.md` (及其他s1,s2,s3等文档) | 记录每个TDD周期的详细思考、设计和实现过程。 |
 | **最终功能代码**     | `ai_wellness_advisor/src/...`                                                   | 功能代码                                                                                          |
 | **最终测试代码**     | `ai_wellness_advisor/tests/...`                                                 | 测试代码                                                                                          |
 | **模块文档** | `ai_wellness_advisor/docs/...`                                   | 项目概述、架构、详细设计, user_story, feature文档等                                                                                |
 
-简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，其中每个 `ExTDD_NN_{FeatureName}/dev_cycles/` 记录了具体特性的“建设蓝图和过程”，而 `ai_wellness_advisor/` 则是最终建成的“动态的城市本身”。
+简而言之：`exercise_tdd_xxx/` 目录是“静态的地图和指南”，而 `ai_wellness_advisor/` 是“动态的城市本身”，其内部的 `dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 详细记录了每个特性“建设蓝图和过程”。
