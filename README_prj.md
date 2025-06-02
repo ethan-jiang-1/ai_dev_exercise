@@ -28,21 +28,6 @@
     *   顶层应用逻辑，整合各层模块，提供统一的服务接口或用户交互界面。
     *   全面的集成测试，确保系统各部分协同工作。
 
-## 项目结构
-
-项目 `ai_wellness_advisor` 将遵循标准的Python项目结构。更详细的整体项目目录结构和各目录的用途说明，请参考 [README_folders.md](README_folders.md)。
-
-*   `ai_wellness_advisor/src/`: 存放所有Python模块的源代码。
-    *   `ai_wellness_advisor/src/bmi/`: BMI计算器模块。
-    *   `ai_wellness_advisor/src/dcnc/`: DCNC计算器模块。
-    *   `ai_wellness_advisor/src/pydantic_models/`: Pydantic数据模型定义。
-    *   `ai_wellness_advisor/src/core_services/`: 核心服务模块（如WellnessProfileBuilder, PersonalizedAdvisor）。
-*   `ai_wellness_advisor/tests/`: 存放所有Python测试代码，与`src`目录结构对应。
-*   `ai_wellness_advisor/docs/`: 存放项目级文档、架构图、用户故事等。
-    *   `ai_wellness_advisor/docs/user_stories/`: 各模块的用户故事和需求文档。
-    *   `ai_wellness_advisor/docs/archived_tdd_cycles/`: 归档的TDD开发周期记录，包含每个特性开发过程中的思考、设计和实现细节。详细结构参见 [README_folders.md](README_folders.md) 中的 `ExTDD_XX_FeatureName` 示例。
-*   `ai_wellness_advisor/requirements.txt` (或 `pyproject.toml`): 项目依赖管理。
-*   `ai_wellness_advisor/README.md`: 本项目的总体说明和使用指南。
 
 ## 技术栈（初步）
 
@@ -51,11 +36,17 @@
 *   **测试框架**：pytest (或其他Python标准测试框架，用于单元测试、集成测试)
 *   **AI/LLM集成**：通过项目根目录下的 `utils_llm/` 目录提供的可复用工具集与大型语言模型进行交互，支持 `PersonalizedAdvisor` 等模块的智能功能。
 
-## TDD实践
+## 项目结构
+
+项目 `ai_wellness_advisor` 将遵循标准的Python项目结构。更详细的整体项目目录结构和各目录的用途说明，请参考 [README_folders.md](README_folders.md)。
+
+### TDD实践下的目录结构
 
 本项目严格遵循测试驱动开发（TDD）原则。每个功能的开发都始于编写测试用例，这些测试用例定义了功能的期望行为。随后编写代码以使测试通过，并进行重构以优化代码质量。
 
-*   所有测试代码位于 `ai_wellness_advisor/tests/` 目录下，并与 `src/` 中的模块结构相对应。
-*   每个TDD练习周期的详细思考、设计、约束、实现代码和测试代码等过程性文档，将按照规范结构归档于 `ai_wellness_advisor/docs/archived_tdd_cycles/` 目录下。关于此目录结构和TDD练习周期的详细规范，请参考 [README_folders.md](README_folders.md) 中的 “每个 ExTDD 练习的目录结构” 和 “重要原则再次强调” 部分。
+*  **功能代码**位于 `ai_wellness_advisor/src/` 目录下。
+*   **测试代码**位于 `ai_wellness_advisor/tests/` 目录下，并与 `src/` 中的模块结构相对应。
+*  **最终文档**：项目的最终文档，将在 `ai_wellness_advisor/docs/` 目录下。
+*   **TDD练习周期文档**：每个模块(module) 下的特性（Feature）的TDD练习周期的详细思考、设计、代码快照和总结文档，遵循 `README_folder_feature.md` 中定义的规范，存放于`ai_wellness_advisor/dev_cycles/` 目录下.
 
 这个项目旨在通过现代软件工程实践（如TDD）和AI技术，打造一个实用且强大的个性化健康管理工具。
