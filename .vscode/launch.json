@@ -2,12 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "name": "Python: Current File",
+      "type": "debugpy",
       "request": "launch",
-      "args": [],
-      "cwd": "/Users/bowhead/ai_dev_exercise_tdd/tdd_rules",
-      "program": "/Users/bowhead/ai_dev_exercise_tdd/tdd_rules/build/Debug/outDebug"
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true
     }
   ]
 }

@@ -1,0 +1,11 @@
+"timestamp","finish_reason","model_requested","model_actual","sec_span","total_tokens","prompt_tokens","completion_tokens","token_per_ms","track_id","attempt"
+"20250603:12:23:29","stop","deepseek-chat","deepseek-chat",7.86,85,67,18,436.68,"None",0
+"20250603:12:28:52","stop","deepseek-chat","deepseek-chat",10.87,185,69,116,93.72,"None",0
+"20250603:12:29:03","stop","deepseek-chat","deepseek-chat",8.91,163,69,94,94.79,"None",0
+"20250603:12:29:12","stop","deepseek-chat","deepseek-chat",9.72,179,69,110,88.34,"None",0
+"20250603:12:29:15","stop","deepseek-chat","deepseek-chat",12.92,209,69,140,92.25,"None",0
+"20250603:12:29:22","stop","deepseek-chat","deepseek-chat",12.09,202,69,133,90.91,"None",0
+"20250603:12:29:28","stop","deepseek-chat","deepseek-chat",8.4,159,69,90,93.37,"None",0
+"20250603:12:29:34","stop","deepseek-chat","deepseek-chat",5.56,85,67,18,308.64,"None",0
+"20250603:12:29:37","stop","deepseek-chat","deepseek-chat",10.02,180,69,111,90.25,"None",0
+"20250603:12:29:47","stop","deepseek-chat","deepseek-chat",10.28,209,69,140,73.42,"None",0
