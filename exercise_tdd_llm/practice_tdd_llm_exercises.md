@@ -37,19 +37,20 @@
 
 1.  **特性名称 (feature_name)**：
     *   格式：`小写字母_用下划线分隔`
-    *   示例：`deepseek_health_recommendation`, `deepseek_experiment_platform`
+    *   示例：`deepseek_api_setup, deepseek_health_recommendation, deepseek_experiment_platform`
     *   要求：描述性、简洁、表明功能
 
 **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_llm/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`../tdd_rules/tdd_ai_thinking.md`。
 
 **TDD周期产出物归档核心路径**：
-本练习相关的每个TDD周期（例如 `ExTDD_01_DeepSeekHealthRecommendation`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/llm_integration/ExTDD_01_DeepSeekHealthRecommendation/`)。对应的代码和测试则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
+本练习相关的每个TDD周期（例如 `ExTDD_01_DeepSeekApiSetup`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/llm_integration/ExTDD_01_DeepSeekApiSetup/`)。对应的代码和测试则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
 
 本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 
 本练习中定义的各特性对应的详细用户故事文档 (`_user_story_{feature_name}.md`) 位于上述 `{app_name}` 项目的相应特性开发周期目录中，例如：
-*   DEEPSEEK健康推荐特性 (`deepseek_health_recommendation`): `../{app_name}/dev_cycles/llm_integration/ExTDD_01_DeepSeekHealthRecommendation/_user_story_deepseek_health_recommendation.md`
-*   DEEPSEEK模型调用实验平台特性 (`deepseek_experiment_platform`): `../{app_name}/dev_cycles/llm_integration/ExTDD_02_DeepSeekExperimentPlatform/_user_story_deepseek_experiment_platform.md`
+*   DEEPSEEK API基础配置与调用验证特性 (`deepseek_api_setup`): `../{app_name}/dev_cycles/llm_integration/ExTDD_01_DeepSeekApiSetup/_user_story_deepseek_api_setup.md`
+*   DEEPSEEK健康推荐特性 (`deepseek_health_recommendation`): `../{app_name}/dev_cycles/llm_integration/ExTDD_02_DeepSeekHealthRecommendation/_user_story_deepseek_health_recommendation.md`
+*   DEEPSEEK模型调用实验平台特性 (`deepseek_experiment_platform`): `../{app_name}/dev_cycles/llm_integration/ExTDD_03_DeepSeekExperimentPlatform/_user_story_deepseek_experiment_platform.md`
 
 ### TDD周期产出物遵循的规范
 
@@ -69,32 +70,45 @@
 - `dev_cycles` 目录专注于记录思考、设计和演进过程的文档，实际的代码和测试产出物位于 `src` 和 `tests` 目录中。
 - 在每个TDD周期中，务必创建 `_s1_think_options_{feature_name}.md`, `_s2_think_design_{feature_name}.md`, 和 `_s3_think_validation_{feature_name}.md` 这三个中间思考文档。
 
-## LLM API 调用特定实现 (两个Feature)
+## LLM API 调用特定实现 (三个Feature)
 
-### 1. ExTDD_01_DeepSeekHealthRecommendation: 基于DEEPSEEK的健康推荐
+### 1. ExTDD_01_DeepSeekApiSetup: DEEPSEEK API基础配置与调用验证
 
-> **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_deepseek_health_recommendation.md`) 以及所有相关的思考文档 (`_s1_think_options_deepseek_health_recommendation.md`, `_s2_think_design_deepseek_health_recommendation.md`, `_s3_think_validation_deepseek_health_recommendation.md` 等)，然后再编写测试、实现代码和重构。
+> **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_deepseek_api_setup.md`) 以及所有相关的思考文档 (`_s1_think_options_deepseek_api_setup.md`, `_s2_think_design_deepseek_api_setup.md`, `_s3_think_validation_deepseek_api_setup.md` 等)。**本练习的核心目标是确保DEEPSEEK API调用通路完全畅通，所有相关配置（如API Key、`utils_llm`工具包）均已正确设置，并能够成功获取一个简单的、结构化的JSON格式输出。强烈建议使用Pydantic进行对象化处理以验证输出结构。** 此步骤是后续练习的基础，完成后再编写测试、实现代码和重构。
+
+module_name: llm_integration
+feature_name: deepseek_api_setup
+
+对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_01_DeepSeekApiSetup/`
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+
+#### 核心用户故事 (ExTDD_01_DeepSeekApiSetup) 针对Feature_01
+> 作为开发者，在正式实现复杂的健康建议功能前，我首先需要验证与DEEPSEEK API的基础通信链路。我希望创建一个最小化的模块，该模块能够：1. 正确加载和使用DEEPSEEK_API_KEY及其他必要配置（通过`utils_llm`）。 2. 构造一个简单的请求发送给DEEPSEEK模型。 3. 成功接收模型返回的一个简单JSON格式响应。 4. （推荐）使用Pydantic模型来解析和验证这个JSON响应，确保数据结构符合预期。此练习的目的是打通配置、熟悉API调用流程，并为后续功能开发建立一个可靠的起点。
+
+### 2. ExTDD_02_DeepSeekHealthRecommendation: 基于DEEPSEEK的健康推荐
+
+> **重要提示**：开始此特性练习时，（**假设ExTDD_01已完成，API基础调用和配置已验证**）请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_deepseek_health_recommendation.md`) 以及所有相关的思考文档 (`_s1_think_options_deepseek_health_recommendation.md`, `_s2_think_design_deepseek_health_recommendation.md`, `_s3_think_validation_deepseek_health_recommendation.md` 等)，然后再编写测试、实现代码和重构。
 
 module_name: llm_integration
 feature_name: deepseek_health_recommendation
 
-对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_01_DeepSeekHealthRecommendation/`
+对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_02_DeepSeekHealthRecommendation/`
 (其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
-#### 核心用户故事 (ExTDD_01_DeepSeekHealthRecommendation) 针对Feature_01
+#### 核心用户故事 (ExTDD_02_DeepSeekHealthRecommendation) 针对Feature_02
 > 作为用户，我希望输入我的BMI、BMR、TDEE数据后，系统能通过DEEPSEEK模型分析这些数据，并给出针对性的健康指导和生活方式建议。作为开发者，我需要构建一个模块，该模块能够接收用户的健康指标，构造合适的提示调用DEEPSEEK模型，并解析返回的建议。
 
-### 2. ExTDD_02_DeepSeekExperimentPlatform: DEEPSEEK模型调用实验平台
+### 3. ExTDD_03_DeepSeekExperimentPlatform: DEEPSEEK模型调用实验平台
 
 > **重要提示**：开始此特性练习时，请务必遵循完整的TDD五步循环，包括创建用户故事 (`_user_story_deepseek_experiment_platform.md`) 以及所有相关的思考文档 (`_s1_think_options_deepseek_experiment_platform.md`, `_s2_think_design_deepseek_experiment_platform.md`, `_s3_think_validation_deepseek_experiment_platform.md` 等)，然后再编写测试、实现代码和重构。
 
 module_name: llm_integration
 feature_name: deepseek_experiment_platform
 
-对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_02_DeepSeekExperimentPlatform/`
+对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_03_DeepSeekExperimentPlatform/`
 (其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
-#### 核心用户故事 (ExTDD_02_DeepSeekExperimentPlatform) 针对Feature_02
+#### 核心用户故事 (ExTDD_03_DeepSeekExperimentPlatform) 针对Feature_03
 > 作为开发者，我需要一个灵活的环境来测试不同的DEEPSEEK模型、提示策略和参数，以便优化健康建议的质量和调用成本。
 
 ## 补充说明与资源
@@ -118,5 +132,6 @@ feature_name: deepseek_experiment_platform
 3. **环境变量**: `DEEPSEEK_API_KEY`, 可能还有其他模型API Key。
 
 ### 建议学习顺序与难度
-1.  **ExTDD_01_DeepSeekHealthRecommendation** (难度：★★★☆☆): 掌握DEEPSEEK API调用基础。
-2.  **ExTDD_02_DeepSeekExperimentPlatform** (难度：★★★★☆): 构建测试优化环境。
+1.  **ExTDD_01_DeepSeekApiSetup** (难度：★★☆☆☆): 确保DEEPSEEK API基础配置正确，并能成功调用获得简单JSON响应。
+2.  **ExTDD_02_DeepSeekHealthRecommendation** (难度：★★★☆☆): 基于已验证的API调用，实现健康数据分析与建议生成。
+3.  **ExTDD_03_DeepSeekExperimentPlatform** (难度：★★★★☆): 构建灵活的DEEPSEEK模型调用测试与优化环境。
