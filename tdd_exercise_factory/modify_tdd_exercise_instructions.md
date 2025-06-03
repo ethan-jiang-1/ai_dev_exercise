@@ -9,7 +9,7 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 -->
 
 # AI协作修改TDD练习框架指令
-> 版本: 1.0
+> 版本: 4.0
 
 **核心目标：** 本文档指导AI通过与用户进行**交互式、多步骤、有状态的协作流程**，逐步修改或调整**现有**的TDD练习系列中的`practice_xxx.md`文件，并在关键步骤进行信息确认。
 
@@ -40,8 +40,8 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 **交互流程**:
 1.  AI告知用户将读取并分析选定的 `[practice文件名]`。
 2.  AI读取文件内容，并向用户总结展示以下关键信息（如果存在）：
-    *   当前的 **PRACTICE_TITLE / 应用友好名称**。
-    *   当前的 **APP_NAME / 应用核心名称**。
+    *   当前的 **PRACTICE_TITLE / 用户故事友好名称**。
+    *   当前的 **练习对应模块名 (MODULE_NAME)**。
     *   **特性列表** (FEATURE_ID_PREFIX, FEATURE_NAME_CAMELCASE, FEATURE_FRIENDLY_TITLE)。
     *   其他主要的可选全局信息摘要。
 3.  AI询问用户是否确认基于这些信息进行修改。
@@ -58,9 +58,9 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 
 1.  **Practice识别信息修改 (Practice Identification Modification) - 交互式收集与确认:**
     *   AI询问用户是否需要修改以下信息，并逐项引导修改和确认：
-        *   **主题 (Practice Theme) / 应用友好名称 (APP_FRIENDLY_NAME)**。
-        *   **应用核心名称 (APP_NAME)** (AI提醒，若修改此项，可能影响关联路径和文件名，建议谨慎)。
-        *   **(可选) Practice文件名 (Practice Filename)** (若APP_NAME更改，AI可建议新文件名)。
+        *   **主题 (Practice Theme) / 用户故事友好名称 (USER_STORY_FRIENDLY_NAME)**。
+        *   **练习对应模块名 (MODULE_NAME)** (AI提醒，若修改此项，可能影响关联路径和文件名，建议谨慎)。
+        *   **(可选) Practice文件名 (Practice Filename)** (若MODULE_NAME更改，AI可建议新文件名)。
     *   AI在收集完修改后的上述信息（如果有修改）后，进行一次总体验证。
 
 2.  **核心练习系列规划与定义修改 (Core Exercise Series Planning & Definition Modification) - 交互式迭代收集与确认:**
@@ -118,4 +118,4 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 5.  **第4阶段 - 更新文件**: AI根据修改更新`practice_xxx.md`。
 6.  **第5阶段 - (可选) 更新框架文档**: 根据需要调整练习集专属规划与理念文档。
 
-**最终目标**: 生成结构和内容符合用户修改预期的 `practice_xxx.md` 文件，确保修改准确反映。 
+**最终目标**: 生成结构和内容符合用户修改预期的 `practice_xxx.md` 文件，确保修改准确反映。

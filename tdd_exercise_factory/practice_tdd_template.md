@@ -1,22 +1,22 @@
 <!-- 定义核心占位符 -->
 <!--
-  {app_name}: 项目/应用根目录名 (例如: "ai_wellness_advisor")。
-  {module_name}: {app_name} 内的模块名 (例如: "bmi", "wellness_profile")。
-  {FeatureName}: 驼峰式特性名 (例如: "BMICalculation", "ComprehensiveProfileModel")。
-  {feature_name}: 下划线式特性名 (例如: "bmi_calculation", "comprehensive_profile_model")。
-  {NN}: 特性两位数序号 (例如: "01", "02")。
-  {CURRENT_EXERCISE_DIR}: 当前练习指导文件所在的目录名 (例如: "exercise_tdd_bmi", "exercise_tdd_awa_core")。
+  {{app_name}}: 项目/应用根目录名 (例如: "ai_wellness_advisor")。
+  {{module_name}}: {{app_name}} 内的模块名 (例如: "bmi", "wellness_profile")。
+  {{FeatureName}}: 驼峰式特性名 (例如: "BMICalculation", "ComprehensiveProfileModel")。
+  {{feature_name}}: 下划线式特性名 (例如: "bmi_calculation", "comprehensive_profile_model")。
+  {{NN}}: 特性两位数序号 (例如: "01", "02")。
+  {{current_exercise_collection}}: 当前操作的练习集目录名称 (例如: "exercise_tdd_bmi", "exercise_tdd_awa_core")。
 -->
 
 # Practice: {{PRACTICE_TITLE}}
-{{#if PRACTICE_VERSION}} > 版本: {{PRACTICE_VERSION}} {{/if}}
+> 版本: 4.0
 
-> **工作目录说明**：本文档位于 `{{CURRENT_EXERCISE_DIR}}/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/tdd_ai_thinking.md` 指向的是项目根目录下的 `tdd_rules/tdd_ai_thinking.md`。
+> **工作目录说明**：本文档位于 `{{current_exercise_collection}}/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/tdd_ai_thinking.md` 指向的是项目根目录下的 `tdd_rules/tdd_ai_thinking.md`。
 >
 > {{#if MAIN_IMPLEMENTATION_PATH_INFO}}
 > **实现目录说明**：本练习系列的实际代码实现位于 `../{app_name}/src/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`，测试代码位于 `../{app_name}/tests/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`，相关的TDD开发过程文档位于 `../{app_name}/dev_cycles/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`。
 > {{else if SPECIFIC_TECH_IMPLEMENTATION_PATH_INFO}}
-> **实现目录说明**：本练习的实际实现位于 `{{SPECIFIC_TECH_IMPLEMENTATION_PATH_INFO.base_path}}/` 目录下 (相对于 `{{CURRENT_EXERCISE_DIR}}/`)。
+> **实现目录说明**：本练习的实际实现位于 `{{SPECIFIC_TECH_IMPLEMENTATION_PATH_INFO.base_path}}/` 目录下 (相对于 `{{current_exercise_collection}}/`)。
 > {{/if}}
 
 (核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/tdd_ai_thinking.md))
@@ -80,31 +80,6 @@
 {{/if}}
 {{/if}}
 
-{{#if SPECIFIC_DIRECTORY_STRUCTURE}}
-### 目录结构规范 ({{PRACTICE_TITLE}} 特定)
-
-在遵循 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md) 的基础上，针对本练习系列的特性，其产出物（包括中间思考文档）的组织结构如下。请务必严格遵循TDD的五个核心步骤，确保生成相应的思考过程文档：
-
-```
-ExTDD_{{NN}}_{{FeatureName}}/
-├── constraints/                    # 约束条件
-│   └── task_constraints.md        # 任务特定约束
-├── inputs/                        # 输入文件
-│   └── _user_story_{{feature_name}}.md # 用户故事 (通常链接到 dev_cycles 中的版本)
-├── outputs/                       # 输出文件 (在 dev_cycles 中实际生成和归档)
-│   ├── _s1_think_options_{{feature_name}}.md  # 步骤1：思考与选项分析
-│   ├── _s2_think_design_{{feature_name}}.md   # 步骤2：设计思考
-│   ├── _s3_think_validation_{{feature_name}}.md # 步骤3：验证逻辑思考
-│   ├── test_{{feature_name}}.py              # 步骤4：编写测试 (红灯)
-│   ├── {{feature_name}}.py                   # 步骤5：编写实现 (绿灯)
-│   └── doc_{{feature_name}}.md               # 特性说明文档 (重构与文档)
-└── README.md                      # 练习说明 (通常是本 practice_*.md 的副本或引用)
-```
-
-**重要提示**：在每个TDD周期中，务必创建 `_s1_think_options_{{feature_name}}.md`, `_s2_think_design_{{feature_name}}.md`, 和 `_s3_think_validation_{{feature_name}}.md` 这三个中间思考文档。这些文档是TDD方法论的重要组成部分，有助于记录决策过程、设计思路和验证策略，确保开发过程的严谨性和可追溯性。跳过这些步骤将视为未完整执行TDD流程。
-
-{{{SPECIFIC_DIRECTORY_STRUCTURE}}}
-{{/if}}
 
 {{#if FEATURES_OVERVIEW_TITLE}}
 ## {{FEATURES_OVERVIEW_TITLE}}

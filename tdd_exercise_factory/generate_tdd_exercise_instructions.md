@@ -9,7 +9,7 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 -->
 
 # AI协作生成TDD练习框架指令
-> 版本: 3.0
+> 版本: 4.0
 
 **核心目标：** 本文档指导AI通过与用户进行**交互式、多步骤、有状态的协作流程**，逐步创建**全新的**TDD练习系列，并在关键步骤进行信息确认，确保高效产出。如需修改或调整**现有**的练习集，请参考 `tdd_exercise_factory/modify_tdd_exercise_instructions.md` (即将创建)。
 
@@ -41,9 +41,9 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 
 1.  **practice识别信息 (practice Identification) - 交互式收集与确认:**
     *   AI引导用户提供并确认以下信息：
-        *   **主题 (practice Theme) / 应用友好名称 (APP_FRIENDLY_NAME)** (例如：'BMI Calculator')。
-        *   **应用核心名称 (APP_NAME)** (AI可基于主题建议snake_case形式，例如 'bmi_calculator'，并说明其对代码、测试和文档路径的影响)。
-        *   **practice文件名 (practice Filename)** (AI可基于APP_NAME建议 `practice_tdd_[APP_NAME].md`)。
+        *   **主题 (practice Theme) / 用户故事友好名称 (USER_STORY_FRIENDLY_NAME)** (例如：'BMI Calculator')。
+        *   **练习对应模块名 (MODULE_NAME)** (AI可基于主题建议snake_case形式，例如 'bmi_calculator'，此名称对应文档顶部的 `{module_name}` 占位符，并说明其对代码、测试和文档路径的影响)。
+        *   **practice文件名 (practice Filename)** (AI可基于MODULE_NAME建议 `practice_tdd_[MODULE_NAME].md`)。
     *   AI在收集完上述三项后，会进行一次总体验证，确保信息准确无误，并允许用户修正。
 
 2.  **核心练习系列规划与定义 (Core Exercise Series Planning & Definition) - 交互式迭代收集与确认:**
@@ -84,7 +84,7 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 
 *   **输入源**: 用户交互确认的所有信息（核心识别信息、特性数组、可选说明等）。
 *   **数据结构**: 传递给模板的数据结构需与 `practice_tdd_template.md` 的占位符和逻辑（如 `{{#each FEATURES}}`, `{{#if IS_SERIES_EXERCISE}}`）匹配。
-*   **模板应用**: 严格使用 `tdd_exercise_factory/practice_tdd_template.md` 作为基础结构，正确填充所有占位符，包括 `{{USER_WORKSPACE_ROOT}}`，并确保特性ID和条件渲染正确处理。
+*   **模板应用**: 严格使用 `tdd_exercise_factory/practice_tdd_template.md` 作为基础结构，正确填充所有占位符，并确保特性ID和条件渲染正确处理。
 *   **路径表示**: 生成的 `practice_xxx.md` 中，所有特性相关的代码、测试、文档路径均指向 `../{{APP_NAME}}` 项目的相应子目录，AI需确保 `APP_NAME` 和特性占位符正确替换。
 *   **输出**: 用户确认的文件名，存放于 `[current_exercise_collection]/`。
 
