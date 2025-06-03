@@ -20,10 +20,10 @@
 
 基于上述核心原则，特别是围绕**模块**、**特性**及其**序号**的组织方式，每个模块内的一个TDD练习周期 (例如，`{module_name}` 模块的第一个特性 `ExTDD_NN_{FeatureName}`) 的产出物，在 `{app_name}/` 目录内按以下结构组织：
 
-*   **`{app_name}/src/{module_name}/`**: 存放该TDD周期内特定模块的**源代码快照**。
+*   **`{app_name}/src/{module_name}/`**: 存放该TDD周期内特定模块的**源代码**。
     *   `README_{feature_name}.md`: 对当前特性代码的说明文档 (例如 `README_bmicalculation.md`)。
     *   `{feature_name}.py`: 特性的核心实现代码 (例如 `bmicalculation.py`)。
-*   **`{app_name}/tests/{module_name}/`**: 存放该TDD周期内特定模块的**测试代码快照**。
+*   **`{app_name}/tests/{module_name}/`**: 存放该TDD周期内特定模块的**测试代码**。
     *   `test_{feature_name}.py`: 针对特性实现的单元测试代码 (例如 `test_bmicalculation.py`)。
 *   **`{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/`**: 存放与该TDD练习周期相关的**思考、设计、用户故事、验证和约束**等文档 (例如 `ExTDD_01_BMICalculation/`)。
     *   `_user_story_{feature_name}.md`: 用户故事描述。
@@ -36,11 +36,11 @@
 
 ```
 {app_name}/
-├── src/                            # (Source Code Snapshot) TDD周期内的源代码快照
+├── src/                            # (Source Code Snapshot) TDD周期内的源代码
 │   └── {module_name}/              # 例如 bmi/
 │       ├── README_{feature_name}.md
 │       └── {feature_name}.py
-├── tests/                          # (Test Code Snapshot) TDD周期内的测试代码快照
+├── tests/                          # (Test Code Snapshot) TDD周期内的测试代码
 │   └── {module_name}/              # 例如 bmi/
 │       └── test_{feature_name}.py
 ├── dev_cycles/                     # (User Story, Design and Planning Documents) 思考、设计、约束、验证等文档

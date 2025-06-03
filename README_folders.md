@@ -141,7 +141,7 @@ ai_wellness_advisor/ ({app_name})
 3.  **`{app_name}/dev_cycles/{module_name}/ExTDD_NN_{feature_name}/`：TDD过程记录**
     *   在 `{app_name}` 应用的 `dev_cycles` 目录下，会按照模块名 (`{module_name}`) 和特性 (`ExTDD_NN_{feature_name}`) 进一步组织各个TDD练习周期的详细记录文档。
     *   这些文档记录了思考过程、约束分析、代码迭代和测试演进，遵循 `README_folder_feature.md` 中定义的命名和组织规范。
-    *   其对应的源代码和测试代码快照也遵循 `README_folder_feature.md` 中定义的结构，位于 `{app_name}/src/{module_name}/` 和 `{app_name}/tests/{module_name}/` 下（在特性开发过程中，这些可能是临时的快照，最终稳定版会整合）。
+    *   其对应的源代码和测试代码也遵循 `README_folder_feature.md` 中定义的结构，位于 `{app_name}/src/{module_name}/` 和 `{app_name}/tests/{module_name}/` 下（在特性开发过程中，这些可能是临时的，最终稳定版会整合）。
 
 ## 总结速查表
 

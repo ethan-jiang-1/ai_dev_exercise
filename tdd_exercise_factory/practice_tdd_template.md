@@ -72,7 +72,7 @@
 
 {{#if TDD_CYCLE_OUTPUT_PATH_INFO}}
 **TDD周期产出物归档核心路径**：
-本练习系列相关的每个TDD周期（例如 `ExTDD_{{NN}}_{{FeatureName}}`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{{module_name}}/ExTDD_{{NN}}_{{FeatureName}}/` (例如 `../{{app_name_value}}/dev_cycles/{{EXAMPLE_MODULE_NAME_1}}/ExTDD_01_SampleFeature/`)。对应的代码和测试快照则位于 `../{app_name}/src/{{module_name}}/` 和 `../{app_name}/tests/{{module_name}}/`。
+本练习系列相关的每个TDD周期（例如 `ExTDD_{{NN}}_{{FeatureName}}`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{{module_name}}/ExTDD_{{NN}}_{{FeatureName}}/` (例如 `../{{app_name_value}}/dev_cycles/{{EXAMPLE_MODULE_NAME_1}}/ExTDD_01_SampleFeature/`)。对应的代码和测试则位于 `../{app_name}/src/{{module_name}}/` 和 `../{app_name}/tests/{{module_name}}/`。
 
 本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 {{#if DETAILED_USER_STORY_LOCATION_INFO}}
@@ -132,7 +132,7 @@ ExTDD_{{NN}}_{{FeatureName}}/
 
 {{#if SINGLE_FEATURE_DETAILS.tdd_cycle_docs_path}}
 对应的TDD周期文档存放路径：`{{SINGLE_FEATURE_DETAILS.tdd_cycle_docs_path}}`
-(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 {{/if}}
 
 {{#if SINGLE_FEATURE_DETAILS.specific_paths_overview}}

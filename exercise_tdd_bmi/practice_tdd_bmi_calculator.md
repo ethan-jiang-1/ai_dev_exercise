@@ -38,7 +38,7 @@
 **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_bmi/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`../tdd_rules/tdd_ai_thinking.md`。
 
 **TDD周期产出物归档核心路径**：
-本练习相关的每个TDD周期（例如 `ExTDD_01_BMICalculation`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/bmi/ExTDD_01_BMICalculation/`)。对应的代码和测试快照则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
+本练习相关的每个TDD周期（例如 `ExTDD_01_BMICalculation`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/bmi/ExTDD_01_BMICalculation/`)。对应的代码和测试则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
 
 本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 
@@ -48,15 +48,15 @@
 
 ### TDD周期产出物遵循的规范
 
-所有TDD练习周期的产出物，包括思考文档、源代码快照和测试代码快照的目录结构、文件命名及存放位置，均严格遵循以下权威文档的规定：
+所有TDD练习周期的产出物，包括思考文档、源代码和测试代码的目录结构、文件命名及存放位置，均严格遵循以下权威文档的规定：
 *   [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md)
 *   [项目整体目录结构](../README_folders.md)
 
 **核心要点回顾**：
 *   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md`, `_s2_think_design_{feature_name}.md`, `_s3_think_validation_{feature_name}.md` 等）请参见上述规范文档。这些文档记录了TDD周期的关键思考过程，是确保AI辅助开发过程透明化和可追溯性的重要环节，**强烈建议在每个TDD周期中按规范创建，以完整体现思考和决策过程**。
-*   **源代码快照**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
+*   **源代码**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
 *   **特性代码说明**：位于 `{app_name}/src/{module_name}/README_{feature_name}.md`。
-*   **测试代码快照**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
+*   **测试代码**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
 
 **重要提示**：
 - 本文档 (`practice_tdd_bmi_calculator.md`) 作为练习的起点，提供了高级别的用户故事。
@@ -73,7 +73,7 @@ module_name: bmi
 feature_name: bmi_calculate
 
 对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_01_BMICalculation/`
-(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 #### 核心用户故事 (ExTDD_01_BMICalculation) 针对Feature_01
 > 作为一名普通用户，我希望能方便地输入我的身高（以米为单位）和体重（以千克为单位），然后系统能帮我算出我的身体质量指数（BMI）。如果我输错了数字（比如不是有效的身高体重值），希望能得到一个友好的提示。我最主要就是想知道计算出来的BMI结果。
@@ -86,7 +86,7 @@ module_name: bmi
 feature_name: bmi_categorize
 
 对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_02_BMICategorization/`
-(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 #### 核心用户故事 (ExTDD_02_BMICategorization) 针对Feature_02
 > 作为一名关心健康的用户，在我知道自己的BMI值之后，我还想知道这个数值到底代表什么意思，比如我是不是偏瘦了、体重是否标准，或者是不是有点超重。希望能给我一个简单明了的健康状况分类。

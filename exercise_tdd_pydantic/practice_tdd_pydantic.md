@@ -42,7 +42,7 @@
 **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_pydantic/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`../tdd_rules/tdd_ai_thinking.md`。
 
 **TDD周期产出物归档核心路径**：
-本练习相关的每个TDD周期（例如 `ExTDD_01_PydanticUserProfile`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/data_models/ExTDD_01_PydanticUserProfile/`)。对应的代码和测试快照则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
+本练习相关的每个TDD周期（例如 `ExTDD_01_PydanticUserProfile`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/data_models/ExTDD_01_PydanticUserProfile/`)。对应的代码和测试则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。
 
 本项目中的 `practice_*.md` 文件主要作为TDD练习的起点和高级别需求描述。
 
@@ -53,15 +53,15 @@
 
 ### TDD周期产出物遵循的规范
 
-所有TDD练习周期的产出物，包括思考文档、源代码快照和测试代码快照的目录结构、文件命名及存放位置，均严格遵循以下权威文档的规定：
+所有TDD练习周期的产出物，包括思考文档、源代码和测试代码的目录结构、文件命名及存放位置，均严格遵循以下权威文档的规定：
 *   [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md)
 *   [项目整体目录结构](../README_folders.md)
 
 **核心要点回顾**：
 *   **思考与设计文档**：位于 `{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` 目录下，详细文件列表（如 `_user_story_{feature_name}.md`, `_s1_think_options_{feature_name}.md`, `_s2_think_design_{feature_name}.md`, `_s3_think_validation_{feature_name}.md` 等）请参见上述规范文档。这些文档记录了TDD周期的关键思考过程，是确保AI辅助开发过程透明化和可追溯性的重要环节，**强烈建议在每个TDD周期中按规范创建，以完整体现思考和决策过程**。
-*   **源代码快照**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
+*   **源代码**：位于 `{app_name}/src/{module_name}/{feature_name}.py`。
 *   **特性代码说明**：位于 `{app_name}/src/{module_name}/README_{feature_name}.md`。
-*   **测试代码快照**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
+*   **测试代码**：位于 `{app_name}/tests/{module_name}/test_{feature_name}.py`。
 
 **重要提示**：
 - 本文档 (`practice_tdd_pydantic.md`) 作为练习的起点，提供了高级别的用户故事。
@@ -79,7 +79,7 @@ module_name: data_models
 feature_name: pydantic_user_profile
 
 对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_01_PydanticUserProfile/`
-(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 #### 核心用户故事 (ExTDD_01_PydanticUserProfile) 针对Feature_01
 > 作为开发者，我需要使用Pydantic定义一个用户健康档案模型，该模型应包含用户的基本信息（如年龄、性别、身高、体重）、健康目标、过敏史、疾病史等关键字段，并确保这些字段的数据类型和约束得到严格验证。
@@ -92,7 +92,7 @@ module_name: data_models
 feature_name: pydantic_diet_log
 
 对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_02_PydanticDietLog/`
-(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 #### 核心用户故事 (ExTDD_02_PydanticDietLog) 针对Feature_02
 > 作为开发者，我需要使用Pydantic定义一个饮食记录模型，该模型应能记录用户单次餐饮的食物名称、分量、主要营养成分（如碳水化合物、蛋白质、脂肪、卡路里）以及用餐时间，并对输入数据进行有效性验证。
@@ -105,7 +105,7 @@ module_name: data_models
 feature_name: pydantic_exercise_plan
 
 对应的TDD周期文档存放路径：`../{app_name}/dev_cycles/{module_name}/ExTDD_03_PydanticExercisePlan/`
-(其内部文件结构及对应的代码/测试快照路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
+(其内部文件结构及对应的代码/测试路径遵循项目统一规范，详见 [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
 
 #### 核心用户故事 (ExTDD_03_PydanticExercisePlan) 针对Feature_03
 > 作为开发者，我需要使用Pydantic定义一个运动计划模型，该模型应包含运动类型、持续时间、强度、目标消耗卡路里等字段，并确保数据的合理性和完整性。

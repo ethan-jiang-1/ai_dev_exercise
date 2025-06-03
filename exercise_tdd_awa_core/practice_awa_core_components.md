@@ -33,7 +33,7 @@
 **工作目录说明**：本文档（用户故事）位于 `exercise_tdd_awa_core/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`../tdd_rules/tdd_ai_thinking.md`。
 
 **TDD周期产出物归档核心路径**：
-本练习系列相关的每个TDD周期（例如 `ExTDD_01_ComprehensiveProfileModel`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../../ai_wellness_advisor/dev_cycles/wellness_profile/ExTDD_01_ComprehensiveProfileModel/`)。对应的代码和测试快照则位于 `../../{app_name}/src/{module_name}/` 和 `../../{app_name}/tests/{module_name}/`。
+本练习系列相关的每个TDD周期（例如 `ExTDD_01_ComprehensiveProfileModel`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../../ai_wellness_advisor/dev_cycles/wellness_profile/ExTDD_01_ComprehensiveProfileModel/`)。对应的代码和测试则位于 `../../{app_name}/src/{module_name}/` 和 `../../{app_name}/tests/{module_name}/`。
 
 **重要提示：** 在每个TDD周期中，务必创建所有相关的思考文档（如 `_user_story_*.md`, `_s1_think_options_*.md`, `_s2_think_design_*.md`, `_s3_think_validation_*.md` 等）。这些文档是TDD过程透明化和可追溯性的关键，有助于完整记录决策过程。
 
