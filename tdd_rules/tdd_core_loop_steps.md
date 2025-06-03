@@ -1,4 +1,5 @@
 # TDD 核心循环：5个关键步骤 (TDD Core Loop: 5 Key Steps)
+> 版本: 3.2 (精简版)
 
 本文档概述了测试驱动开发 (Test-Driven Development, TDD) 循环的5个核心步骤。这些步骤旨在按顺序执行，以确保结构化且有效的开发过程，尤其是在使用 AI 辅助编码时。
 
