@@ -29,7 +29,7 @@
 
 ## 1. User Story (用户故事)
 
-# {{USER_STORY_MAIN_TITLE}}
+# {{PRACTICE_USER_STORY_MAIN_TITLE}}
 
 > **重要约束**：
 > 1. 在整个实践过程中，请确保所有在Cursor/Trae中的交互对话均使用中文，这是出于演示目的的要求。
@@ -116,15 +116,36 @@
 {{/if}}
 
 {{#if SINGLE_FEATURE_DETAILS.specific_directory_structure_snippet}}
+**特性相关目录结构示例 (Illustrative Directory Structure for this Feature):**
+```
+{{{SINGLE_FEATURE_DETAILS.specific_directory_structure_snippet}}}
+```
+{{/if}}
+
+{{#if SINGLE_FEATURE_DETAILS.important_notes_for_feature}}
+**关于此特性的重要提示:**
+{{#each SINGLE_FEATURE_DETAILS.important_notes_for_feature}}
+- {{this}}
+{{/each}}
+{{/if}}
 ```
 {{{SINGLE_FEATURE_DETAILS.specific_directory_structure_snippet}}}
 ```
 {{/if}}
 
 #### 核心用户需求 ({{FEATURE_ID_PREFIX}}_{{FEATURE_NAME_CAMELCASE}})
-> {{CORE_USER_NEED}}
+> {{SINGLE_FEATURE_DETAILS.user_story_for_feature}}
 
-**TDD核心循环提示**：请务必遵循完整的TDD五步循环，包括创建 `_s1_think_options_{{feature_name}}.md`, `_s2_think_design_{{feature_name}}.md`, 和 `_s3_think_validation_{{feature_name}}.md` 等中间思考文档。
+#### 功能需求 (Feature Requirements)
+{{#if SINGLE_FEATURE_DETAILS.acceptance_criteria}}
+{{#each SINGLE_FEATURE_DETAILS.acceptance_criteria}}
+*   {{this}}
+{{/each}}
+{{else}}
+*   暂未提供验收标准。
+{{/if}}
+
+**TDD核心循环提示**：请务必遵循完整的TDD五步循环，包括创建 `_s1_think_options_{{SINGLE_FEATURE_DETAILS.feature_name_snakecase}}.md`, `_s2_think_design_{{SINGLE_FEATURE_DETAILS.feature_name_snakecase}}.md`, 和 `_s3_think_validation_{{SINGLE_FEATURE_DETAILS.feature_name_snakecase}}.md` 等中间思考文档。
 {{/if}}
 {{/each}}
 

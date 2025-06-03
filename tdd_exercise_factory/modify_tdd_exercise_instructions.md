@@ -1,11 +1,11 @@
-<!-- 定义占位符 -->
+<!-- 定义核心占位符 (供AI交互收集信息时参考，最终会映射到模板中的 {{placeholder}} ) -->
 <!-- 
-{app_name}: 指代项目或应用的根目录名称，例如 "ai_wellness_advisor"。
-{module_name}: 指代项目中的一个模块名称，例如 "bmi" 或 "user_profile"。
-{FeatureName}: 指代模块下的一个具体特性名称，采用驼峰式命名，例如 "BMICalculation"。
-{feature_name}: 指代模块下的一个具体特性名称，采用下划线命名，例如 "bmi_calculation"。
-NN: 指代特性的两位数序号，例如 "01", "02"。
-current_exercise_collection: 指代当前操作的练习集目录名称，例如 "exercise_tdd_llm"。
+{{app_name}}: 项目/应用根目录名 (例如: "ai_wellness_advisor")。
+{{module_name}}: {{app_name}} 内的模块名 (例如: "bmi", "wellness_profile")。
+{{FeatureName}}: 驼峰式特性名 (例如: "BMICalculation", "ComprehensiveProfileModel")。
+{{feature_name}}: 下划线式特性名 (例如: "bmi_calculation", "comprehensive_profile_model")。
+{{NN}}: 特性两位数序号 (例如: "01", "02")。
+{{current_exercise_collection}}: 当前操作的练习集目录名称 (例如: "exercise_tdd_llm", "exercise_tdd_awa_core")。
 -->
 
 # AI协作修改TDD练习框架指令
@@ -40,9 +40,10 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 **交互流程**:
 1.  AI告知用户将读取并分析选定的 `[practice文件名]`。
 2.  AI读取文件内容，并向用户总结展示以下关键信息（如果存在）：
-    *   当前的 **PRACTICE_TITLE / 用户故事友好名称**。
+    *   当前的 **练习PRACTICE标题 (PRACTICE_TITLE)**。
+    *   当前的 **练习总体用户故事 (PRACTICE_USER_STORY_MAIN_TITLE)**。
     *   当前的 **练习对应模块名 (MODULE_NAME)**。
-    *   **特性列表** (FEATURE_ID_PREFIX, FEATURE_NAME_CAMELCASE, FEATURE_FRIENDLY_TITLE)。
+    *   **特性列表** (FEATURE_ID_PREFIX, FEATURE_NAME_CAMELCASE, feature_name_snakecase, FEATURE_FRIENDLY_TITLE, user_story_for_feature, acceptance_criteria, important_notes_for_feature)。
     *   其他主要的可选全局信息摘要。
 3.  AI询问用户是否确认基于这些信息进行修改。
 
@@ -58,7 +59,8 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 
 1.  **Practice识别信息修改 (Practice Identification Modification) - 交互式收集与确认:**
     *   AI询问用户是否需要修改以下信息，并逐项引导修改和确认：
-        *   **主题 (Practice Theme) / 用户故事友好名称 (USER_STORY_FRIENDLY_NAME)**。
+        *   **练习PRACTICE标题 (PRACTICE_TITLE)**。
+        *   **练习总体用户故事 (PRACTICE_USER_STORY_MAIN_TITLE)**。
         *   **练习对应模块名 (MODULE_NAME)** (AI提醒，若修改此项，可能影响关联路径和文件名，建议谨慎)。
         *   **(可选) Practice文件名 (Practice Filename)** (若MODULE_NAME更改，AI可建议新文件名)。
     *   AI在收集完修改后的上述信息（如果有修改）后，进行一次总体验证。
@@ -66,8 +68,8 @@ current_exercise_collection: 指代当前操作的练习集目录名称，例如
 2.  **核心练习系列规划与定义修改 (Core Exercise Series Planning & Definition Modification) - 交互式迭代收集与确认:**
     *   AI询问用户是否需要修改 **特性ID前缀 (FEATURE_ID_PREFIX)**，并确认。
     *   AI展示现有特性列表，并询问用户希望进行的操作：
-        *   **修改现有特性**: 用户选择特性，AI引导逐项修改（特性名称、友好标题、用户故事、验收标准、技术说明）。每次修改后单特性确认。
-        *   **添加新特性**: AI引导用户定义新特性（同创建流程中的特性定义，参考 `generate_tdd_exercise_instructions.md`）。
+        *   **修改现有特性**: 用户选择特性，AI引导逐项修改（**特性名称 (FEATURE_NAME_CAMELCASE)**, **特性名 (feature_name_snakecase)**, **友好标题 (FEATURE_FRIENDLY_TITLE)**, **针对此特性的用户故事 (user_story_for_feature)**, **验收标准 (acceptance_criteria)**, **技术说明/重要提示 (important_notes_for_feature)**）。每次修改后单特性确认。
+        *   **添加新特性**: AI引导用户定义新特性（同创建流程中的特性定义，参考 `generate_tdd_exercise_instructions.md`，包含FEATURE_NAME_CAMELCASE, feature_name_snakecase, FEATURE_FRIENDLY_TITLE, user_story_for_feature, acceptance_criteria, important_notes_for_feature）。
         *   **删除特性**: 用户选择特性，AI确认后标记为待删除。
     *   所有特性修改/添加/删除操作完毕后，AI会进行一次包含所有更新后特性信息的总体验证。
 
