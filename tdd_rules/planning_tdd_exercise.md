@@ -23,7 +23,7 @@
 
 ## 3. 框架与故事实例的关系
 本框架采用"抽象到具体"的三层设计：
-1.  **核心理念层** (`test_driven_development_with_ai.md`): 定义思考驱动开发的基本原则、测试驱动思维的重要性、与AI协作的方法论（思考过程优先），以及思考与构建的6个阶段。
+1.  **核心理念层** (`tdd_ai_thinking.md`): 定义思考驱动开发的基本原则、测试驱动思维的重要性、与AI协作的方法论（思考过程优先），以及思考与构建的6个阶段。
 2.  **练习框架层** (本文档精简版): 基于核心理念定义通用的TDD练习系列模板（包含5个子步骤）、各步骤的实施指南、输入输出规范和文件命名约定。
 3.  **故事实例层**:
     *   `story_tdd_*.md`: 定义具体的故事背景、业务目标、技术栈和初始用户故事。
@@ -39,35 +39,16 @@
 ## 5. 目录结构与核心文档
 *   **权威目录结构**: **所有实际项目开发和TDD练习的代码、测试、以及最终的思考和设计文档，都必须遵循项目根目录下 `README_folders.md` 文件中定义的统一目录结构。** `exercise_tdd_xxx/` 等目录严格作为TDD练习的“控制器”或“入口点”（静态指南），其内部不包含实际的Python源代码或测试脚本。
 *   **框架核心文档**:
-    1.  `test_driven_development_with_ai.md`: AI辅助TDD的核心理念与原则。
+    1.  `tdd_ai_thinking.md`: AI辅助TDD的核心理念与原则。
     2.  本文件 (`planning_tdd_exercise.md` 精简版): TDD练习框架的设计规划。
 
 ## 6. TDD练习系列设计 (5步骤核心循环)
-每个TDD练习系列模板包含以下5个核心步骤，构成完整的TDD循环。产出文件的存放位置需遵循第3点和第5点中强调的目录规范。
 
-*   **通用输出规范 (重点)**：
-    *   思考类Markdown文档 (如 `_s1_think_options_{feature_name}.md`, `_doc_{feature_name}.md`): 存放于 `{app_name}/dev_cycles/{module_name}/ExTDD_XX_FeatureName/`。
-    *   功能实现代码 (`{feature_name}.py`): 存放于 `{app_name}/src/{module_name}/`。
-    *   测试代码 (`test_{feature_name}.py`): 存放于 `{app_name}/tests/{module_name}/`。
-    *   **再次强调**: 具体路径必须符合 `README_folders.md` 和 `README_folder_feature.md` 的规定。
+每个TDD练习系列模板的核心是遵循一个包含5个步骤的完整TDD循环。这些步骤的详细说明、目标、AI执行约束以及通用输出规范，请参阅独立的文档：
 
-1.  **步骤 1: 思考功能实现可选方案 (`_s1_think_options_{feature_name}.md`)**
-    *   **目标**: 分析用户故事，识别核心需求、技术挑战和初步实现思路。
-    *   **AI执行约束**: AI助手必须首先创建并完成此文档，然后才能继续下一步。
-2.  **步骤 2: 设计功能实现方案 (`_s2_think_design_{feature_name}.md`)**
-    *   **目标**: 将思路具体化为设计方案，设计函数接口，规划实现步骤。
-    *   **AI执行约束**: AI助手必须首先创建并完成此文档，然后才能继续下一步。
-3.  **步骤 3: 验证功能实现思路与编写测试 (Red) (`_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`)**
-    *   **目标**: 编写一个（或一组）会失败的测试用例。
-    *   **关键点**: 若功能单元依赖其他模块，通常需运用测试替身（如Mock对象）隔离依赖。详细技巧参考 `tdd_unit_test_design_techniques.md`。
-    *   **测试框架建议**: 虽然本框架默认使用 Python 内置的 `unittest` 模块，但在构思和设计测试时，强烈建议考虑使用 `pytest`。`pytest` 以其简洁的语法、强大的 fixture 支持和丰富的插件生态，能显著提升测试编写效率和可维护性。在实际项目中，`pytest` 通常是更现代和高效的选择。
-    *   **AI执行约束**: AI助手必须首先创建并完成 `_s3_think_validation_{feature_name}.md` 文档和对应的 `test_{feature_name}.py`（确保测试失败），然后才能继续下一步。
-4.  **步骤 4: 功能实现代码 (Green) (`{feature_name}.py`)**
-    *   **目标**: 编写刚好能通过所有测试的功能代码。
-    *   **AI执行约束**: AI助手必须在所有前序思考文档和测试用例（Red阶段）完成后，才能开始编写此功能实现代码。
-5.  **步骤 5: 函数文档完善与代码重构 (Refactor) (`_doc_{feature_name}.md`)**
-    *   **目标**: 整理文档，说明函数用途、接口和使用示例，并在测试保护下优化代码。
-    *   **AI执行约束**: AI助手必须在功能代码通过所有测试（Green阶段）后，才能开始创建此文档和进行代码重构。
+**[./tdd_core_loop_steps.md](./tdd_core_loop_steps.md)**
+
+确保所有产出文件的存放位置严格遵循项目在 `README_folders.md` 和 `README_folder_feature.md` 中定义的目录规范。
 
 ## 7. 如何使用框架进行练习 (用户视角概要)
 1.  选择一个故事实例目录 (e.g., `exercise_tdd_dcnc/`) 和其中的一个练习系列 (e.g., `ExTDD_01_FeatureName/`)。
@@ -89,7 +70,7 @@
 *   **重要**: 文件名中的 `{feature_name}` 必须一致。所有路径需符合项目规范。
 
 ## 9. 核心理念与练习框架的步骤映射
-本框架的5个TDD步骤是对 `test_driven_development_with_ai.md` 中6个思考构建步骤的实践性转化，强调TDD的Red-Green-Refactor循环：
+本框架的5个TDD步骤是对 `tdd_ai_thinking.md` 中6个思考构建步骤的实践性转化，强调TDD的Red-Green-Refactor循环：
 1.  **步骤1 (思考可选方案)** ≈ 理念步骤1 (问题定义) + 步骤2 (解决方案思考)。
 2.  **步骤2 (设计实现方案)** ≈ 理念步骤3 (设计方案思考)。
 3.  **步骤3 (验证与测试 - Red)** ≈ 理念步骤4 (验证策略构建)。

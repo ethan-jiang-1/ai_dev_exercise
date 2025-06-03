@@ -106,7 +106,7 @@ ai_wellness_advisor/ ({app_name})
 └── tdd_rules/
     ├── planning_tdd_exercise.md
     ├── tdd_unit_test_design_techniques.md
-    └── test_driven_development_with_ai.md
+    └── tdd_ai_thinking.md
 ```
 
 **TDD练习生成工厂**: 用于生成TDD练习结构和模板的指令及文件位于 `tdd_exercise_factory/` 目录：

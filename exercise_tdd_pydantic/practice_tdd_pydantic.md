@@ -1,8 +1,8 @@
 # Practice: Pydantic 在AI个性化健康顾问中的应用
 
-> **工作目录说明**：本文档位于 `exercise_tdd_pydantic/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 指向的是项目根目录下的 `tdd_rules/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `exercise_tdd_pydantic/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录。例如，`../tdd_rules/tdd_ai_thinking.md` 指向的是项目根目录下的 `tdd_rules/tdd_ai_thinking.md`。
 
-(核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/test_driven_development_with_ai.md))
+(核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/tdd_ai_thinking.md))
 (单元测试设计参考: [TDD单元测试设计技巧](../tdd_rules/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](../tdd_rules/planning_tdd_exercise.md))
 (目录结构核心原则参考: [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
@@ -39,7 +39,7 @@
     *   示例：`pydantic_user_profile`, `pydantic_diet_log`, `pydantic_exercise_plan`
     *   要求：描述性、简洁、表明功能及与Pydantic的关联
 
-**工作目录说明**：本文档（用户故事）位于 `exercise_tdd_pydantic/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`../tdd_rules/test_driven_development_with_ai.md`。
+**工作目录说明**：本文档（用户故事）位于 `exercise_tdd_pydantic/` 目录下。所有与本用户故事直接相关的文件引用路径均基于此目录。例如，`../tdd_rules/tdd_ai_thinking.md`。
 
 **TDD周期产出物归档核心路径**：
 本练习相关的每个TDD周期（例如 `ExTDD_01_PydanticUserProfile`）的详细思考过程、约束等文档，将统一归档到主应用项目 `{app_name}` 的开发周期记录区内，具体路径为 `../{app_name}/dev_cycles/{module_name}/ExTDD_NN_{FeatureName}/` (例如 `../ai_wellness_advisor/dev_cycles/data_models/ExTDD_01_PydanticUserProfile/`)。对应的代码和测试快照则位于 `../{app_name}/src/{module_name}/` 和 `../{app_name}/tests/{module_name}/`。

@@ -11,7 +11,7 @@
 # Practice: {{PRACTICE_TITLE}}
 {{#if PRACTICE_VERSION}} > 版本: {{PRACTICE_VERSION}} {{/if}}
 
-> **工作目录说明**：本文档位于 `{{CURRENT_EXERCISE_DIR}}/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/test_driven_development_with_ai.md` 指向的是项目根目录下的 `tdd_rules/test_driven_development_with_ai.md`。
+> **工作目录说明**：本文档位于 `{{CURRENT_EXERCISE_DIR}}/` 目录下（相对于项目根目录）。所有文件引用路径均基于此目录或项目根目录。例如，`../tdd_rules/tdd_ai_thinking.md` 指向的是项目根目录下的 `tdd_rules/tdd_ai_thinking.md`。
 >
 > {{#if MAIN_IMPLEMENTATION_PATH_INFO}}
 > **实现目录说明**：本练习系列的实际代码实现位于 `../{app_name}/src/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`，测试代码位于 `../{app_name}/tests/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`，相关的TDD开发过程文档位于 `../{app_name}/dev_cycles/{{MAIN_IMPLEMENTATION_PATH_INFO.module_name_for_path}}/`。
@@ -19,7 +19,7 @@
 > **实现目录说明**：本练习的实际实现位于 `{{SPECIFIC_TECH_IMPLEMENTATION_PATH_INFO.base_path}}/` 目录下 (相对于 `{{CURRENT_EXERCISE_DIR}}/`)。
 > {{/if}}
 
-(核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/test_driven_development_with_ai.md))
+(核心开发理念参考: [测试驱动开发核心理念](../tdd_rules/tdd_ai_thinking.md))
 (单元测试设计参考: [TDD单元测试设计技巧](../tdd_rules/tdd_unit_test_design_techniques.md))
 (练习框架规划参考: [TDD练习框架设计规划](../tdd_rules/planning_tdd_exercise.md))
 (目录结构核心原则参考: [ExTDD 特性研发目录结构：核心原则与详解](../README_folder_feature.md))
