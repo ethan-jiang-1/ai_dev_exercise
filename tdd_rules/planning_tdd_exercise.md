@@ -60,6 +60,7 @@
 3.  **步骤 3: 验证功能实现思路与编写测试 (Red) (`_s3_think_validation_{feature_name}.md`, `test_{feature_name}.py`)**
     *   **目标**: 编写一个（或一组）会失败的测试用例。
     *   **关键点**: 若功能单元依赖其他模块，通常需运用测试替身（如Mock对象）隔离依赖。详细技巧参考 `tdd_unit_test_design_techniques.md`。
+    *   **测试框架建议**: 虽然本框架默认使用 Python 内置的 `unittest` 模块，但在构思和设计测试时，强烈建议考虑使用 `pytest`。`pytest` 以其简洁的语法、强大的 fixture 支持和丰富的插件生态，能显著提升测试编写效率和可维护性。在实际项目中，`pytest` 通常是更现代和高效的选择。
     *   **AI执行约束**: AI助手必须首先创建并完成 `_s3_think_validation_{feature_name}.md` 文档和对应的 `test_{feature_name}.py`（确保测试失败），然后才能继续下一步。
 4.  **步骤 4: 功能实现代码 (Green) (`{feature_name}.py`)**
     *   **目标**: 编写刚好能通过所有测试的功能代码。
